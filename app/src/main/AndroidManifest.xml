@@ -17,7 +17,8 @@
         <activity android:name="com.tutor.tutordot.SignUpActivity" />
         <activity android:name="com.tutor.tutordot.StartActivity" />
         <activity android:name="com.tutor.tutordot.LoginActivity" />
-        <activity android:name="com.tutor.tutordot.SplashActivity">
+        <activity android:name="com.tutor.tutordot.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
