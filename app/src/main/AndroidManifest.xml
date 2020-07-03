@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tutor.tutordot">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.tutor.tutordot.ClassAddActivity" />
+        <activity android:name="com.tutor.tutordot.ClassModificationActivity" />
+        <activity android:name="com.tutor.tutordot.ClassActivity" />
+        <activity android:name="com.tutor.tutordot.CalenderActivity" >
+        </activity>
+        <activity android:name="com.tutor.tutordot.SignUpActivity" />
+        <activity android:name="com.tutor.tutordot.StartActivity" />
+        <activity android:name="com.tutor.tutordot.LoginActivity" />
+        <activity android:name="com.tutor.tutordot.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

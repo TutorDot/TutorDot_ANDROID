@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6875dd</color>
+    <color name="colorBackground">#f5f6fa</color>
+    <color name="colorCancle">#eb6b6b</color>
+    <color name="colorTutorBack">#edf0fa</color>
+    <color name="colorTutiBack">#fafafa</color>
+    <color name="colorTuti">#bfbfbf</color>
+    <color name="white">#ffffff</color>
+
+
+</resources>
