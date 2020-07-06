@@ -14,7 +14,9 @@
         <activity android:name="com.tutor.tutordot.ClassActivity" />
         <activity android:name="com.tutor.tutordot.CalenderActivity" >
         </activity>
-        <activity android:name="com.tutor.tutordot.SignUpActivity" />
+        <activity android:name="com.tutor.tutordot.SignUpActivity" >
+
+        </activity>
         <activity android:name="com.tutor.tutordot.StartActivity" />
         <activity android:name="com.tutor.tutordot.LoginActivity" >
 
