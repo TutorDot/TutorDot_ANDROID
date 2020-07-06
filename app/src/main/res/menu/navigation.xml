@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_calender"
-        android:icon="@drawable/tabbar_ic_calender_unpick"
+        android:icon="@drawable/icon_calender"
         android:title="캘린더"/>
     <item android:id="@+id/menu_class_log"
-        android:icon="@drawable/tabbar_ic_class_log_unpick"
+        android:icon="@drawable/icon_class_log"
         android:title="수업일지"/>
     <item android:id="@+id/menu_notice"
-        android:icon="@drawable/tabbar_ic_notice_unpick"
+        android:icon="@drawable/icon_notice"
         android:title="알림"/>
     <item android:id="@+id/menu_my"
-        android:icon="@drawable/tabbar_ic_my_unpick"
+        android:icon="@drawable/icon_my"
         android:title="내정보"/>
 </menu>
