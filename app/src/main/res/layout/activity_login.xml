@@ -21,84 +21,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/login_btn_tutor"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="191dp"
-        android:src="@drawable/login_btn_tutor"
-        app:layout_constraintEnd_toStartOf="@+id/login_btn_tuti"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="0dp"/>
+        android:src="@drawable/login_img_onboard_mockup"
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/login_btn_tuti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:src="@drawable/login_btn_tuti"
-        android:padding="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/login_btn_tutor"
-        app:layout_constraintTop_toTopOf="@+id/login_btn_tutor" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="119dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="7sp"
-        android:textColor="@color/colorTuti"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/login_btn_tuti"
-        app:layout_constraintTop_toTopOf="@+id/login_btn_tuti"
-        tools:ignore="MissingConstraints"
-        tools:text="의 경우 튜티를\n선택해주세요" />
 
-    <TextView
+    <EditText
         android:id="@+id/이메일"
-        android:layout_width="312dp"
-        android:layout_height="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginLeft="41dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="377dp"
         android:layout_marginEnd="22dp"
         android:layout_marginRight="22dp"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn_tutor"
-        tools:ignore="MissingConstraints"
-        android:inputType="textEmailAddress"
-        android:hint="이메일"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="312dp"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
-        android:background="@color/colorTuti"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/비밀번호" />
 
-    <TextView
+    <EditText
         android:id="@+id/비밀번호"
-        android:layout_width="312dp"
-        android:layout_height="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginLeft="41dp"
         android:layout_marginTop="23dp"
@@ -114,30 +68,18 @@
         android:inputType="textPassword"
         android:hint="비밀번호"/>
 
-    <View
-        android:layout_width="312dp"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
-        android:background="@color/colorTuti"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/이메일" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/login_btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:layout_marginBottom="92dp"
-        android:padding="0dp"
+        android:background="#00000000"
         android:src="@drawable/login_btn_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
