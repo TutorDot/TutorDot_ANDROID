@@ -16,7 +16,10 @@
         </activity>
         <activity android:name="com.tutor.tutordot.SignUpActivity" />
         <activity android:name="com.tutor.tutordot.StartActivity" />
-        <activity android:name="com.tutor.tutordot.LoginActivity" />
+        <activity android:name="com.tutor.tutordot.LoginActivity" >
+
+
+        </activity>
         <activity android:name="com.tutor.tutordot.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -24,6 +27,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
     </application>
 
