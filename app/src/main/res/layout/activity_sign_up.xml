@@ -23,14 +23,14 @@
 
 
     <ImageButton
-        android:id="@+id/login_btn_tutor"
+        android:id="@+id/signup_btn_tutor_3"
         android:layout_width="136dp"
         android:layout_height="175dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="101dp"
         android:background="#00000000"
-        android:src="@drawable/login_btn_tutor"
+        android:src="@drawable/signup_btn_tutor_3"
         app:layout_constraintEnd_toStartOf="@+id/login_btn_tuti"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/login_btn_tuti"
+        android:id="@+id/signup_btn_tutee_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -46,11 +46,11 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:background="#00000000"
-        android:src="@drawable/signup_btn_tutee"
+        android:src="@drawable/signup_btn_tutee_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/login_btn_tutor"
-        app:layout_constraintTop_toTopOf="@+id/login_btn_tutor" />
+        app:layout_constraintStart_toEndOf="@+id/signup_btn_tutor_3"
+        app:layout_constraintTop_toTopOf="@+id/signup_btn_tutor_3" />
 
 
     <EditText
@@ -69,7 +69,7 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn_tutor" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_btn_tutor_3" />
 
 
     <EditText
