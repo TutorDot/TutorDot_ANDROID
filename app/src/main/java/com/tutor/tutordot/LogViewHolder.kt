@@ -28,6 +28,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         tv_progress.text = "진도 : " + logData.progress
         tv_homework.text = "숙제 : " + logData.homework
 
+
         btn_circle.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
                 //선택 안되어있을 경우
