@@ -24,7 +24,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/apple_sdgothic_neo_sb"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -50,7 +51,8 @@
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"/>
 
             <ImageButton
                 android:layout_width="wrap_content"

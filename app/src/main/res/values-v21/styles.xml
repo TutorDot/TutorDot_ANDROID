@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,12 +10,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+        <!--Status Bar Color -->
         <item name="android:colorPrimaryDark">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
-
-    <!--splash 화면에 사용될 테마-->
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>
-
-    </resources>
+</resources>
