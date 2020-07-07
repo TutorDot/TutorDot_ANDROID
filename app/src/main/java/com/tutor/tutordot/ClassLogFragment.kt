@@ -1,34 +1,21 @@
 package com.tutor.tutordot
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.tutor.tutordot.R
+import kotlinx.android.synthetic.main.fragment_class_log.*
+import kotlinx.android.synthetic.main.item_logdate.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ClassLogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ClassLogFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var logdateAdapter: LogdateAdapter
+    val datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +25,32 @@ class ClassLogFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_class_log, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ClassLogFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ClassLogFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        logdateAdapter = LogdateAdapter(view.context)
+        rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+        loaddateDatas() //데이터를 어댑터에 전달
+    }
+
+    private fun loaddateDatas(){
+        datedatas.apply {
+            add(
+                LogdateData(
+                    month = 5,
+                    day = 5
+                ))
+            add(
+                LogdateData(
+                    month = 6,
+                    day = 6
+                ))
+            add(
+                LogdateData(
+                    month = 7,
+                    day = 7
+                ))
+        }
+        logdateAdapter.datas = datedatas
+        logdateAdapter.notifyDataSetChanged()
     }
 }
