@@ -16,12 +16,6 @@
         <activity android:name=".ClassActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".SignUpActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity android:name=".StartActivity" />
         <activity android:name="com.tutor.tutordot.LoginActivity" >
@@ -30,7 +24,11 @@
         <activity android:name="com.tutor.tutordot.SplashActivity"
             android:theme="@style/SplashTheme">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>
