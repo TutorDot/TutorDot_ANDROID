@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="137dp"
         android:layout_marginLeft="137dp"
-        android:layout_marginTop="99dp"
+        android:layout_marginTop="37dp"
         android:layout_marginEnd="132dp"
         android:layout_marginRight="132dp"
         android:src="@drawable/login_img_tutor"
@@ -24,99 +24,140 @@
 
     <ImageButton
         android:id="@+id/login_btn_tutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="191dp"
+        android:layout_width="136dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="101dp"
+        android:background="#00000000"
         android:src="@drawable/login_btn_tutor"
         app:layout_constraintEnd_toStartOf="@+id/login_btn_tuti"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#00000000"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/login_btn_tuti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:src="@drawable/login_btn_tuti"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
         android:background="#00000000"
+        android:src="@drawable/signup_btn_tutee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/login_btn_tutor"
         app:layout_constraintTop_toTopOf="@+id/login_btn_tutor" />
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/이름"
+        android:layout_width="297dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="119dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="7sp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:hint="이름"
+        android:inputType="textEmailAddress"
+        android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/login_btn_tuti"
-        app:layout_constraintTop_toTopOf="@+id/login_btn_tuti"
-        tools:ignore="MissingConstraints"
-        tools:text="의 경우 튜티를\n선택해주세요" />
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_tutor" />
+
 
     <EditText
         android:id="@+id/이메일"
-        android:layout_width="match_parent"
+        android:layout_width="297dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:hint="이메일"
+        android:inputType="textPassword"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn_tutor"
-        android:inputType="textEmailAddress"
-        android:hint="이메일"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/이름"
+        tools:ignore="MissingConstraint" />
 
     <EditText
         android:id="@+id/비밀번호"
-        android:layout_width="match_parent"
+        android:layout_width="297dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:hint="비밀번호"
+        android:inputType="textEmailAddress"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/이메일"
-        tools:ignore="MissingConstraint"
-        android:inputType="textPassword"
-        android:hint="비밀번호"/>
+        app:layout_constraintTop_toBottomOf="@+id/이메일" />
 
+
+    <EditText
+        android:id="@+id/비밀번호확인"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:hint="비밀번호확인"
+        android:inputType="textPassword"
+        android:lineSpacingExtra="5sp"
+        android:textColor="@color/colorTuti"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/비밀번호"
+        tools:ignore="MissingConstraint" />
 
     <ImageButton
-        android:id="@+id/login_btn_login"
+        android:id="@+id/signup_btn_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#00000000"
+        android:src="@drawable/signup_btn_agree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/비밀번호확인" />
+
+    <ImageButton
+        android:id="@+id/signup_btn_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="23dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:layout_marginBottom="92dp"
         android:background="#00000000"
-        android:src="@drawable/login_btn_login"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/signup_btn_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/비밀번호" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_btn_agree" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
