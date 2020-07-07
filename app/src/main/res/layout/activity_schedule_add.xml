@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.tutor.tutordot.ScheduleAddActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/constarintlayout"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:text="일정 추가"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/schedule_add_selection_linear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/constarintlayout">
+
+        <ImageView
+            android:id="@+id/schedule_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/notice_color_img_yellow">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="13dp"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#161616"
+            android:textSize="18sp"
+            android:text="김회진 학생 수학 수업 (17자 이내)  ">
+        </TextView>
+
+
+
+        <ImageView
+            android:id="@+id/schedule_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/schedule_modification_subjectsection">
+        </ImageView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/schedule_add_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#1c1c1c"
+        android:lineSpacingExtra="6sp"
+        android:text="날짜"
+        app:layout_constraintTop_toBottomOf="@id/schedule_add_selection_linear"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/schedule_add_date_constraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:background="@drawable/stringbox_custom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_date">
+
+        <TextView
+            android:id="@+id/schedule_add_date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="5월 23일"
+            android:lineSpacingExtra="6sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:textColor="#707070"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/fix1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/fix1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6sp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:text="수정"
+            android:layout_marginRight="16dp"
+            android:textColor="#6875dd"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/schedule_add_date_txt"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TimePicker
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:timePickerMode="spinner"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_date_constraint"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        tools:layout_editor_absoluteY="16dp" />
+
+
+    <TextView
+        android:id="@+id/schedule_add_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#1c1c1c"
+        android:lineSpacingExtra="6sp"
+        android:text="수업시작"
+        app:layout_constraintTop_toBottomOf="@id/date_picker"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/schedule_add_start_constraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:background="@drawable/stringbox_custom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_start">
+
+        <TextView
+            android:id="@+id/schedule_add_start_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="3:00 pm"
+            android:lineSpacingExtra="6sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:textColor="#707070"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/fix2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/fix2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6sp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:text="수정"
+            android:layout_marginRight="16dp"
+            android:textColor="#6875dd"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/schedule_add_start_txt"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:timePickerMode="spinner"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_start_constraint"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        tools:layout_editor_absoluteY="16dp" />
+
+
+    <TextView
+        android:id="@+id/schedule_add_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#1c1c1c"
+        android:lineSpacingExtra="6sp"
+        android:text="수업종료"
+        app:layout_constraintTop_toBottomOf="@id/time_picker"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/schedule_add_end_constraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:background="@drawable/stringbox_custom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_end">
+
+        <TextView
+            android:id="@+id/schedule_add_end_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="8:00 pm"
+            android:lineSpacingExtra="6sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:textColor="#707070"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/fix3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/fix3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6sp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:text="수정"
+            android:layout_marginRight="16dp"
+            android:textColor="#6875dd"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/schedule_add_end_txt"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TimePicker
+        android:id="@+id/time_picker2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:timePickerMode="spinner"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_end_constraint"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        tools:layout_editor_absoluteY="16dp" />
+
+
+    <TextView
+        android:id="@+id/schedule_add_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#1c1c1c"
+        android:lineSpacingExtra="6sp"
+        android:text="위치"
+        app:layout_constraintTop_toBottomOf="@id/time_picker2"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/schedule_add_location_constraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:background="@drawable/stringbox_custom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_add_location">
+
+        <EditText
+            android:id="@+id/schedule_add_location_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="강남구청역 스타벅스"
+            android:lineSpacingExtra="6sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:textColor="#707070"
+            android:textSize="15sp"
+            android:background="@drawable/stringbox_custom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </EditText>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

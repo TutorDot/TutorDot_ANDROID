@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.tutor.tutordot.ClassAddActivity" />
-        <activity android:name="com.tutor.tutordot.ClassModificationActivity" />
-        <activity android:name="com.tutor.tutordot.ClassActivity" />
-        <activity android:name="com.tutor.tutordot.CalenderActivity" >
+        <activity android:name=".ScheduleAddActivity"></activity>
+        <activity android:name=".ScheduleModificationActivity" />
+        <activity android:name=".ClassAddActivity" />
+        <activity android:name=".ClassModificationActivity" />
+        <activity android:name=".ClassActivity" />
+        <activity android:name=".CalenderActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".StartActivity" />
+        <activity android:name="com.tutor.tutordot.LoginActivity" >
+
+
         </activity>
-        <activity android:name="com.tutor.tutordot.SignUpActivity" />
-        <activity android:name="com.tutor.tutordot.StartActivity" />
-        <activity android:name="com.tutor.tutordot.LoginActivity" />
         <activity android:name="com.tutor.tutordot.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -24,6 +28,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
     </application>
 
