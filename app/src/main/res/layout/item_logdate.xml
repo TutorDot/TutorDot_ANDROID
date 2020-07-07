@@ -17,7 +17,8 @@
             android:text="5월 29일"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="18.5dp"
-            android:textColor="#707070"/>
+            android:textColor="#707070"
+            android:fontFamily="@font/apple_sdgothic_neo_b"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
