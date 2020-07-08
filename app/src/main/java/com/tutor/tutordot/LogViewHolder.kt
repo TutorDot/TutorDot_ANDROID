@@ -112,10 +112,14 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         }
 
         if(logData.color == "yellow")
-            iv_color.setImageResource(R.drawable.class_log_img_yellow)
+            iv_color.setImageResource(R.drawable.notice_color_img_yellow)
         if(logData.color == "green")
-            iv_color.setImageResource(R.drawable.class_log_img_green)
+            iv_color.setImageResource(R.drawable.notice_color_img_green)
         if(logData.color == "blue")
-            iv_color.setImageResource(R.drawable.class_log_img_skyblue)
+            iv_color.setImageResource(R.drawable.notice_color_img_blue)
+        if(logData.color == "purple")
+            iv_color.setImageResource(R.drawable.notice_color_img_purple)
+        if(logData.color == "red")
+            iv_color.setImageResource(R.drawable.notice_color_img_red)
     }
 }

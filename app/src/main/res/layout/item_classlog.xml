@@ -12,7 +12,7 @@
         android:id="@+id/iv_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/class_log_img_yellow"/>
+        android:src="@drawable/notice_color_img_yellow"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
