@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyinfoActivity"></activity>
+        <activity android:name=".MyclassEdit">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MyinfoActivity">
+
+        </activity>
         <activity android:name=".ScheduleEditActivity" />
         <activity android:name=".ScheduleInfoActivity" />
         <activity android:name=".ScheduleAddActivity" />
@@ -23,13 +32,7 @@
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/SplashTheme"></activity>
     </application>
 
 </manifest>

@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/money_per_time"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.tutor.tutordot.MyinfoActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/my_img_topbg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/my_img_topbg"
@@ -16,66 +17,76 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
+        android:id="@+id/my_class_tap_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="319dp"
+        android:layout_marginRight="319dp"
         android:background="@drawable/my_class_tap_btn_back"
+        app:layout_constraintEnd_toEndOf="@+id/my_img_topbg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="409dp"
-        android:layout_height="545dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/my_img_topbg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
+                android:id="@+id/myinfo_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="20dp" />
+                app:layout_constraintGuide_begin="44dp"
+                app:layout_constraintGuide_end="325dp" />
 
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/my_class_tap_img_whitebg"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/my_class_tap_img_whitebg"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/my_class_tap_img_yellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="34dp"
+                android:layout_marginEnd="325dp"
+                android:layout_marginRight="325dp"
                 android:background="@drawable/my_class_tap_img_yellow"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/신연상튜티수학수업"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
                 android:lineSpacingExtra="7sp"
+                android:text="신연상 튜티 수학 수업"
                 android:textColor="#121212"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="신연상 튜티 수학 수업" />
+                app:layout_constraintStart_toEndOf="@+id/my_class_tap_img_yellow"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/my_class_tap_btn_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="303dp"
@@ -88,14 +99,228 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            
+            <TextView
+                android:id="@+id/tutor_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="76dp"
+                android:lineSpacingExtra="5sp"
+                android:text="튜터 프로필"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/my_class_tap_img_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="118dp"
+                android:background="@drawable/my_class_tap_img_profile"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="136dp"
+                android:layout_marginLeft="136dp"
+                android:layout_marginTop="132dp"
+                android:layout_marginEnd="188dp"
+                android:layout_marginRight="188dp"
+                android:lineSpacingExtra="4sp"
+                android:text="변정인"
+                android:textColor="#707070"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profile_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="4sp"
+                android:text="한줄 자기소개입니다 "
+                android:textColor="#707070"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/profile_name"
+                app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+
+            <TextView
+                android:id="@+id/price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="221dp"
+                android:lineSpacingExtra="5sp"
+                android:text="시간별 금액"
+                android:textColor="#0f0f0f"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="266dp"
+                android:lineSpacingExtra="5sp"
+                android:text="16시간 / 80만원"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="16시간 / 80만원" />
+
+            <TextView
+                android:id="@+id/account_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="323dp"
+                android:lineSpacingExtra="5sp"
+                android:text="계좌정보"
+                android:textColor="#121212"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="계좌정보" />
+
+            <TextView
+                android:id="@+id/account_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="368dp"
+                android:lineSpacingExtra="5sp"
+                android:text="하나 83191012665607"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/my_class_tap_btn_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="284dp"
+                android:layout_marginLeft="284dp"
+                android:layout_marginTop="356dp"
+                android:background="@drawable/my_class_tap_btn_copy"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/class_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="425dp"
+                android:lineSpacingExtra="5sp"
+                android:text="정기 수업시간"
+                android:textColor="#121212"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="26dp"
+                android:lineSpacingExtra="5sp"
+                android:text="월 01:00pm~03:00pm"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/class_time" />
+
+            <TextView
+                android:id="@+id/time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="5sp"
+                android:text="금 01:00pm~03:00pm"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/time1" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="539dp"
+                android:lineSpacingExtra="5sp"
+                android:text="위치"
+                android:textColor="#1c1c1c"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/location_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:lineSpacingExtra="5sp"
+                android:text="강남구청역"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/location" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorTuti"
+                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_img_whitebg"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_invite" />
+
+
+            <ImageButton
+                android:id="@+id/my_class_tap_btn_invite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_class_tap_btn_invite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorTuti"
+                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_invite"
+                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_btn_invite" />
+
+
+            <ImageButton
+                android:id="@+id/my_class_tap_btn_unconnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_class_tap_btn_unconnect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/my_class_tap_btn_invite" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
