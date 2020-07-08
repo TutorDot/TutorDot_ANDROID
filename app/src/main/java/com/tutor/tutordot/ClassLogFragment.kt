@@ -1,6 +1,7 @@
 package com.tutor.tutordot
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ class ClassLogFragment : Fragment() {
     lateinit var logdateAdapter: LogdateAdapter
     val datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +32,12 @@ class ClassLogFragment : Fragment() {
         logdateAdapter = LogdateAdapter(view.context)
         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
+        //프로그레스바 값 지정 (나중에 서버에서 값 받아와서 지정)
+        pb_class.progress = 75
+        //pb_class.incrementProgressBy(5)  //5씩 증가되는 코드
+
+        if(pb_class.progress == 100)
+            tv_percent.setTextColor(Color.parseColor("#FFFFFF"));
     }
 
     private fun loaddateDatas(){
