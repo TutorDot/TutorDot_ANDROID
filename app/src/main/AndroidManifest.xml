@@ -9,27 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScheduleAddActivity"></activity>
+        <activity android:name=".ScheduleEditActivity"></activity>
+        <activity android:name=".ScheduleInfoActivity" />
+        <activity android:name=".ScheduleAddActivity" />
         <activity android:name=".ScheduleModificationActivity" />
         <activity android:name=".ClassAddActivity" />
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
         <activity android:name=".CalenderActivity" />
-        <activity android:name=".SignUpActivity" >
-        </activity>
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".StartActivity" />
-        <activity android:name="com.tutor.tutordot.LoginActivity" >
-
-        </activity>
-        <activity android:name="com.tutor.tutordot.SplashActivity"
+        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
