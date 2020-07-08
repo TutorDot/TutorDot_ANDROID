@@ -1,4 +1,4 @@
-<역할>   
+<역할>
 캘린더뷰, 수업일지뷰, 알림뷰, 마이페이지뷰, 로그인
 - 김기현: 수업일지뷰 + 캘린더뷰
 - 김회진: 캘린더뷰
@@ -73,6 +73,7 @@ compile 'com.prolificinteractive:material-calendarview:1.4.3'
 
 
 ## 5. 프로젝트 구조
+![구조](https://user-images.githubusercontent.com/41908152/86928004-f8071b00-c16e-11ea-9cca-07a36a77ef21.JPG)
 
 
 Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면   
@@ -88,13 +89,14 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 ### 1) 스플래시
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be7a087a-28be-4560-abe4-77d8f5307bf7/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be7a087a-28be-4560-abe4-77d8f5307bf7/Untitled.png)
+![1번](https://user-images.githubusercontent.com/41908152/86928033-ff2e2900-c16e-11ea-9d56-fe25897739eb.JPG)
+
 
 - Handler().postDelayed를 이용해 스플래시 화면을 보여줄 시간 설정
 
 ### 2) 로그인뷰
+![2번](https://user-images.githubusercontent.com/41908152/86928054-03f2dd00-c16f-11ea-8fcc-ce052494535e.JPG)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3ba19ae7-7b05-471c-b034-b00f0fb4a582/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3ba19ae7-7b05-471c-b034-b00f0fb4a582/Untitled.png)
 
 - imageView를 사용해 로고와 핸드폰 디자인 추가
 - editText를 사용해 이메일과 비밀번호 입력창 추가
@@ -102,8 +104,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
 
 ### 3) 회원가입뷰
+![3번](https://user-images.githubusercontent.com/41908152/86928069-08b79100-c16f-11ea-8be5-31d726c0a87c.JPG)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/408f05d0-dd46-47b2-b15a-67eaf5ad03d6/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/408f05d0-dd46-47b2-b15a-67eaf5ad03d6/Untitled.png)
 
 - imageView를 사용해 로고 추가
 - editText를 사용해 이름, 이메일, 비밀번호, 비밀번호 확인 입력창 추가
@@ -115,8 +117,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 개발중..!
 
 ### 4-1) 일정추가
+![4-1번](https://user-images.githubusercontent.com/41908152/86928085-0ead7200-c16f-11ea-9f70-474e52d77e95.JPG)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4ee66c30-7436-4aee-bf31-e5d58fcfb48e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4ee66c30-7436-4aee-bf31-e5d58fcfb48e/Untitled.png)
 
 - imageView를 사용해 상단바 추가
 - editText를 사용해 위치정보 입력
@@ -127,24 +129,22 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
 
 ### 4-2) 일정정보
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/77bd1e65-fc05-468e-8c4b-d0d0ae43c442/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/77bd1e65-fc05-468e-8c4b-d0d0ae43c442/Untitled.png)
+![image](https://user-images.githubusercontent.com/41908152/86928204-3ac8f300-c16f-11ea-989e-e2f2acdf6f6e.png)
 
 - textView를 이용해 정보 띄우기
 - imageView를 사용해 상단바 추가
 - imageButton을 이용해 일정 삭제 버튼추가
 
 ### 4-3) 일정수정
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/479915eb-e485-446c-8f2f-8ba3e2f84db0/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/479915eb-e485-446c-8f2f-8ba3e2f84db0/Untitled.png)
+![4-3번](https://user-images.githubusercontent.com/41908152/86928118-1bca6100-c16f-11ea-925a-b3ced423ad66.JPG)
 
 - textView를 이용해 정보 띄우기
 - imageView를 사용해 상단바 추가
 - imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
 
 ### 5) 일지뷰
+![5번](https://user-images.githubusercontent.com/41908152/86928255-4b796900-c16f-11ea-893f-5fd41abd413b.JPG)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b4f12c16-a209-498d-9ab3-d5b0e216c678/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b4f12c16-a209-498d-9ab3-d5b0e216c678/Untitled.png)
 
 - ConstraintLayout으로 상단뷰, 진행률 레이아웃, 일지 아이템뷰, 숙제 이행률 구성
 - 프로그레스바와 일지창 구성
@@ -164,9 +164,12 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 개발중..!
 
 ### 7) 마이페이지뷰
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/20b41bf5-63b3-43de-be45-bfd9daabb8cb/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/20b41bf5-63b3-43de-be45-bfd9daabb8cb/Untitled.png)
+![7번](https://user-images.githubusercontent.com/41908152/86928287-5633fe00-c16f-11ea-927e-145c207e67a7.JPG)
 
 - imageView를 사용해 상단바, 프로필 추가
 - imageButton을 이용해 수업추가, 버전정보, 개발자정보, 비밀번호 변경, 로그아웃, 서비스탈퇴 버튼 추가
 - switch를 이용해 수업료 알림과 수업시작 전 알림 선택 추가
+
+
+
+
