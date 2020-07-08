@@ -20,11 +20,10 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="545dp"
         android:layout_marginBottom="800dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_img_topbg"
         app:layout_constraintVertical_bias="0.0">
@@ -253,16 +252,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/my_btn_logout" />
-
-            <ImageButton
-                android:id="@+id/my_btn_withdrawl2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_btn_withdrawl"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_btn_withdrawl" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
