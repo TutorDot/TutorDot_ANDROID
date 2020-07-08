@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="14dp"
-            android:text="일정 추가"
+            android:text="일정 수정"
             android:fontFamily="@font/apple_sdgothic_neo_sb"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
@@ -46,7 +46,7 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <LinearLayout
-        android:id="@+id/schedule_add_selection_linear"
+        android:id="@+id/schedule_edit_linear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constarintlayout">
 
         <ImageView
-            android:id="@+id/schedule_color"
+            android:id="@+id/schedule_edit_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
@@ -66,7 +66,7 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/schedule_add_select_txt"
+            android:id="@+id/schedule_edit_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
@@ -79,23 +79,6 @@
             android:textColor="#161616"
             android:textSize="18sp">
         </TextView>
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/schedule_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:src="@drawable/schedule_modification_subjectsection">
-            </ImageView>
-
-        </LinearLayout>
     </LinearLayout>
 
     <ScrollView
@@ -104,14 +87,14 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/schedule_add_selection_linear">
+        app:layout_constraintTop_toBottomOf="@+id/schedule_edit_linear">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/schedule_add_selection_linear">
+            app:layout_constraintTop_toBottomOf="@+id/schedule_edit_linear">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -121,7 +104,7 @@
                 app:layout_constraintGuide_begin="20dp" />
 
             <TextView
-                android:id="@+id/schedule_add_date"
+                android:id="@+id/schedule_edit_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="6sp"
@@ -133,7 +116,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/schedule_add_date_constraint"
+                android:id="@+id/schedule_edit_date_constraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -143,10 +126,10 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_date">
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_date">
 
                 <TextView
-                    android:id="@+id/schedule_add_date_txt"
+                    android:id="@+id/schedule_edit_date_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="5월 23일"
@@ -179,7 +162,7 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/schedule_add_date_txt"
+                    app:layout_constraintStart_toEndOf="@+id/schedule_edit_date_txt"
                     app:layout_constraintTop_toTopOf="parent">
 
                 </TextView>
@@ -187,17 +170,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <DatePicker
-                android:id="@+id/date_picker"
+                android:id="@+id/date_picker_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
                 android:timePickerMode="spinner"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_date_constraint" />
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_date_constraint" />
 
             <TextView
-                android:id="@+id/schedule_add_start"
+                android:id="@+id/schedule_edit_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -207,10 +190,10 @@
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/date_picker" />
+                app:layout_constraintTop_toBottomOf="@id/date_picker_edit" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/schedule_add_start_constraint"
+                android:id="@+id/schedule_edit_start_constraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -220,10 +203,10 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_start">
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_start">
 
                 <TextView
-                    android:id="@+id/schedule_add_start_txt"
+                    android:id="@+id/schedule_edit_start_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="3:00 pm"
@@ -256,23 +239,23 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/schedule_add_start_txt"
+                    app:layout_constraintStart_toEndOf="@+id/schedule_edit_start_txt"
                     app:layout_constraintTop_toTopOf="parent">
                 </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TimePicker
-                android:id="@+id/time_picker"
+                android:id="@+id/time_picker_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:timePickerMode="spinner"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_start_constraint" />
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_start_constraint" />
 
             <TextView
-                android:id="@+id/schedule_add_end"
+                android:id="@+id/schedule_edit_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -282,10 +265,10 @@
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/time_picker" />
+                app:layout_constraintTop_toBottomOf="@id/time_picker_edit" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/schedule_add_end_constraint"
+                android:id="@+id/schedule_edit_end_constraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -295,10 +278,10 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_end">
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_end">
 
                 <TextView
-                    android:id="@+id/schedule_add_end_txt"
+                    android:id="@+id/schedule_edit_end_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="8:00 pm"
@@ -330,23 +313,23 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/schedule_add_end_txt"
+                    app:layout_constraintStart_toEndOf="@+id/schedule_edit_end_txt"
                     app:layout_constraintTop_toTopOf="parent">
                 </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TimePicker
-                android:id="@+id/time_picker2"
+                android:id="@+id/time_picker2_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:timePickerMode="spinner"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_end_constraint" />
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_end_constraint" />
 
             <TextView
-                android:id="@+id/schedule_add_location"
+                android:id="@+id/schedule_edit_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -356,10 +339,10 @@
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/time_picker2" />
+                app:layout_constraintTop_toBottomOf="@id/time_picker2_edit" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/schedule_add_location_constraint"
+                android:id="@+id/schedule_edit_location_constraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -368,10 +351,10 @@
                 android:background="@drawable/stringbox_custom"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/schedule_add_location">
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_location">
 
                 <EditText
-                    android:id="@+id/schedule_add_location_txt"
+                    android:id="@+id/schedule_edit_location_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/stringbox_custom"
@@ -402,14 +385,14 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
-            android:id="@+id/schedule_add_btn_cancle"
+            android:id="@+id/schedule_edit_btn_cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/schedule_add_btn_cancle" />
 
         <ImageButton
-            android:id="@+id/schedule_add_btn_save"
+            android:id="@+id/schedule_edit_btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
