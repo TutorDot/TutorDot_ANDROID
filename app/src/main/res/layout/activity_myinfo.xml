@@ -5,7 +5,7 @@
     android:id="@+id/money_per_time"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tutor.tutordot.MyinfoActivity">
+    tools:context="com.tutor.tutordot.MyPage.MyinfoActivity">
 
     <ImageView
         android:id="@+id/my_img_topbg"

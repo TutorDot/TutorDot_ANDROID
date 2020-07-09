@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyclassEdit">
+    tools:context=".MyPage.MyclassEdit">
 
     <ImageView
         android:id="@+id/my_img_topbg"
@@ -68,6 +68,7 @@
                 android:layout_marginLeft="15dp"
                 android:lineSpacingExtra="5sp"
                 android:text="신연상 튜터 수학수업"
+                android:background="@color/colorBackground"
                 android:textColor="#707070"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageButton"
@@ -179,10 +180,12 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
                 android:lineSpacingExtra="5sp"
                 android:text="16"
                 android:textColor="#707070"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 app:layout_constraintTop_toTopOf="@+id/imageButton3" />
 
@@ -192,10 +195,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="58dp"
                 android:layout_marginLeft="58dp"
+                android:background="@color/colorBackground"
                 android:lineSpacingExtra="5sp"
                 android:text="80"
                 android:textColor="#707070"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 app:layout_constraintTop_toTopOf="@+id/imageButton3" />
 
@@ -233,10 +238,12 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
                 android:lineSpacingExtra="5sp"
                 android:text="하나"
                 android:textColor="#707070"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -246,10 +253,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:background="@color/colorBackground"
                 android:lineSpacingExtra="5sp"
                 android:text="01063619440107"
                 android:textColor="#707070"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
@@ -279,9 +288,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/imageButton4"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+                tools:listitem="@layout/item_myclass_edit"/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -313,6 +324,7 @@
                 android:layout_marginBottom="12dp"
                 android:lineSpacingExtra="5sp"
                 android:text="강남구청역"
+                android:background="@color/colorBackground"
                 android:textColor="#707070"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView5"
