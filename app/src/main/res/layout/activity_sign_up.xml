@@ -80,7 +80,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:hint="이메일"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"

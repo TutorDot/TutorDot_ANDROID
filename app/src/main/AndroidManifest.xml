@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScheduleEditActivity"></activity>
+        <activity android:name=".ClassLogModificationActivity"></activity>
+        <activity android:name=".MyclassEdit">
+        </activity>
+        <activity android:name=".MyinfoActivity">
+        </activity>
+        <activity android:name=".ScheduleEditActivity" />
         <activity android:name=".ScheduleInfoActivity" />
         <activity android:name=".ScheduleAddActivity" />
         <activity android:name=".ScheduleModificationActivity" />

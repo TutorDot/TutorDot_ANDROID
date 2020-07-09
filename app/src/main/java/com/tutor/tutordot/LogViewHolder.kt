@@ -1,10 +1,15 @@
 package com.tutor.tutordot
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val tv_times = itemView.findViewById<TextView>(R.id.tv_calendarlog_title)
@@ -22,12 +27,20 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     var triangel : Boolean = false
     var x : Boolean = false
 
+    //일지 아이템 수정
+    val cl_log_item = itemView.findViewById<ConstraintLayout>(R.id.cl_log_item)
 
     fun bind(logData : LogData) {
+        //일지 내용 수정
+        if(modi_check) {
+            logData.progress = ser_progress
+            logData.homework = ser_hw
+            modi_check = false
+        }
+
         tv_times.text = logData.times.toString() + "회차 " + logData.studytime.toString() + "시간 / " + logData.alltime.toString() + "시간"
         tv_progress.text = "진도 : " + logData.progress
         tv_homework.text = "숙제 : " + logData.homework
-
 
         btn_circle.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
@@ -112,10 +125,24 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         }
 
         if(logData.color == "yellow")
-            iv_color.setImageResource(R.drawable.class_log_img_yellow)
+            iv_color.setImageResource(R.drawable.notice_color_img_yellow)
         if(logData.color == "green")
-            iv_color.setImageResource(R.drawable.class_log_img_green)
+            iv_color.setImageResource(R.drawable.notice_color_img_green)
         if(logData.color == "blue")
-            iv_color.setImageResource(R.drawable.class_log_img_skyblue)
+            iv_color.setImageResource(R.drawable.notice_color_img_blue)
+        if(logData.color == "purple")
+            iv_color.setImageResource(R.drawable.notice_color_img_purple)
+        if(logData.color == "red")
+            iv_color.setImageResource(R.drawable.notice_color_img_red)
+
+        //일지 아이템 버튼 클릭 이벤트
+        cl_log_item.setOnClickListener(object :View.OnClickListener {
+            override fun onClick(v: View?) {
+                val context: Context = v!!.context
+                val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
+                context.startActivity(nextIntent)
+                (context as Activity).finish()
+            }
+        })
     }
 }

@@ -12,9 +12,10 @@
         android:id="@+id/img_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/class_log_img_yellow"/>
+        android:src="@drawable/notice_color_img_yellow"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_log_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="21dp"
