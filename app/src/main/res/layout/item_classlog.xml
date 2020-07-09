@@ -9,7 +9,7 @@
     android:layout_margin="20dp">
 
     <ImageView
-        android:id="@+id/iv_color"
+        android:id="@+id/img_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/class_log_img_yellow"/>
@@ -23,7 +23,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tv_times"
+            android:id="@+id/tv_calendarlog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -43,11 +43,11 @@
             android:textSize="16sp"
             android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_homework"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calendarlog_times"
             android:fontFamily="@font/apple_sdgothic_neo_m"/>
 
         <TextView
-            android:id="@+id/tv_homework"
+            android:id="@+id/tv_calendarlog_times"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
@@ -55,7 +55,7 @@
             android:textColor="#707070"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_times"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calendarlog_title"
             android:fontFamily="@font/apple_sdgothic_neo_m"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
