@@ -9,16 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyclassEdit">
+        <activity android:name=".MyPage.AddclassActivity"></activity>
+        <activity android:name=".MyPage.MyclassEdit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyinfoActivity">
-
-        </activity>
+        <activity android:name=".MyPage.MyinfoActivity"></activity>
         <activity android:name=".ScheduleEditActivity" />
         <activity android:name=".ScheduleInfoActivity" />
         <activity android:name=".ScheduleAddActivity" />
@@ -26,13 +25,13 @@
         <activity android:name=".ClassAddActivity" />
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
-        <activity android:name=".CalenderActivity" />
+        <activity android:name=".CalenderActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".StartActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme" />
     </application>
 
 </manifest>

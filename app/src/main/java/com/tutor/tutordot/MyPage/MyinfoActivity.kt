@@ -1,7 +1,8 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.MyPage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tutor.tutordot.R
 
 class MyinfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
