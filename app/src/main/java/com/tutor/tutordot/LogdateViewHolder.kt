@@ -5,6 +5,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_logdate.*
 
+
+//나중에 레트로핏 보면서 수정
+var ser_progress : String = "서버에서 받는 진도 데이터"
+var ser_hw : String = "서버에서 받는 숙제 데이터"
+var modi_check : Boolean = false
+
 class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tv_date : TextView = itemView.findViewById<TextView>(R.id.tv_date)
     val rv_log : RecyclerView = itemView.findViewById<RecyclerView>(R.id.rv_log)
@@ -28,8 +34,8 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     times = 1,
                     studytime = 1,
                     alltime = 15,
-                    progress = "수학",
-                    homework = "수학의 정석 풀기",
+                    progress = ser_progress,
+                    homework = ser_hw,
                     complete = 0
                 )
             )

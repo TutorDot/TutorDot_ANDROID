@@ -174,18 +174,15 @@
                 android:layout_marginBottom="16dp"/>
         </LinearLayout>
 
-        <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_datelog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="vertical"
-                    tools:listitem="@layout/item_logdate"
-                    android:background="#f5f6fa"/>
-        </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_datelog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:listitem="@layout/item_logdate"
+            android:background="#f5f6fa"/>
+
     </LinearLayout>
 
 
