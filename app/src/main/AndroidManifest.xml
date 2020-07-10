@@ -11,18 +11,20 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MyPage.AddclassActivity"></activity>
         <activity android:name=".MyPage.MyclassEdit">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MyPage.MyinfoActivity"></activity>
         <activity android:name=".ScheduleEditActivity" />
         <activity android:name=".ScheduleInfoActivity" />
         <activity android:name=".ScheduleAddActivity" />
         <activity android:name=".ScheduleModificationActivity" />
-        <activity android:name=".ClassAddActivity" />
+        <activity android:name=".ClassAddActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
         <activity android:name=".CalenderActivity"></activity>

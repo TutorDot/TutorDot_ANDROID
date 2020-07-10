@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,8 +19,7 @@
 
     <ScrollView
         android:layout_width="409dp"
-        android:layout_height="788dp"
-        android:layout_marginTop="6dp"
+        android:layout_height="545dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_img_topbg">
@@ -42,6 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:textSize="18sp"
+                android:textColor="#121212"
+                android:lineSpacingExtra="6sp"
                 android:text="새로운 수업을 추가합니다"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -59,6 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
+                android:id="@+id/수업명"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -73,9 +77,314 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="수업명" />
+
+
+            <ImageButton
+                android:id="@+id/my_class_add_btn_classname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/my_class_add_btn_classname"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/수업명" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@color/colorBackground"
+                android:hint="글자수 제한 17자 이내"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_class_add_btn_classname"
+                app:layout_constraintStart_toStartOf="@+id/my_class_add_btn_classname"
+                app:layout_constraintTop_toTopOf="@+id/my_class_add_btn_classname" />
+
+            <TextView
+                android:id="@+id/색상"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="259dp"
+                android:lineSpacingExtra="6sp"
+                android:text="색상"
+                android:textColor="#0f0f0f"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/my_class_tap_img_yellow2"
+                android:layout_width="38dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="280dp"
+                android:background="#00000000"
+                android:src="@drawable/my_class_tap_edit_img_yellow"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/my_class_tap_edit_img_red2"
+                android:layout_width="38dp"
+                android:layout_height="48dp"
+                android:background="#00000000"
+                android:src="@drawable/my_class_tap_edit_img_red"
+                app:layout_constraintStart_toEndOf="@+id/my_class_tap_img_yellow2"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_img_yellow2" />
+
+
+            <ImageButton
+                android:id="@+id/my_class_tap_edit_img_green2"
+                android:layout_width="38dp"
+                android:layout_height="48dp"
+                android:background="#00000000"
+                android:src="@drawable/my_class_tap_edit_img_green"
+                app:layout_constraintStart_toEndOf="@+id/my_class_tap_edit_img_red2"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_edit_img_red2" />
+
+            <ImageButton
+                android:id="@+id/my_class_tap_edit_img_blue2"
+                android:layout_width="38dp"
+                android:layout_height="48dp"
+                android:background="#00000000"
+                android:src="@drawable/my_class_tap_edit_img_blue"
+                app:layout_constraintStart_toEndOf="@+id/my_class_tap_edit_img_green2"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_edit_img_green2" />
+
+            <ImageButton
+                android:id="@+id/my_class_tap_edit_img_purple2"
+                android:layout_width="38dp"
+                android:layout_height="48dp"
+                android:background="#00000000"
+                android:src="@drawable/my_class_tap_edit_img_purple"
+                app:layout_constraintStart_toEndOf="@+id/my_class_tap_edit_img_blue2"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_edit_img_blue2" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="345dp"
+                android:lineSpacingExtra="5sp"
+                android:text="시간별 금액"
+                android:textColor="#0f0f0f"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="377dp"
+                android:background="@drawable/my_class_tap_edit_btn_money"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="13dp"
+                android:lineSpacingExtra="5sp"
+                android:text="      시간 /          만원"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+                app:layout_constraintStart_toStartOf="@+id/imageButton3"
+                app:layout_constraintTop_toTopOf="@+id/imageButton3" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
+                android:hint="00"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toTopOf="@+id/imageButton3" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:background="@color/colorBackground"
+                android:hint="00"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toTopOf="@+id/imageButton3"
+                app:layout_constraintVertical_bias="0.478" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="448dp"
+                android:lineSpacingExtra="5sp"
+                android:text="계좌정보"
+                android:textColor="#121212"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="480dp"
+                android:background="@drawable/my_class_tap_edit_btn_bank"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/my_class_tap_edit_btn_account"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
+                android:hint="하나"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@color/colorBackground"
+                android:hint="01063619440107"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="552dp"
+                android:lineSpacingExtra="5sp"
+                android:text="정기 수업시간"
+                android:textColor="#121212"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/my_class_tap_edit_btn_timeadd"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/rv_new_classtime" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_new_classtime"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="584dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_myclass_edit" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:lineSpacingExtra="5sp"
+                android:text="위치"
+                android:textColor="#1c1c1c"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/my_class_tap_edit_btn_location"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorBackground"
+                android:hint="위치 입력  (글자수 제한없습니다)"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#707070"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_marginTop="11dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/schedule_add_btn_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/schedule_add_btn_cancle" />
+
+        <ImageButton
+            android:id="@+id/schedule_add_btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/schedule_add_btn_save" />
+    </LinearLayout>
 
 
 
