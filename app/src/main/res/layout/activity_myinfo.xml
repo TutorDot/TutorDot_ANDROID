@@ -26,7 +26,8 @@
         android:background="@drawable/my_class_tap_btn_back"
         app:layout_constraintEnd_toEndOf="@+id/my_img_topbg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <ScrollView
         android:layout_width="409dp"
