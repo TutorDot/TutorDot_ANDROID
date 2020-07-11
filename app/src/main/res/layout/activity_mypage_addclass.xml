@@ -42,10 +42,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:textSize="18sp"
-                android:textColor="#121212"
                 android:lineSpacingExtra="6sp"
                 android:text="새로운 수업을 추가합니다"
+                android:textColor="#121212"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +76,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="수업명" />
+                android:text="수업명" />
 
 
             <ImageButton
