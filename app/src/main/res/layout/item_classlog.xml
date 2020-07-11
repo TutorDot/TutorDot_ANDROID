@@ -9,7 +9,7 @@
     android:layout_margin="20dp">
 
     <ImageView
-        android:id="@+id/img_color"
+        android:id="@+id/iv_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/notice_color_img_yellow"/>
@@ -24,7 +24,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tv_calendarlog_title"
+            android:id="@+id/tv_times"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -45,15 +45,10 @@
             android:textColor="#707070"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
-            app:layout_constraintTop_toBottomOf="@+id/tv_calendarlog_times"
-            android:fontFamily="@font/apple_sdgothic_neo_m"/>
-=======
             app:layout_constraintTop_toBottomOf="@+id/tv_times" />
->>>>>>> 8a4b2eed5dd8693ca5ba88a9c6f57edbdf9d774a
 
         <TextView
-            android:id="@+id/tv_calendarlog_times"
+            android:id="@+id/tv_homework"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -62,12 +57,7 @@
             android:textColor="#707070"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
-            app:layout_constraintTop_toBottomOf="@+id/tv_calendarlog_title"
-            android:fontFamily="@font/apple_sdgothic_neo_m"/>
-=======
             app:layout_constraintTop_toBottomOf="@+id/tv_progress" />
->>>>>>> 8a4b2eed5dd8693ca5ba88a9c6f57edbdf9d774a
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

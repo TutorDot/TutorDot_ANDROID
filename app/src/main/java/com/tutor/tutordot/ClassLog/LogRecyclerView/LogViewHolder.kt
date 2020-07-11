@@ -16,15 +16,15 @@ import com.tutor.tutordot.R
 
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-    val tv_times = itemView.findViewById<TextView>(R.id.tv_calendarlog_title)
+    val tv_times = itemView.findViewById<TextView>(R.id.tv_times)
     val tv_progress = itemView.findViewById<TextView>(R.id.tv_progress)
-    val tv_homework = itemView.findViewById<TextView>(R.id.tv_calendarlog_times)
+    val tv_homework = itemView.findViewById<TextView>(R.id.tv_homework)
 
     val btn_circle = itemView.findViewById<ImageButton>(R.id.btn_circle)
     val btn_triangle = itemView.findViewById<ImageButton>(R.id.btn_triangle)
     val btn_x = itemView.findViewById<ImageButton>(R.id.btn_x)
 
-    val iv_color = itemView.findViewById<ImageView>(R.id.img_color)
+    val iv_color = itemView.findViewById<ImageView>(R.id.iv_color)
 
     //버튼 늘림 표시
     var circle : Boolean = false

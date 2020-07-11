@@ -10,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.ScheduleInfoActivity
-import com.tutor.tutordot.ClassLogModificationActivity
+import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
 import com.tutor.tutordot.R
 
 class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){

@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.tutor.tutordot.ClassLogFragment
 import com.tutor.tutordot.R
-import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_schedule_info.*
 
 class ScheduleInfoActivity : AppCompatActivity() {
