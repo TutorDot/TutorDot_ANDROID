@@ -1,4 +1,4 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.ClassLog
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
+import com.tutor.tutordot.R
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import java.util.*
 
@@ -19,7 +23,7 @@ class ClassLogFragment : Fragment() {
     //현재 달 구하기
     val curDate= Calendar.getInstance()
     val month = curDate.get(Calendar.MONTH) + 1
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,7 +34,8 @@ class ClassLogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        logdateAdapter = LogdateAdapter(view.context)
+        logdateAdapter =
+            LogdateAdapter(view.context)
         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
 
@@ -85,6 +90,17 @@ class ClassLogFragment : Fragment() {
             }
         })
 
+        if(haveData ==true) {
+            cl_empty.visibility =View.GONE
+            ll_rv.visibility = View.VISIBLE
+        }
+        else {
+            rv_datelog.visibility = View.GONE
+            cl_empty.visibility =View.VISIBLE
+
+        }
+
+
         /* 팝업 메뉴 아이템 추가할 때 사용할 코드
         val menu = PopupMenu(context, view)
 
@@ -102,17 +118,20 @@ class ClassLogFragment : Fragment() {
                 LogdateData(
                     month = 5,
                     day = 5
-                ))
+                )
+            )
             add(
                 LogdateData(
                     month = 6,
                     day = 6
-                ))
+                )
+            )
             add(
                 LogdateData(
                     month = 7,
                     day = 7
-                ))
+                )
+            )
         }
         logdateAdapter.datas = datedatas
         logdateAdapter.notifyDataSetChanged()

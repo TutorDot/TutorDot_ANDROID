@@ -2,22 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tutor.tutordot">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_tutor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_tutor_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MyPage.OnesentenseActivity"></activity>
+
+
         <activity android:name=".MyPage.AddclassActivity"></activity>
         <activity android:name=".MyPage.MyclassEdit"></activity>
+        <activity android:name=".MyPage.MyclassEdit">
+        </activity>
+
+        <activity android:name=".Calendar.ScheduleEditActivity" />
+        <activity android:name=".Calendar.ScheduleInfoActivity" />
+        <activity android:name=".Calendar.ScheduleAddActivity" />
         <activity android:name=".MyPage.MyinfoActivity"></activity>
-        <activity android:name=".ScheduleEditActivity" />
-        <activity android:name=".ScheduleInfoActivity" />
-        <activity android:name=".ScheduleAddActivity" />
         <activity android:name=".ScheduleModificationActivity" />
         <activity android:name=".ClassAddActivity"></activity>
+
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
         <activity android:name=".CalenderActivity"></activity>
