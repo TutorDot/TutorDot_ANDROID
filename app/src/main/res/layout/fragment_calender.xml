@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.tutor.tutordot.CalenderFragment">
+    tools:context="com.tutor.tutordot.Calendar.CalenderFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constarintlayout"
@@ -17,63 +17,65 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tv_calendar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="14dp"
-            android:text="일정 추가"
             android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="전체"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/calendar_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/class_log_math_subjectsection"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_calendar_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_calendar_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/constarintlayout"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constarintlayout"
+        app:mcv_selectionColor="#a9dbf0cb"
+        app:mcv_showOtherDates="defaults" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_calendarlog"
+            android:id="@+id/rv_calendarlog_all"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/calendarView"
             android:orientation="vertical"
-            tools:listitem="@layout/item_calendarlog"
+            android:layout_marginTop="20dp"
+            tools:listitem="@layout/item_calendarlog_all"
             android:background="#f5f6fa"/>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        android:src="@drawable/calender_btn_fluttering"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="일정수정" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="일정정보" />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,36 +1,30 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.Calendar
 
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TimePicker
-import kotlinx.android.synthetic.main.activity_schedule_edit.*
+import com.tutor.tutordot.R
+import kotlinx.android.synthetic.main.activity_schedule_add.*
 import java.util.*
 
-class ScheduleEditActivity : AppCompatActivity() {
+class ScheduleAddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_schedule_edit)
-
-        // 취소 버튼 누르면 일정 정보 화면으로 이동
-        schedule_edit_btn_cancle.setOnClickListener{
-            val intent = Intent(this, ScheduleInfoActivity::class.java)
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_schedule_add)
 
 
         // Set a time change listener for time picker widget
-        time_picker_edit.setOnTimeChangedListener{
+        time_picker.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-            schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
+            schedule_add_start_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
         }
 
         // Set a time change listener for time picker widget
-        time_picker2_edit.setOnTimeChangedListener{
+        time_picker2.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-            schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
+            schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
         }
 
 
@@ -43,19 +37,19 @@ class ScheduleEditActivity : AppCompatActivity() {
 //            }
 //        }
 
-        schedule_edit_start_constraint.setOnClickListener{
-            if(time_picker_edit.getVisibility() == View.GONE) {
-                time_picker_edit.setVisibility(View.VISIBLE);
+        schedule_add_start_constraint.setOnClickListener{
+            if(time_picker.getVisibility() == View.GONE) {
+                time_picker.setVisibility(View.VISIBLE);
             } else {
-                time_picker_edit.setVisibility(View.GONE);
+                time_picker.setVisibility(View.GONE);
             }
         }
 
-        schedule_edit_end_constraint.setOnClickListener{
-            if(time_picker2_edit.getVisibility() == View.GONE) {
-                time_picker2_edit.setVisibility(View.VISIBLE);
+        schedule_add_end_constraint.setOnClickListener{
+            if(time_picker2.getVisibility() == View.GONE) {
+                time_picker2.setVisibility(View.VISIBLE);
             } else {
-                time_picker2_edit.setVisibility(View.GONE);
+                time_picker2.setVisibility(View.GONE);
             }
         }
     }

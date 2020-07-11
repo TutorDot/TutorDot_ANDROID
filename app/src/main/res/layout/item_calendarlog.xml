@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="20dp">
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
 
 
     <LinearLayout
@@ -39,6 +40,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cal_log_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="21dp"
@@ -107,7 +109,7 @@
                 app:srcCompat="@drawable/calender_img_location" />
 
             <TextView
-                android:id="@+id/tv_calendar_location"
+                android:id="@+id/tv_calendarlog_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
