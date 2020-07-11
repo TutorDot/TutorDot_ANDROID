@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tutor.tutordot">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_tutor"
         android:label="@string/app_name"
@@ -14,11 +18,12 @@
         <activity android:name=".MyPage.AddclassActivity"></activity>
         <activity android:name=".MyPage.MyclassEdit">
         </activity>
+
+        <activity android:name=".Calendar.ScheduleEditActivity" />
+        <activity android:name=".Calendar.ScheduleInfoActivity" />
+        <activity android:name=".Calendar.ScheduleAddActivity" />
         <activity android:name=".MyPage.MyinfoActivity"></activity>
-        <activity android:name=".ScheduleEditActivity" />
-        <activity android:name=".ScheduleInfoActivity" />
-        <activity android:name=".ScheduleAddActivity" />
-        <activity android:name=".ScheduleModificationActivity" />
+
         <activity android:name=".ClassAddActivity" />
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
