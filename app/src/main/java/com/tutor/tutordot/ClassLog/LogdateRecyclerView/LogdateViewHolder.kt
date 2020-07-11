@@ -1,15 +1,18 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.ClassLog.LogdateRecyclerView
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_logdate.*
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
+import com.tutor.tutordot.R
 
 
 //나중에 레트로핏 보면서 수정
 var ser_progress : String = "서버에서 받는 진도 데이터"
 var ser_hw : String = "서버에서 받는 숙제 데이터"
 var modi_check : Boolean = false
+var haveData : Boolean = true
 
 class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tv_date : TextView = itemView.findViewById<TextView>(R.id.tv_date)
@@ -21,7 +24,8 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(logdateData : LogdateData){
         tv_date.text = logdateData.month.toString() + "월 " + logdateData.day.toString() + "일"
 
-        logAdapter = LogAdapter(itemView.context)
+        logAdapter =
+            LogAdapter(itemView.context)
         rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
