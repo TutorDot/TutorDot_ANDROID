@@ -1,9 +1,10 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.ClassLog.LogRecyclerView
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.tutor.tutordot.R
 
 class LogAdapter(private val context : Context) : RecyclerView.Adapter<LogViewHolder>() {
     var datas : MutableList<LogData> = mutableListOf<LogData>()

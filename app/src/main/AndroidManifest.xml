@@ -8,29 +8,37 @@
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_tutor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_tutor_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ClassLogModificationActivity"></activity>
-        <activity android:name=".MyclassEdit">
+        
+        <activity android:name=".ClassLog.ClassLogModificationActivity"></activity>
+        <activity android:name=".MyPage.AddclassActivity"></activity>
+        <activity android:name=".MyPage.MyclassEdit">
         </activity>
-        <activity android:name=".MyinfoActivity">
-        </activity>
+<<<<<<< HEAD
         <activity android:name=".Calendar.ScheduleEditActivity" />
         <activity android:name=".Calendar.ScheduleInfoActivity" />
         <activity android:name=".Calendar.ScheduleAddActivity" />
+=======
+        <activity android:name=".MyPage.MyinfoActivity"></activity>
+        <activity android:name=".ScheduleEditActivity" />
+        <activity android:name=".ScheduleInfoActivity" />
+        <activity android:name=".ScheduleAddActivity" />
+        <activity android:name=".ScheduleModificationActivity" />
+>>>>>>> 8a4b2eed5dd8693ca5ba88a9c6f57edbdf9d774a
         <activity android:name=".ClassAddActivity" />
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
-        <activity android:name=".CalenderActivity" />
+        <activity android:name=".CalenderActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".StartActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

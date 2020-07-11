@@ -1,6 +1,5 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.ClassLog.LogRecyclerView
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -9,6 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
+import com.tutor.tutordot.R
 
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -33,8 +37,10 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     fun bind(logData : LogData) {
         //일지 내용 수정
         if(modi_check) {
-            logData.progress = ser_progress
-            logData.homework = ser_hw
+            logData.progress =
+                ser_progress
+            logData.homework =
+                ser_hw
             modi_check = false
         }
 
@@ -141,7 +147,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                 val context: Context = v!!.context
                 val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
                 context.startActivity(nextIntent)
-                (context as Activity).finish()
+                //(context as Activity).finish()
             }
         })
     }

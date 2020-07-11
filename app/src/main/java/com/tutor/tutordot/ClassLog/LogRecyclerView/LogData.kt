@@ -1,4 +1,4 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.ClassLog.LogRecyclerView
 
 data class LogData(
     val color : String,

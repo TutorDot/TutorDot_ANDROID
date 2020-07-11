@@ -1,15 +1,14 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.ClassLog
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import com.tutor.tutordot.*
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
-import kotlinx.android.synthetic.main.fragment_my.*
-import kotlinx.android.synthetic.main.item_classlog.*
 
 class ClassLogModificationActivity : AppCompatActivity() {
 
@@ -29,8 +28,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
         //취소, 저장 버튼 이벤트
         btn_log_cancel.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                val backIntent = Intent(this@ClassLogModificationActivity, ClassLogFragment::class.java)
-                //startActivity(backIntent)
+                val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                startActivity(backIntent)
                 finish()
             }
         })
@@ -41,8 +40,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
                 ser_progress = et_log_modi_progress.text.toString()
                 ser_hw = et_log_modi_hw.text.toString()
                 modi_check = true
-                val backIntent2 = Intent(this@ClassLogModificationActivity, ClassLogFragment::class.java)
-                //startActivity(backIntent2)
+                val backIntent2 = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                startActivity(backIntent2)
                 finish()
             }
         })
