@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.tutor.tutordot.ClassLogModificationActivity">
+    tools:context="com.tutor.tutordot.ClassLog.ClassLogModificationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_up"

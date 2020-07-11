@@ -4,18 +4,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_tutor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_tutor_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        
+        <activity android:name=".ClassLog.ClassLogModificationActivity"></activity>
         <activity android:name=".MyPage.AddclassActivity"></activity>
         <activity android:name=".MyPage.MyclassEdit">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MyPage.MyinfoActivity"></activity>
         <activity android:name=".ScheduleEditActivity" />
@@ -31,7 +28,13 @@
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/SplashTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
