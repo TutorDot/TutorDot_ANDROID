@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_notice.*
@@ -50,6 +51,16 @@ class NoticeFragment : Fragment() {
                 popup.show() //showing popup menu
             }
         })
+
+        if(haveNdata ==true) {
+            cl_empty_notice.visibility =View.GONE
+            ll_rv_notice.visibility = View.VISIBLE
+        }
+        else {
+            ll_rv_notice.visibility = View.GONE
+            cl_empty_notice.visibility =View.VISIBLE
+
+        }
     }
     private fun loadndateDatas() {
         n_datedatas.apply {
