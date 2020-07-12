@@ -33,8 +33,7 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
                 val Intent = Intent(mypageview!!.context, MyinfoActivity::class.java)
                 context.startActivity(Intent)
                 (context as Activity).finish()
-
-
+                
             }
         })
     }
