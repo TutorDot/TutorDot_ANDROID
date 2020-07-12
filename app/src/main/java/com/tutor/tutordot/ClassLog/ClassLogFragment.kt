@@ -90,12 +90,12 @@ class ClassLogFragment : Fragment() {
             }
         })
 
-        if(haveData ==true) {
+        if(haveData == true) {
             cl_empty.visibility =View.GONE
             ll_rv.visibility = View.VISIBLE
         }
         else {
-            rv_datelog.visibility = View.GONE
+            ll_rv.visibility = View.GONE
             cl_empty.visibility =View.VISIBLE
 
         }
