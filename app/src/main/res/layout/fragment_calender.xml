@@ -48,23 +48,24 @@
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="380dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constarintlayout"
         app:mcv_selectionColor="#a9dbf0cb"
         app:mcv_showOtherDates="defaults" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_calendarlog_all"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/calendarView"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            tools:listitem="@layout/item_calendarlog_all"
-            android:background="#f5f6fa"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_calendarlog_all"
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:layout_marginTop="20dp"
+        android:background="#f5f6fa"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/item_calendarlog_all" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
