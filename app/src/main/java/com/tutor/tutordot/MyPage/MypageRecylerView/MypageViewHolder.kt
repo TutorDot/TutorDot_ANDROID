@@ -1,12 +1,20 @@
 package com.tutor.tutordot.MyPage.MypageRecylerView
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.tutor.tutordot.MyPage.MyinfoActivity
 import com.tutor.tutordot.R
-import kotlinx.android.synthetic.main.item_mypage.view.*
+import android.widget.Toast.makeText as makeText1
+
+
 
 class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
     val rv_colorcircle= itemView.findViewById<ImageView>(R.id.rv_colorcircle)
@@ -18,7 +26,20 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
 
 
 
+        rv_class_name.setOnClickListener(object :View.OnClickListener {
+            override fun onClick(mypageview: View?) {
+                val pos= adapterPosition
+                val context: Context = mypageview!!.context
+                val Intent = Intent(mypageview!!.context, MyinfoActivity::class.java)
+                context.startActivity(Intent)
+                (context as Activity).finish()
 
+
+            }
+        })
     }
+
+
+
 
 }

@@ -13,18 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_tutor_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        
-        <activity android:name=".ClassLog.ClassLogModificationActivity"></activity>
+        <activity android:name=".MyPage.OnesentenseActivity"></activity>
+
+
         <activity android:name=".MyPage.AddclassActivity"></activity>
-        <activity android:name=".MyPage.MyclassEdit">
-        </activity>
+        <activity android:name=".MyPage.MyclassEdit"></activity>
 
         <activity android:name=".Calendar.ScheduleEditActivity" />
         <activity android:name=".Calendar.ScheduleInfoActivity" />
         <activity android:name=".Calendar.ScheduleAddActivity" />
         <activity android:name=".MyPage.MyinfoActivity"></activity>
+        <activity android:name=".ClassAddActivity"></activity>
 
-        <activity android:name=".ClassAddActivity" />
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
         <activity android:name=".CalenderActivity"></activity>
@@ -33,7 +33,7 @@
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

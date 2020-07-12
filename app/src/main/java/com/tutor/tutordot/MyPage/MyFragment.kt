@@ -1,10 +1,12 @@
 package com.tutor.tutordot.MyPage
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.tutor.tutordot.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.R
@@ -35,9 +37,25 @@ class MyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
+
+        imageButton2.setOnClickListener{
+            val intent = Intent(activity, AddclassActivity::class.java)
+            startActivity(intent)
+        }
+        my_img_profile.setOnClickListener{
+            val profileintent=Intent(activity, OnesentenseActivity::class.java)
+            startActivity(profileintent)
+
+        }
+
+
+
+
     }
     private fun loadDatas(){
         datas.apply{
@@ -58,4 +76,6 @@ class MyFragment : Fragment() {
     }
 
 
+
 }
+
