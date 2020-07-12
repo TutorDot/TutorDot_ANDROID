@@ -1,6 +1,5 @@
 package com.tutor.tutordot.Calendar
 
-import android.graphics.Color
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
@@ -35,6 +34,7 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan
 //    }
 //}
 
+
 //class EventDecorator(private val color: Int, dates: Collection<CalendarDay?>?) :
 //    DayViewDecorator {
 //    private val dates: HashSet<CalendarDay>
@@ -51,13 +51,14 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan
 //    }
 //}
 
-//class EventDecorator private val context Context,
-//private val stringProductColor Array<String>,
-//private val dates CalendarDay) : DayViewDecorator{
+
+//class EventDecorator (private val context Context,
+//                      private val stringProductColor Array<String>, private val dates CalendarDay) : DayViewDecorator{
 //
 //    private lateinit var colors: IntArray
 //
 //    override fun shouldDecorate(day: CalendarDay): Boolean = dates ==day
+//
 //    override fun decorate(view: DayViewFacade){
 //        colors = IntArray(stringProductColor2.size)
 //        for(i in stringProductColor2.indices){

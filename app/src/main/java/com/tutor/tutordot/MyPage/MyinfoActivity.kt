@@ -1,5 +1,6 @@
 package com.tutor.tutordot.MyPage
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,6 +18,7 @@ class MyinfoActivity : AppCompatActivity() {
             override fun onClick(arg0: View?) {
                 val it1 = Intent(applicationContext, MyFragment::class.java)
                 startActivity(it1)
+
             }
         })
 
@@ -31,5 +33,3 @@ class MyinfoActivity : AppCompatActivity() {
 
 
 }
-
-

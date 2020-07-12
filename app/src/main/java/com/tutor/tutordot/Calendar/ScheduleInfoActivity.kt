@@ -23,6 +23,9 @@ class ScheduleInfoActivity : AppCompatActivity() {
                 val backIntent = Intent(this@ScheduleInfoActivity, CalenderFragment::class.java)
                 //startActivity(backIntent)
                 finish()
+
+
+
             }
         })
     }

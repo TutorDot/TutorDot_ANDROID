@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TimePicker
 import com.tutor.tutordot.R
+import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_edit.*
 import java.util.*
 
@@ -21,6 +23,9 @@ class ScheduleEditActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+//        date_picker_edit.setOnDateChangedListener{
+//
+//        }
 
         // Set a time change listener for time picker widget
         time_picker_edit.setOnTimeChangedListener{
