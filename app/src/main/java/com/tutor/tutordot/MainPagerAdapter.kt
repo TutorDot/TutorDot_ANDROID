@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.tutor.tutordot.Calendar.CalenderFragment
 import com.tutor.tutordot.ClassLog.ClassLogFragment
 import com.tutor.tutordot.MyPage.MyFragment
+import com.tutor.tutordot.Notice.NoticeFragment
 
 class MainPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {

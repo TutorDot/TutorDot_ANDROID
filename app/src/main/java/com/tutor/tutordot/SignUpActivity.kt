@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.비밀번호
 import kotlinx.android.synthetic.main.activity_sign_up.이메일
 
+var role: String = ""
+
 class SignUpActivity : AppCompatActivity() {
 
     //버튼 늘림 표시
@@ -23,6 +25,9 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         signup_btn_tutor.setOnClickListener{
+            //알림, 수업일지에 쓰임, 사용자 역할을 알기 위해 추가(기현)
+            role = "tutor"
+            
             if (tutor == false){//false
                 signup_btn_tutor.setBackgroundResource(R.drawable.signup_btn_tutor_1)
                 signup_btn_tutee.setBackgroundResource(R.drawable.signup_btn_tutee_2)
@@ -35,6 +40,9 @@ class SignUpActivity : AppCompatActivity() {
 
         }
         signup_btn_tutee.setOnClickListener{
+            //기현 추가
+            role = "tutee"
+            
             if (tutee == false){//false
                 signup_btn_tutee.setBackgroundResource(R.drawable.signup_btn_tutee_4)
                 signup_btn_tutor.setBackgroundResource(R.drawable.signup_btn_tutor_3)

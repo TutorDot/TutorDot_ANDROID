@@ -13,6 +13,7 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
 import com.tutor.tutordot.R
+import com.tutor.tutordot.role
 
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -48,66 +49,68 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         tv_progress.text = "진도 : " + logData.progress
         tv_homework.text = "숙제 : " + logData.homework
 
-        btn_circle.setOnClickListener(object :View.OnClickListener {
-            override fun onClick(v: View?) {
-                //선택 안되어있을 경우
-                if(!circle) {
-                    circle = true
-                    logData.complete = 1
-                    btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
-                    btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-                    btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        //튜터일 경우 수정 가능
+        if(role == "tutor"){
+            btn_circle.setOnClickListener(object :View.OnClickListener {
+                override fun onClick(v: View?) {
+                    //선택 안되어있을 경우
+                    if(!circle) {
+                        circle = true
+                        logData.complete = 1
+                        btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
+                        btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+                        btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+                    }
+                    else {  //선택되어있을 경우
+                        circle = false
+                        logData.complete = 0
+                        btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+                        btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+                        btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+                    }
                 }
-                else {  //선택되어있을 경우
-                    circle = false
-                    logData.complete = 0
-                    btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-                    btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-                    btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
-                }
-            }
-        })
+            })
 
-        btn_triangle.setOnClickListener(object :View.OnClickListener {
-            override fun onClick(v: View?) {
-                //선택 안되어있을 경우
-                if(!triangel) {
-                    triangel = true
-                    logData.complete = 2
-                    btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-                    btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
-                    btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+            btn_triangle.setOnClickListener(object :View.OnClickListener {
+                override fun onClick(v: View?) {
+                    //선택 안되어있을 경우
+                    if(!triangel) {
+                        triangel = true
+                        logData.complete = 2
+                        btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+                        btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
+                        btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+                    }
+                    else {  //선택되어있을 경우
+                        triangel = false
+                        logData.complete = 0
+                        btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+                        btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+                        btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+                    }
                 }
-                else {  //선택되어있을 경우
-                    triangel = false
-                    logData.complete = 0
-                    btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-                    btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-                    btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
-                }
-            }
-        })
+            })
 
-        btn_x.setOnClickListener(object :View.OnClickListener {
-            override fun onClick(v: View?) {
-                //선택 안되어있을 경우
-                if(!x) {
-                    x = true
-                    logData.complete = 3
-                    btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-                    btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-                    btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
+            btn_x.setOnClickListener(object :View.OnClickListener {
+                override fun onClick(v: View?) {
+                    //선택 안되어있을 경우
+                    if(!x) {
+                        x = true
+                        logData.complete = 3
+                        btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+                        btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+                        btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
+                    }
+                    else {  //선택되어있을 경우
+                        x = false
+                        logData.complete = 0
+                        btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+                        btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+                        btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+                    }
                 }
-                else {  //선택되어있을 경우
-                    x = false
-                    logData.complete = 0
-                    btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-                    btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-                    btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
-                }
-            }
-        })
-
+            })
+        }
 
         if (logData.complete == 0) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
@@ -142,13 +145,16 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
             iv_color.setImageResource(R.drawable.notice_color_img_red)
 
         //일지 아이템 버튼 클릭 이벤트
-        cl_log_item.setOnClickListener(object :View.OnClickListener {
-            override fun onClick(v: View?) {
-                val context: Context = v!!.context
-                val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
-                context.startActivity(nextIntent)
-                //(context as Activity).finish()
-            }
-        })
+        //튜터일때 수정 가능
+        if(role == "tutor") {
+            cl_log_item.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    val context: Context = v!!.context
+                    val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
+                    context.startActivity(nextIntent)
+                    //(context as Activity).finish()
+                }
+            })
+        }
     }
 }
