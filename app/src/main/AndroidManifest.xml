@@ -18,14 +18,11 @@
 
         <activity android:name=".MyPage.AddclassActivity"></activity>
         <activity android:name=".MyPage.MyclassEdit"></activity>
-        <activity android:name=".MyPage.MyclassEdit">
-        </activity>
 
         <activity android:name=".Calendar.ScheduleEditActivity" />
         <activity android:name=".Calendar.ScheduleInfoActivity" />
         <activity android:name=".Calendar.ScheduleAddActivity" />
         <activity android:name=".MyPage.MyinfoActivity"></activity>
-        <activity android:name=".ScheduleModificationActivity" />
         <activity android:name=".ClassAddActivity"></activity>
 
         <activity android:name=".ClassModificationActivity" />
