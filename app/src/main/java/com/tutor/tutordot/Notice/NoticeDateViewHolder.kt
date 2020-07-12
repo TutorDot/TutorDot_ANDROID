@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.tutor.tutordot.R
 
+//알림 데이터 유무
+var haveNdata: Boolean = true
+
 class NoticeDateViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tv_notice_date : TextView = itemView.findViewById<TextView>(R.id.tv_notice_date)
     val rv_notice : RecyclerView = itemView.findViewById<RecyclerView>(R.id.rv_notice)
