@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.R
+import com.tutor.tutordot.role
 
 class NoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv_notice = itemView.findViewById<TextView>(R.id.tv_notice)
@@ -14,6 +15,25 @@ class NoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(noticeData : NoticeData) {
 
+            //알림 제목
+            if(role == "tutor") {
+                when (noticeData.notice_type) {
+                    1 -> tv_notice.setText("내일 수업이 있습니다")
+                    2 -> tv_notice.setText("수업료 입금을 확인해주세요")
+                    3 -> tv_notice.setText("수업 일지가 추가되었습니다")
+                    4 -> tv_notice.setText("수업 정보가 변경되었습니다")
+                }
+            }
+            else if(role == "tutee"){
+                when (noticeData.notice_type) {
+                    1 -> tv_notice.setText("내일 수업이 있습니다")
+                    2 -> tv_notice.setText("수업료를 입금해주세요")
+                    3 -> tv_notice.setText("수업 일지가 추가되었습니다")
+                    4 -> tv_notice.setText("수업 정보가 변경되었습니다")
+                }
+            }
+
+            //수업 색, 이미지 타입
             if(noticeData.color_class == "yellow"){
                 when(noticeData.notice_type){
                     1 -> iv_notice.setImageResource(R.drawable.notice_img_class_yellow)
@@ -54,6 +74,9 @@ class NoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     4 -> iv_notice.setImageResource(R.drawable.notice_img_notice_red)
                 }
             }
+
+            //수업 알림 내용
+            tv_notice_msg.setText(noticeData.notice_msg)
 
         }
 }
