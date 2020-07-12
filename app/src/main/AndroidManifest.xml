@@ -4,30 +4,27 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_tutor"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_tutor_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MyPage.OnesentenseActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
 
-
-        <activity android:name=".MyPage.AddclassActivity"></activity>
-        <activity android:name=".MyPage.MyclassEdit"></activity>
+        <activity android:name=".MyPage.OnesentenseActivity" />
+        <activity android:name=".MyPage.AddclassActivity" />
+        <activity android:name=".MyPage.MyclassEdit" />
         <activity android:name=".ClassLog.ClassLogModificationActivity" />
         <activity android:name=".Calendar.ScheduleEditActivity" />
         <activity android:name=".Calendar.ScheduleInfoActivity" />
         <activity android:name=".Calendar.ScheduleAddActivity" />
-        <activity android:name=".MyPage.MyinfoActivity"></activity>
-        <activity android:name=".ClassAddActivity"></activity>
-
+        <activity android:name=".MyPage.MyinfoActivity" />
+        <activity android:name=".ClassAddActivity" />
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
-        <activity android:name=".CalenderActivity"></activity>
+        <activity android:name=".CalenderActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".StartActivity" />
         <activity android:name=".LoginActivity" />
