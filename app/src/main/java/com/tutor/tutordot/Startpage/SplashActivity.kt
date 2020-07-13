@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         Handler().postDelayed({ //delay를 위한 handler
-            startActivity(Intent(this, SignUpActivity::class.java))
+            startActivity(Intent(this, StartActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
     }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/start_first"
+        android:icon="@drawable/icon_start1"
+        android:title="온보딩1"/>
+    <item android:id="@+id/start_second"
+        android:icon="@drawable/onboarding_btn_unpick"
+        android:title="온보딩2"/>
+    <item android:id="@+id/start_third"
+        android:icon="@drawable/onboarding_btn_unpick"
+        android:title="온보딩3"/>
+    <item android:id="@+id/start_four"
+        android:icon="@drawable/onboarding_btn_unpick"
+        android:title="온보딩4"/>
+</menu>

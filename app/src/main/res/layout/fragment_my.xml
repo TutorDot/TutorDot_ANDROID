@@ -6,16 +6,32 @@
     android:layout_height="match_parent"
     tools:context="com.tutor.tutordot.MyPage.MyFragment">
 
-
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/my_img_topbg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/my_img_topbg"
+        android:layout_height="58dp"
         android:background="@color/colorPrimary"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:text="내정보"
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/scrollView3"

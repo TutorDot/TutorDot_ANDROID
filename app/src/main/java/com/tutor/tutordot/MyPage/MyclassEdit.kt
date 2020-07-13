@@ -8,9 +8,6 @@ import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditAdapter
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_myclass_edit.*
-import kotlinx.android.synthetic.main.activity_myclass_edit.schedule_add_btn_cancle
-import kotlinx.android.synthetic.main.activity_onesentense.*
-import kotlinx.android.synthetic.main.fragment_my.*
 
 class MyclassEdit : AppCompatActivity() {
 
@@ -27,7 +24,7 @@ class MyclassEdit : AppCompatActivity() {
 
         loadDatas()
 
-        schedule_add_btn_cancle.setOnClickListener{
+        btn_cancle_myedit.setOnClickListener{
             val intent2= Intent(this, MyinfoActivity::class.java)
             startActivity(intent2)
             finish()

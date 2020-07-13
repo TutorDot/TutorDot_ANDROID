@@ -6,14 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".MyPage.MyclassEdit">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/my_class_tap_edit_open_topbg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/my_class_tap_edit_open_topbg"
+        android:layout_height="58dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:text="수업 수정"
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="409dp"
@@ -336,28 +354,35 @@
 
     <LinearLayout
         android:layout_marginTop="11dp"
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout_my"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageButton
-            android:id="@+id/schedule_add_btn_cancle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/btn_cancle_myedit"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/colorBackground"
+            android:textSize="20sp"
+            android:textColor="#eb6b6b"
+            android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:background="@drawable/schedule_add_btn_cancle" />
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="취소" />
 
-        <ImageButton
-            android:id="@+id/schedule_add_btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/btn_save_myedit"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/colorBackground"
+            android:textSize="20sp"
+            android:textColor="#6875dd"
+            android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:background="@drawable/schedule_add_btn_save" />
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="저장" />
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
