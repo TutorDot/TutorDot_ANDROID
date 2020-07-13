@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context="com.tutor.tutordot.MyPage.DeveloperActivity">
 
     <View
@@ -45,7 +44,7 @@
     <ScrollView
         android:id="@+id/scroll1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -143,11 +142,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:lineSpacingExtra="4sp"
+                android:text="변정인\ncws06079@naver.com"
                 android:textColor="#707070"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"
-                tools:text="변정인\ncws06079@naver.com" />
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -155,11 +154,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:lineSpacingExtra="4sp"
+                android:text="이희수\nheesulee360@gmail.com"
                 android:textColor="#707070"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView21"
-                app:layout_constraintTop_toBottomOf="@+id/textView21"
-                tools:text="이희수\nheesulee360@gmail.com" />
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -327,10 +326,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
+                android:layout_marginBottom="25dp"
                 android:lineSpacingExtra="4sp"
                 android:text="김예지\nrladpwl229@naver.com"
                 android:textColor="#707070"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView24"
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
