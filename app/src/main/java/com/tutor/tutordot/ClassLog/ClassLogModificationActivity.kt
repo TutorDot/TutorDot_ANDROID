@@ -30,8 +30,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
         //취소, 저장 버튼 이벤트
         btn_log_cancel.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                //val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
-                //startActivity(backIntent)
+                val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                startActivity(backIntent)
                 finish()
             }
         })
@@ -47,6 +47,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
                 //intent.putExtra("mhw", ser_hw)
                 //intent.putExtra("mcheck", modi_check)
                 //setResult(Activity.RESULT_OK, intent)
+                val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                startActivity(backIntent)
                 finish()
             }
         })
