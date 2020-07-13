@@ -48,18 +48,22 @@
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constarintlayout"
         android:background="@drawable/calender_math_section_img_calenderback"
-        app:mcv_selectionColor="#a9dbf0cb"
+        app:mcv_selectionColor="#dddddd"
+        app:mcv_tileSize="40dp"
+        app:mcv_tileWidth="match_parent"
         app:mcv_showOtherDates="defaults" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_calendarlog_all"
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="#f8f8f8"
         android:orientation="vertical"

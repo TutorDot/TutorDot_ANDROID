@@ -21,6 +21,6 @@ class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayView
 
     init {
         // You can set background for Decorator via drawable here
-        drawable = ContextCompat.getDrawable(context!!, R.drawable.checkbox_off_background)
+        drawable = ContextCompat.getDrawable(context!!, R.color.holo_blue_light)
     }
 }
