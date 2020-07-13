@@ -123,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="#f5f6fa">
+            android:background="#f8f8f8">
             <ImageButton
                 android:id="@+id/btn_month_prev"
                 android:layout_width="wrap_content"
@@ -169,7 +169,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
                 tools:listitem="@layout/item_logdate"
-                android:background="#f5f6fa"/>
+                android:background="#f8f8f8"/>
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

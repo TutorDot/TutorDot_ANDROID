@@ -29,6 +29,8 @@ class MyclassEdit : AppCompatActivity() {
             startActivity(intent2)
             finish()
         }
+
+
     }
 
 
