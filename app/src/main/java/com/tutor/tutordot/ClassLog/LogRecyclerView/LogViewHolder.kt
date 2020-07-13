@@ -152,7 +152,6 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     val context: Context = v!!.context
                     val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
                     context.startActivity(nextIntent)
-                    //(context as Activity).finish()
                 }
             })
         }
