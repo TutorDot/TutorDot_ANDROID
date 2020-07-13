@@ -10,6 +10,7 @@ import com.tutor.tutordot.ClassLog.LogRecyclerView.LogViewHolder
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
+import kotlinx.android.synthetic.main.activity_calender.*
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 
 class ClassLogModificationActivity : AppCompatActivity() {
