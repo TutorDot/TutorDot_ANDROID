@@ -2,52 +2,84 @@
 package com.tutor.tutordot.Calendar
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.CalendarMode
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
+import com.prolificinteractive.materialcalendarview.*
+import com.prolificinteractive.materialcalendarview.CalendarUtils.getYear
 import com.tutor.tutordot.Calendar.CalendarLogAllRecyclerView.CalendarLogAllAdapter
 import com.tutor.tutordot.Calendar.CalendarLogAllRecyclerView.CalendarLogAllData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
+import java.time.DayOfWeek
 import java.util.*
+import java.util.concurrent.Executors
 
 
 class CalenderFragment : Fragment() {
     lateinit var calendarLogAllAdapter: CalendarLogAllAdapter
-    val dateDatas : MutableList<CalendarLogAllData> = mutableListOf<CalendarLogAllData>()
+    val dateDatas: MutableList<CalendarLogAllData> = mutableListOf<CalendarLogAllData>()
 
     //현재 달 구하기
-    val curDate= Calendar.getInstance()
+    val curDate = Calendar.getInstance()
     val month = curDate.get(Calendar.MONTH) + 1
 
+    lateinit var materialCalendarView: MaterialCalendarView
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.fragment_calendar)
-//        materialCalendarView = findViewById(R.id.calendarView) as MaterialCalendarView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        materialCalendarView = view!!.findViewById<MaterialCalendarView>(R.id.calendarView)
+//
+//        materialCalendarView.setOnDateChangedListener(this)
+//        materialCalendarView.setOnMonthChangedListener(this)
+//        materialCalendarView.topbarVisible = false
+//
+////        val beforeYear : Int = Integer.parseInt(getYear(String.valueOf(beforeMonth().getTime().getYear())).toString());
+////        val afterYear : Int = Integer.parseInt(getYear(String.valueOf(beforeMonth().getTime().getYear())).toString());
+//
+////        materialCalendarView.setSelectedDate(calendarDayToday)
 //        materialCalendarView.state().edit()
+//            .isCacheCalendarPositionEnabled(false)
 //            .setFirstDayOfWeek(Calendar.SUNDAY)
+////            .setMinimumDate(CalendarDay.from(beforeYear, beforeMonth().getTime().getMonth()+1, beforeMonth().getTime().getDate()))
+////            .setMaximumDate(CalendarDay.from(afterYear, afterMonth().getTime().getMonth()+1, beforeMonth().getTime().getDate()))
 //            .setMinimumDate(CalendarDay.from(2017, 0, 1)) // 달력의 시작
 //            .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
 //            .setCalendarDisplayMode(CalendarMode.MONTHS)
 //            .commit()
+//
+//        materialCalendarView.showOtherDates = MaterialCalendarView.SHOW_OUT_OF_RANGE
+//        materialCalendarView.setDynamicHeightEnabled(true)
+//        materialCalendarView.setPadding(0,-20,0,30);
+////        materialCalendarView.setWeekDayTextAppearance(R.style.CustomTextAppearanceWeek);
+////        materialCalendarView.setDateTextAppearance(R.style.CustomTextAppearanceClicked);
+//
+//
+//
+////        materialCalendarView = findViewById(R.id.calendarView) as MaterialCalendarView
+////        materialCalendarView.showOtherDates = MaterialCalendarView.SHOW_OUT_OF_RANGE
+//
+////        materialCalendarView.state().edit()
+////            .setFirstDayOfWeek(Calendar.SUNDAY)
+////            .setMinimumDate(CalendarDay.from(2017, 0, 1)) // 달력의 시작
+////            .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
+////            .setCalendarDisplayMode(CalendarMode.MONTHS)
+////            .commit()
 //        materialCalendarView.addDecorators(
-//            SundayDecorator(),
-//            SaturdayDecorator(),
-//            oneDayDecorator
+//            OneDayDecorator()
 //        )
 //        val result =
 //            arrayOf("2017,03,18", "2017,04,18", "2017,05,18", "2017,06,18")
-//        ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
+//        //ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
 //        materialCalendarView.setOnDateChangedListener(OnDateSelectedListener { widget, date, selected ->
 //            val Year = date.year
 //            val Month = date.month + 1
@@ -58,17 +90,34 @@ class CalenderFragment : Fragment() {
 //            val shot_Day = "$Year,$Month,$Day"
 //            Log.i("shot_Day test", shot_Day + "")
 //            materialCalendarView.clearSelection()
-//            Toast.makeText(
-//                ApplicationProvider.getApplicationContext(),
-//                shot_Day,
-//                Toast.LENGTH_SHORT
-//            ).show()
+////            Toast.makeText(
+////                ApplicationProvider.getApplicationContext(),
+////                shot_Day,
+////                Toast.LENGTH_SHORT
+////            ).show()
 //        })
 //    }
 //
+//    override fun onDateSelected(
+//        widget: MaterialCalendarView,
+//        date: CalendarDay,
+//        selected: Boolean
+//    ) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun onMonthChanged(widget: MaterialCalendarView?, date: CalendarDay?) {
+//        TODO("Not yet implemented")
+//    }
+
+
+//
 //    private class ApiSimulator internal constructor(var Time_Result: Array<String>) :
 //        AsyncTask<Void?, Void?, List<CalendarDay>>() {
-//        protected override fun doInBackground(vararg voids: Void): List<CalendarDay> {
+//        doInBackground()
+//        }
+//
+//        override fun doInBackground(vararg params: Void?): List<CalendarDay> {
 //            try {
 //                Thread.sleep(500)
 //            } catch (e: InterruptedException) {
@@ -92,22 +141,26 @@ class CalenderFragment : Fragment() {
 //            }
 //            return dates
 //        }
+
+////        override fun onPostExecute(calendarDays: List<CalendarDay>) {
+////            super.onPostExecute(calendarDays)
+////            if (isFinishing()) {
+////                return
+////            }
+////            materialCalendarView.addDecorator(
+////                EventDecorator(
+////                    Color.GREEN,
+////                    calendarDays,
+////                    this@CalenderActivity
+////                )
+////            )
+////        }
 //
-//        override fun onPostExecute(calendarDays: List<CalendarDay>) {
-//            super.onPostExecute(calendarDays)
-//            if (isFinishing()) {
-//                return
-//            }
-//            materialCalendarView.addDecorator(
-//                EventDecorator(
-//                    Color.GREEN,
-//                    calendarDays,
-//                    this@MainActivity
-//                )
-//            )
-//        }
 //
-//    }
+//
+
+
+    }
 
 
     override fun onCreateView(
@@ -184,7 +237,7 @@ class CalenderFragment : Fragment() {
         }
     }
 
-    private fun loaddateDatas(){
+    private fun loaddateDatas() {
         dateDatas.apply {
             add(
                 CalendarLogAllData(
@@ -196,14 +249,19 @@ class CalenderFragment : Fragment() {
                 CalendarLogAllData(
                     month = 6,
                     day = 6
-                ))
+                )
+            )
             add(
                 CalendarLogAllData(
                     month = 7,
                     day = 7
-                ))
+                )
+            )
         }
         calendarLogAllAdapter.datas = dateDatas
         calendarLogAllAdapter.notifyDataSetChanged()
     }
 }
+
+
+
