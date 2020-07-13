@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="44dp"
+                app:layout_constraintGuide_begin="42dp"
                 app:layout_constraintGuide_end="325dp" />
 
 
@@ -104,12 +104,17 @@
                 android:id="@+id/tutor_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="76dp"
+                android:layout_marginEnd="271dp"
+                android:layout_marginRight="271dp"
                 android:lineSpacingExtra="5sp"
                 android:text="튜터 프로필"
                 android:textColor="#000000"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -301,6 +306,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
 
             <View
+                android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorTuti"

@@ -5,9 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.tutor.tutordot.Notice.NoticeFragment"
     android:orientation="vertical"
-    android:background="#f5f6fa">
+    android:background="@color/colorBackground">
 
     <LinearLayout
+        android:id="@+id/ll_noticee_choice"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@color/colorPrimary"

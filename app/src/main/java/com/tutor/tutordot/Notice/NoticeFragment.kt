@@ -35,7 +35,7 @@ class NoticeFragment : Fragment() {
         loadndateDatas() //데이터를 어댑터에 전달
 
         //상단 수업 선택 메뉴
-        btn_notice_choice.setOnClickListener(object : View.OnClickListener {
+        ll_noticee_choice.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val popup =
                     PopupMenu(context, btn_notice_choice)

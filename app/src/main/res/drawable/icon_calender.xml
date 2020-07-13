@@ -2,5 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/tabbar_ic_calender_unpick" android:state_selected="false"
         android:state_focused="false" android:state_pressed="false"/>
-    <item android:drawable="@drawable/tabbar_ic_calender_pick" android:state_checked="true"/>
+    <item android:drawable="@drawable/tabbar_ic_calender_pick" android:state_checked="true" />
 </selector>

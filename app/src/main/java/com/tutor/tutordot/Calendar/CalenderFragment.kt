@@ -160,7 +160,7 @@ class CalenderFragment : Fragment() {
 //        })
 //
         //상단 수업 선택 메뉴
-        calendar_select.setOnClickListener(object : View.OnClickListener {
+        constarintlayout.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
                 val popup =
                     PopupMenu(context, calendar_select)

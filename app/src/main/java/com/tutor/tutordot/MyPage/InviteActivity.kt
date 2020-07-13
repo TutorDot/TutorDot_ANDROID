@@ -26,10 +26,9 @@ class InviteActivity : AppCompatActivity() {
             finish()
         }
 
+        //클립보드 복사부분
         val textView = findViewById(R.id.copytext) as TextView //텍스트뷰
-
         val copybutton = findViewById<ImageButton>(R.id.imagecopy)
-
         val copytext = textView.text.toString() // 텍스트뷰 글자 가져옴
 
         copybutton.setOnTouchListener(object : View.OnTouchListener {

@@ -12,14 +12,14 @@
         android:id="@+id/iv_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="21dp"
         android:src="@drawable/notice_color_img_yellow"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_log_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="1dp"
         android:background="@drawable/class_log_img_square"
         android:padding="16dp">
 
@@ -27,13 +27,13 @@
             android:id="@+id/tv_times"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="-1dp"
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
             android:text="4회차 12시간/16시간"
             android:textColor="#1a1a1a"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_progress"
@@ -43,7 +43,7 @@
             android:fontFamily="@font/apple_sdgothic_neo_m"
             android:text="진도 : 수학의 정석"
             android:textColor="#707070"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_times" />
 
@@ -55,15 +55,15 @@
             android:fontFamily="@font/apple_sdgothic_neo_m"
             android:text="숙제 : 수학의 정석"
             android:textColor="#707070"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_progress" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="9dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_homework">
@@ -75,7 +75,7 @@
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:text="숙제 이행률"
                 android:textColor="#707070"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

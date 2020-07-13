@@ -8,9 +8,6 @@ import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditAdapter
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_myclass_edit.*
-import kotlinx.android.synthetic.main.activity_myclass_edit.schedule_add_btn_cancle
-import kotlinx.android.synthetic.main.activity_onesentense.*
-import kotlinx.android.synthetic.main.fragment_my.*
 
 class MyclassEdit : AppCompatActivity() {
 
@@ -27,11 +24,13 @@ class MyclassEdit : AppCompatActivity() {
 
         loadDatas()
 
-        schedule_add_btn_cancle.setOnClickListener{
+        btn_cancle_myedit.setOnClickListener{
             val intent2= Intent(this, MyinfoActivity::class.java)
             startActivity(intent2)
             finish()
         }
+
+
     }
 
 
@@ -40,17 +39,26 @@ class MyclassEdit : AppCompatActivity() {
         datas.apply {
             add(
                 MyclassEditData(
-                    classtime = "월 1시부터 3시"
+                    weekday = "월",
+                    starttime = "2:00pm",
+                    endtime="3:00pm"
+
                 )
             )
             add(
                 MyclassEditData(
-                    classtime = "월 3시부터 4시"
+                    weekday = "화",
+                    starttime = "2:00pm",
+                    endtime="3:00pm"
+
                 )
             )
             add(
                 MyclassEditData(
-                    classtime = "월 4시부터 5시"
+                    weekday = "수",
+                    starttime = "2:00pm",
+                    endtime="3:00pm"
+
                 )
             )
         }

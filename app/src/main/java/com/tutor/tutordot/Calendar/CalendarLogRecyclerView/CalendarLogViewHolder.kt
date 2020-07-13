@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.ScheduleInfoActivity
 import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
 import com.tutor.tutordot.R
+import com.tutor.tutordot.moveActi
 
 class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
     val tv_starttime = itemView.findViewById<TextView>(R.id.tv_starttime)
@@ -47,10 +48,10 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         //일지 아이템 버튼 클릭 이벤트
         cal_log_item.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
-                val context: Context = v!!.context
+                //val context: Context = v!!.context
                 val nextIntent = Intent(v!!.context, ScheduleInfoActivity::class.java)
-                context.startActivity(nextIntent)
-                (context as Activity).finish()
+                //context.startActivity(nextIntent)
+                moveActi(nextIntent,v)
             }
         })
     }

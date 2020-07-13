@@ -1,5 +1,6 @@
 package com.tutor.tutordot.ClassLog.LogRecyclerView
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -13,7 +14,8 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
 import com.tutor.tutordot.R
-import com.tutor.tutordot.role
+import com.tutor.tutordot.Startpage.role
+import com.tutor.tutordot.moveActi
 
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -149,10 +151,11 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         if(role == "tutor") {
             cl_log_item.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
-                    val context: Context = v!!.context
+                    //val context: Context = v!!.context
                     val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
-                    context.startActivity(nextIntent)
-                    //(context as Activity).finish()
+                    //context.startActivity(nextIntent)
+                    moveActi(nextIntent ,v)
+
                 }
             })
         }

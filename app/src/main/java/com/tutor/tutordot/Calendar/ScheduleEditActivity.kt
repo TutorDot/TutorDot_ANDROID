@@ -21,8 +21,7 @@ class ScheduleEditActivity : AppCompatActivity() {
 
         // 취소 버튼 누르면 일정 정보 화면으로 이동
         schedule_edit_btn_cancle.setOnClickListener{
-            val intent = Intent(this, ScheduleInfoActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
 //        date_picker_edit.setOnDateChangedListener{
@@ -104,7 +103,6 @@ class ScheduleEditActivity : AppCompatActivity() {
     private fun getAMPM(hour:Int):String{
         return if(hour>11)"PM" else "AM"
     }
-
 
     // Custom method to get hour for AM PM time format
     private fun getHourAMPM(hour:Int):Int{

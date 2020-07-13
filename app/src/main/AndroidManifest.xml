@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyPage.InviteActivity"></activity>
+        <activity android:name=".MyPage.DeveloperActivity"></activity>
+        <activity android:name=".MyPage.InviteActivity" />
         <activity android:name=".MyPage.OnesentenseActivity" />
         <activity android:name=".MyPage.AddclassActivity" />
         <activity android:name=".MyPage.MyclassEdit" />
@@ -25,11 +26,11 @@
         <activity android:name=".ClassModificationActivity" />
         <activity android:name=".ClassActivity" />
         <activity android:name=".CalenderActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".StartActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Startpage.SignUpActivity" />
+        <activity android:name=".Startpage.StartActivity" />
+        <activity android:name=".Startpage.LoginActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".Startpage.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

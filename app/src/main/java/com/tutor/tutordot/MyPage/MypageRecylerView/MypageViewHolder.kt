@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.MyPage.MyinfoActivity
 import com.tutor.tutordot.R
+import com.tutor.tutordot.moveActi
 import android.widget.Toast.makeText as makeText1
 
-
+var name_class: String = ""
 
 class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
     val rv_colorcircle= itemView.findViewById<ImageView>(R.id.rv_colorcircle)
@@ -29,10 +30,10 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
         rv_class_name.setOnClickListener(object :View.OnClickListener {
             override fun onClick(mypageview: View?) {
                 val pos= adapterPosition
-                val context: Context = mypageview!!.context
-                val Intent = Intent(mypageview!!.context, MyinfoActivity::class.java)
-                context.startActivity(Intent)
-                (context as Activity).finish()
+                //val context: Context = mypageview!!.context
+                val intent = Intent(mypageview!!.context, MyinfoActivity::class.java)
+                //context.startActivity(intent)
+                moveActi(intent,mypageview)
             }
         })
     }

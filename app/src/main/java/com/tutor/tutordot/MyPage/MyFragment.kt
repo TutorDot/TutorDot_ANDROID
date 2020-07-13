@@ -1,8 +1,6 @@
 package com.tutor.tutordot.MyPage
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,15 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
-import com.tutor.tutordot.LoginActivity
+import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.R
-import com.tutor.tutordot.SignUpActivity
-import kotlinx.android.synthetic.main.activity_popup_logout.*
-import kotlinx.android.synthetic.main.activity_popup_logout.view.*
+import com.tutor.tutordot.Startpage.SignUpActivity
 import kotlinx.android.synthetic.main.fragment_my.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -52,18 +46,27 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
+        //화면이동
         imageButton2.setOnClickListener{
             val intent = Intent(activity, AddclassActivity::class.java)
             startActivity(intent)
         }
+
         my_img_profile.setOnClickListener{
             val profileintent=Intent(activity, OnesentenseActivity::class.java)
             startActivity(profileintent)
 
         }
+        my_btn_developer.setOnClickListener{
+            val pintent=Intent(activity, DeveloperActivity::class.java)
+            startActivity(pintent)
+        }
 
+
+        //팝업
         my_btn_logout.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
+            val dialog = builder.create()
             val dialogView = layoutInflater.inflate(R.layout.activity_popup_logout, null)
             val yes= dialogView.findViewById<ImageButton>(R.id.my_logout_btn_yes)
             val no= dialogView.findViewById<ImageButton>(R.id.my_logout_btn_no)
@@ -72,27 +75,27 @@ class MyFragment : Fragment() {
                 startActivity(intent4)
             }
             no.setOnClickListener{
-                val intent5=Intent(activity, MyinfoActivity::class.java)
-                startActivity(intent5)
+                dialog.dismiss()
             }
-            builder.setView(dialogView)
-                   .show()
+            dialog.setView(dialogView)
+            dialog.show()
+
         }
         my_btn_withdrawl.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
+            val dialog = builder.create()
             val dialogView = layoutInflater.inflate(R.layout.activity_popup_byeservice, null)
             val yes= dialogView.findViewById<ImageButton>(R.id.my_disconnect_btn_yes)
             val no= dialogView.findViewById<ImageButton>(R.id.my_disconnect_btn_no)
             yes.setOnClickListener{
-                val intent6=Intent(activity, MyinfoActivity::class.java)
-                startActivity(intent6)
+                dialog.dismiss()
             }
             no.setOnClickListener{
                 val intent7=Intent(activity, SignUpActivity::class.java)
                 startActivity(intent7)
             }
-            builder.setView(dialogView)
-                .show()
+            dialog.setView(dialogView)
+            dialog.show()
         }
 
     }

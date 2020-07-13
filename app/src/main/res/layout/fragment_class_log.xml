@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_log_choice"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@color/colorPrimary"
@@ -122,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="#f5f6fa">
+            android:background="#f8f8f8">
             <ImageButton
                 android:id="@+id/btn_month_prev"
                 android:layout_width="wrap_content"
@@ -138,7 +139,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="월 수업일지"
-                android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
@@ -169,7 +169,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
                 tools:listitem="@layout/item_logdate"
-                android:background="#f5f6fa"/>
+                android:background="#f8f8f8"/>
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
