@@ -13,8 +13,6 @@ class OnesentenseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_onesentense)
 
         schedule_add_btn_cancle.setOnClickListener{
-            val intent2= Intent(this, MyFragment::class.java)
-            startActivity(intent2)
             finish()
         }
     }
