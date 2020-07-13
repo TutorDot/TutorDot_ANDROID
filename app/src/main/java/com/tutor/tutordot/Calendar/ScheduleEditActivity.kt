@@ -104,7 +104,6 @@ class ScheduleEditActivity : AppCompatActivity() {
         return if(hour>11)"PM" else "AM"
     }
 
-
     // Custom method to get hour for AM PM time format
     private fun getHourAMPM(hour:Int):Int{
         // Return the hour value for AM PM time format
