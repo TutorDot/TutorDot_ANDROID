@@ -33,7 +33,7 @@ class CalenderActivity : AppCompatActivity() {
             }
         })
 
-
+        bottomNavigationView2.itemIconTintList = null
 
         bottomNavigationView2.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
