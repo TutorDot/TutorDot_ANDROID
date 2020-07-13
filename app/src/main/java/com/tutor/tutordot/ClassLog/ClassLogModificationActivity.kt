@@ -1,10 +1,12 @@
 package com.tutor.tutordot.ClassLog
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.tutor.tutordot.*
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogViewHolder
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
@@ -40,8 +42,13 @@ class ClassLogModificationActivity : AppCompatActivity() {
                 ser_progress = et_log_modi_progress.text.toString()
                 ser_hw = et_log_modi_hw.text.toString()
                 modi_check = true
-                val backIntent2 = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
-                startActivity(backIntent2)
+                //val intent = Intent(this@ClassLogModificationActivity, LogViewHolder::class.java)
+                //intent.putExtra("mprogress", ser_progress)
+                //intent.putExtra("mhw", ser_hw)
+                //intent.putExtra("mcheck", modi_check)
+                //setResult(Activity.RESULT_OK, intent)
+                val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                startActivity(backIntent)
                 finish()
             }
         })
