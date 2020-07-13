@@ -50,7 +50,6 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
                 val context: Context = v!!.context
                 val nextIntent = Intent(v!!.context, ScheduleInfoActivity::class.java)
                 context.startActivity(nextIntent)
-                (context as Activity).finish()
             }
         })
     }
