@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TimePicker
+import androidx.annotation.RequiresApi
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_edit.*
 import java.util.*
 
 class ScheduleEditActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_edit)
@@ -27,6 +29,14 @@ class ScheduleEditActivity : AppCompatActivity() {
 //
 //        }
 
+        // 날짜 선택
+        // 날짜 선택
+        date_picker_edit.setOnDateChangedListener{
+                view, year, monthOfYear, dayOfMonth ->
+            schedule_edit_date_txt.text = "${year}" + "년 ${monthOfYear+1}" + "월 ${dayOfMonth}" + "일"
+        }
+
+        // 시간 선택
         // Set a time change listener for time picker widget
         time_picker_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
@@ -40,28 +50,33 @@ class ScheduleEditActivity : AppCompatActivity() {
         }
 
 
-//        schedule_add_date_constraint.setOnClickListener{
-//            if(date_picker.getVisibility() == View.GONE) {
-//                time_picker.setVisibility(View.VISIBLE);
-//            } else {
-//                time_picker.setVisibility(View.GONE);
-//                Log.d("선택", "아아이")
-//            }
-//        }
+        schedule_edit_date_constraint.setOnClickListener{
+            if(date_picker_edit.getVisibility() == View.GONE) {
+                date_picker_edit.setVisibility(View.VISIBLE)
+                fix4.text = "완료"
+            } else {
+                date_picker_edit.setVisibility(View.GONE)
+                fix4.text = "수정"
+            }
+        }
 
         schedule_edit_start_constraint.setOnClickListener{
             if(time_picker_edit.getVisibility() == View.GONE) {
-                time_picker_edit.setVisibility(View.VISIBLE);
+                time_picker_edit.setVisibility(View.VISIBLE)
+                fix5.text = "완료"
             } else {
-                time_picker_edit.setVisibility(View.GONE);
+                time_picker_edit.setVisibility(View.GONE)
+                fix5.text = "수정"
             }
         }
 
         schedule_edit_end_constraint.setOnClickListener{
             if(time_picker2_edit.getVisibility() == View.GONE) {
-                time_picker2_edit.setVisibility(View.VISIBLE);
+                time_picker2_edit.setVisibility(View.VISIBLE)
+                fix6.text = "완료"
             } else {
-                time_picker2_edit.setVisibility(View.GONE);
+                time_picker2_edit.setVisibility(View.GONE)
+                fix6.text = "수정"
             }
         }
     }
