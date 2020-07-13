@@ -46,6 +46,7 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
+        //화면이동
         imageButton2.setOnClickListener{
             val intent = Intent(activity, AddclassActivity::class.java)
             startActivity(intent)
@@ -56,7 +57,13 @@ class MyFragment : Fragment() {
             startActivity(profileintent)
 
         }
+        my_btn_developer.setOnClickListener{
+            val pintent=Intent(activity, DeveloperActivity::class.java)
+            startActivity(pintent)
+        }
 
+
+        //팝업
         my_btn_logout.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             val dialog = builder.create()
