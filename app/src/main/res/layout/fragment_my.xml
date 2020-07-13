@@ -243,7 +243,9 @@
                 android:background="@drawable/my_btn_logout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_btn_password" />
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_password"
+                />
+
 
             <ImageButton
                 android:id="@+id/my_btn_withdrawl"
