@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.tutor.tutordot.Startpage.StartFirstFragment"
+    android:background="@drawable/onboarding_img_tutor">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login_img_tutor"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="36dp"/>
+
+</FrameLayout>

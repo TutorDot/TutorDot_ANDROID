@@ -379,26 +379,35 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout_edit"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageButton
+        <Button
             android:id="@+id/schedule_edit_btn_cancle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/colorBackground"
+            android:textSize="20sp"
+            android:textColor="#eb6b6b"
+            android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:background="@drawable/schedule_add_btn_cancle" />
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="취소" />
 
-        <ImageButton
+        <Button
             android:id="@+id/schedule_edit_btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/colorBackground"
+            android:textSize="20sp"
+            android:textColor="#6875dd"
+            android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:background="@drawable/schedule_add_btn_save" />
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="저장" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
