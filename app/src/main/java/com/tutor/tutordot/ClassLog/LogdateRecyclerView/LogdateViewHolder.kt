@@ -40,7 +40,7 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     alltime = 15,
                     progress = ser_progress,
                     homework = ser_hw,
-                    complete = 0
+                    complete = 1
                 )
             )
             add(
@@ -51,7 +51,7 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     alltime = 15,
                     progress = "수학2",
                     homework = "수학의 정석 풀기2",
-                    complete = 0
+                    complete = 2
                 )
             )
             add(
@@ -62,7 +62,7 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     alltime = 15,
                     progress = "수학3",
                     homework = "수학의 정석 풀기3",
-                    complete = 0
+                    complete = 2
                 )
             )
         }
