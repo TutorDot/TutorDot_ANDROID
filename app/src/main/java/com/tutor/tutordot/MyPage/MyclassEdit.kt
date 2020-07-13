@@ -39,17 +39,26 @@ class MyclassEdit : AppCompatActivity() {
         datas.apply {
             add(
                 MyclassEditData(
-                    classtime = "월 1시부터 3시"
+                    weekday = "월",
+                    starttime = "2:00pm",
+                    endtime="3:00pm"
+
                 )
             )
             add(
                 MyclassEditData(
-                    classtime = "월 3시부터 4시"
+                    weekday = "화",
+                    starttime = "2:00pm",
+                    endtime="3:00pm"
+
                 )
             )
             add(
                 MyclassEditData(
-                    classtime = "월 4시부터 5시"
+                    weekday = "수",
+                    starttime = "2:00pm",
+                    endtime="3:00pm"
+
                 )
             )
         }

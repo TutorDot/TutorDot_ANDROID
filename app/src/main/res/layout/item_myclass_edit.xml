@@ -2,37 +2,105 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/item_myclass_edit_item"
+    <ImageButton
+        android:id="@+id/imageButton8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/my_class_tap_edit_btn_location"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/my_class_tap_edit_btn_week"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:id="@+id/item_myclass_edit_text"
+        android:id="@+id/tp_weekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="13dp"
         android:lineSpacingExtra="5sp"
-        android:text="월 01:00pm~03:00pm"
+        android:text="월"
         android:textColor="#707070"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/item_myclass_edit_item"
-        app:layout_constraintStart_toStartOf="@+id/item_myclass_edit_item"
-        app:layout_constraintTop_toTopOf="@+id/item_myclass_edit_item" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton8"
+        app:layout_constraintStart_toStartOf="@+id/imageButton8"
+        app:layout_constraintTop_toTopOf="@+id/imageButton8"
+        app:layout_constraintVertical_bias="0.0" />
 
+    <ImageButton
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:background="@drawable/my_class_tap_edit_btn_time1"
+        app:layout_constraintStart_toEndOf="@+id/imageButton8"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tp_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="12dp"
+        android:lineSpacingExtra="5sp"
+        android:text="00:00am"
+        android:textColor="#707070"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TimePicker
+        android:id="@+id/tp_myclass_time1"
+        android:layout_width="320dp"
+        android:layout_height="140dp"
+        android:timePickerMode="spinner"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageButton8"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton8" />
+
+    <ImageButton
+        android:id="@+id/btn_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_class_tap_edit_btn_time2"
+        app:layout_constraintStart_toEndOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tp_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="13dp"
+        android:lineSpacingExtra="5sp"
+        android:text="00:00am"
+        android:textColor="#707070"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_end"
+        app:layout_constraintStart_toEndOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_end" />
+
+    <TimePicker
+        android:id="@+id/tp_myclass_time2"
+        android:layout_width="320dp"
+        android:layout_height="140dp"
+        android:timePickerMode="spinner"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageButton8"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
