@@ -12,8 +12,6 @@ class AddclassActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mypage_addclass)
 
         schedule_add_btn_cancle.setOnClickListener{
-            val intent2= Intent(this, MyFragment::class.java)
-            startActivity(intent2)
             finish()
         }
     }

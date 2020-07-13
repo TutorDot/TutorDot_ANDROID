@@ -13,7 +13,7 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
 import com.tutor.tutordot.R
-import com.tutor.tutordot.role
+import com.tutor.tutordot.Startpage.role
 
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {

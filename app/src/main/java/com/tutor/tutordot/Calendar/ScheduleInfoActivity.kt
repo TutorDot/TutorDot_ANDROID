@@ -21,10 +21,8 @@ class ScheduleInfoActivity : AppCompatActivity() {
         // 뒤로가기 버튼 이벤트
         btn_back.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                val backIntent = Intent(this@ScheduleInfoActivity, CalenderActivity::class.java)
-                //startActivity(backIntent)
-                finish()
 
+                finish()
 
 
             }

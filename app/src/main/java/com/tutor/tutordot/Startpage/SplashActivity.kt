@@ -1,4 +1,4 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.Startpage
 
 import android.content.Intent
 import android.os.Bundle
