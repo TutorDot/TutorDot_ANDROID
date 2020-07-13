@@ -24,16 +24,15 @@
 
         </androidx.viewpager.widget.ViewPager>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="9dp"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_start"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:tabBackground="@drawable/icon_start1"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
             android:layout_marginLeft="151dp"
-            android:layout_marginRight="151dp"
-            android:background="#00000000"
-            android:elevation="0dp"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/start" />
+            android:layout_marginRight="152dp"/>
     </LinearLayout>
 
     <LinearLayout
