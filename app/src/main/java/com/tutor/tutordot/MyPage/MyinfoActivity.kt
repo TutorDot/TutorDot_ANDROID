@@ -19,18 +19,24 @@ class MyinfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myinfo)
 
+        //버튼
         my_class_tap_btn_back.setOnClickListener(object : View.OnClickListener {
             override fun onClick(arg0: View?) {
                 val it1 = Intent(applicationContext, CalenderActivity::class.java)
                 startActivity(it1)
             }
         })
-
         my_class_tap_btn_edit.setOnClickListener{
             val intent2= Intent(this, MyclassEdit::class.java)
             startActivity(intent2)
             finish()
         }
+        my_class_tap_btn_invite.setOnClickListener{
+            var invIntent = Intent(this, InviteActivity::class.java)
+            startActivity(invIntent)
+        }
+
+        //팝업창
         my_class_tap_btn_unconnect.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.activity_popup_disconnect, null)
