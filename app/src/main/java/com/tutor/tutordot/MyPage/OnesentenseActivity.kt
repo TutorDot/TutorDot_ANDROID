@@ -12,7 +12,7 @@ class OnesentenseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onesentense)
 
-        schedule_add_btn_cancle.setOnClickListener{ 
+        schedule_add_btn_cancle.setOnClickListener{
             finish()
         }
     }
