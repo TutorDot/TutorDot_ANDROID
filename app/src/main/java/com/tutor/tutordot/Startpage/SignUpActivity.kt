@@ -1,11 +1,10 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.Startpage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
+import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.비밀번호
 import kotlinx.android.synthetic.main.activity_sign_up.이메일

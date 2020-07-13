@@ -1,12 +1,11 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.Startpage
 
 import android.content.Intent
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
+import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {

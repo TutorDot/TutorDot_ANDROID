@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.R
-import com.tutor.tutordot.role
+import com.tutor.tutordot.Startpage.role
 
 class NoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv_notice = itemView.findViewById<TextView>(R.id.tv_notice)
