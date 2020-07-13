@@ -69,7 +69,7 @@ class ClassLogFragment : Fragment() {
         })
 
         //상단 수업 선택 메뉴
-        btn_class_choice.setOnClickListener(object :View.OnClickListener {
+        ll_log_choice.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
                 val popup =
                     PopupMenu(context, btn_class_choice)
