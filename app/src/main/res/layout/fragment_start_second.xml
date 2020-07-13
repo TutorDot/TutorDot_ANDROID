@@ -42,6 +42,7 @@
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/apple_sdgothic_neo_m"
         android:text="캘린더로 수업일정을 한눈에 정리해 보세요!"
         android:textColor="#707070"
@@ -53,6 +54,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
         android:src="@drawable/onboarding_img_calender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
