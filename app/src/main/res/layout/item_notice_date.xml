@@ -22,9 +22,9 @@
             android:fontFamily="@font/apple_sdgothic_neo_b"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1.5dp"
             android:layout_gravity="center"
-            android:background="#777777"/>
+            android:background="#ececec"/>
     </LinearLayout>
 
 
