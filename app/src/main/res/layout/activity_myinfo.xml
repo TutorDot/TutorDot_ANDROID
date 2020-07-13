@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.tutor.tutordot.MyPage.MyinfoActivity">
 
-    <!--
     <ImageView
         android:id="@+id/my_class_tap_img_top_bg"
         android:layout_width="match_parent"
@@ -16,33 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_up_my_info"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
-            android:text="수업정보"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/my_class_tap_btn_back"
@@ -52,17 +24,17 @@
         android:layout_marginEnd="319dp"
         android:layout_marginRight="319dp"
         android:background="@drawable/my_class_tap_btn_back"
-        app:layout_constraintEnd_toEndOf="@+id/cl_up_my_info"
+        app:layout_constraintEnd_toEndOf="@+id/my_class_tap_img_top_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="409dp"
         android:layout_height="600dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_up_my_info">
+        app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_top_bg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -73,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="44dp"
+                app:layout_constraintGuide_begin="42dp"
                 app:layout_constraintGuide_end="325dp" />
 
 
@@ -132,12 +104,17 @@
                 android:id="@+id/tutor_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="76dp"
+                android:layout_marginEnd="271dp"
+                android:layout_marginRight="271dp"
                 android:lineSpacingExtra="5sp"
                 android:text="튜터 프로필"
                 android:textColor="#000000"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -329,6 +306,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
 
             <View
+                android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorTuti"
