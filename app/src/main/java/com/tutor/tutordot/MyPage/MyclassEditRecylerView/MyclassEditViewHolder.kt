@@ -4,20 +4,24 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View
 import android.widget.ImageButton
+import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.recyclerview.widget.RecyclerView
-import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.R
-import kotlinx.android.synthetic.main.activity_schedule_edit.*
 import java.util.*
+
 
 class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tp_weekday=itemView.findViewById<TextView>(R.id.tp_weekday)
     val tp_start=itemView.findViewById<TextView>(R.id.tp_start)
     val tp_end=itemView.findViewById<TextView>(R.id.tp_end)
+
+    val tp_day=itemView.findViewById<NumberPicker>(R.id.tp_day)
     val tp_myclass_time1=itemView.findViewById<TimePicker>(R.id.tp_myclass_time1)
-    val tp_myclass_time2=itemView.findViewById<TimePicker>(R.id.tp_myclass_time2)
+    val tp_myclass_time2=itemView.findViewById<NumberPicker>(R.id.tp_myclass_time2)
+
+    val btn_day=itemView.findViewById<ImageButton>(R.id.btn_day)
     val btn_start=itemView.findViewById<ImageButton>(R.id.btn_start)
     val btn_end=itemView.findViewById<ImageButton>(R.id.btn_end)
 
@@ -28,36 +32,80 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         tp_start.text=myclassEditData.starttime
         tp_end.text=myclassEditData.endtime
 
-        // 시간 선택
+        val dayvalues = arrayOf("월", "화", "수", "목", "금", "토", "일")
+        tp_day.minValue=0
+        tp_day.maxValue=dayvalues.size-1
+        tp_day.displayedValues= dayvalues
+
+        val timevalues = arrayOf("30분", "1시간", "1시간 30분", "2시간", "2시간 30분", "3시간", "3시간 30분", "4시간", "4시간 30분", "5시간")
+        tp_myclass_time2.minValue=0
+        tp_myclass_time2.maxValue=timevalues.size-1
+        tp_myclass_time2.displayedValues= timevalues
+
+
+        var tmptime: Int = 2
+        var tmpmin: Int = 30
+        var howlongh: Int = 1
+        var howlongm: Int = 30
+        var assign: Int
+        var zero: String = "0"
+
+
+
+
+
+        // 시간 선택하면 글씨 나오게
         // Set a time change listener for time picker widget
+
         tp_myclass_time1.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-            tp_start.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
-
+            if(minute/10==0) zero="0" else zero=""
+            tp_start.text = "${getHourAMPM(hourOfDay)}" + ":"+zero+ "$minute ${getAMPM(hourOfDay)}"
+            tmptime=hourOfDay
+            tmpmin=minute
         }
         // Set a time change listener for time picker widget
-        tp_myclass_time2.setOnTimeChangedListener{
-                view,hourOfDay,minute->
-            tp_end.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
+        tp_myclass_time2.setOnValueChangedListener{
+                numberPicker, oldValue, newValue ->
+                howlongh=(newValue+1)/2
+                howlongm=((newValue+1)%2)*30
+            assign=((tmpmin+howlongm)%60)/10
+            if( assign== 0) zero="0" else zero=""
+            tp_end.text = "${getHourAMPM(tmptime+howlongh)}" + ":"+ zero +"${(tmpmin+howlongm)%60} ${getAMPM(tmptime+howlongh)}"
+
+        }
+        tp_day.setOnValueChangedListener{
+            numberPicker, oldValue, newValue -> tp_weekday.text= "${dayvalues[newValue]}"
         }
 
 
 
+        //버튼누르면 피커뷰 나오게
         btn_start.setOnClickListener{
             if(tp_myclass_time1.getVisibility() == View.GONE) {
                 tp_myclass_time1.setVisibility(View.VISIBLE)
                 tp_myclass_time2.setVisibility(View.GONE)
+                tp_day.setVisibility(View.GONE)
             } else {
                 tp_myclass_time1.setVisibility(View.GONE)
             }
         }
-
         btn_end.setOnClickListener{
             if(tp_myclass_time2.getVisibility() == View.GONE) {
                 tp_myclass_time2.setVisibility(View.VISIBLE)
                 tp_myclass_time1.setVisibility(View.GONE)
+                tp_day.setVisibility(View.GONE)
             } else {
                 tp_myclass_time2.setVisibility(View.GONE)
+            }
+        }
+        btn_day.setOnClickListener{
+            if(tp_day.getVisibility() == View.GONE) {
+                tp_myclass_time2.setVisibility(View.GONE)
+                tp_myclass_time1.setVisibility(View.GONE)
+                tp_day.setVisibility(View.VISIBLE)
+            } else {
+                tp_day.setVisibility(View.GONE)
             }
         }
 
@@ -107,27 +155,18 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         return r.nextInt((max - min) + 1) + min;
     }
 
-    private fun randomInRange2(start:Int):Int{
-        //define a new Random class
-        val r = Random()
-
-        //get the next random number within range
-        // Including both minimum and maximum number
-        //return r.nextInt((max - min) + 1) + min;
-        return r.nextInt(start + 30);
-    }
     // Custom method to set time picker time
-    private fun setPickerTime(timePicker: TimePicker){
+    private fun setPickerTime(timePicker: MutableList<Any>){
         // Get random time
         val hour = randomInRange(0,23)
-        val minute = randomInRange2(0)
+        val min = randomInRange(0, 59)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.hour = hour
-            timePicker.minute = minute
+//            timePicker.hour = hour
+//            timePicker.minute = minute
         }else{
-            timePicker.currentHour = hour
-            timePicker.currentMinute = minute
+//            timePicker.currentHour = hour
+//            timePicker.currentMinute = minute
         }
     }
 

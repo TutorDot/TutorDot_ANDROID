@@ -301,7 +301,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/btn_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -318,7 +318,7 @@
                 android:layout_marginTop="584dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+                app:layout_constraintEnd_toEndOf="@+id/btn_plus"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_myclass_edit" />
@@ -333,7 +333,7 @@
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_plus" />
 
             <ImageView
                 android:id="@+id/imageView5"
