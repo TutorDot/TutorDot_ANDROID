@@ -3,9 +3,13 @@ package com.tutor.tutordot.Calendar
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.text.style.LineBackgroundSpan
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.DayViewDecorator
+import com.prolificinteractive.materialcalendarview.DayViewFacade
+import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import com.prolificinteractive.materialcalendarview.spans.DotSpan.DEFAULT_RADIUS
 
-class CustomMultipleDotSpan : LineBackgroundSpan {
+class CustomMultipleDotSpan : LineBackgroundSpan, DayViewDecorator {
     private val radius : Float
         private var color = IntArray(0)
 
@@ -54,5 +58,13 @@ class CustomMultipleDotSpan : LineBackgroundSpan {
             paint.color = oldColor
             leftMost += 24
         }
+    }
+
+    override fun shouldDecorate(day: CalendarDay?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun decorate(view: DayViewFacade?) {
+        TODO("Not yet implemented")
     }
 }

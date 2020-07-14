@@ -1,17 +1,16 @@
 package com.tutor.tutordot.Startpage
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestSignup
 import com.tutor.tutordot.StartServer.SignupRequestToServer
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.activity_sign_up.비밀번호
-import kotlinx.android.synthetic.main.activity_sign_up.이메일
+
 
 var role: String = ""
 
@@ -72,13 +71,17 @@ class SignUpActivity : AppCompatActivity() {
 
         signup_btn_signup.setOnClickListener{
             if (이메일.text.isNullOrBlank()||비밀번호.text.isNullOrBlank()||이름.text.isNullOrBlank()||비밀번호확인.text.isNullOrBlank()){
-                Toast.makeText(this, "빈칸을 모두 입력하세요.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "빈칸을 모두 입력하세요.", Toast.LENGTH_SHORT).show()
+                showToast("모두 입력해주세요.")
             }else if(비밀번호.text.toString() != 비밀번호확인.text.toString()){
-                Toast.makeText(this, "비밀번호와 비밀번호확인이 같은지 확인하세요.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "비밀번호와 비밀번호확인이 같은지 확인하세요.", Toast.LENGTH_SHORT).show()
+                showToast("비밀번호를 확인해주세요.")
             }else if(!agree){
-                Toast.makeText(this, "이용약관 및 개인정보보호정책에 동의해주세요.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "이용약관 및 개인정보보호정책에 동의해주세요.", Toast.LENGTH_SHORT).show()
+                showToast("이용약관 및 개인정보보호정책에 동의해주세요.")
             } else if(!tutor && !tutee){
-                Toast.makeText(this, "역할중 하나를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "역할중 하나를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                showToast("역할중 하나를 선택해주세요.")
             }
             else{
                 signupRequestToServer.service.requestSignup(
@@ -98,6 +101,7 @@ class SignUpActivity : AppCompatActivity() {
                             intent.putExtra("email", 이메일.text.toString())
                             intent.putExtra("password", 비밀번호.text.toString())
                             startActivity(intent)
+                            finish()
                         } else {
                             showToast("내용을 확인하세요!")
                         }
@@ -105,9 +109,5 @@ class SignUpActivity : AppCompatActivity() {
                 )
             }
         }
-
-
-
-
     }
 }
