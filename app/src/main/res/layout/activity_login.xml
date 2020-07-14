@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/이메일"
+        android:id="@+id/et_email"
         android:layout_width="287dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -57,7 +57,7 @@
 
 
     <EditText
-        android:id="@+id/비밀번호"
+        android:id="@+id/et_pw"
         android:layout_width="287dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -72,7 +72,7 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/이메일"
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
         tools:ignore="MissingConstraint" />
 
 
@@ -89,7 +89,7 @@
         android:src="@drawable/login_btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/비밀번호" />
+        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

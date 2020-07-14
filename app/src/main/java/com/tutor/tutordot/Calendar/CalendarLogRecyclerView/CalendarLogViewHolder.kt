@@ -1,18 +1,14 @@
 package com.tutor.tutordot.Calendar.CalendarLogRecyclerView
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.ScheduleInfoActivity
-import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
 import com.tutor.tutordot.R
-import com.tutor.tutordot.moveActi
+import com.tutor.tutordot.extention.moveActi
 
 class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
     val tv_starttime = itemView.findViewById<TextView>(R.id.tv_starttime)
@@ -51,7 +47,7 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
                 //val context: Context = v!!.context
                 val nextIntent = Intent(v!!.context, ScheduleInfoActivity::class.java)
                 //context.startActivity(nextIntent)
-                moveActi(nextIntent,v)
+                moveActi(nextIntent, v)
             }
         })
     }

@@ -41,6 +41,8 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
             tp_end.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
         }
 
+
+
         btn_start.setOnClickListener{
             if(tp_myclass_time1.getVisibility() == View.GONE) {
                 tp_myclass_time1.setVisibility(View.VISIBLE)
