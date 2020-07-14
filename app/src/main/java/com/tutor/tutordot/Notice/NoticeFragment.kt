@@ -52,6 +52,7 @@ class NoticeFragment : Fragment() {
             }
         })
 
+        //데이터 있을때 / 없을때
         if(haveNdata ==true) {
             cl_empty_notice.visibility =View.GONE
             ll_rv_notice.visibility = View.VISIBLE

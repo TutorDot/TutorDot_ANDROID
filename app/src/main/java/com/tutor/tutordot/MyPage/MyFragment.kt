@@ -11,9 +11,12 @@ import android.widget.ImageButton
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
+import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
+import com.tutor.tutordot.Notice.haveNdata
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.SignUpActivity
 import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.android.synthetic.main.fragment_notice.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,8 +101,16 @@ class MyFragment : Fragment() {
             dialog.show()
         }
 
+        //데이터 있을때 / 없을때
+        if(haveMyData == true) {
+            cl_my.visibility =View.GONE
+            recyclerView_my.visibility = View.VISIBLE
+        }
+        else {
+            recyclerView_my.visibility = View.GONE
+            cl_my.visibility =View.VISIBLE
+        }
     }
-
 
 
     private fun loadDatas(){
