@@ -10,9 +10,7 @@ class MyclassEditAdapter(private val context : Context) : RecyclerView.Adapter<M
     var datas= mutableListOf<MyclassEditData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyclassEditViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_myclass_edit, parent, false)
-        return MyclassEditViewHolder(
-            view
-        )
+        return MyclassEditViewHolder(view)
     }
 
     override fun getItemCount(): Int {
