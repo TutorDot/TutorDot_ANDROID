@@ -69,19 +69,19 @@ class CalenderFragment : Fragment() {
             return dates
         }
 
-//        override fun onPostExecute(calendarDays: List<CalendarDay>) {
-//                super.onPostExecute(calendarDays)
-////                if (isFinishing()) {
-////                    return
-////                }
-//                materialCalendarView.addDecorator(
-//                    EventDecorator(
-//                        Color.BLUE,
-//                        calendarDays
-//                        //this@CalenderFragment
-//                    )
-//                )
-//        }
+        override fun onPostExecute(calendarDays: List<CalendarDay>) {
+                super.onPostExecute(calendarDays)
+//                if (isFinishing()) {
+//                    return
+//                }
+                materialCalendarView.addDecorator(
+                    EventDecorator(
+                        R.color.yellow,
+                        calendarDays
+                        //this@CalenderFragment
+                    )
+                )
+        }
 
 
     }
@@ -103,15 +103,17 @@ class CalenderFragment : Fragment() {
             .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
-        materialCalendarView.isDynamicHeightEnabled = true
+        // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
         materialCalendarView.addDecorators(
-            //oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today()), CustomMultipleDotSpan(6F, )
+//            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today()), CustomMultipleDotSpan()
+            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
+
         )
 
         val result =
             arrayOf("2020,07,11", "2020,07,11", "2020,07,14", "2020,07,18")
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
-        materialCalendarView!!.setOnDateChangedListener { widget, date, selected ->
+        materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
             val Month = date.month + 1
             val Day = date.day
@@ -120,7 +122,7 @@ class CalenderFragment : Fragment() {
             Log.i("Day test", Day.toString() + "")
             val shot_Day = "$Year,$Month,$Day"
             Log.i("shot_Day test", shot_Day + "")
-            materialCalendarView!!.clearSelection()
+            materialCalendarView.clearSelection()
             Toast.makeText(
                 requireContext(),
                 shot_Day,
@@ -137,28 +139,6 @@ class CalenderFragment : Fragment() {
         loaddateDatas() //데이터를 어댑터에 전달
 
 
-//        tv_month_log.setText(month.toString() + "월 수업일지")
-//        var mon = month
-//
-//        //월 이전 이동
-//        btn_month_prev.setOnClickListener(object :View.OnClickListener {
-//            override fun onClick(v: View?) {
-//                mon--
-//                tv_month_log.setText(mon.toString() + "월 수업일지")
-//                btn_month_next.setImageResource(R.drawable.class_log_blank_btn_next_month)
-//            }
-//        })
-//        //월 이후 이동
-//        btn_month_next.setOnClickListener(object :View.OnClickListener {
-//            override fun onClick(v: View?) {
-//                mon++
-//                if(mon == month){
-//                    tv_month_log.setText(mon.toString() + "월 수업일지")
-//                    btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
-//                }
-//            }
-//        })
-//
         //상단 수업 선택 메뉴
         constarintlayout.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {

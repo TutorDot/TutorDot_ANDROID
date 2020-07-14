@@ -2,6 +2,7 @@ package com.tutor.tutordot.Calendar
 
 import android.R
 import android.app.Activity
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -21,6 +22,7 @@ class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayView
 
     init {
         // You can set background for Decorator via drawable here
-        drawable = ContextCompat.getDrawable(context!!, R.color.holo_blue_light)
+        drawable = ContextCompat.getDrawable(context!!, R.drawable.editbox_background)
+//        mPaintBackgroundToday.setColor(ContextCompat.getColor(getContext(), @color.colorAccent))
     }
 }
