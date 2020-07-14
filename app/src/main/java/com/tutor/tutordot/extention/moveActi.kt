@@ -1,4 +1,4 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.extention
 
 import android.content.Context
 import android.content.Intent

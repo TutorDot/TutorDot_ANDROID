@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.tutor.tutordot.R
+import com.tutor.tutordot.StartServer.RequestSignup
+import com.tutor.tutordot.StartServer.SignupRequestToServer
+import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.비밀번호
 import kotlinx.android.synthetic.main.activity_sign_up.이메일
@@ -18,6 +22,7 @@ class SignUpActivity : AppCompatActivity() {
     var tutee : Boolean = false
     var agree : Boolean = false
 
+    val signupRequestToServer = SignupRequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,9 +80,30 @@ class SignUpActivity : AppCompatActivity() {
             } else if(!tutor && !tutee){
                 Toast.makeText(this, "역할중 하나를 선택해주세요.", Toast.LENGTH_SHORT).show()
             }
-            else {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
+            else{
+                signupRequestToServer.service.requestSignup(
+                    RequestSignup(
+                        userName = 이름.text.toString(),
+                        email = 이메일.text.toString(),
+                        password = 비밀번호.text.toString(),
+                        role = role
+                    )//정보를 전달
+                ).customEnqueue(
+                    onError = {showToast("올바르지 못한 요청입니다")},
+                    onSuccess = {
+                        if (it.success) {
+                            showToast("회원가입 성공")
+                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                            intent.putExtra("check", "1")
+                            intent.putExtra("email", 이메일.text.toString())
+                            intent.putExtra("password", 비밀번호.text.toString())
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            showToast("내용을 확인하세요!")
+                        }
+                    }
+                )
             }
         }
 
