@@ -135,6 +135,8 @@ class ScheduleAddActivity : AppCompatActivity() {
     }
 
 
+
+
     // Custom method to set time picker time
     private fun setPickerTime(timePicker: TimePicker){
         // Get random time
