@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
                             if (it.success) {
                                 showToast("로그인 성공")
                                 val intent = Intent(this@LoginActivity, CalenderActivity::class.java)
-                                finish()
+                                startActivity(intent)
                             } else {
                                 showToast("아이디/비밀번호를 확인하세요!")
                             }

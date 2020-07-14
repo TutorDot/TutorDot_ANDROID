@@ -98,7 +98,6 @@ class SignUpActivity : AppCompatActivity() {
                             intent.putExtra("email", 이메일.text.toString())
                             intent.putExtra("password", 비밀번호.text.toString())
                             startActivity(intent)
-                            finish()
                         } else {
                             showToast("내용을 확인하세요!")
                         }
