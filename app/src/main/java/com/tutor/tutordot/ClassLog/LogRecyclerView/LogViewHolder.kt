@@ -1,7 +1,5 @@
 package com.tutor.tutordot.ClassLog.LogRecyclerView
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.ImageButton
@@ -15,7 +13,7 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.role
-import com.tutor.tutordot.moveActi
+import com.tutor.tutordot.extention.moveActi
 
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -154,7 +152,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     //val context: Context = v!!.context
                     val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
                     //context.startActivity(nextIntent)
-                    moveActi(nextIntent ,v)
+                    moveActi(nextIntent, v)
 
                 }
             })

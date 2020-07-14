@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyPage.DeveloperActivity"></activity>
+        <activity android:name=".MyPage.DeveloperActivity" />
         <activity android:name=".MyPage.InviteActivity" />
         <activity android:name=".MyPage.OnesentenseActivity" />
         <activity android:name=".MyPage.AddclassActivity" />
