@@ -41,21 +41,21 @@ import com.tutor.tutordot.R
 //}
 
 
-//class EventDecorator(private val color: Int, dates: Collection<CalendarDay>) :
-//    DayViewDecorator {
-//    private val dates: HashSet<CalendarDay>
-//    override fun shouldDecorate(day: CalendarDay): Boolean {
-//        return dates.contains(day)
-//    }
-//
-//    override fun decorate(view: DayViewFacade) {
-//        view.addSpan(DotSpan(6F, color))
-//    }
-//
-//    init {
-//        this.dates = HashSet(dates)
-//    }
-//}
+class EventDecorator(private val color: Int, dates: Collection<CalendarDay>) :
+    DayViewDecorator {
+    private val dates: HashSet<CalendarDay>
+    override fun shouldDecorate(day: CalendarDay): Boolean {
+        return dates.contains(day)
+    }
+
+    override fun decorate(view: DayViewFacade) {
+        view.addSpan(DotSpan(8F, color))
+    }
+
+    init {
+        this.dates = HashSet(dates)
+    }
+}
 
 
 //class EventDecorator (context: Context, stringProductColor : Array<String>, dates : Collection<CalendarDay>) : DayViewDecorator{
@@ -76,6 +76,6 @@ import com.tutor.tutordot.R
 //        for(i in stringProductColor.indices){
 //            colors[i] = Color.parseColor(stringProductColor[i])
 //        }
-//        view.addSpan(CustomMultipleDotSpan(5f, colors))
+//        view.addSpan(CustomMultipleDotSpan(6f, colors))
 //    }
 //}
