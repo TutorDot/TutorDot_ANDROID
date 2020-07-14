@@ -11,6 +11,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.moveActi
 
 var name_class: String = ""
+var haveMyData: Boolean = true
 
 class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
     val rv_colorcircle= itemView.findViewById<ImageView>(R.id.rv_colorcircle)
