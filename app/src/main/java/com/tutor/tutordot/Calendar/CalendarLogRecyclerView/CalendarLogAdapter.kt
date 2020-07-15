@@ -4,10 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.tutor.tutordot.Calendar.Server.CalendarData
 import com.tutor.tutordot.R
 
-class CalendarLogAdapter(private val context : Context) : RecyclerView.Adapter<CalendarLogViewHolder>() {
-    var datas : MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
+// 서버 연동
+class CalendarLogAdapter(private val context : Context, var datas : List<CalendarData>) : RecyclerView.Adapter<CalendarLogViewHolder>() {
+//class CalendarLogAdapter(private val context : Context) : RecyclerView.Adapter<CalendarLogViewHolder>() {
+//    var datas : MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarLogViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_calendarlog,parent,false)
         return CalendarLogViewHolder(view)

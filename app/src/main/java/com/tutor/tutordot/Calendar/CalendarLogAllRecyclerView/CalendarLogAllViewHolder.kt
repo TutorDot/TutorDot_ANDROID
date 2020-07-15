@@ -19,7 +19,7 @@ class CalendarLogAllViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
         calendarlog_all_date.text = calendarLogAllData.day.toString()
         calendarlog_all_month.text = calendarLogAllData.month.toString() + "월"
 
-        calendarLogAdapter = CalendarLogAdapter(itemView.context)
+        //calendarLogAdapter = CalendarLogAdapter(itemView.context)
         rv_calendarlog_all.adapter = calendarLogAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
@@ -60,7 +60,7 @@ class CalendarLogAllViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
                 )
             )
         }
-        calendarLogAdapter.datas = datas
-        calendarLogAdapter.notifyDataSetChanged()
+        //calendarLogAdapter.datas = datas
+        //calendarLogAdapter.notifyDataSetChanged()
     }
 }
