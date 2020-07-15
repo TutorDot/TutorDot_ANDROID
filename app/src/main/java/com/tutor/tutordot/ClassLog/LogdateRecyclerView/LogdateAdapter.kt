@@ -23,6 +23,6 @@ class LogdateAdapter(private val context : Context) : RecyclerView.Adapter<Logda
     override fun onBindViewHolder(holder: LogdateViewHolder, position: Int) {
         holder.bind(datas[position])
 
-        
+
     }
 }

@@ -30,8 +30,8 @@
         <activity android:name=".Startpage.StartActivity" />
         <activity android:name=".Startpage.LoginActivity" />
         <activity
-            android:name=".Startpage.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:name=".Startpage.SplashActivity">
+            <!--android:theme="@style/SplashTheme"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
+import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
 
 
@@ -40,7 +41,7 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     alltime = 15,
                     progress = ser_progress,
                     homework = ser_hw,
-                    complete = 1
+                    complete = complete
                 )
             )
             add(

@@ -1,6 +1,6 @@
 package com.tutor.tutordot.ClassLog
 
-import android.content.Context
+import android.content.ContentValues
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -8,17 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
-import com.tutor.tutordot.ClassLog.Server.LogResponse
-import com.tutor.tutordot.StartServer.RequestLogin
-import com.tutor.tutordot.StartServer.RequestToServer
-import kotlinx.android.synthetic.main.activity_login.*
+import com.tutor.tutordot.ClassLog.Server.ProgressResponse
+import com.tutor.tutordot.ClassLog.Server.VolleyService
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,6 +31,7 @@ import java.util.*
 
 class ClassLogFragment : Fragment() {
 
+    //서버 연결
     val logRequestToServer = LogRequestToServer
 
     lateinit var logdateAdapter: LogdateAdapter
@@ -47,10 +51,20 @@ class ClassLogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /*되는 코드 (Volley, 헤더는 못함)
+        VolleyService.testVolley(view.context) { testSuccess ->
+            if (testSuccess) {
+                Log.d( "통신 성공!","성공")
+            } else {
+                Log.d( "통신 실패!","실패")
+            }
+        }
+*/
         logdateAdapter =
             LogdateAdapter(view.context)
         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
-        //loaddateDatas() //데이터를 어댑터에 전달
+        loaddateDatas() //데이터를 어댑터에 전달
 
         //프로그레스바 값 지정 (나중에 서버에서 값 받아와서 지정)
         pb_class.progress = 75  //status
@@ -95,8 +109,33 @@ class ClassLogFragment : Fragment() {
                     tv_class_choice.text = item.title
                     if (item.title.equals("전체"))
                         ll_progress.visibility = View.GONE
-                    else
+                    else{
                         ll_progress.visibility = View.VISIBLE
+
+                        //프로그레스바 서버에서 정보 받아옴
+                        logRequestToServer.service.progressRequest(
+
+                        ).enqueue(object :Callback<ProgressResponse>{
+                            override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
+                                Log.d("통신 실패", "통신 실패")
+                            }
+
+                            override fun onResponse(
+                                call: Call<ProgressResponse>,
+                                response: Response<ProgressResponse>
+                            ) {
+                                if(response.isSuccessful){
+                                    if(response.body()!!.success){
+                                        Log.d("성공", "성공")
+                                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                    }else{
+                                        Log.d("실패", "실패")
+                                    }
+                                }
+                            }
+
+                        })
+                    }
                     true
                 }
                 popup.show() //showing popup menu
@@ -122,29 +161,7 @@ class ClassLogFragment : Fragment() {
 
         menu.show()
         */
-
-        logRequestToServer.service.LogRequest().enqueue(object : Callback<LogResponse> {
-            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
-                // 통신 실패
-                Log.d("통신 실패", t.message)
-            }
-
-            override fun onResponse(call: Call<LogResponse>, response: Response<LogResponse>) {
-                // 통신 성공
-                if (response.isSuccessful) {  // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                    Log.d("성공", "${response.body()}")
-                    //logdateAdapter = LogdateAdapter(context, response!!.body()!!.documents)
-                    //logdateAdapter.notifyDataSetChanged()
-                    //rv_datelog.adapter = logdateAdapter
-                    //rv_datelog.addItemDecoration(RecyclerView.ItemDecoration())
-                } else {
-                    Log.d("에러", "${response.body()}")
-                }
-            }
-        })
-
     }
-
 
     private fun loaddateDatas(){
         datedatas.apply {

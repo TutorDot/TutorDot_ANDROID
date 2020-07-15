@@ -9,5 +9,6 @@ object RequestToServer {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    var service: RequestInterface = retrofit.create(RequestInterface::class.java)
+    var service: RequestInterface = retrofit.create(
+        RequestInterface::class.java)
 }
