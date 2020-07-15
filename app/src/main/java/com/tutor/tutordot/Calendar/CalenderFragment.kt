@@ -17,9 +17,12 @@ import com.prolificinteractive.materialcalendarview.CalendarMode
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.fragment_calender.rv_calendarlog
+import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
 import java.util.*
 import java.util.concurrent.Executors
@@ -206,6 +209,16 @@ class CalenderFragment : Fragment() {
         floatingActionButton.setOnClickListener {
             val intent = Intent(activity, ScheduleAddActivity::class.java)
             startActivity(intent)
+        }
+
+        //데이터 없을 때 나오는 화면
+        if (haveCalendarData == true) {
+            cl_calendar_empty.visibility = View.GONE
+            rv_calendarlog.visibility = View.VISIBLE
+        } else {
+            rv_calendarlog.visibility = View.GONE
+            cl_calendar_empty.visibility = View.VISIBLE
+
         }
     }
 
