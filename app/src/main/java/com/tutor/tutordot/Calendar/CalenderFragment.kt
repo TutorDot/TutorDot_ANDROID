@@ -15,17 +15,21 @@ import androidx.fragment.app.Fragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.tutor.tutordot.Calendar.CalendarLogAllRecyclerView.CalendarLogAllAdapter
-import com.tutor.tutordot.Calendar.CalendarLogAllRecyclerView.CalendarLogAllData
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
+import kotlinx.android.synthetic.main.fragment_calender.rv_calendarlog
+import kotlinx.android.synthetic.main.item_calendarlog_all.*
 import java.util.*
 import java.util.concurrent.Executors
+import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_date as calendarlog_all_date1
+import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_month as calendarlog_all_month1
 
 
 class CalenderFragment : Fragment() {
-    lateinit var calendarLogAllAdapter: CalendarLogAllAdapter
-    val dateDatas: MutableList<CalendarLogAllData> = mutableListOf<CalendarLogAllData>()
+    lateinit var calendarLogAdapter: CalendarLogAdapter
+    val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
 
     //현재 달 구하기
     val curDate = Calendar.getInstance()
@@ -56,14 +60,18 @@ class CalenderFragment : Fragment() {
             /*월은 0이 1월 년,일은 그대로*/
             //string 문자열인 Time_Result 을 받아와서 ,를 기준으로 자르고 string을 int 로 변환
             for (i in Time_Result.indices) {
-                val day = CalendarDay.from(calendar)
-                val time =
-                    Time_Result[i].split(",".toRegex()).toTypedArray()
+                //val day = CalendarDay.from(calendar)
+                val time = Time_Result[i].split(",".toRegex()).toTypedArray()
                 val year = time[0].toInt()
                 val month = time[1].toInt()
                 val dayy = time[2].toInt()
-                dates.add(day)
+                //dates.add(day)
+                //calendar[year, month - 1] = dayy
+
+                // 날짜 마지막 안 찍히고 오늘 날짜에도 찍히는 것 해결한 부분
                 calendar[year, month - 1] = dayy
+                val day = CalendarDay.from(calendar)
+                dates.add(day)
             }
             return dates
         }
@@ -77,8 +85,8 @@ class CalenderFragment : Fragment() {
 //                materialCalendarView.addDecorator(
 //                    EventDecorator(
 //                        // 원하는 색으로 점 찍기
-//                        Color.parseColor("#f28d8d"), calendarDays
-//                        //this@CalenderFragment
+//                        Color.parseColor("#f28d8d"), calendarDays,
+//                        this@CalenderFragment
 //                    )
 //                )
 
@@ -86,8 +94,21 @@ class CalenderFragment : Fragment() {
                 context?.let { EventDecorator(it, calendarDays) }
             )
 
+//            val decoratorArray =
+//                arrayOfNulls<EventDecorator>(3) //Max 3 dots
+//
+//            for (i in decoratorArray.indices) decoratorArray[i] =
+//                EventDecorator(myColor, myRadius, i)
+//
+//            /* dayInstanceMap contains all the mappings. */
+//
+//            /* dayInstanceMap contains all the mappings. */
+//            for ((currDay, currDayCount) in dayInstanceMap.entrySet()) {
+//                for (i in 0 until currDayCount) decoratorArray[i].addDate(currDay)
+//            }
+
             // 일정 개수에 맞게 점 찍기
-//            materialCalendarView.addDecorator(OneDayDecorator(oneEventDays, oneColors))
+//            materialCalendarView.addDecorator(EventDecorator(oneEventDays, oneColors))
 //            materialCalendarView.addDecorator(OneDayDecorator(twoEventDays, twoColors))
 //            materialCalendarView.addDecorator(OneDayDecorator(threeEventDays, threeColors))
 //            materialCalendarView.addDecorator(OneDayDecorator(fourEventDays, fourColors))
@@ -115,23 +136,25 @@ class CalenderFragment : Fragment() {
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
         // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
+        calendarlog_all_date.text = "15"
+        calendarlog_all_month.text = "7" + "월"
         materialCalendarView.addDecorators(
-//            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
-
         )
 
         val result =
-            arrayOf("2020,07,11", "2020,07,12", "2020,07,12", "2020,07,14", "2020,07,18")
+            arrayOf("2020,07,11",  "2020,07,15", "2020,07,15", "2020,07,17", "2020,07,18")
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
             val Month = date.month + 1
             val Day = date.day
-            Log.i("Year test", Year.toString() + "")
-            Log.i("Month test", Month.toString() + "")
-            Log.i("Day test", Day.toString() + "")
-            val shot_Day = "$Year,$Month,$Day"
+            calendarlog_all_date.text = "$Day"
+            calendarlog_all_month.text = "$Month" + "월"
+//            Log.i("Year test", Year.toString() + "")
+//            Log.i("Month test", Month.toString() + "")
+//            Log.i("Day test", Day.toString() + "")
+            val shot_Day = "$Year-$Month-$Day"
             Log.i("shot_Day test", shot_Day + "")
             materialCalendarView.clearSelection()
             Toast.makeText(
@@ -145,9 +168,9 @@ class CalenderFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        calendarLogAllAdapter = CalendarLogAllAdapter(view!!.context)
-        rv_calendarlog_all.adapter = calendarLogAllAdapter //리사이클러뷰의 어댑터를 지정해줌
-        loaddateDatas() //데이터를 어댑터에 전달
+        calendarLogAdapter = CalendarLogAdapter(view!!.context)
+        rv_calendarlog.adapter = calendarLogAdapter //리사이클러뷰의 어댑터를 지정해줌
+        loadDatas() //데이터를 어댑터에 전달
 
 
         //상단 수업 선택 메뉴
@@ -186,29 +209,44 @@ class CalenderFragment : Fragment() {
         }
     }
 
-    private fun loaddateDatas() {
-        dateDatas.apply {
+    private fun loadDatas(){
+        datas.apply {
             add(
-                CalendarLogAllData(
-                    month = 7,
-                    day = 13
+                CalendarLogData(
+                    starttime = "2:00PM",
+                    endtime = "4:00PM",
+                    img_color = "yellow",
+                    times = 1,
+                    title = "김회진 튜티 수학 수업",
+                    studytime = 1,
+                    location = "원당역 할리스"
                 )
             )
             add(
-                CalendarLogAllData(
-                    month = 7,
-                    day = 14
+                CalendarLogData(
+                    starttime = "1:00PM",
+                    endtime = "5:00PM",
+                    img_color = "green",
+                    times = 1,
+                    title = "신연상 튜티 수학 수업",
+                    studytime = 2,
+                    location = "강남구청역 스타벅스"
                 )
             )
             add(
-                CalendarLogAllData(
-                    month = 7,
-                    day = 15
+                CalendarLogData(
+                    starttime = "5:00PM",
+                    endtime = "6:00PM",
+                    img_color = "yellow",
+                    times = 2,
+                    title = "김회진 튜티 물리 수업",
+                    studytime = 5,
+                    location = "수유역 할리스"
                 )
             )
         }
-        calendarLogAllAdapter.datas = dateDatas
-        calendarLogAllAdapter.notifyDataSetChanged()
+        calendarLogAdapter.datas = datas
+        calendarLogAdapter.notifyDataSetChanged()
     }
 }
 
