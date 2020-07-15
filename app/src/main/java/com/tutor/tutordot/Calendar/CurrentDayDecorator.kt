@@ -23,6 +23,9 @@ class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayView
     init {
         // You can set background for Decorator via drawable here
         drawable = ContextCompat.getDrawable(context!!, R.drawable.editbox_background)
-//        mPaintBackgroundToday.setColor(ContextCompat.getColor(getContext(), @color.colorAccent))
+
+        // 오늘 날짜 원이 들어가긴 하는데 크기 조절 필요
+        //drawable = context?.resources?.getDrawable(com.tutor.tutordot.R.drawable.calender_img_today)
+
     }
 }

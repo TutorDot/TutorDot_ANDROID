@@ -3,7 +3,6 @@ package com.tutor.tutordot.Calendar
 
 import android.content.Intent
 import android.database.Cursor
-import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -74,13 +73,25 @@ class CalenderFragment : Fragment() {
 //                if (isFinishing()) {
 //                    return
 //                }
-                materialCalendarView.addDecorator(
-                    EventDecorator(
-                        R.color.yellow,
-                        calendarDays
-                        //this@CalenderFragment
-                    )
-                )
+
+//                materialCalendarView.addDecorator(
+//                    EventDecorator(
+//                        // 원하는 색으로 점 찍기
+//                        Color.parseColor("#f28d8d"), calendarDays
+//                        //this@CalenderFragment
+//                    )
+//                )
+
+            materialCalendarView.addDecorator(
+                context?.let { EventDecorator(it, calendarDays) }
+            )
+
+            // 일정 개수에 맞게 점 찍기
+//            materialCalendarView.addDecorator(OneDayDecorator(oneEventDays, oneColors))
+//            materialCalendarView.addDecorator(OneDayDecorator(twoEventDays, twoColors))
+//            materialCalendarView.addDecorator(OneDayDecorator(threeEventDays, threeColors))
+//            materialCalendarView.addDecorator(OneDayDecorator(fourEventDays, fourColors))
+//            materialCalendarView.addDecorator(OneDayDecorator(fiveEventDays, fiveColors))
         }
 
 
@@ -105,13 +116,13 @@ class CalenderFragment : Fragment() {
             .commit()
         // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
         materialCalendarView.addDecorators(
-//            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today()), CustomMultipleDotSpan()
+//            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
 
         )
 
         val result =
-            arrayOf("2020,07,11", "2020,07,11", "2020,07,14", "2020,07,18")
+            arrayOf("2020,07,11", "2020,07,12", "2020,07,12", "2020,07,14", "2020,07,18")
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year

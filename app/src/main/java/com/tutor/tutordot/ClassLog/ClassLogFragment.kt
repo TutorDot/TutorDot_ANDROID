@@ -50,7 +50,7 @@ class ClassLogFragment : Fragment() {
         logdateAdapter =
             LogdateAdapter(view.context)
         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
-        //loaddateDatas() //데이터를 어댑터에 전달
+        loaddateDatas() //데이터를 어댑터에 전달
 
         //프로그레스바 값 지정 (나중에 서버에서 값 받아와서 지정)
         pb_class.progress = 75  //status
@@ -122,27 +122,6 @@ class ClassLogFragment : Fragment() {
 
         menu.show()
         */
-
-        logRequestToServer.service.LogRequest().enqueue(object : Callback<LogResponse> {
-            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
-                // 통신 실패
-                Log.d("통신 실패", t.message)
-            }
-
-            override fun onResponse(call: Call<LogResponse>, response: Response<LogResponse>) {
-                // 통신 성공
-                if (response.isSuccessful) {  // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                    Log.d("성공", "${response.body()}")
-                    //logdateAdapter = LogdateAdapter(context, response!!.body()!!.documents)
-                    //logdateAdapter.notifyDataSetChanged()
-                    //rv_datelog.adapter = logdateAdapter
-                    //rv_datelog.addItemDecoration(RecyclerView.ItemDecoration())
-                } else {
-                    Log.d("에러", "${response.body()}")
-                }
-            }
-        })
-
     }
 
 

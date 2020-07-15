@@ -9,11 +9,11 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import com.prolificinteractive.materialcalendarview.spans.DotSpan.DEFAULT_RADIUS
 
-class CustomMultipleDotSpan : LineBackgroundSpan, DayViewDecorator {
+class CustomMultipleDotSpan : LineBackgroundSpan {
     private val radius : Float
-        private var color = IntArray(0)
+    private var color = IntArray(0)
 
-        constructor(){
+    constructor(){
             this.radius = DEFAULT_RADIUS
             this.color[0] = 0
     }
@@ -58,13 +58,5 @@ class CustomMultipleDotSpan : LineBackgroundSpan, DayViewDecorator {
             paint.color = oldColor
             leftMost += 24
         }
-    }
-
-    override fun shouldDecorate(day: CalendarDay?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun decorate(view: DayViewFacade?) {
-        TODO("Not yet implemented")
     }
 }
