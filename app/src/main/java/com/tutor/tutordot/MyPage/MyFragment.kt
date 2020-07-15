@@ -3,35 +3,39 @@ package com.tutor.tutordot.MyPage
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
+import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
-import com.tutor.tutordot.Notice.haveNdata
+import com.tutor.tutordot.MyPage.Server.ClassList.ClassListResponse
+import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.SignUpActivity
+import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.fragment_my.*
-import kotlinx.android.synthetic.main.fragment_notice.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.http.Header
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MyFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyFragment : Fragment() {
 
     lateinit var mypageAdapter: MypageAdapter
     val datas= mutableListOf<MypageData>()
+    //서버 연결
+    val mypageRequestToServer = MyPageRequestToServer
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +48,47 @@ class MyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
+
+        //서버연결
+        mypageRequestToServer.service.classListRequest(
+        ).enqueue(object : Callback<ClassListResponse> {
+            override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
+                Log.d("통신 실패", "통신 실패")
+            }
+
+            override fun onResponse(
+                call: Call<ClassListResponse>,
+                response: Response<ClassListResponse>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body()!!.success){
+                        Log.d("성공", "성공")
+                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                        //progressDate = response.body()!!.data[5].classDate
+                        //progressCycle = response.body()!!.data[5].depositCycle
+//                        progressTimes = response.body()!!.data[5].times
+//                        progressHour = response.body()!!.data[5].hour
+//                        tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+//                        tv_progress_alltime.setText(progressCycle.toString() + "시간")
+//                        progressStatus = 100*progressHour/progressCycle
+//                        pb_class.progress = progressStatus
+//                        tv_percent.setText(progressStatus.toString() + "%")
+
+                        //Log.d(progressCycle.toString(), progressCycle.toString())
+                        //Log.d(progressTimes.toString(), progressTimes.toString())
+                        //Log.d(progressHour.toString(), progressHour.toString())
+                        //Log.d(progressStatus.toString(), progressStatus.toString())
+                    }else{
+                        Log.d("실패", "실패")
+                    }
+                }
+            }
+
+        })
+
 
         //화면이동
         imageButton2.setOnClickListener{
@@ -111,7 +152,6 @@ class MyFragment : Fragment() {
             cl_my.visibility =View.VISIBLE
         }
     }
-
 
     private fun loadDatas(){
         datas.apply{
