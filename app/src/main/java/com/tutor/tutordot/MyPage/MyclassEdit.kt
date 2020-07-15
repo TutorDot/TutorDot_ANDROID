@@ -24,12 +24,24 @@ class MyclassEdit : AppCompatActivity() {
 
         loadDatas()
 
+        //취소 버튼
         btn_cancle_myedit.setOnClickListener{
             val intent2= Intent(this, MyinfoActivity::class.java)
             startActivity(intent2)
             finish()
         }
 
+        //+버튼
+        btn_plus.setOnClickListener{
+            datas.add(
+                MyclassEditData(
+                    weekday="",
+                    starttime="00:00am",
+                    endtime = "00:00pm"
+                )
+            )
+            myclassEditAdapter.notifyDataSetChanged()
+        }
 
     }
 
