@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.tutor.tutordot.*
-import com.tutor.tutordot.ClassLog.LogRecyclerView.complete
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
+import com.tutor.tutordot.ClassLog.LogRecyclerView.completeTmp
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
@@ -14,6 +15,8 @@ import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
+
+var complete : Int = 1
 
 class ClassLogModificationActivity : AppCompatActivity() {
 
@@ -32,6 +35,27 @@ class ClassLogModificationActivity : AppCompatActivity() {
         //EditText의 기본 텍스트는 사용자가 이전에 입력했던 값으로
         et_log_modi_progress.setText(ser_progress)
         et_log_modi_hw.setText(ser_hw)
+
+        if (completeTmp == 0) {
+            btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+            btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+            btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        }
+        if (completeTmp == 1) {
+            btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
+            btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+            btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        }
+        if(completeTmp == 2) {
+            btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+            btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
+            btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        }
+        if(completeTmp == 3) {
+            btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+            btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+            btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
+        }
 
         //취소, 저장 버튼 이벤트
         btn_log_cancel.setOnClickListener(object : View.OnClickListener {
@@ -59,7 +83,7 @@ class ClassLogModificationActivity : AppCompatActivity() {
                     onError = {showToast("올바르지 못한 요청입니다")},
                     onSuccess = {
                         if (it.success) {
-                            showToast("회원가입 성공")
+                            showToast("수정이 완료되었습니다.")
                         } else {
                             //haveData = false
                         }

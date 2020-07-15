@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
-import com.tutor.tutordot.ClassLog.LogRecyclerView.complete
+import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
 
 
