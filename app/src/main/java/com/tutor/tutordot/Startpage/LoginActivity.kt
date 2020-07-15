@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
                         password = et_pw.text.toString()
                     )   //로그인 정보를 전달
                 ).customEnqueue(
-                    onError = { showToast("올바르지 못한 요청입니다") },
+                    onError = { showToast("아이디/비밀번호를 확인하세요!") },
                     onSuccess = {
                         if (it.success) {
                             showToast("로그인 성공")

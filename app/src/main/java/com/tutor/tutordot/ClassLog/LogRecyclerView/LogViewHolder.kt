@@ -11,11 +11,12 @@ import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
+import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.moveActi
 
-var complete : Int = 0
+var completeTmp : Int = 0
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val tv_times = itemView.findViewById<TextView>(R.id.tv_times)
@@ -37,6 +38,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val cl_log_item = itemView.findViewById<ConstraintLayout>(R.id.cl_log_item)
 
     fun bind(logData : LogData) {
+
         //일지 내용 수정
         if(modi_check) {
             logData.progress =
@@ -51,6 +53,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         tv_homework.text = "숙제 : " + logData.homework
 
         //튜터일 경우 수정 가능
+        /*
         if(role == "tutor"){
             btn_circle.setOnClickListener(object :View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -117,24 +120,24 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     }
                 }
             })
-        }
+        }*/
 
-        if (complete == 0) {
+        if (logData.complete == 0) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if (complete == 1) {
+        if (logData.complete == 1) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(complete == 2) {
+        if(logData.complete == 2) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(complete == 3) {
+        if(logData.complete == 3) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
@@ -164,5 +167,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                 }
             })
         }
+
+        completeTmp = complete
     }
 }
