@@ -92,6 +92,7 @@
                     android:fontFamily="@font/apple_sdgothic_neo_b"/>
 
                 <TextView
+                    android:id="@+id/tv_progress_times"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -100,12 +101,12 @@
                     android:text="8회차, 12시간"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_progress_alltime"
                     app:layout_constraintTop_toBottomOf="@+id/pb_class"
                     android:fontFamily="@font/apple_sdgothic_neo_r"/>
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tv_progress_alltime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"

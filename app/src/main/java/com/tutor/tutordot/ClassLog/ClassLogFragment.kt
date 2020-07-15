@@ -66,9 +66,22 @@ class ClassLogFragment : Fragment() {
         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
 
+
+        //프로그레스바 서버에서 받아온 날짜 데이터
+        var progressDate : String
+        //수업 회차
+        var progressTimes : Int
+        //총 수업시간
+        var progressHour : Int
+        //입금주기
+        var progressCycle : Int
+        //프로그레스바 값
+        var progressStatus : Int
+
+
+        
         //프로그레스바 값 지정 (나중에 서버에서 값 받아와서 지정)
         pb_class.progress = 75  //status
-        //pb_class.incrementProgressBy(5)  //5씩 증가되는 코드
 
         if (pb_class.progress == 100)
             tv_percent.setTextColor(Color.parseColor("#FFFFFF"));
@@ -114,7 +127,6 @@ class ClassLogFragment : Fragment() {
 
                         //프로그레스바 서버에서 정보 받아옴
                         logRequestToServer.service.progressRequest(
-
                         ).enqueue(object :Callback<ProgressResponse>{
                             override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
                                 Log.d("통신 실패", "통신 실패")
@@ -128,6 +140,20 @@ class ClassLogFragment : Fragment() {
                                     if(response.body()!!.success){
                                         Log.d("성공", "성공")
                                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                        progressDate = response.body()!!.data[5].classDate
+                                        progressCycle = response.body()!!.data[5].depositCycle
+                                        progressTimes = response.body()!!.data[5].times
+                                        progressHour = response.body()!!.data[5].hour
+                                        tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+                                        tv_progress_alltime.setText(progressCycle.toString() + "시간")
+                                        progressStatus = 100*progressHour/progressCycle
+                                        pb_class.progress = progressStatus
+                                        tv_percent.setText(progressStatus.toString() + "%")
+
+                                        //Log.d(progressCycle.toString(), progressCycle.toString())
+                                        //Log.d(progressTimes.toString(), progressTimes.toString())
+                                        //Log.d(progressHour.toString(), progressHour.toString())
+                                        //Log.d(progressStatus.toString(), progressStatus.toString())
                                     }else{
                                         Log.d("실패", "실패")
                                     }
