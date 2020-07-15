@@ -24,10 +24,6 @@ class ScheduleEditActivity : AppCompatActivity() {
             finish()
         }
 
-//        date_picker_edit.setOnDateChangedListener{
-//
-//        }
-
         // 날짜 선택
         // 날짜 선택
         date_picker_edit.setOnDateChangedListener{

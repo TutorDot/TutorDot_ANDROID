@@ -8,9 +8,9 @@ interface LogResponseInterface{
     fun logRequest() : Call<LogResponse>
 
     @Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NDgzMzkwMywiZXhwIjoxNTk2MDQzNTAzLCJpc3MiOiJvdXItc29wdCJ9.E4RNGNpeJENsAOZ5v8W_9tXpZjqKdXypbBZFYOSpZMI")
-    @GET("/lecture")
+    @GET("/diary/bar/1")
     fun progressRequest() : Call<ProgressResponse>
 
-    @PUT("/diary/hw/:did")
+    @PUT("/diary/hw/2")
     fun logModiRequest(@Body body : LogModiRequest) : Call<LogModiResponse>
 }

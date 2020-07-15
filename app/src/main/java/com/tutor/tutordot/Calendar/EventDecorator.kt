@@ -62,6 +62,8 @@ class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayV
 
         init {
         this.dates = HashSet(dates)
+
+
     }
 
 
@@ -131,6 +133,11 @@ class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayV
 //    }
 
 
+//    /* I added this method so that I can add dates after object creation!*/
+//    fun addDate(day: CalendarDay): Boolean {
+//        return dates.add(day)
+//    }
+
     override fun shouldDecorate(day: CalendarDay): Boolean {
         return dates.contains(day)
     }
@@ -142,10 +149,10 @@ class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayV
 //        }
         val eventcolors = intArrayOf(
             //R.color.yellow, R.color.green, R.color.red, R.color.blue, R.color.purple
-             Color.parseColor("#ffe966"), Color.parseColor("#90d672"),
-            Color.parseColor("#f28d8d"), Color.parseColor("#86d5e3"),
-            Color.parseColor("#b88de3")
+             Color.parseColor("#ffe966"), Color.parseColor("#90d672")
         )
+
         view.addSpan(CustomMultipleDotSpan(8f, eventcolors))
     }
+
 }

@@ -10,6 +10,8 @@ import com.tutor.tutordot.Calendar.ScheduleInfoActivity
 import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.moveActi
 
+var haveCalendarData : Boolean = false
+
 class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
     val tv_starttime = itemView.findViewById<TextView>(R.id.tv_starttime)
     val tv_endtime = itemView.findViewById<TextView>(R.id.tv_endtime)
