@@ -3,6 +3,7 @@ package com.tutor.tutordot.ClassLog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.tutor.tutordot.*
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
@@ -80,12 +81,13 @@ class ClassLogModificationActivity : AppCompatActivity() {
                         hwPerformance = complete
                     )//정보를 전달
                 ).customEnqueue(
-                    onError = {showToast("올바르지 못한 요청입니다")},
+                    onError = {Log.d("올바르지 못한 요청입니다","올바르지 못한 요청입니다")},
                     onSuccess = {
                         if (it.success) {
+                            Log.d("수정 완료","수정 완료")
                             showToast("수정이 완료되었습니다.")
                         } else {
-                            //haveData = false
+                            Log.d("수정 실패","수정 실패")
                         }
                     }
                 )
