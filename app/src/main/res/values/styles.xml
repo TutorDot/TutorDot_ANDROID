@@ -9,7 +9,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+        <!--
         <item name="android:colorPrimaryDark">@color/white</item>
+        -->
     </style>
 
     <!--splash 화면에 사용될 테마-->

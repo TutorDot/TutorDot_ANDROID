@@ -4,10 +4,10 @@ data class LogResponse(
     val status : Int,
     val success : Boolean,
     val message : String,
-    val data : SomeData?
+    val data : List<LogSomeData>
 )
 
-data class SomeData(
+data class LogSomeData(
     val diaryId : Int,
     val Classdate : String,
     val color : String,
