@@ -62,4 +62,7 @@ dependencies {
 
     //스플래시 애니메이션
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    //서버
+    implementation 'com.android.volley:volley:1.1.1'
 }
