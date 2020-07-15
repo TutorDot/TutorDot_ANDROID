@@ -15,6 +15,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.moveActi
 
+var complete : Int = 0
 
 class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val tv_times = itemView.findViewById<TextView>(R.id.tv_times)
@@ -57,6 +58,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     if(!circle) {
                         circle = true
                         logData.complete = 1
+                        complete = 1
                         btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
                         btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
                         btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
@@ -64,6 +66,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     else {  //선택되어있을 경우
                         circle = false
                         logData.complete = 0
+                        complete = 0
                         btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
                         btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
                         btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
@@ -77,6 +80,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     if(!triangel) {
                         triangel = true
                         logData.complete = 2
+                        complete = 2
                         btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
                         btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
                         btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
@@ -84,6 +88,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     else {  //선택되어있을 경우
                         triangel = false
                         logData.complete = 0
+                        complete = 0
                         btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
                         btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
                         btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
@@ -97,6 +102,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     if(!x) {
                         x = true
                         logData.complete = 3
+                        complete = 3
                         btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
                         btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
                         btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
@@ -104,6 +110,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                     else {  //선택되어있을 경우
                         x = false
                         logData.complete = 0
+                        complete = 0
                         btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
                         btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
                         btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
@@ -112,22 +119,22 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
             })
         }
 
-        if (logData.complete == 0) {
+        if (complete == 0) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if (logData.complete == 1) {
+        if (complete == 1) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(logData.complete == 2) {
+        if(complete == 2) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(logData.complete == 3) {
+        if(complete == 3) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)

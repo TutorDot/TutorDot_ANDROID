@@ -1,13 +1,16 @@
 package com.tutor.tutordot.ClassLog.Server
 
-import com.tutor.tutordot.StartServer.RequestSignup
-import com.tutor.tutordot.StartServer.ResponseSignup
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
+import retrofit2.http.PUT
 
 interface LogResponseInterface{
     @GET("/diary")
-    fun LogRequest() : Call<LogResponse>
+    fun logRequest(
+        @Body body: MutableList<LogSomeData>
+    ) : Call<LogResponse>
+
+    @PUT("/diary/hw/:did")
+    fun logModiRequest(@Body body : LogModiRequest) : Call<LogModiResponse>
 }
