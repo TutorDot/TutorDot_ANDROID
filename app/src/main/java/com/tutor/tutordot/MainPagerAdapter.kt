@@ -8,7 +8,7 @@ import com.tutor.tutordot.ClassLog.ClassLogFragment
 import com.tutor.tutordot.MyPage.MyFragment
 import com.tutor.tutordot.Notice.NoticeFragment
 
-class MainPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {
         return when(position){
             0 -> CalenderFragment()

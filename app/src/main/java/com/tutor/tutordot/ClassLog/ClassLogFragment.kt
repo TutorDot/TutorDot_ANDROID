@@ -1,5 +1,6 @@
 package com.tutor.tutordot.ClassLog
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -8,19 +9,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
+import com.tutor.tutordot.MainPagerAdapter
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
+
+var month1 : Int = 7
+var day1 : Int = 15
+var day2 : Int = 14
+var day3 : Int = 13
 
 class ClassLogFragment : Fragment() {
 
@@ -59,7 +69,6 @@ class ClassLogFragment : Fragment() {
         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
 
-
         //프로그레스바 서버에서 받아온 날짜 데이터
         var progressDate : String
         //수업 회차
@@ -81,6 +90,7 @@ class ClassLogFragment : Fragment() {
 
         tv_month_log.setText(month.toString() + "월 수업일지")
         var mon = month
+        month1 = month
 
         //월 이전 이동
         btn_month_prev.setOnClickListener(object : View.OnClickListener {
@@ -88,6 +98,11 @@ class ClassLogFragment : Fragment() {
                 mon--
                 tv_month_log.setText(mon.toString() + "월 수업일지")
                 btn_month_next.setImageResource(R.drawable.class_log_blank_btn_next_month)
+                month1 = mon
+                day1 = 15
+                day2 = 14
+                day3 = 13
+                logdateAdapter.notifyDataSetChanged()
             }
         })
         //월 이후 이동
@@ -97,7 +112,11 @@ class ClassLogFragment : Fragment() {
                 if (mon == month) {
                     tv_month_log.setText(mon.toString() + "월 수업일지")
                     btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
-                }
+                    month1 = mon
+                    day1 = 15
+                    day2 = 14
+                    day3 = 13
+                    logdateAdapter.notifyDataSetChanged()                }
             }
         })
 
@@ -119,6 +138,8 @@ class ClassLogFragment : Fragment() {
                         ll_progress.visibility = View.VISIBLE
 
                         if(item.title.equals("신연상 학생 수학 수업")){
+                            ser_color = "yellow"
+
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest(
                             ).enqueue(object :Callback<ProgressResponse>{
@@ -132,7 +153,7 @@ class ClassLogFragment : Fragment() {
                                 ) {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
-                                            Log.d("성공", "성공")
+                                            Log.d("첫번째 과목 프로그레스바 성공", "성공")
                                             Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
@@ -144,18 +165,20 @@ class ClassLogFragment : Fragment() {
                                             pb_class.progress = progressStatus
                                             tv_percent.setText(progressStatus.toString() + "%")
 
-                                            //Log.d(progressCycle.toString(), progressCycle.toString())
-                                            //Log.d(progressTimes.toString(), progressTimes.toString())
-                                            //Log.d(progressHour.toString(), progressHour.toString())
-                                            //Log.d(progressStatus.toString(), progressStatus.toString())
+                                            Log.d("첫번째 과목 입금 주기", progressCycle.toString())
+                                            Log.d("첫번째 과목 회차", progressTimes.toString())
+                                            Log.d("첫번째 과목 총 수업시간", progressHour.toString())
+                                            Log.d("첫번째 과목 프로그레스바 퍼센트", progressStatus.toString())
+                                            Log.d("첫번째 과목 날짜", progressDate)
                                         }else{
                                             Log.d("실패", "실패")
                                         }
                                     }
                                 }
-
                             })
                         }else{
+                            ser_color = "green"
+
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest2(
                             ).enqueue(object :Callback<ProgressResponse2>{
@@ -168,7 +191,7 @@ class ClassLogFragment : Fragment() {
                                 ) {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
-                                            Log.d("성공", "성공")
+                                            Log.d("두번째 과목 프로그레스바 성공", "성공")
                                             Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
@@ -180,10 +203,11 @@ class ClassLogFragment : Fragment() {
                                             pb_class.progress = progressStatus
                                             tv_percent.setText(progressStatus.toString() + "%")
 
-                                            //Log.d(progressCycle.toString(), progressCycle.toString())
-                                            //Log.d(progressTimes.toString(), progressTimes.toString())
-                                            //Log.d(progressHour.toString(), progressHour.toString())
-                                            //Log.d(progressStatus.toString(), progressStatus.toString())
+                                            Log.d("두번째 과목 입금 주기", progressCycle.toString())
+                                            Log.d("두번째 과목 회차", progressTimes.toString())
+                                            Log.d("두번째 과목 총 수업시간", progressHour.toString())
+                                            Log.d("두번째 과목 프로그레스바 퍼센트", progressStatus.toString())
+                                            Log.d("두번째 과목 날짜", progressDate)
                                         }else{
                                             Log.d("실패", "실패")
                                         }
@@ -220,25 +244,58 @@ class ClassLogFragment : Fragment() {
         menu.show()
         */
     }
-
+/*
+    //서버 연결
     private fun loaddateDatas(){
+        // 서버 요청
+        logRequestToServer.service.logRequest(
+        ).enqueue(object : Callback<LogResponse> {
+            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+                Log.d("통신 실패", "${t}")
+            }
+
+            override fun onResponse(
+                call: Call<LogResponse>,
+                response: Response<LogResponse>
+            ) {
+                // 통신 성공
+                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                    if (response.body()!!.success) {
+                        Log.d("성공", "성공")
+                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+
+                        logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        logdateAdapter.notifyDataSetChanged()
+                        rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+                    } else {
+                        Log.d("실패", "${response.body()}")
+                    }
+                }
+            }
+
+        })
+    }
+*/
+
+    private fun loaddateDatas() {
         datedatas.apply {
             add(
                 LogdateData(
-                    month = 5,
-                    day = 5
+                    month = month1,
+                    day = day1
                 )
             )
             add(
                 LogdateData(
-                    month = 6,
-                    day = 6
+                    month = month1,
+                    day = day2
                 )
             )
             add(
                 LogdateData(
-                    month = 7,
-                    day = 7
+                    month = month1,
+                    day = day3
                 )
             )
         }

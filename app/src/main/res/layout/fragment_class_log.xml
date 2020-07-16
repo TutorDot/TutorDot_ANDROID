@@ -160,17 +160,18 @@
 
         <LinearLayout
             android:id="@+id/ll_rv"
-            android:visibility="visible"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_datelog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:background="#f8f8f8"
                 android:orientation="vertical"
-                tools:listitem="@layout/item_logdate"
-                android:background="#f8f8f8"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_logdate" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
