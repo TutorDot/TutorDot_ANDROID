@@ -20,6 +20,7 @@ import com.tutor.tutordot.MyPage.Server.MyInfoResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.UserRequestToServer
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.SignUpActivity
 import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.*
@@ -127,6 +128,8 @@ class MyFragment : Fragment() {
             yes.setOnClickListener{
                 val intent4=Intent(activity, LoginActivity::class.java)
                 startActivity(intent4)
+                MySharedPreferences.islogin = false
+                activity?.finish()
             }
             no.setOnClickListener{
                 dialog.dismiss()

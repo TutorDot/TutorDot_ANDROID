@@ -14,6 +14,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
+import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -117,8 +118,9 @@ class ClassLogFragment : Fragment() {
                     else{
                         ll_progress.visibility = View.VISIBLE
 
-                        //프로그레스바 서버에서 정보 받아옴
-                        logRequestToServer.service.progressRequest(
+                        if(item.title.equals("신연상 학생 수학 수업")){
+                            //프로그레스바 서버에서 정보 받아옴
+                            logRequestToServer.service.progressRequest(
                             ).enqueue(object :Callback<ProgressResponse>{
                                 override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
                                     Log.d("통신 실패", "통신 실패")
@@ -152,7 +154,45 @@ class ClassLogFragment : Fragment() {
                                     }
                                 }
 
-                        })
+                            })
+                        }else{
+                            //프로그레스바 서버에서 정보 받아옴
+                            logRequestToServer.service.progressRequest2(
+                            ).enqueue(object :Callback<ProgressResponse2>{
+                                override fun onFailure(call: Call<ProgressResponse2>, t: Throwable) {
+                                    Log.d("통신 실패", "통신 실패")
+                                }
+                                override fun onResponse(
+                                    call: Call<ProgressResponse2>,
+                                    response: Response<ProgressResponse2>
+                                ) {
+                                    if(response.isSuccessful){
+                                        if(response.body()!!.success){
+                                            Log.d("성공", "성공")
+                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                            progressDate = response.body()!!.data[5].classDate
+                                            progressCycle = response.body()!!.data[5].depositCycle
+                                            progressTimes = response.body()!!.data[5].times
+                                            progressHour = response.body()!!.data[5].hour
+                                            tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+                                            tv_progress_alltime.setText(progressCycle.toString() + "시간")
+                                            progressStatus = 100*progressHour/progressCycle
+                                            pb_class.progress = progressStatus
+                                            tv_percent.setText(progressStatus.toString() + "%")
+
+                                            //Log.d(progressCycle.toString(), progressCycle.toString())
+                                            //Log.d(progressTimes.toString(), progressTimes.toString())
+                                            //Log.d(progressHour.toString(), progressHour.toString())
+                                            //Log.d(progressStatus.toString(), progressStatus.toString())
+                                        }else{
+                                            Log.d("실패", "실패")
+                                        }
+                                    }
+                                }
+
+                            })
+                        }
+
                     }
                     true
                 }
