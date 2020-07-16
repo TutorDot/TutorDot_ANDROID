@@ -61,6 +61,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:hint="이름"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:inputType="text"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
@@ -84,6 +85,7 @@
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/이름"
@@ -100,6 +102,7 @@
         android:layout_marginRight="36dp"
         android:hint="비밀번호"
         android:inputType="textPassword"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
@@ -118,6 +121,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:hint="비밀번호확인"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:inputType="textPassword"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
@@ -139,6 +143,7 @@
         android:background="@drawable/signup_btn_agree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintTop_toBottomOf="@+id/비밀번호확인" />
 
     <ImageButton

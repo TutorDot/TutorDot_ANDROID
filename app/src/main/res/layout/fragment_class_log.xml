@@ -1,10 +1,11 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/realparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tutor.tutordot.ClassLog.ClassLogFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.tutor.tutordot.ClassLog.ClassLogFragment">
 
     <LinearLayout
         android:id="@+id/ll_log_choice"
@@ -12,7 +13,10 @@
         android:layout_height="58dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/realparent"
+        app:layout_constraintStart_toStartOf="@+id/realparent"
+        app:layout_constraintTop_toTopOf="@+id/realparent">
 
         <TextView
             android:id="@+id/tv_class_choice"
@@ -34,33 +38,39 @@
             android:id="@+id/btn_class_choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/class_log_math_subjectsection"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/class_log_math_subjectsection" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="407dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/realparent"
+        app:layout_constraintStart_toStartOf="@+id/realparent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_log_choice">
 
         <LinearLayout
             android:id="@+id/ll_progress"
             android:layout_width="match_parent"
             android:layout_height="117dp"
+            android:background="@color/white"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:background="@color/white"
             android:visibility="gone">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
                 android:text="현재 수업 진행률"
                 android:textColor="@color/black"
-                android:layout_marginTop="28dp"
-                android:fontFamily="@font/apple_sdgothic_neo_sb"/>
+                android:textSize="14sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -72,10 +82,11 @@
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="17dp"
+                    android:progress="75"
                     android:progressDrawable="@drawable/progressbar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:progress="75"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_percent"
@@ -83,13 +94,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="7dp"
                     android:layout_marginRight="7dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_b"
                     android:text="75%"
                     android:textColor="@color/colorPrimary"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/pb_class"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/pb_class"
-                    android:fontFamily="@font/apple_sdgothic_neo_b"/>
+                    app:layout_constraintTop_toTopOf="@+id/pb_class" />
 
                 <TextView
                     android:id="@+id/tv_progress_times"
@@ -98,24 +109,24 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginRight="15dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_r"
                     android:text="8회차, 12시간"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/tv_progress_alltime"
-                    app:layout_constraintTop_toBottomOf="@+id/pb_class"
-                    android:fontFamily="@font/apple_sdgothic_neo_r"/>
+                    app:layout_constraintTop_toBottomOf="@+id/pb_class" />
 
                 <TextView
                     android:id="@+id/tv_progress_alltime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_r"
                     android:text="16시간"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pb_class"
-                    android:fontFamily="@font/apple_sdgothic_neo_r"/>
+                    app:layout_constraintTop_toBottomOf="@+id/pb_class" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
@@ -123,42 +134,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="#f8f8f8">
+            android:background="#f8f8f8"
+            android:gravity="center">
+
             <ImageButton
                 android:id="@+id/btn_month_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/class_log_btn_previous_month"
-                android:background="#00000000"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="#00000000"
+                android:src="@drawable/class_log_btn_previous_month" />
 
             <TextView
                 android:id="@+id/tv_month_log"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="월 수업일지"
-                android:textSize="16sp"
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/apple_sdgothic_neo_sb"/>
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:text="월 수업일지"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/btn_month_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/class_log_btn_next_month"
-                android:background="#00000000"
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:background="#00000000"
+                android:src="@drawable/class_log_btn_next_month" />
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_rv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,8 +183,12 @@
                 android:background="#f8f8f8"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_logdate" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_empty"
@@ -184,24 +200,24 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/apple_sdgothic_neo_b"
                 android:text="수업 일지가 없습니다"
                 android:textColor="#707070"
                 android:textSize="16sp"
-                android:fontFamily="@font/apple_sdgothic_neo_b"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:text="캘린더에 수업 일정이 등록되면"
                 android:textColor="#707070"
                 android:textSize="15sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -221,4 +237,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
