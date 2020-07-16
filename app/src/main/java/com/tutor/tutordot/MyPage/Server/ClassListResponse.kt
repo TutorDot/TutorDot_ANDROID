@@ -1,4 +1,4 @@
-package com.tutor.tutordot.MyPage.Server.ClassList
+package com.tutor.tutordot.MyPage.Server
 
 data class ClassListResponse(
     val status: Int,
@@ -9,5 +9,9 @@ data class ClassListResponse(
 data class ClassListData(
     val lectureId: Int,
     val lectureName: String,
-    val profileUrls: List<String>
+    val color: String,
+    val profileUrls: List<ProfileData>
+)
+data class ProfileData(
+    val profileUrl: String
 )

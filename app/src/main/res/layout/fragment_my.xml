@@ -67,16 +67,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="103dp"
-                android:layout_marginLeft="103dp"
-                android:layout_marginEnd="215dp"
-                android:layout_marginRight="215dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
                 android:lineSpacingExtra="5sp"
                 android:text="변정인"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/my_img_profile"
                 app:layout_constraintTop_toTopOf="@+id/my_img_profile"
                 tools:ignore="MissingConstraints" />
 
@@ -99,6 +96,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
+                android:id="@+id/one_sentense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"

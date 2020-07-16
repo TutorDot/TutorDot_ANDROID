@@ -9,24 +9,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
-import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
-import com.tutor.tutordot.MyPage.Server.ClassList.ClassListResponse
+import com.tutor.tutordot.MyPage.Server.ClassListResponse
+import com.tutor.tutordot.MyPage.Server.MyInfoResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
+import com.tutor.tutordot.MyPage.Server.UserRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.SignUpActivity
-import com.tutor.tutordot.extention.customEnqueue
-import com.tutor.tutordot.extention.showToast
+import com.tutor.tutordot.Startpage.role
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Header
 
 
 class MyFragment : Fragment() {
@@ -35,6 +36,9 @@ class MyFragment : Fragment() {
     val datas= mutableListOf<MypageData>()
     //서버 연결
     val mypageRequestToServer = MyPageRequestToServer
+    val userRequestToServer = UserRequestToServer
+
+
 
 
     override fun onCreateView(
@@ -52,42 +56,48 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
-        //서버연결
-        mypageRequestToServer.service.classListRequest(
-        ).enqueue(object : Callback<ClassListResponse> {
-            override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
-                Log.d("통신 실패", "통신 실패")
+        //myinfo 서버연결(user)
+
+        //간단정보
+        var userinfoname:String
+        var userinforole: String
+        var userinfointro: String
+        var userinfopicture: String
+
+        userRequestToServer.service.myInfoRequest(
+        ).enqueue(object: Callback<MyInfoResponse>{
+            override fun onFailure(call: Call<MyInfoResponse>, t: Throwable) {
+                Log.d("통신 실패", "myinfo통신 실패${t}")
             }
-
             override fun onResponse(
-                call: Call<ClassListResponse>,
-                response: Response<ClassListResponse>
+                call: Call<MyInfoResponse>,
+                response: Response<MyInfoResponse>
             ) {
-                if(response.isSuccessful){
-                    if(response.body()!!.success){
-                        Log.d("성공", "성공")
+                if (response.isSuccessful){
+                    if(response.body()!!.success) {
+                        Log.d("성공", "myinfo성공")
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        //progressDate = response.body()!!.data[5].classDate
-                        //progressCycle = response.body()!!.data[5].depositCycle
-//                        progressTimes = response.body()!!.data[5].times
-//                        progressHour = response.body()!!.data[5].hour
-//                        tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
-//                        tv_progress_alltime.setText(progressCycle.toString() + "시간")
-//                        progressStatus = 100*progressHour/progressCycle
-//                        pb_class.progress = progressStatus
-//                        tv_percent.setText(progressStatus.toString() + "%")
+                        userinfoname = response.body()!!.data!!.userName
+                        userinforole = response.body()!!.data!!.role
+                        userinfointro = response. body()!!.data!!.intro
+                        userinfopicture = response. body()!!.data!!.profilUrl
 
-                        //Log.d(progressCycle.toString(), progressCycle.toString())
-                        //Log.d(progressTimes.toString(), progressTimes.toString())
-                        //Log.d(progressHour.toString(), progressHour.toString())
-                        //Log.d(progressStatus.toString(), progressStatus.toString())
+                        textView.setText(userinfointro)
+                        textView2.setText(userinforole)
+                        one_sentense.setText(userinfointro)
+                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+
+                        role = userinforole
+
                     }else{
-                        Log.d("실패", "실패")
+                        Log.d("실패", "myinfo실패")
                     }
                 }
             }
 
         })
+
+
 
 
         //화면이동
@@ -154,17 +164,47 @@ class MyFragment : Fragment() {
     }
 
     private fun loadDatas(){
+        //classlist 서버연결(mypage)
+        var classlistLectureId: Int
+        var classlistLectureName: String
+        var classlistProfile1 : String
+        var classlistColor: String
+        var classlistprofile1: String
+        var classlistprofile2: String
+
+
+        mypageRequestToServer.service.classListRequest(
+        ).enqueue(object: Callback<ClassListResponse>{
+            override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
+                Log.d("통신 실패", "classlist통신 실패${t}")
+                Log.d("통신 실패", "classlist통신 실패${t}")
+            }
+            override fun onResponse(
+                call: Call<ClassListResponse>,
+                response: Response<ClassListResponse>
+            ) {
+                if (response.isSuccessful){
+                    if(response.body()!!.success) {
+                        Log.d("성공", "classlist성공")
+                    }else{
+                        Log.d("실패", "classlist실패")
+                    }
+                }
+            }
+
+        })
+
         datas.apply{
-            add(
-                MypageData(
-                    color = "@drawable/notice_color_img_red",
-                    content= "나와라ㅏㅏㅏ"
-                ))
-            add(
-                MypageData(
-                    color = "@drawable/notice_color_img_green",
-                    content= "나와라ㅏㅏㅏ2"
-                ))
+//            add(
+//                MypageData(
+ //                   color = "@drawable/notice_color_img_red",
+//                    content= "나와라ㅏㅏㅏ"
+ //               ))
+ //           add(
+ //               MypageData(
+ //                   color = "@drawable/notice_color_img_green",
+//                    content= "나와라ㅏㅏㅏ2"
+//                ))
 
         }
         mypageAdapter.datas = datas
