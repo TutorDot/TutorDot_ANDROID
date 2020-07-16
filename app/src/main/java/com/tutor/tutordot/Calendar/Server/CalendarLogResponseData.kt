@@ -14,7 +14,7 @@ data class CalendarData(
     val times : Int,
     val hour : Int,
     val location : String,
-    val date : String,
+    val classDate : String,
     val startTime : String,
     val endTime : String
 )
