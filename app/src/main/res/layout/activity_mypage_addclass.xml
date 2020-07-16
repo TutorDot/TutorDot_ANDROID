@@ -93,7 +93,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/수업명" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/editTextname"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                 android:background="@color/colorBackground"
                 android:hint="글자수 제한 17자 이내"
                 android:lineSpacingExtra="5sp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/my_class_add_btn_classname"
                 app:layout_constraintStart_toStartOf="@+id/my_class_add_btn_classname"
@@ -215,7 +215,7 @@
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="시간"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
                 app:layout_constraintEnd_toEndOf="@+id/imageButton3"
@@ -239,6 +239,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageButton4" />
 
             <EditText
+                android:id="@+id/et_newtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -249,8 +250,8 @@
                 android:paddingTop="11dp"
                 android:paddingRight="70dp"
                 android:paddingBottom="11dp"
-                android:text="16"
-                android:textColor="#707070"
+                android:hint="16"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/imageButton3"
@@ -258,7 +259,7 @@
                 app:layout_constraintVertical_bias="0.434" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/et_newprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -266,11 +267,11 @@
                 android:background="@color/colorBackground"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
-                android:text="80"
+                android:hint="80"
                 android:paddingTop="11dp"
                 android:paddingBottom="11dp"
                 android:paddingRight="70dp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView44"
                 app:layout_constraintStart_toStartOf="@+id/imageButton4"
@@ -309,13 +310,14 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
             <EditText
+                android:id="@+id/et_bank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorBackground"
                 android:hint="하나"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
@@ -332,7 +334,7 @@
                 android:background="@color/colorBackground"
                 android:hint="01063619440107"
                 android:lineSpacingExtra="5sp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"

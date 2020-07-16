@@ -63,6 +63,8 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
+        one_sentense.setText(newIntro)
+
         //myinfo 서버연결(user)
 
 

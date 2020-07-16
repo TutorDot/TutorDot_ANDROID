@@ -118,23 +118,23 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             )
             add(
                 LogData(
-                    color = "green",
+                    color = "red",
                     times = 2,
                     studytime = 2,
                     alltime = 15,
-                    progress = "수학2",
-                    homework = "수학의 정석 풀기2",
+                    progress = "태권도 품새 1장",
+                    homework = "태극권 예습해오기",
                     complete = 2
                 )
             )
             add(
                 LogData(
-                    color = "yellow",
+                    color = "blue",
                     times = 3,
                     studytime = 3,
-                    alltime = 15,
-                    progress = "수학3",
-                    homework = "수학의 정석 풀기3",
+                    alltime = 20,
+                    progress = "태권도 태극권 2장",
+                    homework = "태극권 2장 복습하고 유튜브 영상찍기",
                     complete = 3
                 )
             )
