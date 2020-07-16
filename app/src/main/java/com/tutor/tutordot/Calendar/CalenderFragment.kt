@@ -308,7 +308,7 @@ class CalenderFragment : Fragment() {
                         rv_calendarlog.adapter = calendarLogAdapter
 
                     } else {
-                        Log.d("실패", "${response.body()}")
+                        Log.d("12실패", "${response.body()}")
                     }
                 }
             })
