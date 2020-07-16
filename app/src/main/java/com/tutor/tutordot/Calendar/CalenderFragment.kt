@@ -18,12 +18,19 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
+import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
+import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
+import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
+import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.fragment_calender.rv_calendarlog
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import java.util.concurrent.Executors
 import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_date as calendarlog_all_date1
@@ -31,6 +38,10 @@ import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_month as
 
 
 class CalenderFragment : Fragment() {
+
+    //서버 연결
+    //val calendarlogRequestToServer = CalendarLogRequestToServer
+
     lateinit var calendarLogAdapter: CalendarLogAdapter
     val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
 
@@ -39,13 +50,12 @@ class CalenderFragment : Fragment() {
     val month = curDate.get(Calendar.MONTH) + 1
 
     var time: String? = null
-    var kcal:kotlin.String? = null
-    var menu:kotlin.String? = null
+    var kcal: kotlin.String? = null
+    var menu: kotlin.String? = null
     private val oneDayDecorator = OneDayDecorator()
     var cursor: Cursor? = null
 
     lateinit var materialCalendarView: MaterialCalendarView
-
 
 
     inner class ApiSimulator internal constructor(var Time_Result: Array<String>) :
@@ -80,7 +90,7 @@ class CalenderFragment : Fragment() {
         }
 
         override fun onPostExecute(calendarDays: List<CalendarDay>) {
-                super.onPostExecute(calendarDays)
+            super.onPostExecute(calendarDays)
 //                if (isFinishing()) {
 //                    return
 //                }
@@ -126,15 +136,15 @@ class CalenderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_calender,null)
+        return inflater.inflate(R.layout.fragment_calender, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-                super.onViewCreated(view, savedInstanceState)
-                materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
-                materialCalendarView.state().edit()
-                    .setFirstDayOfWeek(Calendar.SUNDAY)
-                    .setMinimumDate(CalendarDay.from(2018, 0, 1)) // 달력의 시작
+        super.onViewCreated(view, savedInstanceState)
+        materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
+        materialCalendarView.state().edit()
+            .setFirstDayOfWeek(Calendar.SUNDAY)
+            .setMinimumDate(CalendarDay.from(2018, 0, 1)) // 달력의 시작
             .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
@@ -145,18 +155,47 @@ class CalenderFragment : Fragment() {
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
         )
 
+
+//        var i : Int = 0
+//        while (i <= data.indices) {
+//            if (shot_Day == data[i].classDate) {
+//                datas.apply {
+//                    add(
+//                        CalendarLogData(
+//                            starttime = "${data[i].startTime}",
+//                            endtime = "${data[i].endTime}",
+//                            img_color = "${data[i].color}",
+//                            times = "${data[i].times}".toInt(),
+//                            title = "${data[i].lectureName}",
+//                            studytime = "${data[i].hour}".toInt(),
+//                            location = "${data[i].location}"
+//                        )
+//                    )
+//                }
+//            }
+//        }
+
         val result =
-            arrayOf("2020,07,11",  "2020,07,15", "2020,07,15", "2020,07,17", "2020,07,18")
+            arrayOf("2020,07,11", "2020,07,15", "2020,07,15", "2020,07,17", "2020,07,18")
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
-            val Month = date.month + 1
-            val Day = date.day
+            var Month = (date.month + 1).toString()
+            var Day = (date.day).toString()
             calendarlog_all_date.text = "$Day"
             calendarlog_all_month.text = "$Month" + "월"
 //            Log.i("Year test", Year.toString() + "")
 //            Log.i("Month test", Month.toString() + "")
 //            Log.i("Day test", Day.toString() + "")
+
+            // 날짜 포맷 통일
+            if (Month.toInt() < 10) {
+                Month = "0$Month"
+            }
+            if (Day.toInt() < 10) {
+                Day = "0$Day"
+            }
+
             val shot_Day = "$Year-$Month-$Day"
             Log.i("shot_Day test", shot_Day + "")
             materialCalendarView.clearSelection()
@@ -166,18 +205,15 @@ class CalenderFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
-        calendarLogAdapter = CalendarLogAdapter(view!!.context)
-        rv_calendarlog.adapter = calendarLogAdapter //리사이클러뷰의 어댑터를 지정해줌
+//        calendarLogAdapter = CalendarLogAdapter(view!!.context)
+//        rv_calendarlog.adapter = calendarLogAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
 
 
         //상단 수업 선택 메뉴
-        constarintlayout.setOnClickListener(object :View.OnClickListener {
+        constarintlayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val popup =
                     PopupMenu(context, calendar_select)
@@ -188,6 +224,44 @@ class CalenderFragment : Fragment() {
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
                     tv_calendar_title.text = item.title
+
+
+//                    // 선택 시 서버에서 정보 받아옴
+//                    calendarlogRequestToServer.service.calendarlogRequest(
+//                    ).enqueue(object : Callback<CalendarLogResponseData> {
+//                        override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
+//                            Log.d("통신 실패", "통신 실패")
+//                        }
+//
+//                        override fun onResponse(
+//                            call: Call<CalendarLogResponseData>,
+//                            response: Response<CalendarLogResponseData>
+//                        ) {
+//                            if(response.isSuccessful){
+//                                if(response.body()!!.success){
+//                                    Log.d("성공", "성공")
+//                                    Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+//                                    progressDate = response.body()!!.data[5].classDate
+//                                    progressCycle = response.body()!!.data[5].depositCycle
+//                                    progressTimes = response.body()!!.data[5].times
+//                                    progressHour = response.body()!!.data[5].hour
+//                                    tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+//                                    tv_progress_alltime.setText(progressCycle.toString() + "시간")
+//                                    progressStatus = 100*progressHour/progressCycle
+//                                    pb_class.progress = progressStatus
+//                                    tv_percent.setText(progressStatus.toString() + "%")
+//
+//                                    //Log.d(progressCycle.toString(), progressCycle.toString())
+//                                    //Log.d(progressTimes.toString(), progressTimes.toString())
+//                                    //Log.d(progressHour.toString(), progressHour.toString())
+//                                    //Log.d(progressStatus.toString(), progressStatus.toString())
+//                                }else{
+//                                    Log.d("실패", "실패")
+//                                }
+//                            }
+//                        }
+//
+//                    })
 
                     true
                 }
@@ -220,48 +294,147 @@ class CalenderFragment : Fragment() {
             cl_calendar_empty.visibility = View.VISIBLE
 
         }
+
+
     }
 
-    private fun loadDatas(){
-        datas.apply {
-            add(
-                CalendarLogData(
-                    starttime = "2:00PM",
-                    endtime = "4:00PM",
-                    img_color = "yellow",
-                    times = 1,
-                    title = "김회진 튜티 수학 수업",
-                    studytime = 1,
-                    location = "원당역 할리스"
-                )
-            )
-            add(
-                CalendarLogData(
-                    starttime = "1:00PM",
-                    endtime = "5:00PM",
-                    img_color = "green",
-                    times = 1,
-                    title = "신연상 튜티 수학 수업",
-                    studytime = 2,
-                    location = "강남구청역 스타벅스"
-                )
-            )
-            add(
-                CalendarLogData(
-                    starttime = "5:00PM",
-                    endtime = "6:00PM",
-                    img_color = "yellow",
-                    times = 2,
-                    title = "김회진 튜티 물리 수업",
-                    studytime = 5,
-                    location = "수유역 할리스"
-                )
-            )
-        }
-        calendarLogAdapter.datas = datas
-        calendarLogAdapter.notifyDataSetChanged()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+//        calendarLogAdapter = CalendarLogAdapter(view!!.context)
+//        rv_calendarlog.adapter = calendarLogAdapter //리사이클러뷰의 어댑터를 지정해줌
+//        loadDatas() //데이터를 어댑터에 전달
+//
+//
+//        //상단 수업 선택 메뉴
+//        constarintlayout.setOnClickListener(object :View.OnClickListener {
+//            override fun onClick(v: View?) {
+//                val popup =
+//                    PopupMenu(context, calendar_select)
+//                //Inflating the Popup using xml file
+//                popup.menuInflater
+//                    .inflate(R.menu.popup_menu, popup.menu)
+//
+//                //registering popup with OnMenuItemClickListener
+//                popup.setOnMenuItemClickListener { item ->
+//                    tv_calendar_title.text = item.title
+//
+//                    true
+//                }
+//                popup.show() //showing popup menu
+//            }
+//        })
+////
+////        /* 팝업 메뉴 아이템 추가할 때 사용할 코드
+////        val menu = PopupMenu(context, view)
+////
+////        menu.menu.add("One")
+////        menu.menu.add("Two")
+////        menu.menu.add("Three")
+////
+////        menu.show()
+////        */
+//
+//        // 플로팅 버튼 누르면 일정 추가
+//        floatingActionButton.setOnClickListener {
+//            val intent = Intent(activity, ScheduleAddActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        //데이터 없을 때 나오는 화면
+//        if (haveCalendarData == true) {
+//            cl_calendar_empty.visibility = View.GONE
+//            rv_calendarlog.visibility = View.VISIBLE
+//        } else {
+//            rv_calendarlog.visibility = View.GONE
+//            cl_calendar_empty.visibility = View.VISIBLE
+//
+//        }
+    }
+
+    private fun loadDatas() {
+        val calendarlogRequestToServer = CalendarLogRequestToServer   // 도서 싱글톤 가져옴
+        // 서버 요청
+        calendarlogRequestToServer.service.calendarlogRequest(
+        ).enqueue(object : Callback<CalendarLogResponseData> {
+            override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
+                Log.d("통신 실패", "${t}")
+            }
+
+            override fun onResponse(
+                call: Call<CalendarLogResponseData>,
+                response: Response<CalendarLogResponseData>
+            ) {
+                // 통신 성공
+                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+                        Log.d("성공", "성공")
+                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+//                        progressDate = response.body()!!.data[5].classDate
+//                        progressCycle = response.body()!!.data[5].depositCycle
+//                        progressTimes = response.body()!!.data[5].times
+//                        progressHour = response.body()!!.data[5].hour
+
+//                        var i = 0
+//                        while (i<10){
+//                            var myHour[i] = response.body()!!.data[i].hour
+//                        }
+
+                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        calendarLogAdapter.notifyDataSetChanged()
+                        rv_calendarlog.adapter = calendarLogAdapter
+
+                        //Log.d(progressCycle.toString(), progressCycle.toString())
+                        //Log.d(progressTimes.toString(), progressTimes.toString())
+                        //Log.d(progressHour.toString(), progressHour.toString())
+                        //Log.d(progressStatus.toString(), progressStatus.toString())
+                    } else {
+                        Log.d("실패", "${response.body()}")
+                    }
+                }
+            }
+
+        })
+
+//        datas.apply {
+//            add(
+//                CalendarLogData(
+//                    starttime = "2:00PM",
+//                    endtime = "4:00PM",
+//                    img_color = "yellow",
+//                    times = 1,
+//                    title = "김회진 튜티 수학 수업",
+//                    studytime = 1,
+//                    location = "원당역 할리스"
+//                )
+//            )
+//            add(
+//                CalendarLogData(
+//                    starttime = "1:00PM",
+//                    endtime = "5:00PM",
+//                    img_color = "green",
+//                    times = 1,
+//                    title = "신연상 튜티 수학 수업",
+//                    studytime = 2,
+//                    location = "강남구청역 스타벅스"
+//                )
+//            )
+//            add(
+//                CalendarLogData(
+//                    starttime = "5:00PM",
+//                    endtime = "6:00PM",
+//                    img_color = "yellow",
+//                    times = 2,
+//                    title = "김회진 튜티 물리 수업",
+//                    studytime = 5,
+//                    location = "수유역 할리스"
+//                )
+//            )
+//        }
+//        calendarLogAdapter.datas = datas
+//        calendarLogAdapter.notifyDataSetChanged()
+//    }
     }
 }
-
 
 

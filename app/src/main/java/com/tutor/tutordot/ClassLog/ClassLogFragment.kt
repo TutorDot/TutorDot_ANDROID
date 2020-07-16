@@ -1,6 +1,5 @@
 package com.tutor.tutordot.ClassLog
 
-import android.content.ContentValues
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
@@ -22,7 +15,6 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
-import com.tutor.tutordot.ClassLog.Server.VolleyService
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,7 +48,7 @@ class ClassLogFragment : Fragment() {
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
-                Log.d( "통신 성공!","성공")
+                Log.d( "통신 성공!","성공") 
             } else {
                 Log.d( "통신 실패!","실패")
             }

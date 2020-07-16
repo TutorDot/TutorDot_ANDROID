@@ -3,36 +3,44 @@ package com.tutor.tutordot.MyPage
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
-import com.tutor.tutordot.Notice.haveNdata
+import com.tutor.tutordot.MyPage.Server.ClassListResponse
+import com.tutor.tutordot.MyPage.Server.MyInfoResponse
+import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
+import com.tutor.tutordot.MyPage.Server.UserRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.SignUpActivity
+import com.tutor.tutordot.Startpage.role
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
-import kotlinx.android.synthetic.main.fragment_notice.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MyFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyFragment : Fragment() {
 
     lateinit var mypageAdapter: MypageAdapter
     val datas= mutableListOf<MypageData>()
+    //서버 연결
+    val mypageRequestToServer = MyPageRequestToServer
+    val userRequestToServer = UserRequestToServer
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +53,53 @@ class MyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
+
+        //myinfo 서버연결(user)
+
+        //간단정보
+        var userinfoname:String
+        var userinforole: String
+        var userinfointro: String
+        var userinfopicture: String
+
+        userRequestToServer.service.myInfoRequest(
+        ).enqueue(object: Callback<MyInfoResponse>{
+            override fun onFailure(call: Call<MyInfoResponse>, t: Throwable) {
+                Log.d("통신 실패", "myinfo통신 실패${t}")
+            }
+            override fun onResponse(
+                call: Call<MyInfoResponse>,
+                response: Response<MyInfoResponse>
+            ) {
+                if (response.isSuccessful){
+                    if(response.body()!!.success) {
+                        Log.d("성공", "myinfo성공")
+                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                        userinfoname = response.body()!!.data!!.userName
+                        userinforole = response.body()!!.data!!.role
+                        userinfointro = response. body()!!.data!!.intro
+                        userinfopicture = response. body()!!.data!!.profilUrl
+
+                        textView.setText(userinfointro)
+                        textView2.setText(userinforole)
+                        one_sentense.setText(userinfointro)
+                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+
+                        role = userinforole
+
+                    }else{
+                        Log.d("실패", "myinfo실패")
+                    }
+                }
+            }
+
+        })
+
+
+
 
         //화면이동
         imageButton2.setOnClickListener{
@@ -115,19 +166,48 @@ class MyFragment : Fragment() {
         }
     }
 
-
     private fun loadDatas(){
+        //classlist 서버연결(mypage)
+        var classlistLectureId: Int
+        var classlistLectureName: String
+        var classlistProfile1 : String
+        var classlistColor: String
+        var classlistprofile1: String
+        var classlistprofile2: String
+
+
+        mypageRequestToServer.service.classListRequest(
+        ).enqueue(object: Callback<ClassListResponse>{
+            override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
+                Log.d("통신 실패", "classlist통신 실패${t}")
+                Log.d("통신 실패", "classlist통신 실패${t}")
+            }
+            override fun onResponse(
+                call: Call<ClassListResponse>,
+                response: Response<ClassListResponse>
+            ) {
+                if (response.isSuccessful){
+                    if(response.body()!!.success) {
+                        Log.d("성공", "classlist성공")
+                    }else{
+                        Log.d("실패", "classlist실패")
+                    }
+                }
+            }
+
+        })
+
         datas.apply{
-            add(
-                MypageData(
-                    color = "@drawable/notice_color_img_red",
-                    content= "나와라ㅏㅏㅏ"
-                ))
-            add(
-                MypageData(
-                    color = "@drawable/notice_color_img_green",
-                    content= "나와라ㅏㅏㅏ2"
-                ))
+//            add(
+//                MypageData(
+ //                   color = "@drawable/notice_color_img_red",
+//                    content= "나와라ㅏㅏㅏ"
+ //               ))
+ //           add(
+ //               MypageData(
+ //                   color = "@drawable/notice_color_img_green",
+//                    content= "나와라ㅏㅏㅏ2"
+//                ))
 
         }
         mypageAdapter.datas = datas
