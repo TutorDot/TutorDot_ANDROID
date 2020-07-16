@@ -20,13 +20,8 @@ import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
-import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
-import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
-import kotlinx.android.synthetic.main.fragment_calender.rv_calendarlog
-import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +29,7 @@ import retrofit2.Response
 import java.util.*
 import java.util.concurrent.Executors
 import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_date as calendarlog_all_date1
-import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_month as calendarlog_all_month1
+import kotlinx.android.synthetic.main.item_calendarlog_all.calendarlog_all_month as calendarlog_all_month1
 
 
 class CalenderFragment : Fragment() {
@@ -156,55 +151,65 @@ class CalenderFragment : Fragment() {
         )
 
 
-//        var i : Int = 0
-//        while (i <= data.indices) {
-//            if (shot_Day == data[i].classDate) {
+//        // 캘린더 클릭 날짜와 서버에서 받은 데이터 날짜 비교 후 같으면 리사이클러뷰에 띄움
+//        var i: Int = 0
+//        while (i <= response.body()!!.data.size) {
+//
+//            if (shot_Day == response.body()!!.data[i].classDate) {
 //                datas.apply {
 //                    add(
 //                        CalendarLogData(
-//                            starttime = "${data[i].startTime}",
-//                            endtime = "${data[i].endTime}",
-//                            img_color = "${data[i].color}",
-//                            times = "${data[i].times}".toInt(),
-//                            title = "${data[i].lectureName}",
-//                            studytime = "${data[i].hour}".toInt(),
-//                            location = "${data[i].location}"
+//                            starttime = "${response.body()!!.data[i].startTime}",
+//                            endtime = "${response.body()!!.data[i].endTime}",
+//                            img_color = "${response.body()!!.data[i].color}",
+//                            times = "${response.body()!!.data[i].times}".toInt(),
+//                            title = "${response.body()!!.data[i].lectureName}",
+//                            studytime = "${response.body()!!.data[i].hour}".toInt(),
+//                            location = "${response.body()!!.data[i].location}"
 //                        )
 //                    )
 //                }
+//            }
+//            else{
+//                continue
 //            }
 //        }
 
         val result =
             arrayOf("2020,07,11", "2020,07,15", "2020,07,15", "2020,07,17", "2020,07,18")
+//        for (i in 0..4) {
+//            val eventCount = 3
+//            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
+//        }
+
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
-        materialCalendarView.setOnDateChangedListener { widget, date, selected ->
-            val Year = date.year
-            var Month = (date.month + 1).toString()
-            var Day = (date.day).toString()
-            calendarlog_all_date.text = "$Day"
-            calendarlog_all_month.text = "$Month" + "월"
-//            Log.i("Year test", Year.toString() + "")
-//            Log.i("Month test", Month.toString() + "")
-//            Log.i("Day test", Day.toString() + "")
-
-            // 날짜 포맷 통일
-            if (Month.toInt() < 10) {
-                Month = "0$Month"
-            }
-            if (Day.toInt() < 10) {
-                Day = "0$Day"
-            }
-
-            val shot_Day = "$Year-$Month-$Day"
-            Log.i("shot_Day test", shot_Day + "")
-            materialCalendarView.clearSelection()
-            Toast.makeText(
-                requireContext(),
-                shot_Day,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+//        materialCalendarView.setOnDateChangedListener { widget, date, selected ->
+//            val Year = date.year
+//            var Month = (date.month + 1).toString()
+//            var Day = (date.day).toString()
+//            calendarlog_all_date.text = "$Day"
+//            calendarlog_all_month.text = "$Month" + "월"
+////            Log.i("Year test", Year.toString() + "")
+////            Log.i("Month test", Month.toString() + "")
+////            Log.i("Day test", Day.toString() + "")
+//
+//            // 날짜 포맷 통일
+//            if (Month.toInt() < 10) {
+//                Month = "0$Month"
+//            }
+//            if (Day.toInt() < 10) {
+//                Day = "0$Day"
+//            }
+//
+//            val shot_Day = "$Year-$Month-$Day"
+//            Log.i("shot_Day test", shot_Day + "")
+//            materialCalendarView.clearSelection()
+//            Toast.makeText(
+//                requireContext(),
+//                shot_Day,
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
 
 
 //        calendarLogAdapter = CalendarLogAdapter(view!!.context)
@@ -370,24 +375,74 @@ class CalenderFragment : Fragment() {
                     if (response.body()!!.success) {  // 참고 코드에서 없는 부분
                         Log.d("성공", "성공")
                         Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
-//                        progressDate = response.body()!!.data[5].classDate
-//                        progressCycle = response.body()!!.data[5].depositCycle
-//                        progressTimes = response.body()!!.data[5].times
-//                        progressHour = response.body()!!.data[5].hour
 
-//                        var i = 0
-//                        while (i<10){
-//                            var myHour[i] = response.body()!!.data[i].hour
-//                        }
+                        materialCalendarView.setOnDateChangedListener { widget, date, selected ->
+                            val Year = date.year
+                            var Month = (date.month + 1).toString()
+                            var Day = (date.day).toString()
+                            calendarlog_all_date.text = "$Day"
+                            calendarlog_all_month.text = "$Month" + "월"
+//            Log.i("Year test", Year.toString() + "")
+//            Log.i("Month test", Month.toString() + "")
+//            Log.i("Day test", Day.toString() + "")
+
+                            // 날짜 포맷 통일
+                            if (Month.toInt() < 10) {
+                                Month = "0$Month"
+                            }
+                            if (Day.toInt() < 10) {
+                                Day = "0$Day"
+                            }
+
+                            val shot_Day = "$Year-$Month-$Day"
+                            Log.i("shot_Day test", shot_Day + "")
+                            materialCalendarView.clearSelection()
+                            Toast.makeText(
+                                requireContext(),
+                                shot_Day,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            // 캘린더 클릭 날짜와 서버에서 받은 데이터 날짜 비교 후 같으면 리사이클러뷰에 띄움
+                            var i: Int = 0
+                            for(i in 0 until response.body()!!.data.size){
+
+
+                            //while (i <= response.body()!!.data.size) {
+                                Log.d("인덱스", "${i}")
+
+                                if (shot_Day == response.body()!!.data[i].classDate) {
+                                    Log.d("test", "동일")
+                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+                                    datas.apply {
+                                        add(
+                                            CalendarLogData(
+                                                starttime = "${response.body()!!.data[i].startTime}",
+                                                endtime = "${response.body()!!.data[i].endTime}",
+                                                img_color = "${response.body()!!.data[i].color}",
+                                                times = "${response.body()!!.data[i].times}".toInt(),
+                                                title = "${response.body()!!.data[i].lectureName}",
+                                                studytime = "${response.body()!!.data[i].hour}".toInt(),
+                                                location = "${response.body()!!.data[i].location}"
+                                            )
+                                        )
+                                    }
+                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
+                                    Log.i("test", "${response.body()!!.data[i].location}")
+                                    Log.i("test", "${response.body()!!.data[i].color}")
+                                }
+                                else{
+                                    continue
+                                }
+                            }
+                        }
+
+
 
                         calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
                         calendarLogAdapter.notifyDataSetChanged()
                         rv_calendarlog.adapter = calendarLogAdapter
 
-                        //Log.d(progressCycle.toString(), progressCycle.toString())
-                        //Log.d(progressTimes.toString(), progressTimes.toString())
-                        //Log.d(progressHour.toString(), progressHour.toString())
-                        //Log.d(progressStatus.toString(), progressStatus.toString())
                     } else {
                         Log.d("실패", "${response.body()}")
                     }
@@ -436,5 +491,4 @@ class CalenderFragment : Fragment() {
 //    }
     }
 }
-
 
