@@ -155,18 +155,47 @@ class CalenderFragment : Fragment() {
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
         )
 
+
+//        var i : Int = 0
+//        while (i <= data.indices) {
+//            if (shot_Day == data[i].classDate) {
+//                datas.apply {
+//                    add(
+//                        CalendarLogData(
+//                            starttime = "${data[i].startTime}",
+//                            endtime = "${data[i].endTime}",
+//                            img_color = "${data[i].color}",
+//                            times = "${data[i].times}".toInt(),
+//                            title = "${data[i].lectureName}",
+//                            studytime = "${data[i].hour}".toInt(),
+//                            location = "${data[i].location}"
+//                        )
+//                    )
+//                }
+//            }
+//        }
+
         val result =
             arrayOf("2020,07,11", "2020,07,15", "2020,07,15", "2020,07,17", "2020,07,18")
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
-            val Month = date.month + 1
-            val Day = date.day
+            var Month = (date.month + 1).toString()
+            var Day = (date.day).toString()
             calendarlog_all_date.text = "$Day"
             calendarlog_all_month.text = "$Month" + "월"
 //            Log.i("Year test", Year.toString() + "")
 //            Log.i("Month test", Month.toString() + "")
 //            Log.i("Day test", Day.toString() + "")
+
+            // 날짜 포맷 통일
+            if (Month.toInt() < 10) {
+                Month = "0$Month"
+            }
+            if (Day.toInt() < 10) {
+                Day = "0$Day"
+            }
+
             val shot_Day = "$Year-$Month-$Day"
             Log.i("shot_Day test", shot_Day + "")
             materialCalendarView.clearSelection()
@@ -346,6 +375,11 @@ class CalenderFragment : Fragment() {
 //                        progressTimes = response.body()!!.data[5].times
 //                        progressHour = response.body()!!.data[5].hour
 
+//                        var i = 0
+//                        while (i<10){
+//                            var myHour[i] = response.body()!!.data[i].hour
+//                        }
+
                         calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
                         calendarLogAdapter.notifyDataSetChanged()
                         rv_calendarlog.adapter = calendarLogAdapter
@@ -402,6 +436,5 @@ class CalenderFragment : Fragment() {
 //    }
     }
 }
-
 
 
