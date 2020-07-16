@@ -27,11 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
         android:layout_marginTop="109dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
         android:src="@drawable/login_img_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,14 +82,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:background="#00000000"
         android:src="@drawable/login_btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_autologin_picktouchguide" />
 
     <ImageButton
         android:id="@+id/login_btn_autologin_picktouchguide"
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:background="@drawable/login_b_btn_autologin_disagree_pick"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
     android:layout_height="461dp"
-    tools:context="com.tutor.tutordot.MyPage.Popup.PopupLogout">
+    android:background="@drawable/my_logout_img_bg">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -29,6 +29,7 @@
         android:layout_marginRight="83dp"
         android:lineSpacingExtra="6sp"
         android:text="로그아웃 하시겠어요?"
+        android:fontFamily="@font/apple_sdgothic_neo_sb"
         android:textColor="#121212"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +45,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:gravity="center_horizontal"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:lineSpacingExtra="6sp"
         android:text="로그아웃시 자동로그인이 해제됩니다.\n다시 로그인해 주세요."
         android:textColor="#707070"

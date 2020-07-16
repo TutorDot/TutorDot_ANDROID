@@ -60,6 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/apple_sdgothic_neo_sb"
         android:text="튜터와 함께 할 튜티를 초대해 주세요" />
 
     <TextView
@@ -73,6 +74,7 @@
         android:layout_marginRight="40dp"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="8sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:text="다음의 초대코드를 복사해 튜티와 함께 튜터닷의\n효율적인 튜터링 관리를 경험해보세요."
         android:textColor="#707070"
         android:textSize="15sp"
@@ -119,6 +121,7 @@
         android:layout_marginBottom="13dp"
         android:lineSpacingExtra="6sp"
         android:text="DJFJSHJFKSr"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:textColor="#000000"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/imagecopy"

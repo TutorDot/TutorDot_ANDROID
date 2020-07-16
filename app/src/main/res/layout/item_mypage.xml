@@ -52,7 +52,7 @@
         android:layout_marginStart="43dp"
         android:layout_marginLeft="43dp"
         android:layout_marginTop="63dp"
-        android:background="@drawable/my_img_gray_circle"
+        android:background="@drawable/my_img_proifle_tutee2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,7 +63,7 @@
         android:layout_marginStart="81dp"
         android:layout_marginLeft="81dp"
         android:layout_marginTop="63dp"
-        android:background="@drawable/my_img_gray_circle"
+        android:background="@drawable/my_img_proifle_tutee2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

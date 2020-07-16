@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +14,10 @@
         android:layout_height="58dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_notice_choice"
@@ -35,40 +39,52 @@
             android:id="@+id/btn_notice_choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/class_log_math_subjectsection"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/class_log_math_subjectsection" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginBottom="23dp"
-        android:textSize="18sp"
-        android:textColor="#1a1a1a"
-        android:fontFamily="@font/apple_sdgothic_neo_sb"
-        android:text="알림"/>
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_rv_notice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_noticee_choice">
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="39dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="309dp"
+            android:layout_marginRight="309dp"
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="알림"
+            android:textColor="#1a1a1a"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notice_date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
             android:orientation="vertical"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            tools:listitem="@layout/item_notice_date"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView48"
+            tools:listitem="@layout/item_notice_date" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_empty_notice"
@@ -104,4 +120,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
