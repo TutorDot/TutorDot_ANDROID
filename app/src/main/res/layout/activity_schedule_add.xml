@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constarintlayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="58dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
@@ -23,16 +23,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="14dp"
-            android:text="일정 추가"
             android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="일정 추가"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

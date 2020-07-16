@@ -47,17 +47,17 @@
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="362dp"
+        android:background="@drawable/calender_math_section_img_calenderback"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constarintlayout"
-        android:background="@drawable/calender_math_section_img_calenderback"
         app:mcv_selectionColor="#dddddd"
+        app:mcv_showOtherDates="other_months"
         app:mcv_tileSize="40dp"
-        app:mcv_tileWidth="match_parent"
-        android:padding="20dp"
-        app:mcv_showOtherDates="other_months" />
+        app:mcv_tileWidth="match_parent" />
 
     <LinearLayout
         android:id="@+id/datelinear"

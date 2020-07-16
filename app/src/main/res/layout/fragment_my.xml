@@ -58,7 +58,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="274dp"
                 android:layout_marginRight="274dp"
-                android:background="@drawable/my_img_profile"
+                android:background="@drawable/my_blank_img_proifle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

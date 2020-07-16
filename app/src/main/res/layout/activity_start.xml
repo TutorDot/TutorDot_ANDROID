@@ -19,7 +19,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/start_viewPager"
             android:layout_width="match_parent"
-            android:layout_height="496dp"
+            android:layout_height="476dp"
             android:layout_gravity="center">
 
         </androidx.viewpager.widget.ViewPager>
@@ -35,10 +35,15 @@
             android:layout_marginRight="152dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,38 +54,62 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="5dp"
             android:background="@drawable/onboarding_btn_start"
             android:textColor="#fafafa"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
             android:paddingLeft="27dp"
             android:paddingTop="15dp"
             android:paddingRight="29dp"
-            android:paddingBottom="15dp">
+            android:paddingBottom="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_start">
 
             <TextView
+                android:id="@+id/textView47"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="17dp"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:text="이미 회원이신가요?"
                 android:textColor="#161616"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/textView46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginEnd="29dp"
+                android:layout_marginRight="29dp"
                 android:fontFamily="@font/apple_sdgothic_neo_b"
                 android:text="로그인"
                 android:textColor="#6875dd"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </LinearLayout>
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView47"
+                app:layout_constraintTop_toTopOf="@+id/textView47" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
