@@ -149,7 +149,7 @@ class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayV
 //        }
         val eventcolors = intArrayOf(
             //R.color.yellow, R.color.green, R.color.red, R.color.blue, R.color.purple
-             Color.parseColor("#ffe966"), Color.parseColor("#90d672")
+             Color.parseColor("#ffe966"), Color.parseColor("#86d5e3"), Color.parseColor("#b88de3")
         )
 
         view.addSpan(CustomMultipleDotSpan(8f, eventcolors))

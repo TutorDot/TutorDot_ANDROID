@@ -1,4 +1,3 @@
-
 package com.tutor.tutordot.Calendar
 
 import android.content.Intent
@@ -239,14 +238,17 @@ class CalenderFragment : Fragment() {
                 override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
                     Log.d("통신 실패", "${t}")
                 }
+
                 override fun onResponse(
                     call: Call<CalendarLogResponseData>,
                     response: Response<CalendarLogResponseData>
                 ) {
                     // 통신 성공
-                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                    Log.d("성공", "성공${response.raw()}")
+                        if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                            Log.d("성공", "성공1")
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-                            Log.d("성공", "성공")
+                            Log.d("성공", "성공2")
                             Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
 
 
@@ -308,7 +310,7 @@ class CalenderFragment : Fragment() {
                         rv_calendarlog.adapter = calendarLogAdapter
 
                     } else {
-                        Log.d("실패", "${response.body()}")
+                        Log.d("실패", "${response.message()}")
                     }
                 }
             })
@@ -316,39 +318,37 @@ class CalenderFragment : Fragment() {
     }
 
 
-    private fun allloadDatas() {
-        val calendarlogRequestToServer = CalendarLogRequestToServer   // 도서 싱글톤 가져옴
-        // 서버 요청
-        calendarlogRequestToServer.service.calendarlogRequest(
-        ).enqueue(object : Callback<CalendarLogResponseData> {
-            override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
-                Log.d("통신 실패", "${t}")
-            }
-
-            override fun onResponse(
-                call: Call<CalendarLogResponseData>,
-                response: Response<CalendarLogResponseData>
-            ) {
-                // 통신 성공
-                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-                        Log.d("성공", "성공")
-                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
-
-                        calendarLogAdapter = CalendarLogAdapter(
-                            getActivity()!!.getApplicationContext(), response!!.body()!!.data
-                        )
-                        calendarLogAdapter.notifyDataSetChanged()
-                        rv_calendarlog.adapter = calendarLogAdapter
-
-                    } else {
-                        Log.d("실패", "${response.body()}")
-                    }
-                }
-            }
-
-        })
-    }
+//    private fun allloadDatas() {
+//        val calendarlogRequestToServer = CalendarLogRequestToServer   // 도서 싱글톤 가져옴
+//        // 서버 요청
+//        calendarlogRequestToServer.service.calendarlogRequest(
+//        ).enqueue(object : Callback<CalendarLogResponseData> {
+//            override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
+//                Log.d("통신 실패", "${t}")
+//            }
+//
+//            override fun onResponse(
+//                call: Call<CalendarLogResponseData>,
+//                response: Response<CalendarLogResponseData>
+//            ) {
+//                // 통신 성공
+//                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+//                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+//                        Log.d("성공", "성공")
+//                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+//
+//                        calendarLogAdapter = CalendarLogAdapter(
+//                            getActivity()!!.getApplicationContext(), response!!.body()!!.data
+//                        )
+//                        calendarLogAdapter.notifyDataSetChanged()
+//                        rv_calendarlog.adapter = calendarLogAdapter
+//
+//                    } else {
+//                        Log.d("실패", "${response.body()}")
+//                    }
+//                }
+//            }
+//
+//        })
+//    }
 }
-
-
