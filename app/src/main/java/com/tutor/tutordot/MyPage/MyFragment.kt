@@ -14,6 +14,7 @@ import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
 import com.tutor.tutordot.Notice.haveNdata
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.SignUpActivity
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.fragment_notice.*
@@ -76,6 +77,8 @@ class MyFragment : Fragment() {
             yes.setOnClickListener{
                 val intent4=Intent(activity, LoginActivity::class.java)
                 startActivity(intent4)
+                MySharedPreferences.islogin = false
+                activity?.finish()
             }
             no.setOnClickListener{
                 dialog.dismiss()

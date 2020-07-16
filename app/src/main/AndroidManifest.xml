@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_tutor_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:name = ".Startpage.AutoLogin.App"
         android:usesCleartextTraffic="true">
         <activity android:name=".MyPage.DeveloperActivity" />
         <activity android:name=".MyPage.InviteActivity" />
