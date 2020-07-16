@@ -1,6 +1,8 @@
 package com.tutor.tutordot.Calendar.CalendarLogRecyclerView
 
+import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,7 +14,7 @@ import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.moveActi
 
-var haveCalendarData : Boolean = false
+var haveCalendarData : Boolean = true
 
 class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
     val tv_starttime = itemView.findViewById<TextView>(R.id.tv_starttime)
@@ -80,10 +82,11 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         //일지 아이템 버튼 클릭 이벤트
         cal_log_item.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
-                //val context: Context = v!!.context
+                val context: Context = v!!.context
                 val nextIntent = Intent(v!!.context, ScheduleInfoActivity::class.java)
-                //context.startActivity(nextIntent)
-                moveActi(nextIntent, v)
+                context.startActivity(nextIntent.addFlags(FLAG_ACTIVITY_NEW_TASK))
+
+                //moveActi(nextIntent, v)
             }
         })
     }
