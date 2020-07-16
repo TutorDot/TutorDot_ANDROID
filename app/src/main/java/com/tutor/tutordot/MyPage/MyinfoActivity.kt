@@ -12,15 +12,19 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_myinfo.*
+import kotlinx.android.synthetic.main.activity_onesentense.*
 
 
 class MyinfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myinfo)
+
+        Glide.with(this@MyinfoActivity).load(userinfopicture1).into(my_class_tap_img_profile)
 
         //버튼
         my_class_tap_btn_back.setOnClickListener(object : View.OnClickListener {

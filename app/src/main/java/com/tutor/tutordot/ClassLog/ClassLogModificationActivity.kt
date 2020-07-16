@@ -6,16 +6,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.tutor.tutordot.*
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
 import com.tutor.tutordot.ClassLog.LogRecyclerView.completeTmp
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.*
 import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
+import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.android.synthetic.main.item_classlog.*
+import kotlin.math.log
 
 var complete : Int = 1
 
@@ -36,6 +38,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
         //EditText의 기본 텍스트는 사용자가 이전에 입력했던 값으로
         et_log_modi_progress.setText(ser_progress)
         et_log_modi_hw.setText(ser_hw)
+
+        tv_log_modi_title.setText(ser_date_times.toString() + "회차 " +  ser_date_studytime.toString() + "시간 / " + ser_date_alltime.toString() + "시간")
 
         if (completeTmp == 0) {
             btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
@@ -61,8 +65,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
         //취소, 저장 버튼 이벤트
         btn_log_cancel.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
-                startActivity(backIntent)
+                //val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                //startActivity(backIntent)
                 finish()
             }
         })

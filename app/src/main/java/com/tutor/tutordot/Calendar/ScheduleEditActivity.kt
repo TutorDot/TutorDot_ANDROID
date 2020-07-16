@@ -8,7 +8,19 @@ import android.util.Log
 import android.view.View
 import android.widget.TimePicker
 import androidx.annotation.RequiresApi
+import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
+import com.tutor.tutordot.Calendar.Server.ScheduleEditRequest
+import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_hw
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
+import com.tutor.tutordot.ClassLog.Server.LogModiRequest
+import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
+import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
+import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.showToast
+import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_edit.*
 import java.util.*
@@ -19,16 +31,19 @@ class ScheduleEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_edit)
 
-        // 취소 버튼 누르면 일정 정보 화면으로 이동
-        schedule_edit_btn_cancle.setOnClickListener{
-            finish()
-        }
+        var start_time : String = ""
+        var end_time : String = ""
+        var date_time : String = ""
 
-        // 날짜 선택
+        //서버 연결
+        val calendarLogRequestToServer = CalendarLogRequestToServer
+
         // 날짜 선택
         date_picker_edit.setOnDateChangedListener{
                 view, year, monthOfYear, dayOfMonth ->
             schedule_edit_date_txt.text = "${year}" + "년 ${monthOfYear+1}" + "월 ${dayOfMonth}" + "일"
+            date_time = "${year}" + "-${monthOfYear+1}" + "-${dayOfMonth}" + "일"
+
         }
 
         // 시간 선택
@@ -36,12 +51,14 @@ class ScheduleEditActivity : AppCompatActivity() {
         time_picker_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
             schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
+            start_time = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
         }
 
         // Set a time change listener for time picker widget
         time_picker2_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
             schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
+            end_time = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
         }
 
 
@@ -74,6 +91,42 @@ class ScheduleEditActivity : AppCompatActivity() {
                 fix6.text = "수정"
             }
         }
+
+        // 취소 버튼 누르면 일정 정보 화면으로 이동
+        schedule_edit_btn_cancle.setOnClickListener{
+            finish()
+        }
+
+        //저장 버튼 누르면 일정 정보 화면으로 이동
+        schedule_edit_btn_save.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                /*
+                //서버에 전달
+                calendarLogRequestToServer.service.scheduleEditRequest(
+                    ScheduleEditRequest(
+                        lectureId = 1,
+                        date = date_time,
+                        startTime = start_time,
+                        endTime = end_time,
+                        location = "schedule_edit_location_txt.text"
+                    )//정보를 전달
+                ).customEnqueue(
+                    onError = {Log.d("올바르지 못한 요청입니다","올바르지 못한 요청입니다")},
+                    onSuccess = {
+                        if (it.success) {
+                            Log.d("수업 수정 완료","수정 완료")
+                            showToast("수업 수정이 완료되었습니다.")
+                        } else {
+                            Log.d("수정 실패","수정 실패")
+                        }
+                    }
+                )
+ */
+                val backIntent = Intent(this@ScheduleEditActivity, CalenderActivity::class.java)
+                startActivity(backIntent)
+                finish()
+            }
+        })
     }
 
 

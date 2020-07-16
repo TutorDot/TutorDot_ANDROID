@@ -30,6 +30,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+//간단정보
+var userinfoname:String = ""
+var userinforole: String = ""
+var userinfointro: String = ""
+var userinfopicture: String? = ""
+var userinfopicture1 : String = ""
 
 class MyFragment : Fragment() {
 
@@ -59,11 +65,7 @@ class MyFragment : Fragment() {
 
         //myinfo 서버연결(user)
 
-        //간단정보
-        var userinfoname:String
-        var userinforole: String
-        var userinfointro: String
-        var userinfopicture: String
+
 
         userRequestToServer.service.myInfoRequest(
         ).enqueue(object: Callback<MyInfoResponse>{
@@ -83,10 +85,10 @@ class MyFragment : Fragment() {
                         userinfointro = response. body()!!.data!!.intro
                         userinfopicture = response. body()!!.data!!.profilUrl
 
-                        textView.setText(userinfointro)
+                        textView.setText(userinfoname)
                         textView2.setText(userinforole)
                         one_sentense.setText(userinfointro)
-                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+                        //Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
 
                         role = userinforole
 
@@ -95,7 +97,6 @@ class MyFragment : Fragment() {
                     }
                 }
             }
-
         })
 
 
@@ -189,6 +190,10 @@ class MyFragment : Fragment() {
                 if (response.isSuccessful){
                     if(response.body()!!.success) {
                         Log.d("성공", "classlist성공")
+                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                        Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
+
                     }else{
                         Log.d("실패", "classlist실패")
                     }
