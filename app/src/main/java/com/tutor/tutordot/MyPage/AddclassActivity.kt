@@ -34,9 +34,9 @@ class AddclassActivity : AppCompatActivity() {
         btn_plus.setOnClickListener{
             adata.add(
                 MyclassEditData(
-                    weekday="",
-                    starttime="00:00am",
-                    endtime = "00:00pm"
+                    weekday="월",
+                    starttime="00:00 AM",
+                    endtime = "00:00 AM"
                 )
             )
             myclassEditAdapter_add.notifyDataSetChanged()
@@ -47,7 +47,7 @@ class AddclassActivity : AppCompatActivity() {
         adata.apply {
             add(
                 MyclassEditData(
-                    weekday = "",
+                    weekday = "월",
                     starttime = "00:00am",
                     endtime="00:00am"
 
@@ -56,6 +56,6 @@ class AddclassActivity : AppCompatActivity() {
 
         }
         myclassEditAdapter_add.datas=adata
-        myclassEditAdapter_add.notifyDataSetChanged()
+       // myclassEditAdapter_add.notifyDataSetChanged()
     }
 }

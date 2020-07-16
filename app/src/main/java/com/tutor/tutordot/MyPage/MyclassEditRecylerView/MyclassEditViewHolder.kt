@@ -3,10 +3,8 @@ package com.tutor.tutordot.MyPage.MyclassEditRecylerView
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View
-import android.widget.ImageButton
-import android.widget.NumberPicker
-import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.R
 import java.util.*
@@ -20,14 +18,21 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
     val tp_day=itemView.findViewById<NumberPicker>(R.id.tp_day)
     val tp_myclass_time1=itemView.findViewById<TimePicker>(R.id.tp_myclass_time1)
     val tp_myclass_time2=itemView.findViewById<NumberPicker>(R.id.tp_myclass_time2)
+    val endtime_set= itemView.findViewById<ConstraintLayout>(R.id.layoutthird)
 
     val btn_day=itemView.findViewById<ImageButton>(R.id.btn_day)
     val btn_start=itemView.findViewById<ImageButton>(R.id.btn_start)
     val btn_end=itemView.findViewById<ImageButton>(R.id.btn_end)
+    val btn_x=itemView.findViewById<ImageButton>(R.id.btn_x)
+    val btn_save=itemView.findViewById<Button>(R.id.btn_save)
+
+
 
 
     @SuppressLint("SetTextI18n")
     fun bind(myclassEditData: MyclassEditData) {
+        val adata= mutableListOf<MyclassEditData>()
+
         tp_weekday.text=myclassEditData.weekday
         tp_start.text=myclassEditData.starttime
         tp_end.text=myclassEditData.endtime
@@ -49,8 +54,6 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         var howlongm: Int = 30
         var assign: Int
         var zero: String = "0"
-
-
 
 
 
@@ -84,24 +87,24 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         btn_start.setOnClickListener{
             if(tp_myclass_time1.getVisibility() == View.GONE) {
                 tp_myclass_time1.setVisibility(View.VISIBLE)
-                tp_myclass_time2.setVisibility(View.GONE)
+                endtime_set.setVisibility(View.GONE)
                 tp_day.setVisibility(View.GONE)
             } else {
                 tp_myclass_time1.setVisibility(View.GONE)
             }
         }
         btn_end.setOnClickListener{
-            if(tp_myclass_time2.getVisibility() == View.GONE) {
-                tp_myclass_time2.setVisibility(View.VISIBLE)
+            if(endtime_set.getVisibility() == View.GONE) {
+                endtime_set.setVisibility(View.VISIBLE)
                 tp_myclass_time1.setVisibility(View.GONE)
                 tp_day.setVisibility(View.GONE)
             } else {
-                tp_myclass_time2.setVisibility(View.GONE)
+                endtime_set.setVisibility(View.GONE)
             }
         }
         btn_day.setOnClickListener{
             if(tp_day.getVisibility() == View.GONE) {
-                tp_myclass_time2.setVisibility(View.GONE)
+                endtime_set.setVisibility(View.GONE)
                 tp_myclass_time1.setVisibility(View.GONE)
                 tp_day.setVisibility(View.VISIBLE)
             } else {
@@ -109,7 +112,20 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
             }
         }
 
+        btn_save.setOnClickListener(){
+            tp_day.setVisibility(View.GONE)
+            tp_myclass_time1.setVisibility(View.GONE)
+            endtime_set.setVisibility(View.GONE)
+            adata.add(
+                MyclassEditData(
+                    weekday = tp_weekday.text.toString(),
+                    starttime = tp_start.text.toString(),
+                    endtime = tp_end.text.toString()
+                )
+            )
+        }
     }
+
 
 
 

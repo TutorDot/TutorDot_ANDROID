@@ -1,6 +1,5 @@
 package com.tutor.tutordot.ClassLog
 
-import android.content.ContentValues
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
@@ -16,7 +14,6 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
-import com.tutor.tutordot.ClassLog.Server.VolleyService
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,7 +47,7 @@ class ClassLogFragment : Fragment() {
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
-                Log.d( "통신 성공!","성공")
+                Log.d( "통신 성공!","성공") 
             } else {
                 Log.d( "통신 실패!","실패")
             }
@@ -122,38 +119,38 @@ class ClassLogFragment : Fragment() {
 
                         //프로그레스바 서버에서 정보 받아옴
                         logRequestToServer.service.progressRequest(
-                        ).enqueue(object :Callback<ProgressResponse>{
-                            override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
-                                Log.d("통신 실패", "통신 실패")
-                            }
+                            ).enqueue(object :Callback<ProgressResponse>{
+                                override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
+                                    Log.d("통신 실패", "통신 실패")
+                                }
 
-                            override fun onResponse(
-                                call: Call<ProgressResponse>,
-                                response: Response<ProgressResponse>
-                            ) {
-                                if(response.isSuccessful){
-                                    if(response.body()!!.success){
-                                        Log.d("성공", "성공")
-                                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                                        progressDate = response.body()!!.data[5].classDate
-                                        progressCycle = response.body()!!.data[5].depositCycle
-                                        progressTimes = response.body()!!.data[5].times
-                                        progressHour = response.body()!!.data[5].hour
-                                        tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
-                                        tv_progress_alltime.setText(progressCycle.toString() + "시간")
-                                        progressStatus = 100*progressHour/progressCycle
-                                        pb_class.progress = progressStatus
-                                        tv_percent.setText(progressStatus.toString() + "%")
+                                override fun onResponse(
+                                    call: Call<ProgressResponse>,
+                                    response: Response<ProgressResponse>
+                                ) {
+                                    if(response.isSuccessful){
+                                        if(response.body()!!.success){
+                                            Log.d("성공", "성공")
+                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                            progressDate = response.body()!!.data[5].classDate
+                                            progressCycle = response.body()!!.data[5].depositCycle
+                                            progressTimes = response.body()!!.data[5].times
+                                            progressHour = response.body()!!.data[5].hour
+                                            tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+                                            tv_progress_alltime.setText(progressCycle.toString() + "시간")
+                                            progressStatus = 100*progressHour/progressCycle
+                                            pb_class.progress = progressStatus
+                                            tv_percent.setText(progressStatus.toString() + "%")
 
-                                        //Log.d(progressCycle.toString(), progressCycle.toString())
-                                        //Log.d(progressTimes.toString(), progressTimes.toString())
-                                        //Log.d(progressHour.toString(), progressHour.toString())
-                                        //Log.d(progressStatus.toString(), progressStatus.toString())
-                                    }else{
-                                        Log.d("실패", "실패")
+                                            //Log.d(progressCycle.toString(), progressCycle.toString())
+                                            //Log.d(progressTimes.toString(), progressTimes.toString())
+                                            //Log.d(progressHour.toString(), progressHour.toString())
+                                            //Log.d(progressStatus.toString(), progressStatus.toString())
+                                        }else{
+                                            Log.d("실패", "실패")
+                                        }
                                     }
                                 }
-                            }
 
                         })
                     }

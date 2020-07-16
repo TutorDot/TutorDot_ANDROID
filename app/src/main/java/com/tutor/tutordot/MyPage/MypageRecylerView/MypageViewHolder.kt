@@ -16,10 +16,16 @@ var haveMyData: Boolean = true
 class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
     val rv_colorcircle= itemView.findViewById<ImageView>(R.id.rv_colorcircle)
     val rv_class_name= itemView.findViewById<TextView>(R.id.rv_class_name)
+    val rv_grey1= itemView.findViewById<ImageView>(R.id.rv_grey1)
+    val rv_grey2= itemView.findViewById<ImageView>(R.id.rv_grey2)
 
     fun bind(mypageData: MypageData){
         Glide.with(itemView).load(mypageData.color).into(rv_colorcircle)
         rv_class_name.text= mypageData.content
+        Glide.with(itemView).load(mypageData.profileUrl1).into(rv_grey1)
+        Glide.with(itemView).load(mypageData.profileUrl2).into(rv_grey2)
+
+
 
 
 
