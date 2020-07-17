@@ -98,12 +98,10 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 #### 1-2) 온보딩
 
 ![image](https://user-images.githubusercontent.com/41908152/87784428-3d170580-c871-11ea-9df1-d3302138089a.png)
-
 ![image](https://user-images.githubusercontent.com/41908152/87784470-5029d580-c871-11ea-968d-480d7d0b7bac.png)
-
 ![image](https://user-images.githubusercontent.com/41908152/87784450-46a06d80-c871-11ea-81ce-42016218a812.png)
-
 ![image](https://user-images.githubusercontent.com/41908152/87784493-60da4b80-c871-11ea-8e95-28c5a46f6033.png)
+
 
 ### 2)로그인& 회원가입
 
