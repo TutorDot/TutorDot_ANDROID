@@ -26,6 +26,7 @@ import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.android.synthetic.main.item_mypage.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +37,7 @@ var userinforole: String = ""
 var userinfointro: String = ""
 var userinfopicture: String? = ""
 var userinfopicture1 : String = ""
+var classlistprofile1: String = "https://sopt-26-usy.s3.ap-northeast-2.amazonaws.com/1594963465636.jpg"
 
 class MyFragment : Fragment() {
 
@@ -175,7 +177,6 @@ class MyFragment : Fragment() {
         var classlistLectureName: String
         var classlistProfile1 : String
         var classlistColor: String
-        var classlistprofile1: String
         var classlistprofile2: String
 
 
@@ -195,6 +196,7 @@ class MyFragment : Fragment() {
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
+                        classlistprofile1 = response.body()!!.data[0]!!.profileUrls[1]!!.profileUrl
 
                     }else{
                         Log.d("실패", "classlist실패")

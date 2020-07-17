@@ -51,7 +51,7 @@ class AddclassActivity : AppCompatActivity() {
                     lectureName = newclassname,
                     color = color,
                     schedules = listOf(ScehduleData(day = "월", orgStartTime="01:00pm", orgEndTime="03:00pm")),
-                    orgLocation = "",
+                    orgLocation = "합정역 할리스커피",
                     bank = et_bank.text.toString(),
                     accountNumber = editText3.text.toString(),
                     totalHours = 10,
