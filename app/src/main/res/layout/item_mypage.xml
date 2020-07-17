@@ -46,7 +46,7 @@
         app:layout_constraintStart_toEndOf="@+id/rv_colorcircle"
         app:layout_constraintTop_toTopOf="@+id/rv_mypage_button" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rv_grey1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rv_grey2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

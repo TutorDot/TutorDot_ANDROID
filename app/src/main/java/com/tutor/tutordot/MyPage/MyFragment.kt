@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
@@ -37,7 +38,6 @@ var userinforole: String = ""
 var userinfointro: String = ""
 var userinfopicture: String? = ""
 var userinfopicture1 : String = ""
-var classlistprofile1: String = "https://sopt-26-usy.s3.ap-northeast-2.amazonaws.com/1594963465636.jpg"
 
 class MyFragment : Fragment() {
 
@@ -108,8 +108,14 @@ class MyFragment : Fragment() {
 
         //화면이동
         imageButton2.setOnClickListener{
-            val intent = Intent(activity, AddclassActivity::class.java)
-            startActivity(intent)
+            if(role == "tutor"){
+                val intent = Intent(activity, AddclassActivity::class.java)
+                startActivity(intent)
+            }
+            else if(role == "tutee"){
+                val intent = Intent(activity, InviteForTuteeActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         my_img_profile.setOnClickListener{
@@ -177,14 +183,15 @@ class MyFragment : Fragment() {
         var classlistLectureName: String
         var classlistProfile1 : String
         var classlistColor: String
-        var classlistprofile2: String
+        var classlistprofile1: String?
+        var classlistprofile2: String?
 
 
         mypageRequestToServer.service.classListRequest(
         ).enqueue(object: Callback<ClassListResponse>{
             override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
                 Log.d("통신 실패", "classlist통신 실패${t}")
-                Log.d("통신 실패", "classlist통신 실패${t}")
+
             }
             override fun onResponse(
                 call: Call<ClassListResponse>,
@@ -196,8 +203,39 @@ class MyFragment : Fragment() {
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
-                        classlistprofile1 = response.body()!!.data[0]!!.profileUrls[1]!!.profileUrl
 
+
+                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+                        if(response.body()!!.data.size == 0)
+                            haveMyData = false
+                        else
+                            haveMyData = true
+
+                        for (i in 0 until response.body()!!.data.size){
+                        classlistColor=response.body()!!.data[i]!!.color.toString()
+                        classlistLectureName=response.body()!!.data[i]!!.lectureName.toString()
+                            if (response.body()!!.data[i]!!.profileUrls.size==1){
+                                classlistprofile2=null
+                                classlistprofile1=response.body()!!.data[i]!!.profileUrls[0].profileUrl
+                            } else if (response.body()!!.data[i]!!.profileUrls.size==2){
+                                classlistprofile1=response.body()!!.data[i]!!.profileUrls[0].profileUrl
+                                classlistprofile2=response.body()!!.data[i]!!.profileUrls[1].profileUrl}else{
+                                classlistprofile2=null
+                                classlistprofile1=null
+                            }
+
+
+                        datas.apply{
+                            add(
+                                MypageData(
+                                    color = classlistColor,
+                                    content= classlistLectureName,
+                                    profileUrl1 = classlistprofile1,
+                                    profileUrl2 = classlistprofile2
+                                ))}
+                        mypageAdapter.datas = datas
+                        mypageAdapter.notifyDataSetChanged()
+                            }
                     }else{
                         Log.d("실패", "classlist실패")
                     }
