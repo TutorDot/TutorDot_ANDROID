@@ -231,7 +231,7 @@ class CalenderFragment : Fragment() {
 
 
             calendarLogAdapter= CalendarLogAdapter(view.context, datas)
-            val calendarlogRequestToServer = CalendarLogRequestToServer   // 도서 싱글톤 가져옴
+            val calendarlogRequestToServer = CalendarLogRequestToServer
             // 서버 요청
             calendarlogRequestToServer.service.calendarlogRequest(
             ).enqueue(object : Callback<CalendarLogResponseData> {
@@ -244,13 +244,9 @@ class CalenderFragment : Fragment() {
                     response: Response<CalendarLogResponseData>
                 ) {
                     // 통신 성공
-                    Log.d("성공", "성공${response.raw()}")
                         if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                            Log.d("성공", "성공1")
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-                            Log.d("성공", "성공2")
                             Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
-
 
                             val Year = date.year
                             var Month = (date.month + 1).toString()
