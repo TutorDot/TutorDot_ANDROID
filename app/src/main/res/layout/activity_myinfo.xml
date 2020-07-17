@@ -299,7 +299,35 @@
                 app:layout_constraintTop_toBottomOf="@+id/location" />
 
             <View
-                android:layout_width="360dp"
+                android:id="@+id/view9"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/go1"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
+
+            <ImageButton
+                android:id="@+id/my_class_tap_btn_invite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_class_tap_btn_invite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
+
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/colorTuti"
                 app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_img_whitebg"
@@ -307,35 +335,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_invite" />
 
+            <View
+                android:id="@+id/view11"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="695dp" />
 
-            <ImageButton
-                android:id="@+id/my_class_tap_btn_invite"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/my_class_tap_btn_invite"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="360dp"
-                android:layout_height="1dp"
-                android:background="@color/colorTuti"
-                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_invite"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_btn_invite" />
-
+                android:src="@drawable/go1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/view11"
+                app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
             <ImageButton
                 android:id="@+id/my_class_tap_btn_unconnect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/my_class_tap_btn_unconnect"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/my_class_tap_btn_invite" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorTuti"
+                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_invite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_btn_invite" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

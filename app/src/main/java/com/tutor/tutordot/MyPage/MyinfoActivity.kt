@@ -26,6 +26,8 @@ class MyinfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_myinfo)
 
         Glide.with(this@MyinfoActivity).load(userinfopicture1).into(my_class_tap_img_profile)
+        profile_name.setText(userinfoname)
+        profile_introduce.setText(userinfointro)
 
         //버튼
         my_class_tap_btn_back.setOnClickListener(object : View.OnClickListener {
