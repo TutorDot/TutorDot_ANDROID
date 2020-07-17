@@ -82,7 +82,7 @@
                 android:layout_marginRight="35dp"
                 android:fontFamily="@font/apple_sdgothic_neo_b"
                 android:lineSpacingExtra="9sp"
-                android:text="29"
+                android:text="18"
                 android:textColor="#000000"
                 android:textSize="22sp" />
 
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:lineSpacingExtra="5sp"
-                android:text="5월"
+                android:text="7월"
                 android:textColor="#000000"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -100,9 +100,9 @@
         <View
             android:id="@+id/line"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="15dp"
-            android:background="#777777" />
+            android:layout_height="1.5dp"
+            android:layout_gravity="center"
+            android:background="#ececec" />
     </LinearLayout>
 
 

@@ -42,6 +42,7 @@
         android:text="수업명 입력 (17자까지 가능\n하다)"
         android:textColor="#000000"
         android:textSize="14sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintStart_toEndOf="@+id/rv_colorcircle"
         app:layout_constraintTop_toTopOf="@+id/rv_mypage_button" />
 

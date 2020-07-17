@@ -7,15 +7,39 @@
     android:layout_height="match_parent"
     tools:context=".MyPage.AddclassActivity">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mmy_class_add_img_topbg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/my_class_add_img_topbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <View
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:text="수업 추가"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="409dp"
@@ -35,16 +59,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="43dp" />
+                app:layout_constraintGuide_begin="20dp" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
                 android:lineSpacingExtra="6sp"
                 android:text="새로운 수업을 추가합니다"
-                android:fontFamily="@font/apple_sdgothic_neo_sb"
                 android:textColor="#121212"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -55,8 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:lineSpacingExtra="5sp"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:lineSpacingExtra="5sp"
                 android:text="정보를 입력하고, 학부모님 / 학생을 \n초대하여 서비스를 이용해보세요! "
                 android:textColor="#707070"
                 android:textSize="16sp"
@@ -65,44 +89,42 @@
 
             <TextView
                 android:id="@+id/수업명"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="153dp"
-                android:layout_marginEnd="301dp"
-                android:layout_marginRight="301dp"
+                android:layout_marginTop="41dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="수업명"
                 android:textColor="#0f0f0f"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
             <ImageButton
                 android:id="@+id/my_class_add_btn_classname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="13dp"
                 android:background="@drawable/my_class_add_btn_classname"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/수업명" />
 
             <EditText
-                android:id="@+id/editText"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:id="@+id/editTextname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:background="@color/colorBackground"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:hint="글자수 제한 17자 이내"
                 android:lineSpacingExtra="5sp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/my_class_add_btn_classname"
                 app:layout_constraintStart_toStartOf="@+id/my_class_add_btn_classname"
@@ -113,9 +135,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="259dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="6sp"
                 android:text="색상"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:textColor="#0f0f0f"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -175,11 +197,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="345dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="시간별 금액"
                 android:textColor="#0f0f0f"
                 android:textSize="15sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -203,6 +225,25 @@
                 app:layout_constraintTop_toTopOf="@+id/imageButton3" />
 
 
+            <EditText
+                android:id="@+id/et_newtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:background="@color/colorBackground"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:hint="16"
+                android:lineSpacingExtra="5sp"
+                android:paddingTop="11dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="11dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintStart_toStartOf="@+id/imageButton3"
+                app:layout_constraintTop_toTopOf="@+id/textView7"
+                app:layout_constraintVertical_bias="0.434" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -221,6 +262,25 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageButton3"
                 app:layout_constraintTop_toTopOf="@+id/imageButton3" />
 
+            <EditText
+                android:id="@+id/et_newprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:background="@color/colorBackground"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:hint="80"
+                android:lineSpacingExtra="5sp"
+                android:paddingTop="11dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="11dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView44"
+                app:layout_constraintStart_toStartOf="@+id/imageButton4"
+                app:layout_constraintTop_toTopOf="@+id/textView44" />
+
             <TextView
                 android:id="@+id/textView44"
                 android:layout_width="wrap_content"
@@ -238,52 +298,14 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageButton4"
                 app:layout_constraintTop_toTopOf="@+id/imageButton4" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:background="@color/colorBackground"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
-                android:lineSpacingExtra="5sp"
-                android:paddingTop="11dp"
-                android:paddingRight="70dp"
-                android:paddingBottom="11dp"
-                android:text="16"
-                android:textColor="#707070"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                app:layout_constraintStart_toStartOf="@+id/imageButton3"
-                app:layout_constraintTop_toTopOf="@+id/textView7"
-                app:layout_constraintVertical_bias="0.434" />
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:background="@color/colorBackground"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
-                android:lineSpacingExtra="5sp"
-                android:text="80"
-                android:paddingTop="11dp"
-                android:paddingBottom="11dp"
-                android:paddingRight="70dp"
-                android:textColor="#707070"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView44"
-                app:layout_constraintStart_toStartOf="@+id/imageButton4"
-                app:layout_constraintTop_toTopOf="@+id/textView44" />
-
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="448dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="계좌정보"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:textColor="#121212"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -309,13 +331,14 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
             <EditText
+                android:id="@+id/et_bank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorBackground"
-                android:hint="하나"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:hint="하나"
                 android:lineSpacingExtra="5sp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
@@ -327,12 +350,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:layout_marginLeft="16dp"
                 android:background="@color/colorBackground"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:hint="01063619440107"
                 android:lineSpacingExtra="5sp"
-                android:textColor="#707070"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -342,9 +365,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="552dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="정기 수업시간"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:textColor="#121212"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -378,9 +401,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="위치"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -403,8 +426,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
                 android:background="@color/colorBackground"
-                android:hint="위치 입력  (글자수 제한없습니다)"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:hint="위치 입력  (글자수 제한없습니다)"
                 android:lineSpacingExtra="5sp"
                 android:textColor="#707070"
                 android:textSize="15sp"

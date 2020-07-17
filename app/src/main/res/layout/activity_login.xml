@@ -51,6 +51,7 @@
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,6 +71,7 @@
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"
         android:textSize="15sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email"

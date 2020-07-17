@@ -40,10 +40,10 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val datas : MutableList<LogData> = mutableListOf<LogData>()
 
 
-    /*
+
     //서버 연결
     val logRequestToServer = LogRequestToServer
-
+/*
     //서버 연결
     fun bind(logdateSomeData : LogSomeData){
         var month : String = logdateSomeData.Classdate.slice(IntRange(5,6))
@@ -61,13 +61,13 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(logdateData : LogdateData){
         tv_date.text = logdateData.month.toString() + "월 " + logdateData.day.toString() + "일"
 
-        logAdapter =
-            LogAdapter(itemView.context)
-        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+        //logAdapter =
+        //    LogAdapter(itemView.context)
+        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
 
-    /*
+
     //서버 연동
     private fun loadDatas(){
         // 서버 요청
@@ -86,12 +86,23 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     if (response.body()!!.success) {  // 참고 코드에서 없는 부분
                         Log.d("성공", "성공")
                         Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+                        ser_date_times = response.body()!!.data[1]!!.times
+                        ser_date_times = response.body()!!.data[1]!!.hour
+                        ser_date_times = response.body()!!.data[1]!!.depositCycle
+                        ser_progress = response.body()!!.data[1]!!.classProgress
+                        ser_hw = response.body()!!.data[1]!!.homework
 
                         val context: Context = itemView!!.context
 
                         logAdapter = LogAdapter(context, response!!.body()!!.data)
                         logAdapter.notifyDataSetChanged()
                         rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+                        if(response.body()!!.data.size == 0)
+                            haveData = false
+                        else
+                            haveData = true
 
                     } else {
                         Log.d("실패", "${response.body()}")
@@ -101,8 +112,8 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         })
     }
-    */
 
+/*
     private fun loadDatas(){
         datas.apply {
             add(
@@ -118,28 +129,28 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             )
             add(
                 LogData(
-                    color = "green",
+                    color = "red",
                     times = 2,
                     studytime = 2,
                     alltime = 15,
-                    progress = "수학2",
-                    homework = "수학의 정석 풀기2",
+                    progress = "태권도 품새 1장",
+                    homework = "태극권 예습해오기",
                     complete = 2
                 )
             )
             add(
                 LogData(
-                    color = "yellow",
+                    color = "blue",
                     times = 3,
                     studytime = 3,
-                    alltime = 15,
-                    progress = "수학3",
-                    homework = "수학의 정석 풀기3",
+                    alltime = 20,
+                    progress = "태권도 태극권 2장",
+                    homework = "태극권 2장 복습하고 유튜브 영상찍기",
                     complete = 3
                 )
             )
         }
         logAdapter.datas = datas
         logAdapter.notifyDataSetChanged()
-    }
+    }*/
 }

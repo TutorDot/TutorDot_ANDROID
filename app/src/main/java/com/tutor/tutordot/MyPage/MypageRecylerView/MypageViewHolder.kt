@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.MyPage.MyinfoActivity
+import com.tutor.tutordot.MyPage.classlistprofile1
 import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.moveActi
 
@@ -37,7 +38,8 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
         }
 
         rv_class_name.text= mypageData.content
-        Glide.with(itemView).load(mypageData.profileUrl1).into(rv_grey1)
+        //Glide.with(itemView).load(mypageData.profileUrl1).into(rv_grey1)
+        Glide.with(itemView).load(classlistprofile1).into(rv_grey1)
         Glide.with(itemView).load(mypageData.profileUrl2).into(rv_grey2)
 
 

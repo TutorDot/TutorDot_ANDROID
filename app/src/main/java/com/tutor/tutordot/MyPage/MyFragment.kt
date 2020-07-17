@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
@@ -64,6 +65,8 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
+        one_sentense.setText(newIntro)
+
         //myinfo 서버연결(user)
 
 
@@ -105,8 +108,14 @@ class MyFragment : Fragment() {
 
         //화면이동
         imageButton2.setOnClickListener{
-            val intent = Intent(activity, AddclassActivity::class.java)
-            startActivity(intent)
+            if(role == "tutor"){
+                val intent = Intent(activity, AddclassActivity::class.java)
+                startActivity(intent)
+            }
+            else if(role == "tutee"){
+                val intent = Intent(activity, InviteForTuteeActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         my_img_profile.setOnClickListener{
@@ -166,8 +175,6 @@ class MyFragment : Fragment() {
             recyclerView_my.visibility = View.GONE
             cl_my.visibility =View.VISIBLE
         }
-
-
     }
 
     private fun loadDatas(){
@@ -184,6 +191,7 @@ class MyFragment : Fragment() {
         ).enqueue(object: Callback<ClassListResponse>{
             override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
                 Log.d("통신 실패", "classlist통신 실패${t}")
+
             }
             override fun onResponse(
                 call: Call<ClassListResponse>,
@@ -192,11 +200,16 @@ class MyFragment : Fragment() {
                 if (response.isSuccessful){
                     if(response.body()!!.success) {
                         Log.d("성공", "classlist성공")
-                        Log.d(response.body()!!.data.toString(),response.body()!!.data[0].toString())
+                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
-                        Log.d("개수", "${response.body()!!.data[0]}")
 
+
+                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+                        if(response.body()!!.data.size == 0)
+                            haveMyData = false
+                        else
+                            haveMyData = true
 
                         for (i in 0 until response.body()!!.data.size){
                         classlistColor=response.body()!!.data[i]!!.color.toString()
@@ -231,23 +244,21 @@ class MyFragment : Fragment() {
 
         })
 
-//        datas.apply{
+        datas.apply{
 //            add(
 //                MypageData(
-//                    color = "@drawable/notice_color_img_red",
-//                    content= "나와라ㅏㅏㅏ",
-//                    profileUrl2 = classlistprofile1,
-//                    profileUrl1 = classlistprofile2
-//                ))
+ //                   color = "@drawable/notice_color_img_red",
+//                    content= "나와라ㅏㅏㅏ"
+ //               ))
  //           add(
  //               MypageData(
  //                   color = "@drawable/notice_color_img_green",
 //                    content= "나와라ㅏㅏㅏ2"
 //                ))
 
- //       }
- //       mypageAdapter.datas = datas
- //       mypageAdapter.notifyDataSetChanged()
+        }
+        mypageAdapter.datas = datas
+        mypageAdapter.notifyDataSetChanged()
     }
 
 
