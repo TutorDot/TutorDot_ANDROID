@@ -87,11 +87,11 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 ## 6. 핵심 기능 구현 방법 정리 / 구현화면
 
-###1)Startpage
-####1-1) 스플래시
+### 1)Startpage
+#### 1-1) 스플래시
 
 - Handler().postDelayed를 이용해 스플래시 화면을 보여줄 시간 설정
-####1-2) 온보딩
+#### 1-2) 온보딩
 
 ![image](https://user-images.githubusercontent.com/41908152/87784428-3d170580-c871-11ea-9df1-d3302138089a.png)
 
@@ -101,7 +101,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 ![image](https://user-images.githubusercontent.com/41908152/87784493-60da4b80-c871-11ea-8e95-28c5a46f6033.png)
 
-###2)로그인& 회원가입
+### 2)로그인& 회원가입
 
 ![image](https://user-images.githubusercontent.com/41908152/87784535-751e4880-c871-11ea-8bc9-7fc2e61cf312.png)
 - imageView를 사용해 로고 추가
@@ -116,25 +116,25 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
 
 
-###3)캘린더 뷰
+### 3)캘린더 뷰
 
 ![image](https://user-images.githubusercontent.com/41908152/87784618-98e18e80-c871-11ea-8475-71a5e2011f3c.png)
 
-####3-1) 일정정보
+#### 3-1) 일정정보
 
 ![image](https://user-images.githubusercontent.com/41908152/87784645-a72faa80-c871-11ea-999d-6722d906d2ff.png)
 - textView를 이용해 정보 띄우기
 - imageView를 사용해 상단바 추가
 - imageButton을 이용해 일정 삭제 버튼추가
 
-####3-2) 일정수정
+#### 3-2) 일정수정
 
 ![image](https://user-images.githubusercontent.com/41908152/87784663-b0207c00-c871-11ea-96cc-46f424e06325.png)
 - textView를 이용해 정보 띄우기
 - imageView를 사용해 상단바 추가
 - imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
 
-####3-3) 일정추가
+#### 3-3) 일정추가
 
 ![image](https://user-images.githubusercontent.com/41908152/87784695-be6e9800-c871-11ea-8599-9b2b70c98178.png)
 - imageView를 사용해 상단바 추가
