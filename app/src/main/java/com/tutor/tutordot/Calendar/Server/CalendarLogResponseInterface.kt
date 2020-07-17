@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface CalendarLogResponseInterface{
     @Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NDgzMzkwMywiZXhwIjoxNTk2MDQzNTAzLCJpc3MiOiJvdXItc29wdCJ9.E4RNGNpeJENsAOZ5v8W_9tXpZjqKdXypbBZFYOSpZMI")
-    @GET("/calander/class/1")
+    @GET("/calander")
     fun calendarlogRequest() : Call<CalendarLogResponseData>
 
     @PUT("/diary/hw/2")
