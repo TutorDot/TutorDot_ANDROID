@@ -114,6 +114,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - editText를 사용해 이름, 이메일, 비밀번호, 비밀번호 확인 입력창 추가
 - imageButton를 이용해 튜터/튜티 선택, 동의, 회원가입 버튼 추가
 - activity_signup.kt 은 클라이언트에서 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인완료 한 후서버에 연동해 회원가입 → loginactivity로 연결
+- tutor와 tutee두개로 나누어진 role을 입력받아 이후 기능의 차별을 둠
 
 ![image](https://user-images.githubusercontent.com/41908152/87784582-8b2c0900-c871-11ea-85e5-25395fa5d041.png)
 - imageView를 사용해 로고와 핸드폰 디자인 추가
@@ -129,6 +130,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 - recyclerView를 이용해 날짜에 따른 데이터 같은 형식으로 출력
 - 날짜가 클릭되면 서버에 연결해 데이터를 받아오며 받아오는 도중에 해당 날짜에 해당하는 날의 데이터를 한곳에 모아 모든 데이터를 받아온 후에 리사이클러뷰에 띄움
+- 우측하단 이미지 버튼을 누르면 일정추가 화면으로 이동
+- 서버연결을 완료하였지만 로그인한 정보를 기준으로 동적 jwt지정 전이므로 임의로 정적 jwt를 이용해 header을 지정하고 내용을 보여줌
 
 #### 3-1) 일정정보
 
@@ -136,6 +139,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - textView를 이용해 정보 띄우기
 - View를 사용해 상단바 추가
 - imageButton을 이용해 일정 삭제 버튼추가
+- 상단 좌측 이미지 버튼을 누르면 activity를 finish()하여 이전 화면으로 돌아감
 
 #### 3-2) 일정수정
 
@@ -153,7 +157,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - timePicker을 이용해 수업 시작, 종료시간 입력
 - datePicker을 이용해 날짜 입력
 - Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
-- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
+
 
 
 ### 4) 일지 뷰
@@ -172,32 +176,40 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - 월 수업일지 양쪽 화살표 클릭 이벤트 추가
 - 일지 아이템 버튼 클릭 이벤트 추가
 - 커스텀 ProgressBar 이용
+- 서버 통신을 통해 해당 일지 내용을 보여주고 토글에서 수업을 선택하면 해당 수업에 대한 정보를 불러오고 계산해 progress bar을 띄움
 
-#### 4-1) 일지수정
-
-![image](https://user-images.githubusercontent.com/41908152/87785447-1fe33680-c873-11ea-8d4f-5406b86c82b5.png)
-
-#### 4-2) 빈화면 일지
+#### 4-1) 빈화면 일지
 
 ![image](https://user-images.githubusercontent.com/41908152/87785503-34273380-c873-11ea-97c7-cfde6f95a51f.png)
 
+- 데이터가 없을 경우 이 화면을 송출함
+
+#### 4-2) 일지수정
+
+![image](https://user-images.githubusercontent.com/41908152/87785447-1fe33680-c873-11ea-8d4f-5406b86c82b5.png)
+
+- 일지를 수정하면 서버에 그 내용을 PUT하고 Toast를 이용해 수정완료 메세지를 띄움
 
 
-### 5) 알림 뷰
+
+### 5) 알림 뷰/ 데이터 없는 화면
 
 ![image](https://user-images.githubusercontent.com/41908152/87785748-a8fa6d80-c873-11ea-847c-e3bd157befb1.png)
-
 ![image](https://user-images.githubusercontent.com/41908152/87785793-c16a8800-c873-11ea-9b36-a5599bee5e5c.png)
 
-### 6) 마이페이지 뷰
+-popupmenu를 통해 토글 구현
+-중접 recyclerview를 이용해 내용 띄움
 
-![image](https://user-images.githubusercontent.com/41908152/87785847-e19a4700-c873-11ea-9feb-5cff0e59b790.png)
+### 6) 마이페이지 뷰/ 빈화면
 
+![image](https://user-images.githubusercontent.com/41908152/87785847-e19a4700-c873-11ea-9feb-5cff0e59b790.png)6-2
 ![image](https://user-images.githubusercontent.com/41908152/87785893-f8409e00-c873-11ea-8be1-0809a89f3a44.png)
 
 - imageView를 사용해 상단바, 프로필 추가
 - imageButton을 이용해 수업추가, 버전정보, 개발자정보, 비밀번호 변경, 로그아웃, 서비스탈퇴 버튼 추가
 - switch를 이용해 수업료 알림과 수업시작 전 알림 선택 추가
+- recyclerview를 이용해 수업목록 형태를 구성하고 서버에서 받아와 수업목록과 선택색, 학생 프로필을 띄움
+- 서버에서 userprofile을 받아와 내정보 상단의 프로필사진, role, 한줄 자기소개를 띄우고 role을 설정해 이후에 role에 따라 기능에 차이를 둘 수 있도록 함
 
 #### 6-1) 한줄소개
 
