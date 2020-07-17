@@ -24,7 +24,7 @@ import retrofit2.Response
 import java.io.File
 import java.io.InputStream
 
-var newImage : String = ""
+var newImage : String = "https://purepng.com/public/uploads/medium/purepng.com-female-studentstudenteducationalinstitutionstudentsuniversity-studentschoolfemale-student-1421526922778bm4rh.png"
 var newIntro = "수학, 과탐 1등급 만들어드립니다."
 
 class OnesentenseActivity : AppCompatActivity() {
