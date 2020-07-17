@@ -128,10 +128,136 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 ![image](https://user-images.githubusercontent.com/41908152/87788012-8ec28e80-c877-11ea-9e14-e760e92454de.png)
 
+- Material Calendar 라이브러리를 사용하여 달력 틀 잡음   
+<특정 날 일정 보여주기>
 - recyclerView를 이용해 날짜에 따른 데이터 같은 형식으로 출력
 - 날짜가 클릭되면 서버에 연결해 데이터를 받아오며 받아오는 도중에 해당 날짜에 해당하는 날의 데이터를 한곳에 모아 모든 데이터를 받아온 후에 리사이클러뷰에 띄움
 - 우측하단 이미지 버튼을 누르면 일정추가 화면으로 이동
-- 서버연결을 완료하였지만 로그인한 정보를 기준으로 동적 jwt지정 전이므로 임의로 정적 jwt를 이용해 header을 지정하고 내용을 보여줌
+- 서버연결을 완료하였지만 로그인한 정보를 기준으로 동적 jwt지정 전이므로 임의로 정적 jwt를 이용해 header을 지정하고 내용을 보여줌   
+
+
+→ CalendarFragment.kt
+
+1. 캘린더 날짜 클릭할 때마다 서버와 GET방식으로 통신하여 모든 일정의 정보를 받아온다.
+2. 달력 상에서 선택한 날짜와 서버에서 받은 날짜를 비교하여 같으면 리사이클러뷰에 띄워준다. (datas: 리사이클러뷰의 데이터)
+
+```kotlin
+// 서버 연결
+            calendarLogAdapter= CalendarLogAdapter(view.context, datas)
+
+            val calendarlogRequestToServer = CalendarLogRequestToServer
+            // 서버 요청
+            calendarlogRequestToServer.service.calendarlogRequest(
+            ).enqueue(object : Callback<CalendarLogResponseData> {
+                override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
+                    Log.d("통신 실패", "${t}")
+                }
+
+                override fun onResponse(
+                    call: Call<CalendarLogResponseData>,
+                    response: Response<CalendarLogResponseData>
+                ) {
+                    // 통신 성공
+                        if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+                            Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+
+                            //데이터가 없을 경우 haveData를 false로 바꿔줌 (캘린더는 수정 필요)
+                            if(response.body()!!.data.size == 0)
+                                haveCalendarData = false
+                            else
+                                haveCalendarData = true
+                            
+                            val Year = date.year
+                            var Month = (date.month + 1).toString()
+                            var Day = (date.day).toString()
+                            calendarlog_all_date.text = "$Day"
+                            calendarlog_all_month.text = "$Month" + "월"
+
+                            // 날짜 포맷 통일
+                            if (Month.toInt() < 10) {
+                                Month = "0$Month"
+                            }
+                            if (Day.toInt() < 10) {
+                                Day = "0$Day"
+                            }
+
+                            val shot_Day = "$Year-$Month-$Day"
+                            Log.i("shot_Day test", shot_Day + "")
+                            materialCalendarView.clearSelection()
+
+//                            Toast.makeText(
+//                                requireContext(),
+//                                shot_Day,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+
+                            var i: Int = 0
+                            for (i in 0 until response.body()!!.data.size) {
+                                Log.d("인덱스", "${i}")
+
+                                if (shot_Day == response.body()!!.data[i].classDate) {
+                                    Log.d("test", "동일")
+                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+                                    datas.apply {
+                                        add(
+                                            CalendarData(
+                                                classId = "${response.body()!!.data[i].classId}".toInt(),
+                                                startTime = "${response.body()!!.data[i].startTime}",
+                                                endTime = "${response.body()!!.data[i].endTime}",
+                                                color = "${response.body()!!.data[i].color}",
+                                                times = "${response.body()!!.data[i].times}".toInt(),
+                                                lectureName = "${response.body()!!.data[i].lectureName}",
+                                                hour = "${response.body()!!.data[i].hour}".toInt(),
+                                                location = "${response.body()!!.data[i].location}",
+                                                classDate = "${response.body()!!.data[i].classDate}"
+                                            )
+                                        )
+                                    }
+                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
+                                    Log.i("test", "${response.body()!!.data[i].color}")
+                                    calendarLogAdapter.notifyDataSetChanged()
+                                } else {
+                                    continue
+                                }
+                            }
+                        }
+                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+                        calendarLogAdapter.notifyDataSetChanged()
+                        rv_calendarlog.adapter = calendarLogAdapter
+
+                    } else {
+                        Log.d("실패", "${response.message()}")
+                    }
+                }
+            })
+        }
+    }
+```
+
+<점 찍기>   
+
+→ EventDecorator.kt
+
+EventDecorator를 이용하여 이벤트가 있는 날(일정이 있는 날)에 어떤 이벤트를 줄지 설정한다. 원하는 색상을 파싱하여 달력 상에 그 색상의 점을 찍을 수 있도록 하였다.
+
+→ CustomMultipleDotSpan.kt
+
+CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 찍을 수 있도록 하였다. 원래는 그 날에 있는 일정의 개수대로 찍으려 하였으나 아직 그렇게 하지는 못했다.
+
+→ OnDayDecorator.kt, CurrentDayDecorator.kt
+
+오늘 날짜에 이벤트를 준다. 오늘 날짜에 들어갈 원의 크기 등을 조절할 수 있다. 여기서는 네모로 적용하였다.
+
+- 해당 날짜의 특정 정보를 누르면 상세 정보를 볼 수 있다. (일정 정보 뷰) GET방식과 서버와 통신(구현 중)
+- FloatingButton을 이용해 일정을 추가할 수 있다. (일정 추가 뷰)
+- 팝업메뉴를 이용해 상단에서 전체, 특정 수업을 선택할 수 있음
+- 일정 정보 뷰에서 수업 날짜, 수업 시작, 수업 종료, 위치를 확인할 수 있다. 여기서 편집을 누르면 일정 수정 뷰로 이동한다.
+- 일정 수정 뷰에 가면 수업날짜, 수업 시작, 수업 종료, 위치를 수정할 수 있다.
+- 저장 버튼을 누르면 서버와 POST방식으로 통신하며 입력한 데이터를 서버로 보낸다. (코드 구현은 했으나 서버 통신 오류로 수정 필요)
+- 날짜, 시간은 각각 피커뷰가 적용되었다. date picker, time picker. 피커뷰 상에서 돌려가며 날짜와 시간을 선택하면 텍스트가 바로바로 변하는 것을 확인 할 수 있다.
+- 피커뷰는 visible속성을 이용해 gone으로 둔 뒤 각 입력창을 누르면 visible로 바뀌어 보이고 수정버튼이 완료버튼으로 바뀌어 보여진다. 완료버튼을 누르면 피커뷰가 다시 닫힌다.
+- 저장 버튼을 누르면 PUT방식으로 서버와 통신한다. (코드 구현 중)
 
 #### 3-1) 일정정보
 
