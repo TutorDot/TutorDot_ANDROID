@@ -38,6 +38,7 @@ kihyeon, hoijin, jungmin
 
 뷰이름 + ...
 
+
 ## 3. 목표일정
 
 [목표일정](https://www.notion.so/a85e75bc821d43ba850687d376d50c6f)
@@ -72,6 +73,7 @@ compile 'com.prolificinteractive:material-calendarview:1.4.3'
 → 캘린더뷰 캘린더에 사용 예정
 
 
+
 ## 5. 프로젝트 구조
 ![구조](https://user-images.githubusercontent.com/41908152/86928004-f8071b00-c16e-11ea-9cca-07a36a77ef21.JPG)
 
@@ -85,41 +87,58 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 수업료 입금 알림, 수업 전날 알림, 정보 숨김 알림을 받을지 받지 않을 지 설정할 수 있다.
 
 
+
+
 ## 6. 핵심 기능 구현 방법 정리 / 구현화면
 
-### 1) 스플래시
-
-![1번](https://user-images.githubusercontent.com/41908152/86928033-ff2e2900-c16e-11ea-9d56-fe25897739eb.JPG)
-
+### 1)Startpage
+#### 1-1) 스플래시
 
 - Handler().postDelayed를 이용해 스플래시 화면을 보여줄 시간 설정
+#### 1-2) 온보딩
 
-### 2) 로그인뷰
-![2번](https://user-images.githubusercontent.com/41908152/86928054-03f2dd00-c16f-11ea-8fcc-ce052494535e.JPG)
-
-
-- imageView를 사용해 로고와 핸드폰 디자인 추가
-- editText를 사용해 이메일과 비밀번호 입력창 추가
-- imageButton를 이용해 로그인버튼 추가
-- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
-
-### 3) 회원가입뷰
-![3번](https://user-images.githubusercontent.com/41908152/86928069-08b79100-c16f-11ea-8be5-31d726c0a87c.JPG)
+![image](https://user-images.githubusercontent.com/41908152/87784428-3d170580-c871-11ea-9df1-d3302138089a.png)
+![image](https://user-images.githubusercontent.com/41908152/87784470-5029d580-c871-11ea-968d-480d7d0b7bac.png)
+![image](https://user-images.githubusercontent.com/41908152/87784450-46a06d80-c871-11ea-81ce-42016218a812.png)
+![image](https://user-images.githubusercontent.com/41908152/87784493-60da4b80-c871-11ea-8e95-28c5a46f6033.png)
 
 
+### 2)로그인& 회원가입
+
+![image](https://user-images.githubusercontent.com/41908152/87784535-751e4880-c871-11ea-8bc9-7fc2e61cf312.png)
 - imageView를 사용해 로고 추가
 - editText를 사용해 이름, 이메일, 비밀번호, 비밀번호 확인 입력창 추가
 - imageButton를 이용해 튜터/튜티 선택, 동의, 회원가입 버튼 추가
 - activity_signup.kt 은 서버 연동전이므로 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인하여 회원가입 후 loginactivity로 연결
 
-### 4) 캘린더뷰
+![image](https://user-images.githubusercontent.com/41908152/87784582-8b2c0900-c871-11ea-85e5-25395fa5d041.png)
+- imageView를 사용해 로고와 핸드폰 디자인 추가
+- editText를 사용해 이메일과 비밀번호 입력창 추가
+- imageButton를 이용해 로그인버튼 추가
+- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
 
-개발중..!
 
-### 4-1) 일정추가
-![4-1번](https://user-images.githubusercontent.com/41908152/86928085-0ead7200-c16f-11ea-9f70-474e52d77e95.JPG)
+### 3)캘린더 뷰
 
+![image](https://user-images.githubusercontent.com/41908152/87788012-8ec28e80-c877-11ea-9e14-e760e92454de.png)
 
+#### 3-1) 일정정보
+
+![image](https://user-images.githubusercontent.com/41908152/87784645-a72faa80-c871-11ea-999d-6722d906d2ff.png)
+- textView를 이용해 정보 띄우기
+- imageView를 사용해 상단바 추가
+- imageButton을 이용해 일정 삭제 버튼추가
+
+#### 3-2) 일정수정
+
+![image](https://user-images.githubusercontent.com/41908152/87784663-b0207c00-c871-11ea-96cc-46f424e06325.png)
+- textView를 이용해 정보 띄우기
+- imageView를 사용해 상단바 추가
+- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
+
+#### 3-3) 일정추가
+
+![image](https://user-images.githubusercontent.com/41908152/87784695-be6e9800-c871-11ea-8599-9b2b70c98178.png)
 - imageView를 사용해 상단바 추가
 - editText를 사용해 위치정보 입력
 - imageButton을 이용해 취소, 저장버튼추가
@@ -128,23 +147,10 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
 
-### 4-2) 일정정보
-![image](https://user-images.githubusercontent.com/41908152/86928204-3ac8f300-c16f-11ea-989e-e2f2acdf6f6e.png)
 
-- textView를 이용해 정보 띄우기
-- imageView를 사용해 상단바 추가
-- imageButton을 이용해 일정 삭제 버튼추가
+### 4) 일지 뷰
 
-### 4-3) 일정수정
-![4-3번](https://user-images.githubusercontent.com/41908152/86928118-1bca6100-c16f-11ea-925a-b3ced423ad66.JPG)
-
-- textView를 이용해 정보 띄우기
-- imageView를 사용해 상단바 추가
-- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
-
-### 5) 일지뷰
-![5번](https://user-images.githubusercontent.com/41908152/86928255-4b796900-c16f-11ea-893f-5fd41abd413b.JPG)
-
+![image](https://user-images.githubusercontent.com/41908152/87785394-0c37d000-c873-11ea-8470-d5c215642065.png)
 
 - ConstraintLayout으로 상단뷰, 진행률 레이아웃, 일지 아이템뷰, 숙제 이행률 구성
 - 프로그레스바와 일지창 구성
@@ -159,16 +165,79 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - 일지 아이템 버튼 클릭 이벤트 추가
 - 커스텀 ProgressBar 이용
 
-### 6) 알림뷰
+#### 4-1) 일지수정
 
-개발중..!
+![image](https://user-images.githubusercontent.com/41908152/87785447-1fe33680-c873-11ea-8d4f-5406b86c82b5.png)
 
-### 7) 마이페이지뷰
-![7번](https://user-images.githubusercontent.com/41908152/86928287-5633fe00-c16f-11ea-927e-145c207e67a7.JPG)
+#### 4-2) 빈화면 일지
+
+![image](https://user-images.githubusercontent.com/41908152/87785503-34273380-c873-11ea-97c7-cfde6f95a51f.png)
+
+
+
+### 5) 알림 뷰
+
+![image](https://user-images.githubusercontent.com/41908152/87785748-a8fa6d80-c873-11ea-847c-e3bd157befb1.png)
+
+![image](https://user-images.githubusercontent.com/41908152/87785793-c16a8800-c873-11ea-9b36-a5599bee5e5c.png)
+
+### 6) 마이페이지 뷰
+
+![image](https://user-images.githubusercontent.com/41908152/87785847-e19a4700-c873-11ea-9feb-5cff0e59b790.png)
+
+![image](https://user-images.githubusercontent.com/41908152/87785893-f8409e00-c873-11ea-8be1-0809a89f3a44.png)
 
 - imageView를 사용해 상단바, 프로필 추가
 - imageButton을 이용해 수업추가, 버전정보, 개발자정보, 비밀번호 변경, 로그아웃, 서비스탈퇴 버튼 추가
 - switch를 이용해 수업료 알림과 수업시작 전 알림 선택 추가
+
+#### 6-1) 한줄소개
+
+![image](https://user-images.githubusercontent.com/41908152/87785967-15756c80-c874-11ea-96e9-f1f052450730.png)
+
+#### 6-2) 수업정보
+
+![image](https://user-images.githubusercontent.com/41908152/87786004-2920d300-c874-11ea-819b-4b12d5e70e48.png)
+
+#### 6-3) 수업수정
+
+![image](https://user-images.githubusercontent.com/41908152/87786033-3ccc3980-c874-11ea-8fe4-a875331b6a5f.png)
+
+#### 6-4) 수업추가
+
+![image](https://user-images.githubusercontent.com/41908152/87786122-5f5e5280-c874-11ea-90b6-40cbb20c11da.png)
+
+#### 6-5) 수업초대/ 초대코드
+![image](https://user-images.githubusercontent.com/41908152/87786175-71d88c00-c874-11ea-8556-fc249d3125d1.png)
+![image](https://user-images.githubusercontent.com/41908152/87786196-7dc44e00-c874-11ea-9574-0f875edcec21.png)
+
+#### 6-6) 개발자 정보
+
+![image](https://user-images.githubusercontent.com/41908152/87786277-a0eefd80-c874-11ea-8254-321d47a19a0c.png)
+
+
+### 7) 팝업
+
+#### 7-1) 로그아웃
+
+![image](https://user-images.githubusercontent.com/41908152/87787479-ab11fb80-c876-11ea-9a6c-de5ecac1a440.png)
+
+#### 7-2) 연결해제
+
+![image](https://user-images.githubusercontent.com/41908152/87787559-ce3cab00-c876-11ea-9efa-ecb4454402bd.png)
+
+#### 7-3) 탈퇴
+
+![image](https://user-images.githubusercontent.com/41908152/87787661-fa582c00-c876-11ea-9c3a-826c807df3a7.png)
+
+
+
+
+
+
+
+
+
 
 
 

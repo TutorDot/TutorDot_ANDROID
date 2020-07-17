@@ -21,8 +21,16 @@ import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
+import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
+import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.R
+import com.tutor.tutordot.StartServer.RequestLogin
+import com.tutor.tutordot.StartServer.RequestToServer
+import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
+import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.showToast
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
 import retrofit2.Call
@@ -33,12 +41,15 @@ import java.util.concurrent.Executors
 import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_date as calendarlog_all_date1
 import kotlinx.android.synthetic.main.item_calendarlog_all.calendarlog_all_month as calendarlog_all_month1
 
-
 class CalenderFragment : Fragment() {
 
-    //서버 연결
+    // 일정 추가 서버 연결
+    val requestToServer = RequestToServer
+
+    //캘린더 일정 목록 서버 연결
     //val calendarlogRequestToServer = CalendarLogRequestToServer
-    // 더미
+
+    // 캘린더 일정 더미
      val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
     lateinit var calendarLogAdapter: CalendarLogAdapter
 
@@ -144,7 +155,7 @@ class CalenderFragment : Fragment() {
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
         // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
-        calendarlog_all_date.text = "15"
+        calendarlog_all_date.text = "18"
         calendarlog_all_month.text = "7" + "월"
         materialCalendarView.addDecorators(
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
@@ -152,7 +163,7 @@ class CalenderFragment : Fragment() {
 
 
         val result =
-            arrayOf("2020,07,11", "2020,07,15", "2020,07,15", "2020,07,17", "2020,07,18")
+            arrayOf("2020,06,30", "2020,07,12", "2020,07,13", "2020,07,17", "2020,07,18", "2020,07,24", "2020,07,25", "2020,07,31", "2020,08,14")
 //        for (i in 0..4) {
 //            val eventCount = 3
 //            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
