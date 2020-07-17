@@ -49,6 +49,10 @@ kihyeon, hoijin, jungmin
 
 3) showToast   
 -> 세미나 때 사용   
+### 3. 패키지 분류 이미지
+
+![image](https://user-images.githubusercontent.com/41908152/87796285-1adab300-c884-11ea-878d-5d2e6498f713.png)
+
 
 ## 4. 사용라이브러리와 목적
 ### 1) 리사이클러뷰
@@ -359,9 +363,19 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 
 ![image](https://user-images.githubusercontent.com/41908152/87785967-15756c80-c874-11ea-96e9-f1f052450730.png)
 
+-마이페이지 화면에서 프로필 사진을 클릭하면 회원정보를 서버에 연결해 받아온 후 한줄 소개페이지에 띄움
+-Edittext창을 통해 소개를 수정할 수 있고 사진을 클릭하면 자신의 갤러리에서 사진을 선택해 업로드 할 수 있음
+-취소버튼을 누르면 뒤로가기를 가능하고 저장 버튼을 누르면 바뀐 내용을 서버에 전송함
+
 #### 6-2) 수업정보
 
 ![image](https://user-images.githubusercontent.com/41908152/87786004-2920d300-c874-11ea-819b-4b12d5e70e48.png)
+
+- 마이페이지의 수업리스트 리사이클러뷰안의 항목을 누르면 자세한 수업 정보를 띄우기 위해 수업정보 activity로 이동한다.
+- 복사 버튼을 누르면 계좌 정보가 자동으로 클립보드에 복사된다.
+- 편집 버튼을 누르면 수업 정보를 수정할 수 있는 수업 수정 activity로 이동한다
+- 과외초대 버튼을 누르면 수업초대 코드를 볼 수 있는 페이지로 이동한다.
+- 연결해제 버튼을 누르면 연결을 해제할지 물어보는 팝업을 띄운다.
 
 #### 6-3) 수업수정
 
@@ -375,10 +389,14 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 ![image](https://user-images.githubusercontent.com/41908152/87786175-71d88c00-c874-11ea-8556-fc249d3125d1.png)
 ![image](https://user-images.githubusercontent.com/41908152/87786196-7dc44e00-c874-11ea-9574-0f875edcec21.png)
 
+- 서버에서 주는 각 수업에 대한 랜덤코드가 나타난다. 옆의 복사 버튼을 누르면 코드가 한번에 자동으로 복사된다.
+- 튜티는 튜터에게 받은 초대코드를 입력하면 해당 수업에 들어갈 수 있다.
+
 #### 6-6) 개발자 정보
 
 ![image](https://user-images.githubusercontent.com/41908152/87786277-a0eefd80-c874-11ea-8254-321d47a19a0c.png)
 
+- 개발자들의 정보가 나타난다.
 
 ### 7) 팝업
 
@@ -386,15 +404,21 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 
 ![image](https://user-images.githubusercontent.com/41908152/87787479-ab11fb80-c876-11ea-9a6c-de5ecac1a440.png)
 
+-로그아웃 버튼을 누르면 자동 로그인이 해제되고  로그인 화면으로 이동한다. 
+- "아니오, 취소합니다"를 누르면 팝업창이 사라진다. 
+
 #### 7-2) 연결해제
 
 ![image](https://user-images.githubusercontent.com/41908152/87787559-ce3cab00-c876-11ea-9efa-ecb4454402bd.png)
+- 수업 연결을 해제하게 되면 수업을 추가하기 위한 수업 추가 뷰가 등장한다. 
+- 취소하게 되면 팝업창이 사라진다.
+
 
 #### 7-3) 탈퇴
 
 ![image](https://user-images.githubusercontent.com/41908152/87787661-fa582c00-c876-11ea-9c3a-826c807df3a7.png)
 
-
+-탈퇴합니다를 누르면 회원가입 페이지로 이동하고, 취소하게 되면 팝업창이 사라진다.
 
 
 
