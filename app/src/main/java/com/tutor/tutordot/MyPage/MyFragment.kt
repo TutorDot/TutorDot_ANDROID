@@ -26,6 +26,7 @@ import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.android.synthetic.main.item_mypage.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -165,6 +166,8 @@ class MyFragment : Fragment() {
             recyclerView_my.visibility = View.GONE
             cl_my.visibility =View.VISIBLE
         }
+
+
     }
 
     private fun loadDatas(){
@@ -173,14 +176,13 @@ class MyFragment : Fragment() {
         var classlistLectureName: String
         var classlistProfile1 : String
         var classlistColor: String
-        var classlistprofile1: String
-        var classlistprofile2: String
+        var classlistprofile1: String?
+        var classlistprofile2: String?
 
 
         mypageRequestToServer.service.classListRequest(
         ).enqueue(object: Callback<ClassListResponse>{
             override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
-                Log.d("통신 실패", "classlist통신 실패${t}")
                 Log.d("통신 실패", "classlist통신 실패${t}")
             }
             override fun onResponse(
@@ -190,10 +192,37 @@ class MyFragment : Fragment() {
                 if (response.isSuccessful){
                     if(response.body()!!.success) {
                         Log.d("성공", "classlist성공")
-                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                        Log.d(response.body()!!.data.toString(),response.body()!!.data[0].toString())
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
+                        Log.d("개수", "${response.body()!!.data[0]}")
 
+
+                        for (i in 0 until response.body()!!.data.size){
+                        classlistColor=response.body()!!.data[i]!!.color.toString()
+                        classlistLectureName=response.body()!!.data[i]!!.lectureName.toString()
+                            if (response.body()!!.data[i]!!.profileUrls.size==1){
+                                classlistprofile2=null
+                                classlistprofile1=response.body()!!.data[i]!!.profileUrls[0].profileUrl
+                            } else if (response.body()!!.data[i]!!.profileUrls.size==2){
+                                classlistprofile1=response.body()!!.data[i]!!.profileUrls[0].profileUrl
+                                classlistprofile2=response.body()!!.data[i]!!.profileUrls[1].profileUrl}else{
+                                classlistprofile2=null
+                                classlistprofile1=null
+                            }
+
+
+                        datas.apply{
+                            add(
+                                MypageData(
+                                    color = classlistColor,
+                                    content= classlistLectureName,
+                                    profileUrl1 = classlistprofile1,
+                                    profileUrl2 = classlistprofile2
+                                ))}
+                        mypageAdapter.datas = datas
+                        mypageAdapter.notifyDataSetChanged()
+                            }
                     }else{
                         Log.d("실패", "classlist실패")
                     }
@@ -202,21 +231,23 @@ class MyFragment : Fragment() {
 
         })
 
-        datas.apply{
+//        datas.apply{
 //            add(
 //                MypageData(
- //                   color = "@drawable/notice_color_img_red",
-//                    content= "나와라ㅏㅏㅏ"
- //               ))
+//                    color = "@drawable/notice_color_img_red",
+//                    content= "나와라ㅏㅏㅏ",
+//                    profileUrl2 = classlistprofile1,
+//                    profileUrl1 = classlistprofile2
+//                ))
  //           add(
  //               MypageData(
  //                   color = "@drawable/notice_color_img_green",
 //                    content= "나와라ㅏㅏㅏ2"
 //                ))
 
-        }
-        mypageAdapter.datas = datas
-        mypageAdapter.notifyDataSetChanged()
+ //       }
+ //       mypageAdapter.datas = datas
+ //       mypageAdapter.notifyDataSetChanged()
     }
 
 
