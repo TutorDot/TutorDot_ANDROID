@@ -2,6 +2,7 @@ package com.tutor.tutordot.Calendar
 
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Insets.add
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,8 @@ class CalenderFragment : Fragment() {
 
     //서버 연결
     //val calendarlogRequestToServer = CalendarLogRequestToServer
+    // 더미
+     val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
     lateinit var calendarLogAdapter: CalendarLogAdapter
 
     //현재 달 구하기
@@ -206,6 +209,17 @@ class CalenderFragment : Fragment() {
         }
 
 
+//        // 더미 버전
+//        calendarLogAdapter = CalendarLogAdapter(view.context)
+//        rv_calendarlog.adapter = calendarLogAdapter  // 리사이클러뷰의 어댑터를 calendarLogAdapter 지정해줌
+//        loadDatas()
+
+
+//        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+//        calendarLogAdapter.notifyDataSetChanged()
+//        rv_calendarlog.adapter = calendarLogAdapter
+
+
         // 캘린더 날짜 클릭 변경
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
@@ -230,7 +244,10 @@ class CalenderFragment : Fragment() {
             Log.i("shot_Day test", shot_Day + "")
 
 
+
+            // 서버 연결
             calendarLogAdapter= CalendarLogAdapter(view.context, datas)
+
             val calendarlogRequestToServer = CalendarLogRequestToServer
             // 서버 요청
             calendarlogRequestToServer.service.calendarlogRequest(
@@ -265,11 +282,12 @@ class CalenderFragment : Fragment() {
                             val shot_Day = "$Year-$Month-$Day"
                             Log.i("shot_Day test", shot_Day + "")
                             materialCalendarView.clearSelection()
-                            Toast.makeText(
-                                requireContext(),
-                                shot_Day,
-                                Toast.LENGTH_SHORT
-                            ).show()
+
+//                            Toast.makeText(
+//                                requireContext(),
+//                                shot_Day,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
 
                             var i: Int = 0
                             for (i in 0 until response.body()!!.data.size) {
@@ -315,7 +333,7 @@ class CalenderFragment : Fragment() {
 
 
 //    private fun allloadDatas() {
-//        val calendarlogRequestToServer = CalendarLogRequestToServer   // 도서 싱글톤 가져옴
+//        val calendarlogRequestToServer = CalendarLogRequestToServer
 //        // 서버 요청
 //        calendarlogRequestToServer.service.calendarlogRequest(
 //        ).enqueue(object : Callback<CalendarLogResponseData> {
@@ -346,5 +364,47 @@ class CalenderFragment : Fragment() {
 //            }
 //
 //        })
+//    }
+
+
+    // 더미 버전
+//    private fun loadDatas() {
+//        datas.apply {
+//            add(
+//                CalendarLogData(
+//                    starttime = "2:00PM",
+//                    endtime = "4:00PM",
+//                    img_color = "yellow",
+//                    times = 1,
+//                    title = "김회진 튜티 수학 수업",
+//                    studytime = 1,
+//                    location = "원당역 할리스"
+//                )
+//            )
+//            add(
+//                CalendarLogData(
+//                    starttime = "1:00PM",
+//                    endtime = "5:00PM",
+//                    img_color = "green",
+//                    times = 1,
+//                    title = "신연상 튜티 수학 수업",
+//                    studytime = 2,
+//                    location = "강남구청역 스타벅스"
+//                )
+//            )
+//            add(
+//                CalendarLogData(
+//                    starttime = "5:00PM",
+//                    endtime = "6:00PM",
+//                    img_color = "yellow",
+//                    times = 2,
+//                    title = "김회진 튜티 물리 수업",
+//                    studytime = 5,
+//                    location = "수유역 할리스"
+//                )
+//            )
+//        }
+//        calendarLogAdapter.datas = datas
+//        calendarLogAdapter.notifyDataSetChanged()
 //    }
 }
