@@ -148,7 +148,7 @@
                     android:id="@+id/schedule_add_date_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="2020년 7월 18일"
+
                     android:fontFamily="@font/apple_sdgothic_neo_m"
                     android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
@@ -226,7 +226,7 @@
                     android:id="@+id/schedule_add_start_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="3:00 pm"
+
                     android:fontFamily="@font/apple_sdgothic_neo_m"
                     android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
@@ -301,7 +301,7 @@
                     android:id="@+id/schedule_add_end_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="8:00 pm"
+
                     android:fontFamily="@font/apple_sdgothic_neo_m"
                     android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"

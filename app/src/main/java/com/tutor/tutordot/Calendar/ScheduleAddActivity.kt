@@ -6,13 +6,18 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import retrofit2.Callback
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
+import com.tutor.tutordot.Calendar.Server.ScheduleAddResponse
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.customEnqueue
@@ -24,6 +29,8 @@ import kotlinx.android.synthetic.main.activity_schedule_add.fix3
 import kotlinx.android.synthetic.main.activity_schedule_edit.*
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
+import retrofit2.Call
+import retrofit2.Response
 import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
@@ -59,31 +66,49 @@ class ScheduleAddActivity : AppCompatActivity() {
             finish()
         }
 
-        //저장 버튼 누르면 일정 정보 화면으로 이동
+        // (서버) 저장 버튼 누르면 일정 정보 화면으로 이동
         schedule_add_btn_save.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                /*
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleAddRequest(
                     ScheduleAddRequest(
                         lectureId = 1,
-                        date = " ",
-                        startTime = " ",
-                        endTime = " ",
-                        location = "schedule_edit_location_txt.text"
-                    )//정보를 전달
-                ).customEnqueue(
-                    onError = {Log.d("올바르지 못한 요청입니다","올바르지 못한 요청입니다")},
-                    onSuccess = {
-                        if (it.success) {
-                            Log.d("수업 수정 완료","수정 완료")
-                            showToast("수업 수정이 완료되었습니다.")
-                        } else {
-                            Log.d("수정 실패","수정 실패")
+                        date = schedule_add_date_txt.toString(),
+                        startTime = "${schedule_add_start_txt}",
+                        endTime = "${schedule_add_end_txt}",
+                        location = schedule_add_location_txt.text.toString()
+                    )// 정보를 전달
+                ).enqueue(object : Callback<ScheduleAddResponse> { // Callback 등록 (서버 통신 비동기적 요청)
+
+                    // 비동기 요청 후 응답을 받았을 때 수행할 행동이 정의된 곳
+                    override fun onFailure(call: Call<ScheduleAddResponse>, t: Throwable){
+                        // 통신 실패
+                        Toast.makeText(this@ScheduleAddActivity, "통신 실패", Toast.LENGTH_SHORT).show()
+                        Log.d("통신 실패","${t}")
+                    }
+                    override fun onResponse(
+                        call: Call<ScheduleAddResponse>,
+                        response: Response<ScheduleAddResponse>
+                    ) {
+                        // 통신 성공
+                        if(response.isSuccessful){  // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                            if(response.body()!!.success){  // ResponseLogin의 success가 true인 경우 -> 로그인
+                                //Toast.makeText(this@ScheduleAddActivity, "추가 성공", Toast.LENGTH_SHORT).show()
+                                showToast("일정 추가가 완료되었습니다.")
+
+                                Log.d("startTime","${schedule_add_start_txt}")
+                                Log.d("location","${schedule_add_location_txt}")
+
+                                val intent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else{
+                                //Toast.makeText(this@ScheduleAddActivity, "추가 실패", Toast.LENGTH_SHORT).show()
+                                Log.d("추가 실패","추가 실패")
+                            }
                         }
                     }
-                )
-                 */
+                })
 
                 val backIntent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
                 startActivity(backIntent)
@@ -114,7 +139,7 @@ class ScheduleAddActivity : AppCompatActivity() {
         // 날짜 선택
         date_picker.setOnDateChangedListener{
             view, year, monthOfYear, dayOfMonth ->
-            schedule_add_date_txt.text = "${year}" + "년 ${monthOfYear+1}" + "월 ${dayOfMonth}" + "일"
+            schedule_add_date_txt.text = "${year}" + "- ${monthOfYear+1}" + "- ${dayOfMonth}"
         }
 
         // 시간 선택
@@ -129,6 +154,21 @@ class ScheduleAddActivity : AppCompatActivity() {
                 view,hourOfDay,minute->
             schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
         }
+
+
+//        schedule_add_location_txt.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(searchtext: Editable?) {
+//
+//            }
+//
+//            override fun beforeTextChanged(searchtext: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(searchtext: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                schedule_add_end_txt.text = "${schedule_add_end_txt.text}"
+//            }
+//        })
 
 
         schedule_add_date_constraint.setOnClickListener{
