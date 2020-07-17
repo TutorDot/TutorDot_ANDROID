@@ -102,6 +102,10 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 ![image](https://user-images.githubusercontent.com/41908152/87784450-46a06d80-c871-11ea-81ce-42016218a812.png)
 ![image](https://user-images.githubusercontent.com/41908152/87784493-60da4b80-c871-11ea-8e95-28c5a46f6033.png)
 
+- fragment와 viewPager을 이용해 화면전환 기능 추가
+- tablayout을 통해 화면 전환상태 표시
+- imageButton과 intent를 통해 회원가입뷰, 로그인 뷰로 전환
+
 
 ### 2)로그인& 회원가입
 
@@ -109,24 +113,28 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - imageView를 사용해 로고 추가
 - editText를 사용해 이름, 이메일, 비밀번호, 비밀번호 확인 입력창 추가
 - imageButton를 이용해 튜터/튜티 선택, 동의, 회원가입 버튼 추가
-- activity_signup.kt 은 서버 연동전이므로 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인하여 회원가입 후 loginactivity로 연결
+- activity_signup.kt 은 클라이언트에서 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인완료 한 후서버에 연동해 회원가입 → loginactivity로 연결
 
 ![image](https://user-images.githubusercontent.com/41908152/87784582-8b2c0900-c871-11ea-85e5-25395fa5d041.png)
 - imageView를 사용해 로고와 핸드폰 디자인 추가
 - editText를 사용해 이메일과 비밀번호 입력창 추가
 - imageButton를 이용해 로그인버튼 추가
-- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
+- activity_login.kt 은 서버 연동전에 이메일과 비밀번호 입력 여부, 자동로그인 확인하고 서버에 데이터를 전송하여 로그인 후 calendaractivity로 연결
+- sharedpreference를 이용해 자동로그인 기능 구현
 
 
 ### 3)캘린더 뷰
 
 ![image](https://user-images.githubusercontent.com/41908152/87788012-8ec28e80-c877-11ea-9e14-e760e92454de.png)
 
+- recyclerView를 이용해 날짜에 따른 데이터 같은 형식으로 출력
+- 날짜가 클릭되면 서버에 연결해 데이터를 받아오며 받아오는 도중에 해당 날짜에 해당하는 날의 데이터를 한곳에 모아 모든 데이터를 받아온 후에 리사이클러뷰에 띄움
+
 #### 3-1) 일정정보
 
 ![image](https://user-images.githubusercontent.com/41908152/87784645-a72faa80-c871-11ea-999d-6722d906d2ff.png)
 - textView를 이용해 정보 띄우기
-- imageView를 사용해 상단바 추가
+- View를 사용해 상단바 추가
 - imageButton을 이용해 일정 삭제 버튼추가
 
 #### 3-2) 일정수정
