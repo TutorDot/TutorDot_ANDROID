@@ -87,39 +87,56 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 ## 6. 핵심 기능 구현 방법 정리 / 구현화면
 
-### 1) 스플래시
-
-![1번](https://user-images.githubusercontent.com/41908152/86928033-ff2e2900-c16e-11ea-9d56-fe25897739eb.JPG)
-
+###1)Startpage
+####1-1) 스플래시
 
 - Handler().postDelayed를 이용해 스플래시 화면을 보여줄 시간 설정
+####1-2) 온보딩
 
-### 2) 로그인뷰
-![2번](https://user-images.githubusercontent.com/41908152/86928054-03f2dd00-c16f-11ea-8fcc-ce052494535e.JPG)
+![image](https://user-images.githubusercontent.com/41908152/87784428-3d170580-c871-11ea-9df1-d3302138089a.png)
 
+![image](https://user-images.githubusercontent.com/41908152/87784470-5029d580-c871-11ea-968d-480d7d0b7bac.png)
 
-- imageView를 사용해 로고와 핸드폰 디자인 추가
-- editText를 사용해 이메일과 비밀번호 입력창 추가
-- imageButton를 이용해 로그인버튼 추가
-- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
+![image](https://user-images.githubusercontent.com/41908152/87784450-46a06d80-c871-11ea-81ce-42016218a812.png)
 
-### 3) 회원가입뷰
-![3번](https://user-images.githubusercontent.com/41908152/86928069-08b79100-c16f-11ea-8be5-31d726c0a87c.JPG)
+![image](https://user-images.githubusercontent.com/41908152/87784493-60da4b80-c871-11ea-8e95-28c5a46f6033.png)
 
+###2)로그인& 회원가입
 
+![image](https://user-images.githubusercontent.com/41908152/87784535-751e4880-c871-11ea-8bc9-7fc2e61cf312.png)
 - imageView를 사용해 로고 추가
 - editText를 사용해 이름, 이메일, 비밀번호, 비밀번호 확인 입력창 추가
 - imageButton를 이용해 튜터/튜티 선택, 동의, 회원가입 버튼 추가
 - activity_signup.kt 은 서버 연동전이므로 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인하여 회원가입 후 loginactivity로 연결
 
-### 4) 캘린더뷰
+![image](https://user-images.githubusercontent.com/41908152/87784582-8b2c0900-c871-11ea-85e5-25395fa5d041.png)
+- imageView를 사용해 로고와 핸드폰 디자인 추가
+- editText를 사용해 이메일과 비밀번호 입력창 추가
+- imageButton를 이용해 로그인버튼 추가
+- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
 
-개발중..!
 
-### 4-1) 일정추가
-![4-1번](https://user-images.githubusercontent.com/41908152/86928085-0ead7200-c16f-11ea-9f70-474e52d77e95.JPG)
+###3)캘린더 뷰
 
+![image](https://user-images.githubusercontent.com/41908152/87784618-98e18e80-c871-11ea-8475-71a5e2011f3c.png)
 
+####3-1) 일정정보
+
+![image](https://user-images.githubusercontent.com/41908152/87784645-a72faa80-c871-11ea-999d-6722d906d2ff.png)
+- textView를 이용해 정보 띄우기
+- imageView를 사용해 상단바 추가
+- imageButton을 이용해 일정 삭제 버튼추가
+
+####3-2) 일정수정
+
+![image](https://user-images.githubusercontent.com/41908152/87784663-b0207c00-c871-11ea-96cc-46f424e06325.png)
+- textView를 이용해 정보 띄우기
+- imageView를 사용해 상단바 추가
+- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
+
+####3-3) 일정추가
+
+![image](https://user-images.githubusercontent.com/41908152/87784695-be6e9800-c871-11ea-8599-9b2b70c98178.png)
 - imageView를 사용해 상단바 추가
 - editText를 사용해 위치정보 입력
 - imageButton을 이용해 취소, 저장버튼추가
@@ -128,19 +145,10 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
 
-### 4-2) 일정정보
-![image](https://user-images.githubusercontent.com/41908152/86928204-3ac8f300-c16f-11ea-989e-e2f2acdf6f6e.png)
 
-- textView를 이용해 정보 띄우기
-- imageView를 사용해 상단바 추가
-- imageButton을 이용해 일정 삭제 버튼추가
 
-### 4-3) 일정수정
-![4-3번](https://user-images.githubusercontent.com/41908152/86928118-1bca6100-c16f-11ea-925a-b3ced423ad66.JPG)
 
-- textView를 이용해 정보 띄우기
-- imageView를 사용해 상단바 추가
-- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
+
 
 ### 5) 일지뷰
 ![5번](https://user-images.githubusercontent.com/41908152/86928255-4b796900-c16f-11ea-893f-5fd41abd413b.JPG)
