@@ -25,6 +25,7 @@
         android:layout_marginBottom="13dp"
         android:lineSpacingExtra="5sp"
         android:text="월"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:textColor="#707070"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_day"
@@ -56,6 +57,7 @@
         android:text="00:00 AM"
         android:textColor="#707070"
         android:textSize="15sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintBottom_toBottomOf="@+id/btn_start"
         app:layout_constraintStart_toStartOf="@+id/btn_start"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,6 +84,7 @@
         android:text="00:00 AM"
         android:textColor="#707070"
         android:textSize="15sp"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintBottom_toBottomOf="@+id/btn_end"
         app:layout_constraintStart_toEndOf="@+id/btn_start"
         app:layout_constraintTop_toTopOf="@+id/btn_end" />
@@ -139,7 +142,7 @@
             android:lineSpacingExtra="4sp"
             android:textColor="#707070"
             android:textSize="12sp"
-
+            android:fontFamily="@font/apple_sdgothic_neo_m"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/layoutthird"

@@ -37,7 +37,8 @@
                 android:textColor="#000000"
                 android:lineSpacingExtra="5sp"
                 android:layout_marginLeft="20dp"
-                android:text="5월"/>
+                android:text="5월"
+                android:fontFamily="@font/apple_sdgothic_neo_m"/>
         </LinearLayout>
 
         <View
