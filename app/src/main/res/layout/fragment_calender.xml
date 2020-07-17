@@ -101,8 +101,8 @@
             android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="15dp"
-            android:background="#777777" />
+            android:layout_gravity="center"
+            android:background="#ececec" />
     </LinearLayout>
 
 
