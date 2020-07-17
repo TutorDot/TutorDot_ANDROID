@@ -111,6 +111,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 ![image](https://user-images.githubusercontent.com/41908152/87800568-86734f00-c889-11ea-9f18-699f6ec08b93.png)
 ![image](https://user-images.githubusercontent.com/41908152/87800627-94c16b00-c889-11ea-8eeb-4d37e22d2f57.png)
 ![image](https://user-images.githubusercontent.com/41908152/87800675-a73ba480-c889-11ea-9da4-052372aa1904.png)
+![image](https://user-images.githubusercontent.com/41908152/87800838-deaa5100-c889-11ea-9047-24a81e146ac1.png)
+
 
 
 ## 6. 핵심 기능 구현 방법 정리 / 구현화면
