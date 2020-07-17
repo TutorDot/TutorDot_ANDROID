@@ -35,6 +35,21 @@ kihyeon, hoijin, jungmin
 
 [목표일정](https://www.notion.so/a85e75bc821d43ba850687d376d50c6f)
 
+
+## A-2 코틀린으로 안드로이드 앱 개발
+
+- 아래 항목 모두 포함되어야 하나로 인정
+1. kotlin collection 의 확장함수 사용(filter, map...)   
+
+1) customEnqueue   
+-> extention 폴더에서 customEnqueue.kt   
+
+2) moveActi   
+-> extention 폴더에서 moveAci   
+
+3) showToast   
+-> 세미나 때 사용   
+
 ## 4. 사용라이브러리와 목적
 ### 1) 리사이클러뷰
 
