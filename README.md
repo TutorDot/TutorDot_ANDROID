@@ -1,11 +1,3 @@
-<역할>
-캘린더뷰, 수업일지뷰, 알림뷰, 마이페이지뷰, 로그인
-- 김기현: 수업일지뷰 + 캘린더뷰
-- 김회진: 캘린더뷰
-- 이정민: 알림뷰 + 로그인뷰(시작부분부터 화면 연결) + 마이페이지
-
-
-
 ## 1. git
 
 ### 1) 깃커밋 형식
@@ -68,10 +60,21 @@ compile 'com.prolificinteractive:material-calendarview:1.4.3'
 
 → 캘린더뷰에서 캘린더 적용에 사용. 조금 수정하여 커스텀 예정.
 
-### 5) 구글 캘린더 api
+### 5) 스플래시 애니메이션
 
-→ 캘린더뷰 캘린더에 사용 예정
+→ 스플래시에 사용   
 
+### 6) Retrofit 라이브러리
+
+compile 'com.prolificinteractive:material-calendarview:1.4.3'
+
+→ 서버 통신에 사용
+
+### 7) Gson 라이브러리
+
+→ 객체 시리얼라이즈를 위해 사용
+
+### 8) crop 라이브러리
 
 
 ## 5. 프로젝트 구조
@@ -252,11 +255,7 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 - 해당 날짜의 특정 정보를 누르면 상세 정보를 볼 수 있다. (일정 정보 뷰) GET방식과 서버와 통신(구현 중)
 - FloatingButton을 이용해 일정을 추가할 수 있다. (일정 추가 뷰)
 - 팝업메뉴를 이용해 상단에서 전체, 특정 수업을 선택할 수 있음
-- 일정 정보 뷰에서 수업 날짜, 수업 시작, 수업 종료, 위치를 확인할 수 있다. 여기서 편집을 누르면 일정 수정 뷰로 이동한다.
-- 일정 수정 뷰에 가면 수업날짜, 수업 시작, 수업 종료, 위치를 수정할 수 있다.
-- 저장 버튼을 누르면 서버와 POST방식으로 통신하며 입력한 데이터를 서버로 보낸다. (코드 구현은 했으나 서버 통신 오류로 수정 필요)
-- 날짜, 시간은 각각 피커뷰가 적용되었다. date picker, time picker. 피커뷰 상에서 돌려가며 날짜와 시간을 선택하면 텍스트가 바로바로 변하는 것을 확인 할 수 있다.
-- 피커뷰는 visible속성을 이용해 gone으로 둔 뒤 각 입력창을 누르면 visible로 바뀌어 보이고 수정버튼이 완료버튼으로 바뀌어 보여진다. 완료버튼을 누르면 피커뷰가 다시 닫힌다.
+
 - 저장 버튼을 누르면 PUT방식으로 서버와 통신한다. (코드 구현 중)
 
 #### 3-1) 일정정보
@@ -265,14 +264,18 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 - textView를 이용해 정보 띄우기
 - View를 사용해 상단바 추가
 - imageButton을 이용해 일정 삭제 버튼추가
-- 상단 좌측 이미지 버튼을 누르면 activity를 finish()하여 이전 화면으로 돌아감
+- 상단 좌측 이미지 버튼을 누르면 activity를 finish()하여 이전 화면으로 돌아감   
+- 일정 정보 뷰에서 수업 날짜, 수업 시작, 수업 종료, 위치를 확인할 수 있다. 여기서 편집을 누르면 일정 수정 뷰로 이동.
 
 #### 3-2) 일정수정
 
 ![image](https://user-images.githubusercontent.com/41908152/87784663-b0207c00-c871-11ea-96cc-46f424e06325.png)
 - textView를 이용해 정보 띄우기
 - imageView를 사용해 상단바 추가
-- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
+- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가   
+- 날짜, 시간은 각각 피커뷰가 적용되었다. date picker, time picker. 피커뷰 상에서 돌려가며 날짜와 시간을 선택하면 텍스트가 바로바로 변하는 것을 확인 할 수 있다.
+- 피커뷰는 visible속성을 이용해 gone으로 둔 뒤 각 입력창을 누르면 visible로 바뀌어 보이고 수정버튼이 완료버튼으로 바뀌어 보여진다. 완료버튼을 누르면 피커뷰가 다시 닫힌다.
+- 일정 수정 뷰에 가면 수업날짜, 수업 시작, 수업 종료, 위치를 수정 가능   
 
 #### 3-3) 일정추가
 
@@ -282,8 +285,8 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 - imageButton을 이용해 취소, 저장버튼추가
 - timePicker을 이용해 수업 시작, 종료시간 입력
 - datePicker을 이용해 날짜 입력
-- Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
-
+- Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.   
+- 저장 버튼을 누르면 서버와 POST방식으로 통신하며 입력한 데이터를 서버로 보낸다. (코드 구현은 했으나 서버 통신 오류로 수정 필요)
 
 
 ### 4) 일지 뷰
@@ -388,28 +391,7 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 
 
 -추가-
-### **1. 구글 캘린더 api 적용**
-
-#### **1. 라이브러리 추가**
-
-- build.gradle에 추가
-```kotlin
-// 구글 캘린더 api
-    implementation 'androidx.media:media:1.0.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'pub.devrel:easypermissions:0.3.0'
-    implementation('com.google.api-client:google-api-client-android:1.22.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    implementation('com.google.apis:google-api-services-calendar:v3-rev235-1.22.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-```
-
-- AndroidManifest.xml에 인터넷 권한 추가
-
-### 2. GuideLine 사용
+### 1. GuideLine 사용
 
 - 캘린더뷰 - 일정추가 activity_calendar_add.xml
 ```kotlin
@@ -421,7 +403,7 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
         app:layout_constraintGuide_begin="20dp"/>
 ```
 
-### 3. Chain 사용
+### 2. Chain 사용
 
 - 캘린더뷰 - 일정추가 activity_calendar_add.xml
 ```kotlin
@@ -864,5 +846,8 @@ CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+
+### 3. match_constraint   
+
     
 
