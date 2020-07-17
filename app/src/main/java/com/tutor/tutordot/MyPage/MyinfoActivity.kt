@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -65,7 +66,7 @@ class MyinfoActivity : AppCompatActivity() {
 
         //클립보드 복사부분
         val textView = findViewById(R.id.account_number) as TextView //텍스트뷰
-        val copybutton = findViewById<ImageButton>(R.id.my_class_tap_btn_copy)
+        val copybutton = findViewById<Button>(R.id.my_class_tap_btn_copy)
         val copytext = textView.text.toString() // 텍스트뷰 글자 가져옴
 
         copybutton.setOnTouchListener(object : View.OnTouchListener {

@@ -120,7 +120,7 @@ class ScheduleEditActivity : AppCompatActivity() {
                     // 비동기 요청 후 응답을 받았을 때 수행할 행동이 정의된 곳
                     override fun onFailure(call: Call<ScheduleEditResponse>, t: Throwable){
                         // 통신 실패
-                        Toast.makeText(this@ScheduleEditActivity, "통신 실패", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(this@ScheduleEditActivity, "통신 실패", Toast.LENGTH_SHORT).show()
                         Log.d("통신 실패","${t}")
                     }
                     override fun onResponse(
