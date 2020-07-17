@@ -9,7 +9,7 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.Server.LogSomeData
 import com.tutor.tutordot.R
 
-/*
+
 //서버 연동
 class LogAdapter(private val context : Context, var datas : List<LogSomeData>) : RecyclerView.Adapter<LogViewHolder>() {
     //var datas : MutableList<LogData> = mutableListOf<LogData>()
@@ -26,8 +26,8 @@ class LogAdapter(private val context : Context, var datas : List<LogSomeData>) :
         holder.bind(datas[position])
     }
 }
- */
 
+/*
 class LogAdapter(private val context : Context) : RecyclerView.Adapter<LogViewHolder>() {
     var datas : MutableList<LogData> = mutableListOf<LogData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
@@ -45,3 +45,5 @@ class LogAdapter(private val context : Context) : RecyclerView.Adapter<LogViewHo
         holder.bind(datas[position])
     }
 }
+
+ */

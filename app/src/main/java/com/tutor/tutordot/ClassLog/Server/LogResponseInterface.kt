@@ -17,6 +17,7 @@ interface LogResponseInterface{
     @GET("/diary/bar/2")
     fun progressRequest2() : Call<ProgressResponse2>
 
+    @Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NDgzMzkwMywiZXhwIjoxNTk2MDQzNTAzLCJpc3MiOiJvdXItc29wdCJ9.E4RNGNpeJENsAOZ5v8W_9tXpZjqKdXypbBZFYOSpZMI")
     @PUT("/diary/hw/2")
     fun logModiRequest(@Body body : LogModiRequest) : Call<LogModiResponse>
 }

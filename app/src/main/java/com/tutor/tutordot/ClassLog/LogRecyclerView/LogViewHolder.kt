@@ -38,10 +38,11 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     //일지 아이템 수정
     val cl_log_item = itemView.findViewById<ConstraintLayout>(R.id.cl_log_item)
 
-    /*
+
     //서버 연동
     fun bind(logSomeData : LogSomeData) {
 
+        /*//서버x
         //일지 내용 수정
         if(modi_check) {
             logSomeData.classProgress =
@@ -50,6 +51,8 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                 ser_hw
             modi_check = false
         }
+
+         */
 
         tv_times.text = logSomeData.times.toString() + "회차 " + logSomeData.times.toString() + "시간 / " + logSomeData.hour.toString() + "시간"
         tv_progress.text = "진도 : " + logSomeData.classProgress
@@ -104,7 +107,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
         completeTmp = complete
     }
-     */
+     /*
 
     fun bind(logData : LogData) {
 
@@ -238,5 +241,5 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         }
 
         completeTmp = complete
-    }
+    }*/
 }

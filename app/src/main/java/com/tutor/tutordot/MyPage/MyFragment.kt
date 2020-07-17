@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
@@ -108,8 +109,14 @@ class MyFragment : Fragment() {
 
         //화면이동
         imageButton2.setOnClickListener{
-            val intent = Intent(activity, AddclassActivity::class.java)
-            startActivity(intent)
+            if(role == "tutor"){
+                val intent = Intent(activity, AddclassActivity::class.java)
+                startActivity(intent)
+            }
+            else if(role == "tutee"){
+                val intent = Intent(activity, InviteForTuteeActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         my_img_profile.setOnClickListener{
@@ -197,6 +204,12 @@ class MyFragment : Fragment() {
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
                         classlistprofile1 = response.body()!!.data[0]!!.profileUrls[1]!!.profileUrl
+
+                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+                        if(response.body()!!.data.size == 0)
+                            haveMyData = false
+                        else
+                            haveMyData = true
 
                     }else{
                         Log.d("실패", "classlist실패")

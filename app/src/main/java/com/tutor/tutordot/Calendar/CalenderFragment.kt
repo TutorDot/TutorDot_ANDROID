@@ -21,6 +21,7 @@ import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
+import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
@@ -265,6 +266,12 @@ class CalenderFragment : Fragment() {
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
                             Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
 
+                            //데이터가 없을 경우 haveData를 false로 바꿔줌 (캘린더는 수정 필요)
+                            if(response.body()!!.data.size == 0)
+                                haveCalendarData = false
+                            else
+                                haveCalendarData = true
+                            
                             val Year = date.year
                             var Month = (date.month + 1).toString()
                             var Day = (date.day).toString()
