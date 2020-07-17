@@ -51,14 +51,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="26dp"
-                android:layout_marginEnd="301dp"
-                android:layout_marginRight="301dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="수업명"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:textColor="#0f0f0f"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,15 +64,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="43dp" />
+                app:layout_constraintGuide_begin="20dp" />
 
             <ImageButton
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/my_class_tap_edit_btn_classname"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
