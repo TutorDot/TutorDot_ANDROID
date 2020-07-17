@@ -1,11 +1,3 @@
-<역할>
-캘린더뷰, 수업일지뷰, 알림뷰, 마이페이지뷰, 로그인
-- 김기현: 수업일지뷰 + 캘린더뷰
-- 김회진: 캘린더뷰
-- 이정민: 알림뷰 + 로그인뷰(시작부분부터 화면 연결) + 마이페이지
-
-
-
 ## 1. git
 
 ### 1) 깃커밋 형식
@@ -43,6 +35,21 @@ kihyeon, hoijin, jungmin
 
 [목표일정](https://www.notion.so/a85e75bc821d43ba850687d376d50c6f)
 
+
+## A-2 코틀린으로 안드로이드 앱 개발
+
+- 아래 항목 모두 포함되어야 하나로 인정
+1. kotlin collection 의 확장함수 사용(filter, map...)   
+
+1) customEnqueue   
+-> extention 폴더에서 customEnqueue.kt   
+
+2) moveActi   
+-> extention 폴더에서 moveAci   
+
+3) showToast   
+-> 세미나 때 사용   
+
 ## 4. 사용라이브러리와 목적
 ### 1) 리사이클러뷰
 
@@ -68,10 +75,21 @@ compile 'com.prolificinteractive:material-calendarview:1.4.3'
 
 → 캘린더뷰에서 캘린더 적용에 사용. 조금 수정하여 커스텀 예정.
 
-### 5) 구글 캘린더 api
+### 5) 스플래시 애니메이션
 
-→ 캘린더뷰 캘린더에 사용 예정
+→ 스플래시에 사용   
 
+### 6) Retrofit 라이브러리
+
+compile 'com.prolificinteractive:material-calendarview:1.4.3'
+
+→ 서버 통신에 사용
+
+### 7) Gson 라이브러리
+
+→ 객체 시리얼라이즈를 위해 사용
+
+### 8) crop 라이브러리
 
 
 ## 5. 프로젝트 구조
@@ -102,6 +120,10 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 ![image](https://user-images.githubusercontent.com/41908152/87784450-46a06d80-c871-11ea-81ce-42016218a812.png)
 ![image](https://user-images.githubusercontent.com/41908152/87784493-60da4b80-c871-11ea-8e95-28c5a46f6033.png)
 
+- fragment와 viewPager을 이용해 화면전환 기능 추가
+- tablayout을 통해 화면 전환상태 표시
+- imageButton과 intent를 통해 회원가입뷰, 로그인 뷰로 전환
+
 
 ### 2)로그인& 회원가입
 
@@ -109,32 +131,166 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - imageView를 사용해 로고 추가
 - editText를 사용해 이름, 이메일, 비밀번호, 비밀번호 확인 입력창 추가
 - imageButton를 이용해 튜터/튜티 선택, 동의, 회원가입 버튼 추가
-- activity_signup.kt 은 서버 연동전이므로 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인하여 회원가입 후 loginactivity로 연결
+- activity_signup.kt 은 클라이언트에서 모든 칸 입력 여부만 확인→비밀번호, 비밀번호 확인칸 같은지 확인→ 튜터/튜티 선택여부 확인→동의여부 확인완료 한 후서버에 연동해 회원가입 → loginactivity로 연결
+- tutor와 tutee두개로 나누어진 role을 입력받아 이후 기능의 차별을 둠
 
 ![image](https://user-images.githubusercontent.com/41908152/87784582-8b2c0900-c871-11ea-85e5-25395fa5d041.png)
 - imageView를 사용해 로고와 핸드폰 디자인 추가
 - editText를 사용해 이메일과 비밀번호 입력창 추가
 - imageButton를 이용해 로그인버튼 추가
-- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calendaractivity로 연결
+- activity_login.kt 은 서버 연동전에 이메일과 비밀번호 입력 여부, 자동로그인 확인하고 서버에 데이터를 전송하여 로그인 후 calendaractivity로 연결
+- sharedpreference를 이용해 자동로그인 기능 구현
 
 
 ### 3)캘린더 뷰
 
 ![image](https://user-images.githubusercontent.com/41908152/87788012-8ec28e80-c877-11ea-9e14-e760e92454de.png)
 
+- Material Calendar 라이브러리를 사용하여 달력 틀 잡음   
+<특정 날 일정 보여주기>
+- recyclerView를 이용해 날짜에 따른 데이터 같은 형식으로 출력
+- 날짜가 클릭되면 서버에 연결해 데이터를 받아오며 받아오는 도중에 해당 날짜에 해당하는 날의 데이터를 한곳에 모아 모든 데이터를 받아온 후에 리사이클러뷰에 띄움
+- 우측하단 이미지 버튼을 누르면 일정추가 화면으로 이동
+- 서버연결을 완료하였지만 로그인한 정보를 기준으로 동적 jwt지정 전이므로 임의로 정적 jwt를 이용해 header을 지정하고 내용을 보여줌   
+
+
+→ CalendarFragment.kt
+
+1. 캘린더 날짜 클릭할 때마다 서버와 GET방식으로 통신하여 모든 일정의 정보를 받아온다.
+2. 달력 상에서 선택한 날짜와 서버에서 받은 날짜를 비교하여 같으면 리사이클러뷰에 띄워준다. (datas: 리사이클러뷰의 데이터)
+
+```kotlin
+// 서버 연결
+            calendarLogAdapter= CalendarLogAdapter(view.context, datas)
+
+            val calendarlogRequestToServer = CalendarLogRequestToServer
+            // 서버 요청
+            calendarlogRequestToServer.service.calendarlogRequest(
+            ).enqueue(object : Callback<CalendarLogResponseData> {
+                override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
+                    Log.d("통신 실패", "${t}")
+                }
+
+                override fun onResponse(
+                    call: Call<CalendarLogResponseData>,
+                    response: Response<CalendarLogResponseData>
+                ) {
+                    // 통신 성공
+                        if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+                            Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+
+                            //데이터가 없을 경우 haveData를 false로 바꿔줌 (캘린더는 수정 필요)
+                            if(response.body()!!.data.size == 0)
+                                haveCalendarData = false
+                            else
+                                haveCalendarData = true
+                            
+                            val Year = date.year
+                            var Month = (date.month + 1).toString()
+                            var Day = (date.day).toString()
+                            calendarlog_all_date.text = "$Day"
+                            calendarlog_all_month.text = "$Month" + "월"
+
+                            // 날짜 포맷 통일
+                            if (Month.toInt() < 10) {
+                                Month = "0$Month"
+                            }
+                            if (Day.toInt() < 10) {
+                                Day = "0$Day"
+                            }
+
+                            val shot_Day = "$Year-$Month-$Day"
+                            Log.i("shot_Day test", shot_Day + "")
+                            materialCalendarView.clearSelection()
+
+//                            Toast.makeText(
+//                                requireContext(),
+//                                shot_Day,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+
+                            var i: Int = 0
+                            for (i in 0 until response.body()!!.data.size) {
+                                Log.d("인덱스", "${i}")
+
+                                if (shot_Day == response.body()!!.data[i].classDate) {
+                                    Log.d("test", "동일")
+                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+                                    datas.apply {
+                                        add(
+                                            CalendarData(
+                                                classId = "${response.body()!!.data[i].classId}".toInt(),
+                                                startTime = "${response.body()!!.data[i].startTime}",
+                                                endTime = "${response.body()!!.data[i].endTime}",
+                                                color = "${response.body()!!.data[i].color}",
+                                                times = "${response.body()!!.data[i].times}".toInt(),
+                                                lectureName = "${response.body()!!.data[i].lectureName}",
+                                                hour = "${response.body()!!.data[i].hour}".toInt(),
+                                                location = "${response.body()!!.data[i].location}",
+                                                classDate = "${response.body()!!.data[i].classDate}"
+                                            )
+                                        )
+                                    }
+                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
+                                    Log.i("test", "${response.body()!!.data[i].color}")
+                                    calendarLogAdapter.notifyDataSetChanged()
+                                } else {
+                                    continue
+                                }
+                            }
+                        }
+                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+                        calendarLogAdapter.notifyDataSetChanged()
+                        rv_calendarlog.adapter = calendarLogAdapter
+
+                    } else {
+                        Log.d("실패", "${response.message()}")
+                    }
+                }
+            })
+        }
+    }
+```
+
+<점 찍기>   
+
+→ EventDecorator.kt
+
+EventDecorator를 이용하여 이벤트가 있는 날(일정이 있는 날)에 어떤 이벤트를 줄지 설정한다. 원하는 색상을 파싱하여 달력 상에 그 색상의 점을 찍을 수 있도록 하였다.
+
+→ CustomMultipleDotSpan.kt
+
+CustomMultipleDotSpan에서 한 날짜에 하나의 점이 아닌 여러 점을 찍을 수 있도록 하였다. 원래는 그 날에 있는 일정의 개수대로 찍으려 하였으나 아직 그렇게 하지는 못했다.
+
+→ OnDayDecorator.kt, CurrentDayDecorator.kt
+
+오늘 날짜에 이벤트를 준다. 오늘 날짜에 들어갈 원의 크기 등을 조절할 수 있다. 여기서는 네모로 적용하였다.
+
+- 해당 날짜의 특정 정보를 누르면 상세 정보를 볼 수 있다. (일정 정보 뷰) GET방식과 서버와 통신(구현 중)
+- FloatingButton을 이용해 일정을 추가할 수 있다. (일정 추가 뷰)
+- 팝업메뉴를 이용해 상단에서 전체, 특정 수업을 선택할 수 있음
+
+- 저장 버튼을 누르면 PUT방식으로 서버와 통신한다. (코드 구현 중)
+
 #### 3-1) 일정정보
 
 ![image](https://user-images.githubusercontent.com/41908152/87784645-a72faa80-c871-11ea-999d-6722d906d2ff.png)
 - textView를 이용해 정보 띄우기
-- imageView를 사용해 상단바 추가
+- View를 사용해 상단바 추가
 - imageButton을 이용해 일정 삭제 버튼추가
+- 상단 좌측 이미지 버튼을 누르면 activity를 finish()하여 이전 화면으로 돌아감   
+- 일정 정보 뷰에서 수업 날짜, 수업 시작, 수업 종료, 위치를 확인할 수 있다. 여기서 편집을 누르면 일정 수정 뷰로 이동.
 
 #### 3-2) 일정수정
 
 ![image](https://user-images.githubusercontent.com/41908152/87784663-b0207c00-c871-11ea-96cc-46f424e06325.png)
 - textView를 이용해 정보 띄우기
 - imageView를 사용해 상단바 추가
-- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가
+- imageButton를 이용해 수정 버튼으로 내용 수정기능, 취소, 저장버튼추가   
+- 날짜, 시간은 각각 피커뷰가 적용되었다. date picker, time picker. 피커뷰 상에서 돌려가며 날짜와 시간을 선택하면 텍스트가 바로바로 변하는 것을 확인 할 수 있다.
+- 피커뷰는 visible속성을 이용해 gone으로 둔 뒤 각 입력창을 누르면 visible로 바뀌어 보이고 수정버튼이 완료버튼으로 바뀌어 보여진다. 완료버튼을 누르면 피커뷰가 다시 닫힌다.
+- 일정 수정 뷰에 가면 수업날짜, 수업 시작, 수업 종료, 위치를 수정 가능   
 
 #### 3-3) 일정추가
 
@@ -144,8 +300,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - imageButton을 이용해 취소, 저장버튼추가
 - timePicker을 이용해 수업 시작, 종료시간 입력
 - datePicker을 이용해 날짜 입력
-- Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
-- activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
+- Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.   
+- 저장 버튼을 누르면 서버와 POST방식으로 통신하며 입력한 데이터를 서버로 보낸다. (코드 구현은 했으나 서버 통신 오류로 수정 필요)
 
 
 ### 4) 일지 뷰
@@ -164,32 +320,40 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - 월 수업일지 양쪽 화살표 클릭 이벤트 추가
 - 일지 아이템 버튼 클릭 이벤트 추가
 - 커스텀 ProgressBar 이용
+- 서버 통신을 통해 해당 일지 내용을 보여주고 토글에서 수업을 선택하면 해당 수업에 대한 정보를 불러오고 계산해 progress bar을 띄움
 
-#### 4-1) 일지수정
-
-![image](https://user-images.githubusercontent.com/41908152/87785447-1fe33680-c873-11ea-8d4f-5406b86c82b5.png)
-
-#### 4-2) 빈화면 일지
+#### 4-1) 빈화면 일지
 
 ![image](https://user-images.githubusercontent.com/41908152/87785503-34273380-c873-11ea-97c7-cfde6f95a51f.png)
 
+- 데이터가 없을 경우 이 화면을 송출함
+
+#### 4-2) 일지수정
+
+![image](https://user-images.githubusercontent.com/41908152/87785447-1fe33680-c873-11ea-8d4f-5406b86c82b5.png)
+
+- 일지를 수정하면 서버에 그 내용을 PUT하고 Toast를 이용해 수정완료 메세지를 띄움
 
 
-### 5) 알림 뷰
+
+### 5) 알림 뷰/ 데이터 없는 화면
 
 ![image](https://user-images.githubusercontent.com/41908152/87785748-a8fa6d80-c873-11ea-847c-e3bd157befb1.png)
-
 ![image](https://user-images.githubusercontent.com/41908152/87785793-c16a8800-c873-11ea-9b36-a5599bee5e5c.png)
 
-### 6) 마이페이지 뷰
+-popupmenu를 통해 토글 구현
+-중접 recyclerview를 이용해 내용 띄움
 
-![image](https://user-images.githubusercontent.com/41908152/87785847-e19a4700-c873-11ea-9feb-5cff0e59b790.png)
+### 6) 마이페이지 뷰/ 빈화면
 
+![image](https://user-images.githubusercontent.com/41908152/87785847-e19a4700-c873-11ea-9feb-5cff0e59b790.png)6-2
 ![image](https://user-images.githubusercontent.com/41908152/87785893-f8409e00-c873-11ea-8be1-0809a89f3a44.png)
 
 - imageView를 사용해 상단바, 프로필 추가
 - imageButton을 이용해 수업추가, 버전정보, 개발자정보, 비밀번호 변경, 로그아웃, 서비스탈퇴 버튼 추가
 - switch를 이용해 수업료 알림과 수업시작 전 알림 선택 추가
+- recyclerview를 이용해 수업목록 형태를 구성하고 서버에서 받아와 수업목록과 선택색, 학생 프로필을 띄움
+- 서버에서 userprofile을 받아와 내정보 상단의 프로필사진, role, 한줄 자기소개를 띄우고 role을 설정해 이후에 role에 따라 기능에 차이를 둘 수 있도록 함
 
 #### 6-1) 한줄소개
 
@@ -242,28 +406,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 
 -추가-
-### **1. 구글 캘린더 api 적용**
-
-#### **1. 라이브러리 추가**
-
-- build.gradle에 추가
-```kotlin
-// 구글 캘린더 api
-    implementation 'androidx.media:media:1.0.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'pub.devrel:easypermissions:0.3.0'
-    implementation('com.google.api-client:google-api-client-android:1.22.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    implementation('com.google.apis:google-api-services-calendar:v3-rev235-1.22.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-```
-
-- AndroidManifest.xml에 인터넷 권한 추가
-
-### 2. GuideLine 사용
+### 1. GuideLine 사용
 
 - 캘린더뷰 - 일정추가 activity_calendar_add.xml
 ```kotlin
@@ -275,7 +418,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
         app:layout_constraintGuide_begin="20dp"/>
 ```
 
-### 3. Chain 사용
+### 2. Chain 사용
 
 - 캘린더뷰 - 일정추가 activity_calendar_add.xml
 ```kotlin
@@ -718,5 +861,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+
+### 3. match_constraint   
+
     
 
