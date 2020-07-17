@@ -21,12 +21,9 @@ import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarData
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
-<<<<<<< HEAD
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.CalenderActivity
-=======
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
->>>>>>> 9c7ee440ab7ee15ccb1a0fe4b9c7d3d478a82267
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -158,7 +155,7 @@ class CalenderFragment : Fragment() {
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
         // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
-        calendarlog_all_date.text = "15"
+        calendarlog_all_date.text = "18"
         calendarlog_all_month.text = "7" + "월"
         materialCalendarView.addDecorators(
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
