@@ -42,7 +42,7 @@ class AddclassActivity : AppCompatActivity() {
         btn_cancel_my_add.setOnClickListener{
             finish()
         }
-        var l =arrayOf("월", "화", "수")
+
         //저장버튼
         btn_save_my_add.setOnClickListener{
             //서버에 데이터 PUT
