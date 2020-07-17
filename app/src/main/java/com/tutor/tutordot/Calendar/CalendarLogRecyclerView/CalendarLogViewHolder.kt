@@ -27,6 +27,7 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
     //일지 아이템 수정
     val cal_log_item = itemView.findViewById<ConstraintLayout>(R.id.cal_log_item)
 
+    // 더미용
 //    fun bind(calendarLogData : CalendarLogData){
 //        tv_starttime.text = calendarLogData.starttime
 //        tv_endtime.text = calendarLogData.endtime
@@ -58,7 +59,8 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
 //        })
 //    }
 
-    // 서버 연동
+
+     // 서버 연동
     fun bind(calendarLogData : CalendarData){
         tv_starttime.text = calendarLogData.startTime
         tv_endtime.text = calendarLogData.endTime
