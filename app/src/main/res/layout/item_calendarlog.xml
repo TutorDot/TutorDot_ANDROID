@@ -24,6 +24,7 @@
             android:lineHeight="17sp"
             android:lineSpacingExtra="5sp"
             android:text="2:00pm"
+            android:fontFamily="@font/apple_sdgothic_neo_m"
             android:textColor="#707070"
             android:textSize="12sp" />
 
@@ -35,6 +36,7 @@
             android:lineHeight="17sp"
             android:lineSpacingExtra="5sp"
             android:text="4:00pm"
+            android:fontFamily="@font/apple_sdgothic_neo_m"
             android:textColor="#707070"
             android:textSize="12sp" />
     </LinearLayout>
@@ -119,7 +121,6 @@
                 android:textColor="#707070"
                 android:textSize="14sp" />
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
