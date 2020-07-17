@@ -36,9 +36,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="0dp"
-        android:layout_height="545dp"
-        android:layout_marginBottom="800dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,11 +68,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginLeft="17dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="변정인"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintStart_toEndOf="@+id/my_img_profile"
                 app:layout_constraintTop_toTopOf="@+id/my_img_profile"
                 tools:ignore="MissingConstraints" />
@@ -87,11 +86,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="232dp"
                 android:layout_marginRight="232dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="4sp"
                 android:text="튜터"
                 android:textColor="#707070"
                 android:textSize="14sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -102,11 +101,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="4sp"
                 android:text="여기 프로필에 한 줄 자기소개 추가되었어요"
                 android:textColor="#707070"
                 android:textSize="14sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 tools:ignore="MissingConstraints" />
@@ -131,18 +130,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.028"
                 app:layout_constraintStart_toEndOf="@+id/imageButton2"
-                app:layout_constraintTop_toTopOf="@+id/imageButton2" >
+                app:layout_constraintTop_toTopOf="@+id/imageButton2">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_my"
-                android:layout_width="264dp"
-                android:layout_height="108dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_mypage"
-                android:visibility="visible"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_my"
+                    android:layout_width="264dp"
+                    android:layout_height="108dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_mypage" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_my"
@@ -168,11 +167,11 @@
                         android:layout_marginEnd="29dp"
                         android:layout_marginRight="29dp"
                         android:layout_marginBottom="47dp"
+                        android:fontFamily="@font/apple_sdgothic_neo_m"
                         android:lineSpacingExtra="6sp"
                         android:text="새로운 수업을 추가해주세요"
                         android:textColor="#707070"
                         android:textSize="14sp"
-                        android:fontFamily="@font/apple_sdgothic_neo_m"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/imageView13"
                         app:layout_constraintStart_toStartOf="parent"
@@ -188,11 +187,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="281dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
                 android:lineSpacingExtra="6sp"
                 android:text="어플설정"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:fontFamily="@font/apple_sdgothic_neo_sb"
                 app:layout_constraintStart_toStartOf="@+id/imageButton2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -212,11 +211,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="17dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="수업료 알림"
                 android:textColor="#707070"
                 android:textSize="16sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -249,11 +248,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="19dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="수업시작 전 알림"
                 android:textColor="#707070"
                 android:textSize="16sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintStart_toStartOf="@+id/imageView3" />
 
@@ -308,8 +307,7 @@
                 android:background="@drawable/my_btn_logout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_btn_password"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_password" />
 
 
             <ImageButton
