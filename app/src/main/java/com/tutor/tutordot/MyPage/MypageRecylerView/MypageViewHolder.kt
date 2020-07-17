@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.MyPage.MyinfoActivity
+import com.tutor.tutordot.MyPage.classlistprofile1
 import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.moveActi
 
@@ -22,7 +23,8 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
     fun bind(mypageData: MypageData){
         Glide.with(itemView).load(mypageData.color).into(rv_colorcircle)
         rv_class_name.text= mypageData.content
-        Glide.with(itemView).load(mypageData.profileUrl1).into(rv_grey1)
+        //Glide.with(itemView).load(mypageData.profileUrl1).into(rv_grey1)
+        Glide.with(itemView).load(classlistprofile1).into(rv_grey1)
         Glide.with(itemView).load(mypageData.profileUrl2).into(rv_grey2)
 
 
