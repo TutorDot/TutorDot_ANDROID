@@ -145,14 +145,9 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
 
+### 4) 일지 뷰
 
-
-
-
-
-### 5) 일지뷰
-![5번](https://user-images.githubusercontent.com/41908152/86928255-4b796900-c16f-11ea-893f-5fd41abd413b.JPG)
-
+![image](https://user-images.githubusercontent.com/41908152/87785394-0c37d000-c873-11ea-8470-d5c215642065.png)
 
 - ConstraintLayout으로 상단뷰, 진행률 레이아웃, 일지 아이템뷰, 숙제 이행률 구성
 - 프로그레스바와 일지창 구성
@@ -167,16 +162,62 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - 일지 아이템 버튼 클릭 이벤트 추가
 - 커스텀 ProgressBar 이용
 
-### 6) 알림뷰
+#### 4-1) 일지수정
 
-개발중..!
+![image](https://user-images.githubusercontent.com/41908152/87785447-1fe33680-c873-11ea-8d4f-5406b86c82b5.png)
 
-### 7) 마이페이지뷰
-![7번](https://user-images.githubusercontent.com/41908152/86928287-5633fe00-c16f-11ea-927e-145c207e67a7.JPG)
+#### 4-2) 빈화면 일지
+
+![image](https://user-images.githubusercontent.com/41908152/87785503-34273380-c873-11ea-97c7-cfde6f95a51f.png)
+
+
+### 5) 알림 뷰
+
+![image](https://user-images.githubusercontent.com/41908152/87785748-a8fa6d80-c873-11ea-847c-e3bd157befb1.png)
+
+![image](https://user-images.githubusercontent.com/41908152/87785793-c16a8800-c873-11ea-9b36-a5599bee5e5c.png)
+
+### 6) 마이페이지 뷰
+
+![image](https://user-images.githubusercontent.com/41908152/87785847-e19a4700-c873-11ea-9feb-5cff0e59b790.png)
+
+![image](https://user-images.githubusercontent.com/41908152/87785893-f8409e00-c873-11ea-8be1-0809a89f3a44.png)
 
 - imageView를 사용해 상단바, 프로필 추가
 - imageButton을 이용해 수업추가, 버전정보, 개발자정보, 비밀번호 변경, 로그아웃, 서비스탈퇴 버튼 추가
 - switch를 이용해 수업료 알림과 수업시작 전 알림 선택 추가
+
+#### 6-1) 한줄소개
+
+![image](https://user-images.githubusercontent.com/41908152/87785967-15756c80-c874-11ea-96e9-f1f052450730.png)
+
+#### 6-2) 수업정보
+
+![image](https://user-images.githubusercontent.com/41908152/87786004-2920d300-c874-11ea-819b-4b12d5e70e48.png)
+
+#### 6-3) 수업수정
+
+![image](https://user-images.githubusercontent.com/41908152/87786033-3ccc3980-c874-11ea-8fe4-a875331b6a5f.png)
+
+#### 6-4) 수업추가
+
+![image](https://user-images.githubusercontent.com/41908152/87786122-5f5e5280-c874-11ea-90b6-40cbb20c11da.png)
+
+#### 6-5) 수업초대/ 초대코드
+![image](https://user-images.githubusercontent.com/41908152/87786175-71d88c00-c874-11ea-8556-fc249d3125d1.png)
+![image](https://user-images.githubusercontent.com/41908152/87786196-7dc44e00-c874-11ea-9574-0f875edcec21.png)
+
+#### 6-6) 개발자 정보
+
+![image](https://user-images.githubusercontent.com/41908152/87786277-a0eefd80-c874-11ea-8254-321d47a19a0c.png)
+
+
+
+
+
+
+
+
 
 
 
