@@ -38,6 +38,7 @@ kihyeon, hoijin, jungmin
 
 뷰이름 + ...
 
+
 ## 3. 목표일정
 
 [목표일정](https://www.notion.so/a85e75bc821d43ba850687d376d50c6f)
@@ -72,6 +73,7 @@ compile 'com.prolificinteractive:material-calendarview:1.4.3'
 → 캘린더뷰 캘린더에 사용 예정
 
 
+
 ## 5. 프로젝트 구조
 ![구조](https://user-images.githubusercontent.com/41908152/86928004-f8071b00-c16e-11ea-9cca-07a36a77ef21.JPG)
 
@@ -83,6 +85,8 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 3) 알림뷰: 수업일지 변경, 과외 전 알림, 수업 정보 변경, 수업료 입금 확인 등의 알림이 뜬다.   
 4) 마이뷰: 간편 프로필 밑에 자신의 과외 목록이 있으며 버튼 클릭 시 과외를 추가할 수 있다. 과외 추가뷰로 이동하여 과목 색깔, 학생이름, 시간당 금액, 계좌 정보, 정기 수업시간을 입력한다. 특정 과외를 누르면 해당 과외 정보를 볼 수 있다. 그 중에서 과외 초대부분이 있는데 과외 초대뷰에서 초대 코드를 받을 수 있다. 방삭제/연결해제로 과외를 삭제할 수 있다.   
 수업료 입금 알림, 수업 전날 알림, 정보 숨김 알림을 받을지 받지 않을 지 설정할 수 있다.
+
+
 
 
 ## 6. 핵심 기능 구현 방법 정리 / 구현화면
@@ -118,7 +122,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 
 ### 3)캘린더 뷰
 
-![image](https://user-images.githubusercontent.com/41908152/87784618-98e18e80-c871-11ea-8475-71a5e2011f3c.png)
+![image](https://user-images.githubusercontent.com/41908152/87788012-8ec28e80-c877-11ea-9e14-e760e92454de.png)
 
 #### 3-1) 일정정보
 
@@ -145,6 +149,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 - Linearlayout을 사용하는 이유는 과외 색상, 과외 이름, 토글버튼을 가로 정렬을 하기 위해서이다.
 - activity_login.kt 은 서버 연동전이므로 이메일과 비밀번호 입력 여부만 확인하고 로그인 후 calenderactivity로 연결
 
+
 ### 4) 일지 뷰
 
 ![image](https://user-images.githubusercontent.com/41908152/87785394-0c37d000-c873-11ea-8470-d5c215642065.png)
@@ -169,6 +174,7 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 #### 4-2) 빈화면 일지
 
 ![image](https://user-images.githubusercontent.com/41908152/87785503-34273380-c873-11ea-97c7-cfde6f95a51f.png)
+
 
 
 ### 5) 알림 뷰
@@ -210,6 +216,22 @@ Tutor. 앱 실행 -> 온보딩 화면 -> 로그인/회원가입 화면
 #### 6-6) 개발자 정보
 
 ![image](https://user-images.githubusercontent.com/41908152/87786277-a0eefd80-c874-11ea-8254-321d47a19a0c.png)
+
+
+### 7) 팝업
+
+#### 7-1) 로그아웃
+
+![image](https://user-images.githubusercontent.com/41908152/87787479-ab11fb80-c876-11ea-9a6c-de5ecac1a440.png)
+
+#### 7-2) 연결해제
+
+![image](https://user-images.githubusercontent.com/41908152/87787559-ce3cab00-c876-11ea-9efa-ecb4454402bd.png)
+
+#### 7-3) 탈퇴
+
+![image](https://user-images.githubusercontent.com/41908152/87787661-fa582c00-c876-11ea-9c3a-826c807df3a7.png)
+
 
 
 
