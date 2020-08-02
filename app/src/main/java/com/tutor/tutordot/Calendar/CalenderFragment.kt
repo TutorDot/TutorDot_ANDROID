@@ -24,6 +24,7 @@ import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
+import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -238,11 +239,14 @@ class CalenderFragment : Fragment() {
             var Month = (date.month + 1).toString()
             var Day = (date.day).toString()
             val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
-            calendarlog_all_date.text = "$Day"
+            calendarlog_all_date.text = "${Day}"
             calendarlog_all_month.text = "$Month" + "월"
 //            Log.i("Year test", Year.toString() + "")
 //            Log.i("Month test", Month.toString() + "")
 //            Log.i("Day test", Day.toString() + "")
+//            Log.i("rvdate test", "${calendarlog_all_date.text}")
+//            Log.i("rvmonth test", "${calendarlog_all_month.text}")
+
 
             // 날짜 포맷 통일
             if (Month.toInt() < 10) {
@@ -275,31 +279,42 @@ class CalenderFragment : Fragment() {
                     // 통신 성공
                         if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-                            Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+
+                            // 로그 띄우는거 앞부분 수정했더니 갑자기 된다...확인 결과 fatal 오류 로그 때문이었음
+                            Log.d("받아온 데이터 ", response.body()!!.data.toString())
+
+
+
+                            // 여기까지는 되는데 이 밑부터 안된다.(로그 안뜸) -> 수정 완료
+
 
                             //데이터가 없을 경우 haveData를 false로 바꿔줌 (캘린더는 수정 필요)
-                            if(response.body()!!.data.size == 0)
-                                haveCalendarData = false
-                            else
-                                haveCalendarData = true
-                            
-                            val Year = date.year
-                            var Month = (date.month + 1).toString()
-                            var Day = (date.day).toString()
-                            calendarlog_all_date.text = "$Day"
-                            calendarlog_all_month.text = "$Month" + "월"
+//                            if(response.body()!!.data.size == 0)
+//                                haveCalendarData = false
+//                            else
+//                                haveCalendarData = true
 
-                            // 날짜 포맷 통일
-                            if (Month.toInt() < 10) {
-                                Month = "0$Month"
-                            }
-                            if (Day.toInt() < 10) {
-                                Day = "0$Day"
-                            }
-
-                            val shot_Day = "$Year-$Month-$Day"
-                            Log.i("shot_Day test", shot_Day + "")
-                            materialCalendarView.clearSelection()
+//                            val Year = date.year
+//                            Log.d("연도: ", "${Year}")
+//                            var Month = (date.month + 1).toString()
+//                            Log.d("월: ", "${Month}")
+//                            var Day = (date.day).toString()
+//                            Log.d("일: ", "${Day}")
+//
+//                            calendarlog_all_date.text = "$Day"
+//                            calendarlog_all_month.text = "$Month" + "월"
+//
+//                            // 날짜 포맷 통일
+//                            if (Month.toInt() < 10) {
+//                                Month = "0$Month"
+//                            }
+//                            if (Day.toInt() < 10) {
+//                                Day = "0$Day"
+//                            }
+//
+//                            val shot_Day = "$Year-$Month-$Day"
+//                            Log.i("shot_Day short_Day", shot_Day + "")
+//                            materialCalendarView.clearSelection()
 
 //                            Toast.makeText(
 //                                requireContext(),
@@ -343,9 +358,14 @@ class CalenderFragment : Fragment() {
 
                     } else {
                         Log.d("실패", "${response.message()}")
-                    }
+
+                        }
                 }
             })
+
+            // 이부분 수정함(통신 안에 있는 오늘 날짜 설정 주석 + 선택 날짜 초기화는 setonClickListener 안에서 -> 클릭은 되고 튕김)
+            materialCalendarView.clearSelection()
+
         }
     }
 

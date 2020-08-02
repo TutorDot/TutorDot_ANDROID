@@ -61,59 +61,58 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(logdateData : LogdateData){
         tv_date.text = logdateData.month.toString() + "월 " + logdateData.day.toString() + "일"
 
-        //logAdapter =
-        //    LogAdapter(itemView.context)
-        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+        logAdapter =
+            LogAdapter(itemView.context)
+        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
 
 
     //서버 연동
-    private fun loadDatas(){
-        // 서버 요청
-        logRequestToServer.service.logRequest(
-        ).enqueue(object : Callback<LogResponse> {
-            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
-                Log.d("통신 실패", "${t}")
-            }
+//    private fun loadDatas(){
+//        // 서버 요청
+//        logRequestToServer.service.logRequest(
+//        ).enqueue(object : Callback<LogResponse> {
+//            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+//                Log.d("통신 실패", "${t}")
+//            }
+//
+//            override fun onResponse(
+//                call: Call<LogResponse>,
+//                response: Response<LogResponse>
+//            ) {
+//                // 통신 성공
+//                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+//                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+//                        Log.d("성공", "성공")
+//                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+//                        ser_date_times = response.body()!!.data[1]!!.times
+//                        ser_date_times = response.body()!!.data[1]!!.hour
+//                        ser_date_times = response.body()!!.data[1]!!.depositCycle
+//                        ser_progress = response.body()!!.data[1]!!.classProgress
+//                        ser_hw = response.body()!!.data[1]!!.homework
+//
+//                        val context: Context = itemView!!.context
+//
+//                        logAdapter = LogAdapter(context, response!!.body()!!.data)
+//                        logAdapter.notifyDataSetChanged()
+//                        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+//
+//                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+//                        if(response.body()!!.data.size == 0)
+//                            haveData = false
+//                        else
+//                            haveData = true
+//
+//                    } else {
+//                        Log.d("실패", "${response.body()}")
+//                    }
+//                }
+//            }
+//
+//        })
+//    }
 
-            override fun onResponse(
-                call: Call<LogResponse>,
-                response: Response<LogResponse>
-            ) {
-                // 통신 성공
-                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-                        Log.d("성공", "성공")
-                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
-                        ser_date_times = response.body()!!.data[1]!!.times
-                        ser_date_times = response.body()!!.data[1]!!.hour
-                        ser_date_times = response.body()!!.data[1]!!.depositCycle
-                        ser_progress = response.body()!!.data[1]!!.classProgress
-                        ser_hw = response.body()!!.data[1]!!.homework
-
-                        val context: Context = itemView!!.context
-
-                        logAdapter = LogAdapter(context, response!!.body()!!.data)
-                        logAdapter.notifyDataSetChanged()
-                        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
-
-                        //데이터가 없을 경우 haveData를 false로 바꿔줌
-                        if(response.body()!!.data.size == 0)
-                            haveData = false
-                        else
-                            haveData = true
-
-                    } else {
-                        Log.d("실패", "${response.body()}")
-                    }
-                }
-            }
-
-        })
-    }
-
-/*
     private fun loadDatas(){
         datas.apply {
             add(
@@ -152,5 +151,5 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
         logAdapter.datas = datas
         logAdapter.notifyDataSetChanged()
-    }*/
+    }
 }
