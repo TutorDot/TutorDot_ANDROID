@@ -191,7 +191,9 @@ class MyFragment : Fragment() {
         ).enqueue(object: Callback<ClassListResponse>{
             override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
                 Log.d("통신 실패", "classlist통신 실패${t}")
-
+                haveMyData = false
+                recyclerView_my.visibility = View.GONE
+                cl_my.visibility =View.VISIBLE
             }
             override fun onResponse(
                 call: Call<ClassListResponse>,
@@ -238,6 +240,9 @@ class MyFragment : Fragment() {
                             }
                     }else{
                         Log.d("실패", "classlist실패")
+                        haveMyData = false
+                        recyclerView_my.visibility = View.GONE
+                        cl_my.visibility =View.VISIBLE
                     }
                 }
             }
