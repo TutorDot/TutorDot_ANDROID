@@ -43,21 +43,21 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     //서버 연결
     val logRequestToServer = LogRequestToServer
-/*
+
     //서버 연결
     fun bind(logdateSomeData : LogSomeData){
-        var month : String = logdateSomeData.Classdate.slice(IntRange(5,6))
-        var day : String = logdateSomeData.Classdate.slice(IntRange(8,9))
+        var month : String = logdateSomeData.classDate.slice(IntRange(5,6))
+        var day : String = logdateSomeData.classDate.slice(IntRange(8,9))
 
         tv_date.text = month + "월 " + day + "일"
 
-        //logAdapter =
-        //    LogAdapter(itemView.context)
-        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+        logAdapter =
+            LogAdapter(itemView.context)
+        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
-     */
 
+/*
     fun bind(logdateData : LogdateData){
         tv_date.text = logdateData.month.toString() + "월 " + logdateData.day.toString() + "일"
 
@@ -66,7 +66,7 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
-
+*/
 
     //서버 연동
 //    private fun loadDatas(){
