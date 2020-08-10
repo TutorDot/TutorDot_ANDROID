@@ -261,11 +261,13 @@ class MyFragment : Fragment() {
             }
 
         })
-
+/*
         datas.apply{
         }
         mypageAdapter.datas = datas
-        mypageAdapter.notifyDataSetChanged()
+        mypageAdapter.notifyDataSetChanged
+
+ */
     }
 
 

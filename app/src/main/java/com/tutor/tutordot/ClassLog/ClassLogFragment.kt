@@ -21,8 +21,10 @@ import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
 import com.tutor.tutordot.MainPagerAdapter
+import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.fragment_class_log.*
+import kotlinx.android.synthetic.main.fragment_my.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,6 +62,7 @@ class ClassLogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
@@ -277,14 +280,11 @@ class ClassLogFragment : Fragment() {
 //                            haveData = false
 //                        else
 //                            haveData = true
-                        Log.d("성공", "성공1")
+
                         //바깥쪽 날짜 데이터
                         var i: Int = 0
-                        Log.d("성공", "성공2")
                         for (i in 0 until response.body()!!.data.size) {
-                            Log.d("성공", "성공3")
                             var cd = response.body()!!.data[i].classDate.split("-")
-                            Log.d("성공", "성4")
                             yy = cd[0]
                             mm = cd[1]
                             dd = cd[2]
@@ -305,18 +305,16 @@ class ClassLogFragment : Fragment() {
                                         day = dd.toInt()
                                     )
                                 )
-                                logdateAdapter = LogdateAdapter(
-                                    getActivity()!!.getApplicationContext(),
-                                    response!!.body()!!.data
-                                )
-                                logdateAdapter.notifyDataSetChanged()
-                                rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+
                             }
 
                     }
-                        logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                       // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        logdateAdapter= LogdateAdapter(view!!.context, datedatas)
+                        rv_datelog.adapter=logdateAdapter
+                        logdateAdapter.datas=datedatas
                         logdateAdapter.notifyDataSetChanged()
-                        rv_datelog.adapter = logdateAdapter
+                       // rv_datelog.adapter = logdateAdapter
                     }else {
                         Log.d("실패", "${response.body()}")
                     }
