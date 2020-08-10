@@ -17,6 +17,7 @@ import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.MyPage.Server.InviteResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.activity_invite.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,6 +47,7 @@ class InviteActivity : AppCompatActivity() {
 
         //초대코드 서버에서 받아옴
         mypageRequestToServer.service.inviteRequest(
+            "$myjwt"
         ).enqueue(object : Callback<InviteResponse> {
             override fun onFailure(call: Call<InviteResponse>, t: Throwable) {
                 Log.d("통신 실패", "${t}")

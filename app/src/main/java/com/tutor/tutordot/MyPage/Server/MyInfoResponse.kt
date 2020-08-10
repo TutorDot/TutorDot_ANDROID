@@ -10,5 +10,5 @@ data class MyInfoData(
     val userName: String,
     val role: String,
     val intro : String,
-    val profilUrl: String
+    val profileUrl: String
 )

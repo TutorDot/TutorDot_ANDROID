@@ -20,6 +20,7 @@ import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.Calendar.Server.ScheduleAddResponse
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_schedule_add.*
@@ -71,6 +72,7 @@ class ScheduleAddActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleAddRequest(
+                    "$myjwt",
                     ScheduleAddRequest(
                         lectureId = 1,
                         date = schedule_add_date_txt.toString(),
