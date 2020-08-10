@@ -29,6 +29,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_login.*
@@ -267,6 +268,7 @@ class CalenderFragment : Fragment() {
             val calendarlogRequestToServer = CalendarLogRequestToServer
             // 서버 요청
             calendarlogRequestToServer.service.calendarlogRequest(
+                "${myjwt}"
             ).enqueue(object : Callback<CalendarLogResponseData> {
                 override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
                     Log.d("통신 실패", "${t}")

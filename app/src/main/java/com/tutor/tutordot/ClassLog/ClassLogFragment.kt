@@ -20,6 +20,7 @@ import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
 import com.tutor.tutordot.MainPagerAdapter
+import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -142,6 +143,7 @@ class ClassLogFragment : Fragment() {
 
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest(
+                                "${myjwt}"
                             ).enqueue(object :Callback<ProgressResponse>{
                                 override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
                                     Log.d("통신 실패", "통신 실패")
@@ -181,6 +183,7 @@ class ClassLogFragment : Fragment() {
 
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest2(
+                                "${myjwt}"
                             ).enqueue(object :Callback<ProgressResponse2>{
                                 override fun onFailure(call: Call<ProgressResponse2>, t: Throwable) {
                                     Log.d("통신 실패", "통신 실패")
