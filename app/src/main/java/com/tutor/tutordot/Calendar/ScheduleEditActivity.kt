@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.TimePicker
@@ -48,7 +50,22 @@ class ScheduleEditActivity : AppCompatActivity() {
         date_picker_edit.setOnDateChangedListener{
                 view, year, monthOfYear, dayOfMonth ->
             schedule_edit_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-${dayOfMonth}"
-            date_time = "${year}" + "-${monthOfYear+1}" + "-${dayOfMonth}"
+
+            // 날짜 포맷 통일
+            if (monthOfYear < 10) {
+                schedule_edit_date_txt.text = "${year}" + "-0${monthOfYear+1}" + "-${dayOfMonth}"
+                //Log.i("shot_Day test", "${schedule_edit_date_txt.text}")
+            }
+            if (dayOfMonth < 10) {
+                schedule_edit_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-0${dayOfMonth}"
+            }
+            if (monthOfYear < 10 && dayOfMonth < 10) {
+                schedule_edit_date_txt.text = "${year}" + "-0${monthOfYear+1}" + "-0${dayOfMonth}"
+            }
+
+            date_time = "${schedule_edit_date_txt.text}"
+            Log.i("수정된 날짜: ", "${date_time}")
+
 
         }
 
@@ -56,16 +73,61 @@ class ScheduleEditActivity : AppCompatActivity() {
         // Set a time change listener for time picker widget
         time_picker_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-            schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
-            start_time = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+            schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+
+            // 시간 포맷 통일
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_edit_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
+
+            if (minute < 10) {
+                schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_edit_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
+
+            start_time = "${schedule_edit_start_txt.text}"
+            Log.i("수정된 시간: ", "${start_time}")
         }
 
         // Set a time change listener for time picker widget
         time_picker2_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-            schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute ${getAMPM(hourOfDay)}"
-            end_time = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
-        }
+            schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute${getAMPM(hourOfDay)}"
+
+            // 시간 포맷 통일
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_edit_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
+
+            if (minute < 10) {
+                schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_edit_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
+
+            end_time = "${schedule_edit_end_txt.text}"
+            Log.i("수정된 시간: ", "${end_time}")
+           }
+
+
+        schedule_edit_location_txt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(searchtext: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(searchtext: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(searchtext: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                Log.i("수정된 장소: ", "${schedule_edit_location_txt.text}")
+            }
+        })
 
 
         schedule_edit_date_constraint.setOnClickListener{
