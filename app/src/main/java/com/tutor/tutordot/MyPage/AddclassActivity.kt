@@ -9,6 +9,7 @@ import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditAdapter
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.MyPage.Server.*
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.activity_myclass_edit.*
 import kotlinx.android.synthetic.main.activity_mypage_addclass.*
 import kotlinx.android.synthetic.main.activity_mypage_addclass.btn_plus
@@ -47,6 +48,7 @@ class AddclassActivity : AppCompatActivity() {
         btn_save_my_add.setOnClickListener{
             //서버에 데이터 PUT
             mypageRequestToServer.service.myAddRequest(
+                "$myjwt",
                 MyAddRequest(
                     lectureName = newclassname,
                     color = color,

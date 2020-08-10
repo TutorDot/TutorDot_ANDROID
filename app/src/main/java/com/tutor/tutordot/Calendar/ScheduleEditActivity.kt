@@ -21,6 +21,7 @@ import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
@@ -108,6 +109,7 @@ class ScheduleEditActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleEditRequest(
+                    "$myjwt",
                     ScheduleEditRequest(
                         lectureId = 1,
                         date = date_time,

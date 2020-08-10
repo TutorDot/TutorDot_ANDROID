@@ -16,6 +16,7 @@ import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.ProfileEditRequest
 import com.tutor.tutordot.MyPage.Server.ProfileEditResponse
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_onesentense.*
 import retrofit2.Call
@@ -41,6 +42,7 @@ class OnesentenseActivity : AppCompatActivity() {
             newIntro = et_new_intro.text.toString()
             //서버 연결
             mypageRequestToServer.service.profileEditRequest(
+                "${myjwt}",
                 ProfileEditRequest(
                     userName = userinfoname,
                     role = userinforole,

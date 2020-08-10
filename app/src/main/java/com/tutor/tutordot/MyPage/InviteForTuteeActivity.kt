@@ -8,6 +8,7 @@ import com.tutor.tutordot.MyPage.Server.ConnectResponse
 import com.tutor.tutordot.MyPage.Server.InviteResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_invite_for_tutee.*
 import retrofit2.Call
@@ -28,6 +29,7 @@ class InviteForTuteeActivity : AppCompatActivity() {
         btn_connect.setOnClickListener {
             //초대코드 연결
             mypageRequestToServer.service.requestConnect(
+                "$myjwt",
                 ConnectRequest(
                     code = codeInvite
                 )

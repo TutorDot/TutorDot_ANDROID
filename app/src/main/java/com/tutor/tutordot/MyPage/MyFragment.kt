@@ -23,6 +23,7 @@ import com.tutor.tutordot.MyPage.Server.UserRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.SignUpActivity
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
@@ -38,6 +39,7 @@ var userinforole: String = ""
 var userinfointro: String = ""
 var userinfopicture: String? = ""
 var userinfopicture1 : String = ""
+var myjwt2: String= myjwt.toString()
 
 class MyFragment : Fragment() {
 
@@ -70,9 +72,12 @@ class MyFragment : Fragment() {
         //myinfo 서버연결(user)
 
 
+        Log.d("jwt보기:", "$myjwt2")
 
         userRequestToServer.service.myInfoRequest(
+            "${myjwt}"
         ).enqueue(object: Callback<MyInfoResponse>{
+
             override fun onFailure(call: Call<MyInfoResponse>, t: Throwable) {
                 Log.d("통신 실패", "myinfo통신 실패${t}")
             }
@@ -87,12 +92,12 @@ class MyFragment : Fragment() {
                         userinfoname = response.body()!!.data!!.userName
                         userinforole = response.body()!!.data!!.role
                         userinfointro = response. body()!!.data!!.intro
-                        userinfopicture = response. body()!!.data!!.profilUrl
+                        userinfopicture = response. body()!!.data!!.profileUrl
 
                         textView.setText(userinfoname)
                         textView2.setText(userinforole)
                         one_sentense.setText(userinfointro)
-                        //Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
 
                         role = userinforole
 
@@ -188,6 +193,7 @@ class MyFragment : Fragment() {
 
 
         mypageRequestToServer.service.classListRequest(
+            "${myjwt2.toString()}"
         ).enqueue(object: Callback<ClassListResponse>{
             override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
                 Log.d("통신 실패", "classlist통신 실패${t}")
@@ -201,10 +207,10 @@ class MyFragment : Fragment() {
             ) {
                 if (response.isSuccessful){
                     if(response.body()!!.success) {
-                        Log.d("성공", "classlist성공")
+                        Log.d("성공", "classlist성공"+response.body())
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
-                        Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
+                        //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
 
 
                         //데이터가 없을 경우 haveData를 false로 바꿔줌
@@ -239,7 +245,15 @@ class MyFragment : Fragment() {
                         mypageAdapter.notifyDataSetChanged()
                             }
                     }else{
-                        Log.d("실패", "classlist실패")
+                        Log.d("실패", "classlist실패"+response.headers())
+                        Log.d("실패", "classlist실패"+response.body())
+                        Log.d("실패 jwt", "${myjwt}")
+                        Log.d("실패 jwt", "${myjwt2}")
+                        Log.d("실패", "classlist실패"+response.code())
+                        Log.d("실패", "classlist실패"+response.raw())
+                        Log.d("실패", "classlist실패"+response.message())
+
+
                         haveMyData = false
                         recyclerView_my.visibility = View.GONE
                         cl_my.visibility =View.VISIBLE
