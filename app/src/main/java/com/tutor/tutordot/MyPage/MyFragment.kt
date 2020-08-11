@@ -36,9 +36,9 @@ import retrofit2.Response
 //간단정보
 var userinfoname:String = ""
 var userinforole: String = ""
-var userinfointro: String = ""
+var userinfointro: String? = ""
 var userinfopicture: String? = ""
-var userinfopicture1 : String = ""
+var userinfopicture1 : String? = ""
 var myjwt2: String= myjwt.toString()
 
 class MyFragment : Fragment() {
@@ -193,7 +193,7 @@ class MyFragment : Fragment() {
 
 
         mypageRequestToServer.service.classListRequest(
-            "${myjwt2.toString()}"
+            "${myjwt}"
         ).enqueue(object: Callback<ClassListResponse>{
             override fun onFailure(call: Call<ClassListResponse>, t: Throwable) {
                 Log.d("통신 실패", "classlist통신 실패${t}")
@@ -209,15 +209,20 @@ class MyFragment : Fragment() {
                     if(response.body()!!.success) {
                         Log.d("성공", "classlist성공"+response.body())
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                        //userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
 
 
                         //데이터가 없을 경우 haveData를 false로 바꿔줌
                         if(response.body()!!.data.size == 0)
-                        {haveMyData = false}
+                        {haveMyData = false
+                            recyclerView_my.visibility = View.GONE
+                            cl_my.visibility =View.VISIBLE
+                        }
                         else
-                        {haveMyData = true}
+                        { haveMyData = true
+                            cl_my.visibility =View.GONE
+                            recyclerView_my.visibility = View.VISIBLE}
 
                         for (i in 0 until response.body()!!.data.size){
                         classlistColor=response.body()!!.data[i]!!.color.toString()
@@ -246,12 +251,6 @@ class MyFragment : Fragment() {
                             }
                     }else{
                         Log.d("실패", "classlist실패"+response.headers())
-                        Log.d("실패", "classlist실패"+response.body())
-                        Log.d("실패 jwt", "${myjwt}")
-                        Log.d("실패 jwt", "${myjwt2}")
-                        Log.d("실패", "classlist실패"+response.code())
-                        Log.d("실패", "classlist실패"+response.raw())
-                        Log.d("실패", "classlist실패"+response.message())
 
 
                         haveMyData = false
@@ -262,22 +261,13 @@ class MyFragment : Fragment() {
             }
 
         })
-
+/*
         datas.apply{
-//            add(
-//                MypageData(
- //                   color = "@drawable/notice_color_img_red",
-//                    content= "나와라ㅏㅏㅏ"
- //               ))
- //           add(
- //               MypageData(
- //                   color = "@drawable/notice_color_img_green",
-//                    content= "나와라ㅏㅏㅏ2"
-//                ))
-
         }
         mypageAdapter.datas = datas
-        mypageAdapter.notifyDataSetChanged()
+        mypageAdapter.notifyDataSetChanged
+
+ */
     }
 
 

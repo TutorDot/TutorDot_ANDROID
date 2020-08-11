@@ -17,11 +17,14 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
+import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
 import com.tutor.tutordot.MainPagerAdapter
+import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.fragment_class_log.*
+import kotlinx.android.synthetic.main.fragment_my.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,6 +35,10 @@ var month1 : Int = 7
 var day1 : Int = 15
 var day2 : Int = 14
 var day3 : Int = 13
+
+var mm: String=""
+var dd: String=""
+var yy: String=""
 
 class ClassLogFragment : Fragment() {
 
@@ -56,6 +63,7 @@ class ClassLogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
@@ -65,9 +73,8 @@ class ClassLogFragment : Fragment() {
             }
         }
 */
-        logdateAdapter =
-            LogdateAdapter(view.context)
-        rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+        //logdateAdapter = LogdateAdapter(view.context)
+        //rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
 
         //프로그레스바 서버에서 받아온 날짜 데이터
@@ -156,7 +163,7 @@ class ClassLogFragment : Fragment() {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
                                             Log.d("첫번째 과목 프로그레스바 성공", "성공")
-                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
@@ -195,7 +202,7 @@ class ClassLogFragment : Fragment() {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
                                             Log.d("두번째 과목 프로그레스바 성공", "성공")
-                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                           // Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
@@ -247,11 +254,12 @@ class ClassLogFragment : Fragment() {
         menu.show()
         */
     }
-/*
+
     //서버 연결
     private fun loaddateDatas(){
         // 서버 요청
         logRequestToServer.service.logRequest(
+            "${myjwt}"
         ).enqueue(object : Callback<LogResponse> {
             override fun onFailure(call: Call<LogResponse>, t: Throwable) {
                 Log.d("통신 실패", "${t}")
@@ -265,13 +273,49 @@ class ClassLogFragment : Fragment() {
                 if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                     if (response.body()!!.success) {
                         Log.d("성공", "성공")
-                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+                        Log.d("데이터 받기성공", response.body()!!.data.toString())
 
-                        logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+//                        if(response.body()!!.data.size == 0)
+//                            haveData = false
+//                        else
+//                            haveData = true
+
+                        //바깥쪽 날짜 데이터
+                        var i: Int = 0
+                        for (i in 0 until response.body()!!.data.size) {
+                            var cd = response.body()!!.data[i].classDate.split("-")
+                            yy = cd[0]
+                            mm = cd[1]
+                            dd = cd[2]
+
+/*
+                            if (mm[0].equals("0"))
+                                mm = mm.replace("0", " ")
+                            if (dd[0].equals("0"))
+                                dd = dd.replace("0", " ")
+*/
+                            Log.d("날짜", "${mm}")
+                            Log.d("날짜", "${dd}")
+
+                            datedatas.apply {
+                                add(
+                                    LogdateData(
+                                        month = mm.toInt(),
+                                        day = dd.toInt()
+                                    )
+                                )
+
+                            }
+
+                    }
+                       // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        logdateAdapter= LogdateAdapter(view!!.context, datedatas)
+                        rv_datelog.adapter=logdateAdapter
+                        logdateAdapter.datas=datedatas
                         logdateAdapter.notifyDataSetChanged()
-                        rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
-
-                    } else {
+                       // rv_datelog.adapter = logdateAdapter
+                    }else {
                         Log.d("실패", "${response.body()}")
                     }
                 }
@@ -279,8 +323,8 @@ class ClassLogFragment : Fragment() {
 
         })
     }
-*/
 
+/*
     private fun loaddateDatas() {
         datedatas.apply {
             add(
@@ -305,4 +349,6 @@ class ClassLogFragment : Fragment() {
         logdateAdapter.datas = datedatas
         logdateAdapter.notifyDataSetChanged()
     }
+
+ */
 }
