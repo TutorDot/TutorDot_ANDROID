@@ -29,6 +29,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_login.*
@@ -172,10 +173,6 @@ class CalenderFragment : Fragment() {
 
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
 
-//        calendarLogAdapter = CalendarLogAdapter(view!!.context)
-//        rv_calendarlog.adapter = calendarLogAdapter //리사이클러뷰의 어댑터를 지정해줌
-//        allloadDatas() // 첫 화면 전체 데이터를 어댑터에 전달
-
 
         //상단 수업 선택 메뉴
         constarintlayout.setOnClickListener(object : View.OnClickListener {
@@ -211,26 +208,14 @@ class CalenderFragment : Fragment() {
             startActivity(intent)
         }
 
-        //데이터 없을 때 나오는 화면
-        if (haveCalendarData == true) {
-            cl_calendar_empty.visibility = View.GONE
-            rv_calendarlog.visibility = View.VISIBLE
-        } else {
-            rv_calendarlog.visibility = View.GONE
-            cl_calendar_empty.visibility = View.VISIBLE
-
-        }
-
-
-//        // 더미 버전
-//        calendarLogAdapter = CalendarLogAdapter(view.context)
-//        rv_calendarlog.adapter = calendarLogAdapter  // 리사이클러뷰의 어댑터를 calendarLogAdapter 지정해줌
-//        loadDatas()
-
-
-//        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
-//        calendarLogAdapter.notifyDataSetChanged()
-//        rv_calendarlog.adapter = calendarLogAdapter
+//        //데이터 없을 때 나오는 화면
+//        if (haveCalendarData == true) {
+//            cl_calendar_empty.visibility = View.VISIBLE
+//            rv_calendarlog.visibility = View.GONE
+//        } else {
+//            rv_calendarlog.visibility = View.GONE
+//            cl_calendar_empty.visibility = View.VISIBLE
+//        }
 
 
         // 캘린더 날짜 클릭 변경
@@ -267,6 +252,7 @@ class CalenderFragment : Fragment() {
             val calendarlogRequestToServer = CalendarLogRequestToServer
             // 서버 요청
             calendarlogRequestToServer.service.calendarlogRequest(
+                "${myjwt}"
             ).enqueue(object : Callback<CalendarLogResponseData> {
                 override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
                     Log.d("통신 실패", "${t}")
@@ -280,19 +266,10 @@ class CalenderFragment : Fragment() {
                         if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
 
+
                             // 로그 띄우는거 앞부분 수정했더니 갑자기 된다...확인 결과 fatal 오류 로그 때문이었음
                             Log.d("받아온 데이터 ", response.body()!!.data.toString())
 
-
-
-                            // 여기까지는 되는데 이 밑부터 안된다.(로그 안뜸) -> 수정 완료
-
-
-                            //데이터가 없을 경우 haveData를 false로 바꿔줌 (캘린더는 수정 필요)
-//                            if(response.body()!!.data.size == 0)
-//                                haveCalendarData = false
-//                            else
-//                                haveCalendarData = true
 
 //                            val Year = date.year
 //                            Log.d("연도: ", "${Year}")
@@ -351,7 +328,19 @@ class CalenderFragment : Fragment() {
                                     continue
                                 }
                             }
+
                         }
+                            if(datas.size == 0) {
+                                cl_calendar_empty.visibility = View.VISIBLE
+                                rv_calendarlog.visibility = View.GONE
+                                haveCalendarData = false
+                            }
+
+                            else {
+                                cl_calendar_empty.visibility = View.GONE
+                                rv_calendarlog.visibility = View.VISIBLE
+                                haveCalendarData = true
+                            }
                         calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
                         calendarLogAdapter.notifyDataSetChanged()
                         rv_calendarlog.adapter = calendarLogAdapter
@@ -402,47 +391,5 @@ class CalenderFragment : Fragment() {
 //            }
 //
 //        })
-//    }
-
-
-    // 더미 버전
-//    private fun loadDatas() {
-//        datas.apply {
-//            add(
-//                CalendarLogData(
-//                    starttime = "2:00PM",
-//                    endtime = "4:00PM",
-//                    img_color = "yellow",
-//                    times = 1,
-//                    title = "김회진 튜티 수학 수업",
-//                    studytime = 1,
-//                    location = "원당역 할리스"
-//                )
-//            )
-//            add(
-//                CalendarLogData(
-//                    starttime = "1:00PM",
-//                    endtime = "5:00PM",
-//                    img_color = "green",
-//                    times = 1,
-//                    title = "신연상 튜티 수학 수업",
-//                    studytime = 2,
-//                    location = "강남구청역 스타벅스"
-//                )
-//            )
-//            add(
-//                CalendarLogData(
-//                    starttime = "5:00PM",
-//                    endtime = "6:00PM",
-//                    img_color = "yellow",
-//                    times = 2,
-//                    title = "김회진 튜티 물리 수업",
-//                    studytime = 5,
-//                    location = "수유역 할리스"
-//                )
-//            )
-//        }
-//        calendarLogAdapter.datas = datas
-//        calendarLogAdapter.notifyDataSetChanged()
 //    }
 }

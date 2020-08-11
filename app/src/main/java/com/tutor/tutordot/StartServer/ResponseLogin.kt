@@ -8,5 +8,5 @@ data class ResponseLogin(
 )
 
 data class SomeData(
-    val jwt : String
+    val accessToken : String
 )

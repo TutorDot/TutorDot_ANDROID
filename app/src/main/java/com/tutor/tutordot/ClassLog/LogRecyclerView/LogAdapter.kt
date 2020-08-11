@@ -10,8 +10,9 @@ import com.tutor.tutordot.ClassLog.Server.LogSomeData
 import com.tutor.tutordot.R
 
 
-//서버 연동
-class LogAdapter(private val context : Context, var datas : List<LogSomeData>) : RecyclerView.Adapter<LogViewHolder>() {
+////서버 연동
+
+class LogAdapter(private val context: Context, var datas: MutableList<LogData>) : RecyclerView.Adapter<LogViewHolder>() {
     //var datas : MutableList<LogData> = mutableListOf<LogData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_classlog,parent,false)

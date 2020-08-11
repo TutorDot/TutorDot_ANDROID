@@ -12,6 +12,7 @@ import com.tutor.tutordot.ClassLog.LogRecyclerView.completeTmp
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.*
 import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
+import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
@@ -79,6 +80,7 @@ class ClassLogModificationActivity : AppCompatActivity() {
 
                 //서버에 전달
                 logRequestToServer.service.logModiRequest(
+                    "$myjwt",
                     LogModiRequest(
                         classProgress = ser_progress,
                         homework = ser_hw,

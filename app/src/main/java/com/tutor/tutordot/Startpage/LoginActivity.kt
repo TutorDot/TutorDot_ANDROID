@@ -2,8 +2,10 @@ package com.tutor.tutordot.Startpage
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.MyPage.userinfoname
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -11,7 +13,7 @@ import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_login.*
-
+var myjwt:String = ""
 class LoginActivity : AppCompatActivity() {
     //서버 이용
     val requestToServer = RequestToServer
@@ -52,6 +54,9 @@ class LoginActivity : AppCompatActivity() {
                     onSuccess = {
                         if (it.success) {
                             /////
+                            myjwt = it.data!!.accessToken
+                            Log.d("myjwt", "${myjwt}")
+                            Log.d("myjwt2", "${it}")
                             if(autologincheck) {
                                 MySharedPreferences.email = et_email.text.toString()
                                 MySharedPreferences.password = et_pw.text.toString()

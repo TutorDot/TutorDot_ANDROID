@@ -19,9 +19,13 @@ import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
-import com.tutor.tutordot.R
-import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.item_logdate.*
+import com.tutor.tutordot.MainPagerAdapter
+import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
+import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.myjwt
+import kotlinx.android.synthetic.main.fragment_class_log.*
+import kotlinx.android.synthetic.main.fragment_my.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,6 +68,7 @@ class ClassLogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
@@ -73,8 +78,8 @@ class ClassLogFragment : Fragment() {
             }
         }
 */
-        //logdateAdapter =
-        //    LogdateAdapter(view.context)
+
+        //logdateAdapter = LogdateAdapter(view.context)
         //rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
 
@@ -151,6 +156,7 @@ class ClassLogFragment : Fragment() {
 
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest(
+                                "${myjwt}"
                             ).enqueue(object :Callback<ProgressResponse>{
                                 override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
                                     Log.d("통신 실패", "통신 실패")
@@ -163,7 +169,7 @@ class ClassLogFragment : Fragment() {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
                                             Log.d("첫번째 과목 프로그레스바 성공", "성공")
-                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
@@ -190,6 +196,7 @@ class ClassLogFragment : Fragment() {
 
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest2(
+                                "${myjwt}"
                             ).enqueue(object :Callback<ProgressResponse2>{
                                 override fun onFailure(call: Call<ProgressResponse2>, t: Throwable) {
                                     Log.d("통신 실패", "통신 실패")
@@ -201,7 +208,7 @@ class ClassLogFragment : Fragment() {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
                                             Log.d("두번째 과목 프로그레스바 성공", "성공")
-                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                           // Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
@@ -258,6 +265,7 @@ class ClassLogFragment : Fragment() {
     private fun loaddateDatas(){
         // 서버 요청
         logRequestToServer.service.logRequest(
+            "${myjwt}"
         ).enqueue(object : Callback<LogResponse> {
             override fun onFailure(call: Call<LogResponse>, t: Throwable) {
                 Log.d("통신 실패", "${t}")
@@ -271,13 +279,14 @@ class ClassLogFragment : Fragment() {
                 if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                     if (response.body()!!.success) {
                         Log.d("성공", "성공")
-                        Log.d("데이터", response.body()!!.data.toString())
+
+                        Log.d("데이터 받기성공", response.body()!!.data.toString())
 
                         //데이터가 없을 경우 haveData를 false로 바꿔줌
-                        if(response.body()!!.data.size == 0)
-                            haveData = false
-                        else
-                            haveData = true
+//                        if(response.body()!!.data.size == 0)
+//                            haveData = false
+//                        else
+//                            haveData = true
 
                         //바깥쪽 날짜 데이터
                         var i: Int = 0
@@ -286,14 +295,15 @@ class ClassLogFragment : Fragment() {
                             yy = cd[0]
                             mm = cd[1]
                             dd = cd[2]
+
 /*
                             if (mm[0].equals("0"))
                                 mm = mm.replace("0", " ")
                             if (dd[0].equals("0"))
                                 dd = dd.replace("0", " ")
 */
-                            Log.d("날짜", mm)
-                            Log.d("날짜", dd)
+                            Log.d("날짜", "${mm}")
+                            Log.d("날짜", "${dd}")
 
                             datedatas.apply {
                                 add(
@@ -303,85 +313,16 @@ class ClassLogFragment : Fragment() {
                                     )
                                 )
 
-                                //안쪽 일지 데이터
-                                var alldate : String = "$yy-$mm-$dd"
-                                Log.d("전체날짜", alldate)
-                                datas  = mutableListOf<LogData>()
-                                Log.d("리스트", "${datas}")
-
-                                var j: Int = 0
-                                for (j in 0 until response.body()!!.data.size) {
-                                    if (alldate.equals(response.body()!!.data[j].classDate)) {
-                                        Log.d("test", "동일" + alldate + response.body()!!.data[j].classDate )
-                                        Log.d("test", "${response.body()!!.data[j].classDate}")
-                                        datas.apply {
-                                            add(
-                                                LogData(
-                                                    color = response.body()!!.data[j].color,
-                                                    times = response.body()!!.data[j].times,
-                                                    studytime = response.body()!!.data[j].hour,
-                                                    alltime = response.body()!!.data[j].depositCycle,
-                                                    progress = response.body()!!.data[j].classProgress,
-                                                    homework = response.body()!!.data[j].homework,
-                                                    complete = response.body()!!.data[j].hwPerformance
-                                                )
-                                            )
-                                        }
-                                        Log.i("test", "${response.body()!!.data[j].color}")
-                                        //logAdapter.notifyDataSetChanged()
-                                    } else {
-                                        continue
-                                    }
-                                    Log.d("리스트", "${datas}")
-
-
-                                    //logAdapter = LogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
-                                    //logAdapter.notifyDataSetChanged()
-                                    //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
-                                }
                             }
 
-//                            //안쪽 일지 데이터
-//                            var alldate : String = "$yy-$mm-$dd"
-//                            Log.d("전체날짜", alldate)
-//
-//                            var j: Int = 0
-//                            for (j in 0 until response.body()!!.data.size) {
-//                                if (alldate.equals(response.body()!!.data[j].classDate)) {
-//                                    Log.d("test", "동일" + alldate + response.body()!!.data[j].classDate )
-//                                    Log.d("test", "${response.body()!!.data[j].classDate}")
-//                                    datas.apply {
-//                                        add(
-//                                            LogData(
-//                                                color = response.body()!!.data[j].color,
-//                                                times = response.body()!!.data[j].times,
-//                                                studytime = response.body()!!.data[j].hour,
-//                                                alltime = response.body()!!.data[j].depositCycle,
-//                                                progress = response.body()!!.data[j].classProgress,
-//                                                homework = response.body()!!.data[j].homework,
-//                                                complete = response.body()!!.data[j].hwPerformance
-//                                            )
-//                                        )
-//                                    }
-//                                    Log.i("test", "${response.body()!!.data[j].color}")
-//                                    //logAdapter.notifyDataSetChanged()
-//                                } else {
-//                                    continue
-//                                }
-//                            }
-
-                        }
-
-                        logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                    }
+                       // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        logdateAdapter= LogdateAdapter(view!!.context, datedatas)
+                        rv_datelog.adapter=logdateAdapter
+                        logdateAdapter.datas=datedatas
                         logdateAdapter.notifyDataSetChanged()
-                        rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
-
-
-                        //logAdapter = LogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
-                        //logAdapter.notifyDataSetChanged()
-                        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
-
-                    } else {
+                       // rv_datelog.adapter = logdateAdapter
+                    }else {
                         Log.d("실패", "${response.body()}")
                     }
                 }
@@ -414,5 +355,7 @@ class ClassLogFragment : Fragment() {
         }
         logdateAdapter.datas = datedatas
         logdateAdapter.notifyDataSetChanged()
-    }*/
+
+    }
+ */
 }
