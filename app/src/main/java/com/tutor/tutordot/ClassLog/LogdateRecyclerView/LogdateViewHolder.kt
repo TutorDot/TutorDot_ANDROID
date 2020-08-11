@@ -14,6 +14,7 @@ import com.tutor.tutordot.ClassLog.dd
 import com.tutor.tutordot.ClassLog.mm
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,15 +36,19 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val rv_log : RecyclerView = itemView.findViewById<RecyclerView>(R.id.rv_log)
 
     lateinit var logAdapter: LogAdapter
-    val datas : MutableList<LogData> = mutableListOf<LogData>()
+    var datas : MutableList<LogData> = mutableListOf<LogData>()
 
 
 
     //서버 연결
     val logRequestToServer = LogRequestToServer
 
+    var mymon:String=""
+    var myday:String=""
+    var mytext:String=""
     //서버 연결
     fun bind(logdateSomeData : LogdateData){
+        datas = mutableListOf<LogData>()
         //var month : String = logdateSomeData.classDate.slice(IntRange(5,6))
         //var day : String = logdateSomeData.classDate.slice(IntRange(8,9))
 
@@ -73,25 +78,66 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                        // ser_progress = response.body()!!.data[1]!!.classProgress
                        // ser_hw = response.body()!!.data[1]!!.homework
 
-                        val j=0
-                        datas.apply {
-                            add(
-                                LogData(
-                                    color = response.body()!!.data[j].color,
-                                    times = response.body()!!.data[j].times,
-                                    studytime = response.body()!!.data[j].hour,
-                                    alltime = response.body()!!.data[j].depositCycle,
-                                    progress = response.body()!!.data[j].classProgress,
-                                    homework = response.body()!!.data[j].homework,
-                                    complete = response.body()!!.data[j].hwPerformance
-                                )
-                            )
-                        }
-                        val context: Context = itemView!!.context
-                        logAdapter = LogAdapter(context, response!!.body()!!.data.toMutableList())
-                        logAdapter.notifyDataSetChanged()
-                        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
 
+                        /*
+                        for (i in 0 until response.body()!!.data.size){
+                            if (mymon != response.body()!!.data[i].classDate.slice(IntRange(5,6)) && myday != response.body()!!.data[i].classDate.slice(IntRange(8,9))){
+                                mymon = response.body()!!.data[i].classDate.slice(IntRange(5,6))
+                                myday = response.body()!!.data[i].classDate.slice(IntRange(8,9))
+
+                                for
+
+
+                            }
+
+
+                        }
+                         */
+                        if (mytext != tv_date.text.toString()) {
+                            mytext = tv_date.text.toString()
+                            Log.d("mytext:","${mytext}")
+                            var i=0
+                            for (i in 0 until response.body()!!.data.size) {
+                                //var month : String = response.body()!!.data[i].classDate.slice(IntRange(5,6))
+                                //var day : String = response.body()!!.data[i].classDate.slice(IntRange(8,8))
+                                var tmp= response.body()!!.data[i].classDate.split("-")
+                                var tmptext= "${tmp[1].toInt()}"+"월 "+"${tmp[2].toInt()}"+"일"
+
+                                //Log.d("classDate:",response.body()!!.data[i].classDate)
+                                Log.d("mytext:","${mytext}")
+                                Log.d("tmptext","${tmptext}")
+                                if (tmptext==mytext){
+                                    Log.d("동일","동일")
+                                    datas.apply {
+                                        add(
+                                            LogData(
+                                                color = response.body()!!.data[i].color,
+                                                times = response.body()!!.data[i].times,
+                                                studytime = response.body()!!.data[i].hour,
+                                                alltime = response.body()!!.data[i].depositCycle,
+                                                progress = response.body()!!.data[i].classProgress,
+                                                homework = response.body()!!.data[i].homework,
+                                                complete = response.body()!!.data[i].hwPerformance
+                                            )
+                                        )
+                                    }
+                                }
+
+                            }
+                        }
+
+
+                        val context: Context = itemView!!.context
+                        //logAdapter = LogAdapter(context, response!!.body()!!.data.toMutableList())
+                        //logAdapter.notifyDataSetChanged()
+                        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+                        // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        logAdapter= LogAdapter(context, datas)
+                        rv_log.adapter=logAdapter
+                        logAdapter.datas=datas
+                        logAdapter.notifyDataSetChanged()
+                        // rv_datelog.adapter = logdateAdapter
 
 
                     } else {

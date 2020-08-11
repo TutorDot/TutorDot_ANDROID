@@ -40,7 +40,7 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
 
     //서버 연동
-    fun bind(logSomeData : LogSomeData) {
+    fun bind(logSomeData : LogData) {
 
         /*//서버x
         //일지 내용 수정
@@ -54,27 +54,27 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
          */
 
-        tv_times.text = logSomeData.times.toString() + "회차 " + logSomeData.times.toString() + "시간 / " + logSomeData.hour.toString() + "시간"
-        tv_progress.text = "진도 : " + logSomeData.classProgress
+        tv_times.text = logSomeData.times.toString() + "회차 " + logSomeData.times.toString() + "시간 / " + logSomeData.alltime.toString() + "시간"
+        tv_progress.text = "진도 : " + logSomeData.progress
         tv_homework.text = "숙제 : " + logSomeData.homework
 
 
-        if (logSomeData.hwPerformance == 0) {
+        if (logSomeData.complete == 0) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if (logSomeData.hwPerformance == 1) {
+        if (logSomeData.complete == 1) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(logSomeData.hwPerformance == 2) {
+        if(logSomeData.complete == 2) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(logSomeData.hwPerformance == 3) {
+        if(logSomeData.complete == 3) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)

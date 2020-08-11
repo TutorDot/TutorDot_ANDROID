@@ -163,7 +163,7 @@ class ClassLogFragment : Fragment() {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
                                             Log.d("첫번째 과목 프로그레스바 성공", "성공")
-                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
@@ -202,7 +202,7 @@ class ClassLogFragment : Fragment() {
                                     if(response.isSuccessful){
                                         if(response.body()!!.success){
                                             Log.d("두번째 과목 프로그레스바 성공", "성공")
-                                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                                           // Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                                             progressDate = response.body()!!.data[5].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
