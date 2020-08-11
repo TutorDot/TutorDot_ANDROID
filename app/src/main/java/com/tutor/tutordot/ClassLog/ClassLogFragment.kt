@@ -1,6 +1,5 @@
 package com.tutor.tutordot.ClassLog
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,28 +8,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.tutor.tutordot.CalenderActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
-import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
+import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse
 import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
-import com.tutor.tutordot.MainPagerAdapter
+import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_class_log.*
+import kotlinx.android.synthetic.main.item_logdate.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-
-var month1 : Int = 7
+//더미
+/*var month1 : Int = 7
 var day1 : Int = 15
 var day2 : Int = 14
 var day3 : Int = 13
+*/
+
+var mm : String = ""
+var dd : String = ""
+var yy : String = ""
 
 class ClassLogFragment : Fragment() {
 
@@ -39,6 +45,10 @@ class ClassLogFragment : Fragment() {
 
     lateinit var logdateAdapter: LogdateAdapter
     val datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
+    lateinit var logAdapter: LogAdapter
+    var datas : MutableList<LogData> = mutableListOf<LogData>()
+
+
 
     //현재 달 구하기
     val curDate= Calendar.getInstance()
@@ -54,7 +64,6 @@ class ClassLogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
@@ -64,9 +73,9 @@ class ClassLogFragment : Fragment() {
             }
         }
 */
-        logdateAdapter =
-            LogdateAdapter(view.context)
-        rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+        //logdateAdapter =
+        //    LogdateAdapter(view.context)
+        //rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
         loaddateDatas() //데이터를 어댑터에 전달
 
         //프로그레스바 서버에서 받아온 날짜 데이터
@@ -90,7 +99,7 @@ class ClassLogFragment : Fragment() {
 
         tv_month_log.setText(month.toString() + "월 수업일지")
         var mon = month
-        month1 = month
+        //month1 = month
 
         //월 이전 이동
         btn_month_prev.setOnClickListener(object : View.OnClickListener {
@@ -98,10 +107,10 @@ class ClassLogFragment : Fragment() {
                 mon--
                 tv_month_log.setText(mon.toString() + "월 수업일지")
                 btn_month_next.setImageResource(R.drawable.class_log_blank_btn_next_month)
-                month1 = mon
-                day1 = 15
-                day2 = 14
-                day3 = 13
+                //month1 = mon
+                //day1 = 15
+                //day2 = 14
+                //day3 = 13
                 logdateAdapter.notifyDataSetChanged()
             }
         })
@@ -112,10 +121,10 @@ class ClassLogFragment : Fragment() {
                 if (mon == month) {
                     tv_month_log.setText(mon.toString() + "월 수업일지")
                     btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
-                    month1 = mon
-                    day1 = 15
-                    day2 = 14
-                    day3 = 13
+                    //month1 = mon
+                    //day1 = 15
+                    //day2 = 14
+                    //day3 = 13
                     logdateAdapter.notifyDataSetChanged()                }
             }
         })
@@ -244,7 +253,7 @@ class ClassLogFragment : Fragment() {
         menu.show()
         */
     }
-/*
+
     //서버 연결
     private fun loaddateDatas(){
         // 서버 요청
@@ -262,11 +271,115 @@ class ClassLogFragment : Fragment() {
                 if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                     if (response.body()!!.success) {
                         Log.d("성공", "성공")
-                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+                        Log.d("데이터", response.body()!!.data.toString())
+
+                        //데이터가 없을 경우 haveData를 false로 바꿔줌
+                        if(response.body()!!.data.size == 0)
+                            haveData = false
+                        else
+                            haveData = true
+
+                        //바깥쪽 날짜 데이터
+                        var i: Int = 0
+                        for (i in 0 until response.body()!!.data.size) {
+                            var cd = response.body()!!.data[i].classDate.split("-")
+                            yy = cd[0]
+                            mm = cd[1]
+                            dd = cd[2]
+/*
+                            if (mm[0].equals("0"))
+                                mm = mm.replace("0", " ")
+                            if (dd[0].equals("0"))
+                                dd = dd.replace("0", " ")
+*/
+                            Log.d("날짜", mm)
+                            Log.d("날짜", dd)
+
+                            datedatas.apply {
+                                add(
+                                    LogdateData(
+                                        month = mm.toInt(),
+                                        day = dd.toInt()
+                                    )
+                                )
+
+                                //안쪽 일지 데이터
+                                var alldate : String = "$yy-$mm-$dd"
+                                Log.d("전체날짜", alldate)
+                                datas  = mutableListOf<LogData>()
+                                Log.d("리스트", "${datas}")
+
+                                var j: Int = 0
+                                for (j in 0 until response.body()!!.data.size) {
+                                    if (alldate.equals(response.body()!!.data[j].classDate)) {
+                                        Log.d("test", "동일" + alldate + response.body()!!.data[j].classDate )
+                                        Log.d("test", "${response.body()!!.data[j].classDate}")
+                                        datas.apply {
+                                            add(
+                                                LogData(
+                                                    color = response.body()!!.data[j].color,
+                                                    times = response.body()!!.data[j].times,
+                                                    studytime = response.body()!!.data[j].hour,
+                                                    alltime = response.body()!!.data[j].depositCycle,
+                                                    progress = response.body()!!.data[j].classProgress,
+                                                    homework = response.body()!!.data[j].homework,
+                                                    complete = response.body()!!.data[j].hwPerformance
+                                                )
+                                            )
+                                        }
+                                        Log.i("test", "${response.body()!!.data[j].color}")
+                                        //logAdapter.notifyDataSetChanged()
+                                    } else {
+                                        continue
+                                    }
+                                    Log.d("리스트", "${datas}")
+
+
+                                    //logAdapter = LogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                                    //logAdapter.notifyDataSetChanged()
+                                    //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+                                }
+                            }
+
+//                            //안쪽 일지 데이터
+//                            var alldate : String = "$yy-$mm-$dd"
+//                            Log.d("전체날짜", alldate)
+//
+//                            var j: Int = 0
+//                            for (j in 0 until response.body()!!.data.size) {
+//                                if (alldate.equals(response.body()!!.data[j].classDate)) {
+//                                    Log.d("test", "동일" + alldate + response.body()!!.data[j].classDate )
+//                                    Log.d("test", "${response.body()!!.data[j].classDate}")
+//                                    datas.apply {
+//                                        add(
+//                                            LogData(
+//                                                color = response.body()!!.data[j].color,
+//                                                times = response.body()!!.data[j].times,
+//                                                studytime = response.body()!!.data[j].hour,
+//                                                alltime = response.body()!!.data[j].depositCycle,
+//                                                progress = response.body()!!.data[j].classProgress,
+//                                                homework = response.body()!!.data[j].homework,
+//                                                complete = response.body()!!.data[j].hwPerformance
+//                                            )
+//                                        )
+//                                    }
+//                                    Log.i("test", "${response.body()!!.data[j].color}")
+//                                    //logAdapter.notifyDataSetChanged()
+//                                } else {
+//                                    continue
+//                                }
+//                            }
+
+                        }
 
                         logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
                         logdateAdapter.notifyDataSetChanged()
                         rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+
+                        //logAdapter = LogAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        //logAdapter.notifyDataSetChanged()
+                        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
 
                     } else {
                         Log.d("실패", "${response.body()}")
@@ -276,8 +389,8 @@ class ClassLogFragment : Fragment() {
 
         })
     }
-*/
 
+/*
     private fun loaddateDatas() {
         datedatas.apply {
             add(
@@ -301,5 +414,5 @@ class ClassLogFragment : Fragment() {
         }
         logdateAdapter.datas = datedatas
         logdateAdapter.notifyDataSetChanged()
-    }
+    }*/
 }

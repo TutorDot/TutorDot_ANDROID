@@ -9,7 +9,7 @@ data class LogResponse(
 
 data class LogSomeData(
     val diaryId : Int,
-    val Classdate : String,
+    val classDate : String,
     val color : String,
     val times : Int,
     val hour : Int,

@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.ClassLog.Server.LogSomeData
 import com.tutor.tutordot.R
-/*
+
 class LogdateAdapter(private val context : Context, var datas : List<LogSomeData>) : RecyclerView.Adapter<LogdateViewHolder>() {
-    //var datas:MutableList<LogdateData> = mutableListOf<LogdateData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogdateViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_logdate, parent, false)
         return LogdateViewHolder(
@@ -26,8 +25,8 @@ class LogdateAdapter(private val context : Context, var datas : List<LogSomeData
 
     }
 }
-*/
 
+/*
 class LogdateAdapter(private val context : Context) : RecyclerView.Adapter<LogdateViewHolder>() {
     var datas:MutableList<LogdateData> = mutableListOf<LogdateData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogdateViewHolder {
@@ -48,4 +47,4 @@ class LogdateAdapter(private val context : Context) : RecyclerView.Adapter<Logda
 
 
     }
-}
+}*/

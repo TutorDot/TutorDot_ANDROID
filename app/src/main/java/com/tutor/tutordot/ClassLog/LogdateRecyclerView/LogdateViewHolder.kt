@@ -14,6 +14,9 @@ import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.ClassLog.Server.LogSomeData
 import com.tutor.tutordot.ClassLog.complete
+import com.tutor.tutordot.ClassLog.dd
+import com.tutor.tutordot.ClassLog.mm
+import com.tutor.tutordot.ClassLog.yy
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.fragment_calender.*
 import retrofit2.Call
@@ -37,27 +40,41 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val rv_log : RecyclerView = itemView.findViewById<RecyclerView>(R.id.rv_log)
 
     lateinit var logAdapter: LogAdapter
-    val datas : MutableList<LogData> = mutableListOf<LogData>()
+    //val datas : MutableList<LogData> = mutableListOf<LogData>()
 
 
 
     //서버 연결
     val logRequestToServer = LogRequestToServer
-/*
+
     //서버 연결
     fun bind(logdateSomeData : LogSomeData){
-        var month : String = logdateSomeData.Classdate.slice(IntRange(5,6))
-        var day : String = logdateSomeData.Classdate.slice(IntRange(8,9))
+     /*   var cd = logdateSomeData.classDate.split("-")
 
-        tv_date.text = month + "월 " + day + "일"
+
+        yy = cd[0]
+        mm = cd[1]
+        dd = cd[2]
+
+        if(mm[0].equals("0"))
+            mm = mm.replace("0", " ")
+        if(dd[0].equals("0"))
+            dd = dd.replace("0", " ")
+
+        Log.d("날짜", mm)
+        Log.d("날짜", dd)
+
+        tv_date.text = mm + "월 " + dd + "일"
 
         //logAdapter =
         //    LogAdapter(itemView.context)
         //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+      */
         loadDatas() //데이터를 어댑터에 전달
     }
-     */
 
+/*
     fun bind(logdateData : LogdateData){
         tv_date.text = logdateData.month.toString() + "월 " + logdateData.day.toString() + "일"
 
@@ -66,53 +83,50 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadDatas() //데이터를 어댑터에 전달
     }
-
+*/
 
     //서버 연동
-//    private fun loadDatas(){
-//        // 서버 요청
-//        logRequestToServer.service.logRequest(
-//        ).enqueue(object : Callback<LogResponse> {
-//            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
-//                Log.d("통신 실패", "${t}")
-//            }
-//
-//            override fun onResponse(
-//                call: Call<LogResponse>,
-//                response: Response<LogResponse>
-//            ) {
-//                // 통신 성공
-//                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-//                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-//                        Log.d("성공", "성공")
-//                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
-//                        ser_date_times = response.body()!!.data[1]!!.times
-//                        ser_date_times = response.body()!!.data[1]!!.hour
-//                        ser_date_times = response.body()!!.data[1]!!.depositCycle
-//                        ser_progress = response.body()!!.data[1]!!.classProgress
-//                        ser_hw = response.body()!!.data[1]!!.homework
-//
-//                        val context: Context = itemView!!.context
-//
-//                        logAdapter = LogAdapter(context, response!!.body()!!.data)
-//                        logAdapter.notifyDataSetChanged()
-//                        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
-//
-//                        //데이터가 없을 경우 haveData를 false로 바꿔줌
-//                        if(response.body()!!.data.size == 0)
-//                            haveData = false
-//                        else
-//                            haveData = true
-//
-//                    } else {
-//                        Log.d("실패", "${response.body()}")
-//                    }
-//                }
-//            }
-//
-//        })
-//    }
+    private fun loadDatas(){
+        // 서버 요청
+        logRequestToServer.service.logRequest(
+        ).enqueue(object : Callback<LogResponse> {
+            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+                Log.d("통신 실패", "${t}")
+            }
 
+            override fun onResponse(
+                call: Call<LogResponse>,
+                response: Response<LogResponse>
+            ) {
+                // 통신 성공
+                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+                        Log.d("일지내용 성공", "성공")
+                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
+                        /*
+                        ser_date_times = response.body()!!.data[1]!!.times
+                        ser_date_times = response.body()!!.data[1]!!.hour
+                        ser_date_times = response.body()!!.data[1]!!.depositCycle
+                        ser_progress = response.body()!!.data[1]!!.classProgress
+                        ser_hw = response.body()!!.data[1]!!.homework
+*/
+                        val context: Context = itemView!!.context
+
+                        logAdapter = LogAdapter(context, response!!.body()!!.data)
+                        //logAdapter.notifyDataSetChanged()
+
+                        rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+                    } else {
+                        Log.d("실패", "${response.body()}")
+                    }
+                }
+            }
+
+        })
+    }
+
+    /*
     private fun loadDatas(){
         datas.apply {
             add(
@@ -151,5 +165,5 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
         logAdapter.datas = datas
         logAdapter.notifyDataSetChanged()
-    }
+    }*/
 }

@@ -87,12 +87,12 @@ class MyFragment : Fragment() {
                         userinfoname = response.body()!!.data!!.userName
                         userinforole = response.body()!!.data!!.role
                         userinfointro = response. body()!!.data!!.intro
-                        userinfopicture = response. body()!!.data!!.profilUrl
+                        userinfopicture = response. body()!!.data!!.profileUrl
 
                         textView.setText(userinfoname)
                         textView2.setText(userinforole)
                         one_sentense.setText(userinfointro)
-                        //Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
 
                         role = userinforole
 
@@ -204,7 +204,7 @@ class MyFragment : Fragment() {
                         Log.d("성공", "classlist성공")
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                         userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
-                        Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
+                        //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
 
 
                         //데이터가 없을 경우 haveData를 false로 바꿔줌

@@ -39,75 +39,76 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val cl_log_item = itemView.findViewById<ConstraintLayout>(R.id.cl_log_item)
 
 
-//    //서버 연동
-//    fun bind(logSomeData : LogSomeData) {
-//
-//        /*//서버x
-//        //일지 내용 수정
-//        if(modi_check) {
-//            logSomeData.classProgress =
-//                ser_progress
-//            logSomeData.homework =
-//                ser_hw
-//            modi_check = false
-//        }
-//
-//         */
-//
-//        tv_times.text = logSomeData.times.toString() + "회차 " + logSomeData.times.toString() + "시간 / " + logSomeData.hour.toString() + "시간"
-//        tv_progress.text = "진도 : " + logSomeData.classProgress
-//        tv_homework.text = "숙제 : " + logSomeData.homework
-//
-//
-//        if (logSomeData.hwPerformance == 0) {
-//            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-//            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-//            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
-//        }
-//        if (logSomeData.hwPerformance == 1) {
-//            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
-//            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-//            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
-//        }
-//        if(logSomeData.hwPerformance == 2) {
-//            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-//            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
-//            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
-//        }
-//        if(logSomeData.hwPerformance == 3) {
-//            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
-//            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
-//            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
-//        }
-//
-//        if(logSomeData.color == "yellow")
-//            iv_color.setImageResource(R.drawable.notice_color_img_yellow)
-//        if(logSomeData.color == "green")
-//            iv_color.setImageResource(R.drawable.notice_color_img_green)
-//        if(logSomeData.color == "blue")
-//            iv_color.setImageResource(R.drawable.notice_color_img_blue)
-//        if(logSomeData.color == "purple")
-//            iv_color.setImageResource(R.drawable.notice_color_img_purple)
-//        if(logSomeData.color == "red")
-//            iv_color.setImageResource(R.drawable.notice_color_img_red)
-//
-//        //일지 아이템 버튼 클릭 이벤트
-//        //튜터일때 수정 가능
-//        if(role == "tutor") {
-//            cl_log_item.setOnClickListener(object : View.OnClickListener {
-//                override fun onClick(v: View?) {
-//                    //val context: Context = v!!.context
-//                    val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
-//                    //context.startActivity(nextIntent)
-//                    moveActi(nextIntent, v)
-//
-//                }
-//            })
-//        }
-//
-//        completeTmp = complete
-//    }
+    //서버 연동
+    fun bind(logSomeData : LogSomeData) {
 
+        /*//서버x
+        //일지 내용 수정
+        if(modi_check) {
+            logSomeData.classProgress =
+                ser_progress
+            logSomeData.homework =
+                ser_hw
+            modi_check = false
+        }
+
+         */
+
+        tv_times.text = logSomeData.times.toString() + "회차 " + logSomeData.times.toString() + "시간 / " + logSomeData.hour.toString() + "시간"
+        tv_progress.text = "진도 : " + logSomeData.classProgress
+        tv_homework.text = "숙제 : " + logSomeData.homework
+
+
+        if (logSomeData.hwPerformance == 0) {
+            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        }
+        if (logSomeData.hwPerformance == 1) {
+            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
+            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        }
+        if(logSomeData.hwPerformance == 2) {
+            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
+            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
+        }
+        if(logSomeData.hwPerformance == 3) {
+            btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
+            btn_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
+            btn_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
+        }
+
+        if(logSomeData.color == "yellow")
+            iv_color.setImageResource(R.drawable.notice_color_img_yellow)
+        if(logSomeData.color == "green")
+            iv_color.setImageResource(R.drawable.notice_color_img_green)
+        if(logSomeData.color == "blue")
+            iv_color.setImageResource(R.drawable.notice_color_img_blue)
+        if(logSomeData.color == "purple")
+            iv_color.setImageResource(R.drawable.notice_color_img_purple)
+        if(logSomeData.color == "red")
+            iv_color.setImageResource(R.drawable.notice_color_img_red)
+
+        //일지 아이템 버튼 클릭 이벤트
+        //튜터일때 수정 가능
+        if(role == "tutor") {
+            cl_log_item.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    //val context: Context = v!!.context
+                    val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
+                    //context.startActivity(nextIntent)
+                    moveActi(nextIntent, v)
+
+                }
+            })
+        }
+
+        completeTmp = complete
+    }
+
+    /*
     fun bind(logData : LogData) {
 
         //일지 내용 수정
@@ -239,5 +240,5 @@ class LogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         }
 
         completeTmp = complete
-    }
+    }*/
 }
