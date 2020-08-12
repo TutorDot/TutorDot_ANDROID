@@ -309,6 +309,18 @@ class ClassLogFragment : Fragment() {
                             }
 
                     }
+                        //dates.sortWith(compareBy<Date> { it.year }.thenBy { it.month }.thenBy { it.day })
+                        datedatas.sortWith(compareBy<LogdateData>{it.month}.thenBy{it.day})
+                        /*
+                        datedatas.sortWith(object : Comparator<LogdateData>{
+                            override fun compare(p0: LogdateData, p1: LogdateData): Int=when {
+                                p0.month<p1.month
+                            }
+
+                        })
+
+                         */
+
                        // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
                         logdateAdapter= LogdateAdapter(view!!.context, datedatas)
                         rv_datelog.adapter=logdateAdapter
