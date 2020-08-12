@@ -47,66 +47,51 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var mytext:String=""
     //서버 연결
     fun bind(logdateSomeData : LogdateData){
-        datas = mutableListOf<LogData>()
+
         //var month : String = logdateSomeData.classDate.slice(IntRange(5,6))
         //var day : String = logdateSomeData.classDate.slice(IntRange(8,9))
+            tv_date.text = logdateSomeData.month.toString() + "월 " + logdateSomeData.day.toString() + "일"
+            datas = mutableListOf<LogData>()
+
+            // 서버 요청
+            logRequestToServer.service.logRequest(
+                "${myjwt}"
+            ).enqueue(object : Callback<LogResponse> {
+                override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+                    Log.d("통신 실패", "${t}")
+                }
+
+                override fun onResponse(
+                    call: Call<LogResponse>,
+                    response: Response<LogResponse>
+                ) {
+                    // 통신 성공
+                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+                            Log.d("성공", "성공")
+                            Log.d("data확인", response.body()!!.data.toString())
+                            // ser_date_times = response.body()!!.data[1]!!.times
+                            // ser_date_studytime = response.body()!!.data[1]!!.hour
+                            // ser_date_alltime = response.body()!!.data[1]!!.depositCycle
+                            // ser_progress = response.body()!!.data[1]!!.classProgress
+                            // ser_hw = response.body()!!.data[1]!!.homework
 
 
-        tv_date.text = logdateSomeData.month.toString() + "월 " + logdateSomeData.day.toString() + "일"
-
-
-        // 서버 요청
-        logRequestToServer.service.logRequest("${myjwt}"
-        ).enqueue(object : Callback<LogResponse> {
-            override fun onFailure(call: Call<LogResponse>, t: Throwable) {
-                Log.d("통신 실패", "${t}")
-            }
-
-            override fun onResponse(
-                call: Call<LogResponse>,
-                response: Response<LogResponse>
-            ) {
-                // 통신 성공
-                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-                        Log.d("성공", "성공")
-                        Log.d("data확인", response.body()!!.data.toString())
-                       // ser_date_times = response.body()!!.data[1]!!.times
-                       // ser_date_studytime = response.body()!!.data[1]!!.hour
-                       // ser_date_alltime = response.body()!!.data[1]!!.depositCycle
-                       // ser_progress = response.body()!!.data[1]!!.classProgress
-                       // ser_hw = response.body()!!.data[1]!!.homework
-
-
-                        /*
-                        for (i in 0 until response.body()!!.data.size){
-                            if (mymon != response.body()!!.data[i].classDate.slice(IntRange(5,6)) && myday != response.body()!!.data[i].classDate.slice(IntRange(8,9))){
-                                mymon = response.body()!!.data[i].classDate.slice(IntRange(5,6))
-                                myday = response.body()!!.data[i].classDate.slice(IntRange(8,9))
-
-                                for
-
-
-                            }
-
-
-                        }
-                         */
-                        if (mytext != tv_date.text.toString()) {
+                            //if (mytext != tv_date.text.toString()) {
                             mytext = tv_date.text.toString()
-                            Log.d("mytext:","${mytext}")
-                            var i=0
+                            //Log.d("mytext:","${mytext}")
+                            var i = 0
                             for (i in 0 until response.body()!!.data.size) {
                                 //var month : String = response.body()!!.data[i].classDate.slice(IntRange(5,6))
                                 //var day : String = response.body()!!.data[i].classDate.slice(IntRange(8,8))
-                                var tmp= response.body()!!.data[i].classDate.split("-")
-                                var tmptext= "${tmp[1].toInt()}"+"월 "+"${tmp[2].toInt()}"+"일"
+                                var tmp = response.body()!!.data[i].classDate.split("-")
+                                var tmptext = "${tmp[1].toInt()}" + "월 " + "${tmp[2].toInt()}" + "일"
 
                                 //Log.d("classDate:",response.body()!!.data[i].classDate)
-                                Log.d("mytext:","${mytext}")
-                                Log.d("tmptext","${tmptext}")
-                                if (tmptext==mytext){
-                                    Log.d("동일","동일")
+                                Log.d("mytext:", "${mytext}")
+                                Log.d("tmptext", "${tmptext}")
+                                if (tmptext == mytext) {
+                                    Log.d("동일", "동일")
                                     datas.apply {
                                         add(
                                             LogData(
@@ -123,29 +108,29 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                                 }
 
                             }
+                            //}
+
+
+                            val context: Context = itemView!!.context
+                            //logAdapter = LogAdapter(context, response!!.body()!!.data.toMutableList())
+                            //logAdapter.notifyDataSetChanged()
+                            //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
+
+                            // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                            logAdapter = LogAdapter(context, datas)
+                            rv_log.adapter = logAdapter
+                            logAdapter.datas = datas
+                            logAdapter.notifyDataSetChanged()
+                            // rv_datelog.adapter = logdateAdapter
+
+
+                        } else {
+                            Log.d("실패", "${response.body()}")
                         }
-
-
-                        val context: Context = itemView!!.context
-                        //logAdapter = LogAdapter(context, response!!.body()!!.data.toMutableList())
-                        //logAdapter.notifyDataSetChanged()
-                        //rv_log.adapter = logAdapter //리사이클러뷰의 어댑터를 지정해줌
-
-                        // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
-                        logAdapter= LogAdapter(context, datas)
-                        rv_log.adapter=logAdapter
-                        logAdapter.datas=datas
-                        logAdapter.notifyDataSetChanged()
-                        // rv_datelog.adapter = logdateAdapter
-
-
-                    } else {
-                        Log.d("실패", "${response.body()}")
                     }
                 }
-            }
 
-        })
+            })
 
 
      //   logAdapter = LogAdapter(itemView.context,response!!.body()!!.data.toMutableList())
