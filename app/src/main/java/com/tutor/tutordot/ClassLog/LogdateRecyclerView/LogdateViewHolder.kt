@@ -69,17 +69,15 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
                             Log.d("성공", "성공")
-                            Log.d("data확인", response.body()!!.data.toString())
+                            //Log.d("data확인", response.body()!!.data.toString())
                             // ser_date_times = response.body()!!.data[1]!!.times
                             // ser_date_studytime = response.body()!!.data[1]!!.hour
                             // ser_date_alltime = response.body()!!.data[1]!!.depositCycle
                             // ser_progress = response.body()!!.data[1]!!.classProgress
                             // ser_hw = response.body()!!.data[1]!!.homework
 
-
-                            //if (mytext != tv_date.text.toString()) {
+                            Log.d("mytext:", "${mytext}")
                             mytext = tv_date.text.toString()
-                            //Log.d("mytext:","${mytext}")
                             var i = 0
                             for (i in 0 until response.body()!!.data.size) {
                                 //var month : String = response.body()!!.data[i].classDate.slice(IntRange(5,6))
@@ -88,8 +86,8 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                                 var tmptext = "${tmp[1].toInt()}" + "월 " + "${tmp[2].toInt()}" + "일"
 
                                 //Log.d("classDate:",response.body()!!.data[i].classDate)
-                                Log.d("mytext:", "${mytext}")
-                                Log.d("tmptext", "${tmptext}")
+                                //Log.d("mytext:", "${mytext}")
+                                //Log.d("tmptext", "${tmptext}")
                                 if (tmptext == mytext) {
                                     Log.d("동일", "동일")
                                     datas.apply {
@@ -108,7 +106,6 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                                 }
 
                             }
-                            //}
 
 
                             val context: Context = itemView!!.context
