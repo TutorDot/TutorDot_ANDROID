@@ -290,14 +290,22 @@ class ClassLogFragment : Fragment() {
                             if (dd[0].equals("0"))
                                 dd = dd.replace("0", " ")
 */
-                            Log.d("날짜", "${mm}")
-                            Log.d("날짜", "${dd}")
+                            //Log.d("날짜", "${mm}")
+                            //Log.d("날짜", "${dd}")
 
                             datedatas.apply {
                                 add(
                                     LogdateData(
                                         month = mm.toInt(),
-                                        day = dd.toInt()
+                                        day = dd.toInt(),
+                                        color = response.body()!!.data[i].color,
+                                        times = response.body()!!.data[i].times,
+                                        studytime = response.body()!!.data[i].hour,
+                                        alltime = response.body()!!.data[i].depositCycle,
+                                        progress = response.body()!!.data[i].classProgress,
+                                        homework = response.body()!!.data[i].homework,
+                                        complete = response.body()!!.data[i].hwPerformance,
+                                        first=false
                                     )
                                 )
 
@@ -306,6 +314,22 @@ class ClassLogFragment : Fragment() {
                     }
                         datedatas= datedatas.sortedWith(compareBy<LogdateData>{it.month}.thenBy{it.day}).toMutableList()
                         datedatas = datedatas.distinct().toMutableList()
+                        var j=0
+                        if(datedatas.size>0) {
+                            var mymon = "${datedatas[0].month}"+"${datedatas[0].day}"
+                            var tmp:String=""
+                            datedatas[0].first=true
+                            for (i in 1 until datedatas.size) {
+                                tmp="${datedatas[i].month}"+"${datedatas[i].day}"
+                                if (tmp != mymon ){
+                                    datedatas[i].first=true
+                                    mymon = tmp
+
+                                }
+                            }
+                        }
+
+
                         logdateAdapter= LogdateAdapter(view!!.context, datedatas)
                         rv_datelog.adapter=logdateAdapter
                         logdateAdapter.datas=datedatas
