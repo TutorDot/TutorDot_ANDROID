@@ -46,7 +46,7 @@ class ClassLogFragment : Fragment() {
     val logRequestToServer = LogRequestToServer
 
     lateinit var logdateAdapter: LogdateAdapter
-    val datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
+    var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
 
     //현재 달 구하기
     val curDate= Calendar.getInstance()
@@ -275,11 +275,6 @@ class ClassLogFragment : Fragment() {
                         Log.d("성공", "성공")
                         Log.d("데이터 받기성공", response.body()!!.data.toString())
 
-                        //데이터가 없을 경우 haveData를 false로 바꿔줌
-//                        if(response.body()!!.data.size == 0)
-//                            haveData = false
-//                        else
-//                            haveData = true
 
                         //바깥쪽 날짜 데이터
                         var i: Int = 0
@@ -309,7 +304,8 @@ class ClassLogFragment : Fragment() {
                             }
 
                     }
-                       // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
+                        datedatas= datedatas.sortedWith(compareBy<LogdateData>{it.month}.thenBy{it.day}).toMutableList()
+                        datedatas = datedatas.distinct().toMutableList()
                         logdateAdapter= LogdateAdapter(view!!.context, datedatas)
                         rv_datelog.adapter=logdateAdapter
                         logdateAdapter.datas=datedatas

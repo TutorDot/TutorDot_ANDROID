@@ -72,7 +72,6 @@ class MyFragment : Fragment() {
         //myinfo 서버연결(user)
 
 
-        Log.d("jwt보기:", "$myjwt2")
 
         userRequestToServer.service.myInfoRequest(
             "${myjwt}"
