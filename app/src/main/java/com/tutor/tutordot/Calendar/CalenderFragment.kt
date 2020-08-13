@@ -23,7 +23,6 @@ import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
