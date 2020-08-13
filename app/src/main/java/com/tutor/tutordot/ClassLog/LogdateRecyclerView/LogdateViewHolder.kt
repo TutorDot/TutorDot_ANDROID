@@ -39,7 +39,7 @@ var ser_date_alltime : Int = 15
 var ser_color : String = "yellow"
 
 var modi_check : Boolean = false
-var haveData : Boolean = true
+
 
 class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tv_date : TextView = itemView.findViewById<TextView>(R.id.tv_date)

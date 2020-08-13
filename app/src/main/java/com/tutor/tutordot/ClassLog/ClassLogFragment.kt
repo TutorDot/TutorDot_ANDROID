@@ -14,7 +14,6 @@ import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.haveData
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.LogResponse
@@ -39,6 +38,8 @@ var day3 : Int = 13
 var mm: String=""
 var dd: String=""
 var yy: String=""
+
+var haveData : Boolean = true
 
 class ClassLogFragment : Fragment() {
 
@@ -263,6 +264,9 @@ class ClassLogFragment : Fragment() {
         ).enqueue(object : Callback<LogResponse> {
             override fun onFailure(call: Call<LogResponse>, t: Throwable) {
                 Log.d("통신 실패", "${t}")
+                haveData=false
+                ll_rv.visibility = View.GONE
+                cl_empty.visibility = View.VISIBLE
             }
 
             override fun onResponse(
@@ -274,6 +278,11 @@ class ClassLogFragment : Fragment() {
                     if (response.body()!!.success) {
                         Log.d("성공", "성공")
                         Log.d("데이터 받기성공", response.body()!!.data.toString())
+                        if(response.body()!!.data.size==0){
+                            haveData=false
+                            ll_rv.visibility = View.GONE
+                            cl_empty.visibility = View.VISIBLE
+                        }
 
 
                         //바깥쪽 날짜 데이터
@@ -337,6 +346,9 @@ class ClassLogFragment : Fragment() {
                        // rv_datelog.adapter = logdateAdapter
                     }else {
                         Log.d("실패", "${response.body()}")
+                        haveData=false
+                        ll_rv.visibility = View.GONE
+                        cl_empty.visibility = View.VISIBLE
                     }
                 }
             }
