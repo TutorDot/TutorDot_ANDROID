@@ -1,60 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginBottom="10dp">
+    android:layout_marginLeft="20dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_notice_item"
+    <LinearLayout
+        android:id="@+id/toplayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_notice_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:fontFamily="@font/apple_sdgothic_neo_b"
+            android:text="5월 29일"
+            android:textColor="#707070" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_gravity="center"
+            android:background="#ececec" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/notice_img_square">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toplayout">
 
-        <ImageView
-            android:id="@+id/iv_notice"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_notice_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:src="@drawable/notice_img_classlog_yellow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/notice_img_square">
 
-        <TextView
-            android:id="@+id/tv_notice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="15dp"
-            android:text="알림 메시지"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:textColor="#1a1a1a"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/iv_notice"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/iv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/notice_img_classlog_yellow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_notice_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="4dp"
-            android:text="알림 내용"
-            android:fontFamily="@font/apple_sdgothic_neo_m"
-            android:textColor="#707070"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/iv_notice"
-            app:layout_constraintTop_toBottomOf="@+id/tv_notice" />
+            <TextView
+                android:id="@+id/tv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:text="알림 메시지"
+                android:textColor="#1a1a1a"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_notice"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_notice_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:text="알림 내용"
+                android:textColor="#707070"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_notice"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notice" />
 
-</LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
