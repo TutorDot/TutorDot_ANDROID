@@ -1,19 +1,43 @@
-package com.tutor.tutordot.Notice
+package com.tutor.tutordot.Notice.NoticeRecyclerView
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.tutor.tutordot.Notice.NoticeRecyclerView.NoticeData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.role
 
+var haveNdata: Boolean =true
+var mytext:String=""
+
 class NoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tv_notice_date : TextView = itemView.findViewById<TextView>(R.id.tv_notice_date)
         val tv_notice = itemView.findViewById<TextView>(R.id.tv_notice)
         val tv_notice_msg = itemView.findViewById<TextView>(R.id.tv_notice_msg)
         val iv_notice = itemView.findViewById<ImageView>(R.id.iv_notice)
 
+        val toplayout = itemView.findViewById<LinearLayout>(R.id.toplayout)
+
 
         fun bind(noticeData : NoticeData) {
+
+            tv_notice_date.text = noticeData.month.toString() + "월 " + noticeData.day.toString() + "일"
+            mytext = tv_notice_date.text.toString()
+            Log.d("tv_date","${tv_notice_date.text}")
+            //if (!find.contains(mytext)){
+            if(noticeData.first2==true){
+                Log.d("mytext2","다름")
+                //mytext = tv_date.text.toString()
+                // find.add(mytext)
+                toplayout.visibility= LinearLayout.VISIBLE
+            }else{
+                Log.d("mytext2","동일")
+                toplayout.visibility= LinearLayout.GONE
+            }
 
             //알림 제목
             if(role == "tutor") {

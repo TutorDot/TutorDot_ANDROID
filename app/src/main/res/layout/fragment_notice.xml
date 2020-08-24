@@ -79,7 +79,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView48"
-            tools:listitem="@layout/item_notice_date" />
+            tools:listitem="@layout/item_notice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
