@@ -12,8 +12,6 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
-import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
-import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.ClassLog.Server.LogSomeData
@@ -142,6 +140,12 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 override fun onClick(v: View?) {
                     //val context: Context = v!!.context
                     val nextIntent = Intent(v!!.context, ClassLogModificationActivity::class.java)
+                    nextIntent.putExtra("diaryId", logdateSomeData.diaryId)
+                    nextIntent.putExtra("mycolor", logdateSomeData.color)
+                    nextIntent.putExtra("mytimes", tv_times.text.toString())
+                    nextIntent.putExtra("myprogress", logdateSomeData.progress)
+                    nextIntent.putExtra("myhomework", logdateSomeData.homework)
+                    nextIntent.putExtra("mycomplete", logdateSomeData.complete)
                     //context.startActivity(nextIntent)
                     moveActi(nextIntent, v)
 
@@ -149,7 +153,7 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             })
         }
 
-        com.tutor.tutordot.ClassLog.LogRecyclerView.completeTmp = complete
+        com.tutor.tutordot.ClassLog.LogdateRecyclerView.completeTmp = complete
 
 
      //   logAdapter = LogAdapter(itemView.context,response!!.body()!!.data.toMutableList())
