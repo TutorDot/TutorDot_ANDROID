@@ -1,5 +1,6 @@
 package com.tutor.tutordot.ClassLog.Server
 
+import com.tutor.tutordot.Startpage.myjwt
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -8,6 +9,8 @@ interface LogResponseInterface{
     //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
     @GET("/diary")
     fun logRequest(@Header("jwt") header: String) : Call<LogResponse>
+
+
 
     //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
     @GET("/diary/bar/1")

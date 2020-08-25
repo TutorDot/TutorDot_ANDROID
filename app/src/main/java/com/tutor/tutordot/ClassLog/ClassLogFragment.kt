@@ -314,7 +314,8 @@ class ClassLogFragment : Fragment() {
                                         progress = response.body()!!.data[i].classProgress,
                                         homework = response.body()!!.data[i].homework,
                                         complete = response.body()!!.data[i].hwPerformance,
-                                        first=false
+                                        first=false,
+                                        diaryId = response.body()!!.data[i].diaryId
                                     )
                                 )
 
