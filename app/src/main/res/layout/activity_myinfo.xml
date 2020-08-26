@@ -50,12 +50,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/my_class_tap_edit_open_topbg"
-        tools:layout_editor_absoluteX="2dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_class_tap_edit_open_topbg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:background="@drawable/my_class_tap_img_whitebg">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/myinfo_guideline"
@@ -67,27 +70,17 @@
 
 
             <ImageView
-                android:id="@+id/my_class_tap_img_whitebg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/my_class_tap_img_whitebg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
                 android:id="@+id/my_class_tap_img_yellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="34dp"
                 android:background="@drawable/my_class_tap_img_yellow"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/myinfo_guideline"
+
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/신연상튜티수학수업"
+                android:id="@+id/class_info_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -298,77 +291,75 @@
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/location" />
 
-            <View
-                android:id="@+id/view9"
-                android:layout_width="match_parent"
-                android:layout_height="53dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view8" />
-
-            <ImageView
-                android:id="@+id/imageView17"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/go1"
-                app:layout_constraintBottom_toTopOf="@+id/view2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
-
-            <ImageButton
-                android:id="@+id/my_class_tap_btn_invite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_class_tap_btn_invite"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_img_whitebg" />
-
 
             <View
                 android:id="@+id/view8"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginTop="28dp"
                 android:background="@color/colorTuti"
-                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_img_whitebg"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_invite" />
+                app:layout_constraintTop_toBottomOf="@+id/location_info" />
 
             <View
-                android:id="@+id/view11"
+                android:id="@+id/my_class_tap_btn_invite"
                 android:layout_width="match_parent"
-                android:layout_height="53dp"
+                android:layout_height="56dp"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="695dp" />
+                app:layout_constraintTop_toBottomOf="@+id/view8" />
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/go1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/view11"
-                app:layout_constraintTop_toBottomOf="@+id/imageView17" />
-
-            <ImageButton
-                android:id="@+id/my_class_tap_btn_unconnect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_class_tap_btn_unconnect"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/my_class_tap_btn_invite" />
+                android:layout_marginTop="21dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:lineSpacingExtra="6sp"
+                android:text="과외초대"
+                android:textColor="#707070"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_invite"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_invite" />
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/colorTuti"
-                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_invite"
+                app:layout_constraintBottom_toTopOf="@+id/my_class_tap_btn_unconnect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/my_class_tap_btn_invite" />
+
+            <View
+                android:id="@+id/my_class_tap_btn_unconnect"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:lineSpacingExtra="6sp"
+                android:text="연결해제"
+                android:textColor="#707070"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_unconnect"
+                app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
+                app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_unconnect" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
