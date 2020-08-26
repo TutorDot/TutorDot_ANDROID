@@ -288,10 +288,11 @@ class ClassLogFragment : Fragment() {
                         //바깥쪽 날짜 데이터
                         var i: Int = 0
                         for (i in 0 until response.body()!!.data.size) {
+                            if(response.body()!!.data[i].classDate != null){
                             var cd = response.body()!!.data[i].classDate.split("-")
-                            yy = cd[0]
-                            mm = cd[1]
-                            dd = cd[2]
+                                yy = cd[0]
+                                mm = cd[1]
+                                dd = cd[2]}
 
 /*
                             if (mm[0].equals("0"))
