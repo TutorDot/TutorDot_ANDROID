@@ -243,7 +243,8 @@ class MyFragment : Fragment() {
                                     color = classlistColor,
                                     content= classlistLectureName,
                                     profileUrl1 = classlistprofile1,
-                                    profileUrl2 = classlistprofile2
+                                    profileUrl2 = classlistprofile2,
+                                    lectureId = response.body()!!.data[i].lectureId
                                 ))}
                         mypageAdapter.datas = datas
                         mypageAdapter.notifyDataSetChanged()

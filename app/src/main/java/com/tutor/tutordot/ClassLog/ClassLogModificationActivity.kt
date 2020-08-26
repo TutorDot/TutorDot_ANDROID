@@ -110,7 +110,7 @@ class ClassLogModificationActivity : AppCompatActivity() {
 
                 //서버에 전달
                 logRequestToServer.service.logModiRequest(
-                    "$myjwt",
+                    "${myjwt}",
                     LogModiRequest(
                         classProgress = ser_progress,
                         homework = ser_hw,
