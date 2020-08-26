@@ -257,14 +257,14 @@ class ClassLogFragment : Fragment() {
     }
 
     //서버 연결
-    private fun loaddateDatas(){
+    private fun loaddateDatas() {
         // 서버 요청
         logRequestToServer.service.logRequest(
             "${myjwt}"
         ).enqueue(object : Callback<LogResponse> {
             override fun onFailure(call: Call<LogResponse>, t: Throwable) {
                 Log.d("통신 실패", "${t}")
-                haveData=false
+                haveData = false
                 ll_rv.visibility = View.GONE
                 cl_empty.visibility = View.VISIBLE
             }
@@ -278,8 +278,8 @@ class ClassLogFragment : Fragment() {
                     if (response.body()!!.success) {
                         Log.d("성공", "성공")
                         Log.d("데이터 받기성공", response.body()!!.data.toString())
-                        if(response.body()!!.data.size==0){
-                            haveData=false
+                        if (response.body()!!.data.size == 0) {
+                            haveData = false
                             ll_rv.visibility = View.GONE
                             cl_empty.visibility = View.VISIBLE
                         }
@@ -314,25 +314,27 @@ class ClassLogFragment : Fragment() {
                                         progress = response.body()!!.data[i].classProgress,
                                         homework = response.body()!!.data[i].homework,
                                         complete = response.body()!!.data[i].hwPerformance,
-                                        first=false,
+                                        first = false,
                                         diaryId = response.body()!!.data[i].diaryId
                                     )
                                 )
 
                             }
 
-                    }
-                        datedatas= datedatas.sortedWith(compareBy<LogdateData>{it.month}.thenBy{it.day}).toMutableList()
+                        }
+                        datedatas =
+                            datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
+                                .toMutableList()
                         datedatas = datedatas.distinct().toMutableList()
-                        var j=0
-                        if(datedatas.size>0) {
-                            var mymon = "${datedatas[0].month}"+"${datedatas[0].day}"
-                            var tmp:String=""
-                            datedatas[0].first=true
+                        var j = 0
+                        if (datedatas.size > 0) {
+                            var mymon = "${datedatas[0].month}" + "${datedatas[0].day}"
+                            var tmp: String = ""
+                            datedatas[0].first = true
                             for (i in 1 until datedatas.size) {
-                                tmp="${datedatas[i].month}"+"${datedatas[i].day}"
-                                if (tmp != mymon ){
-                                    datedatas[i].first=true
+                                tmp = "${datedatas[i].month}" + "${datedatas[i].day}"
+                                if (tmp != mymon) {
+                                    datedatas[i].first = true
                                     mymon = tmp
 
                                 }
@@ -340,22 +342,22 @@ class ClassLogFragment : Fragment() {
                         }
 
 
-                        logdateAdapter= LogdateAdapter(view!!.context, datedatas)
-                        rv_datelog.adapter=logdateAdapter
-                        logdateAdapter.datas=datedatas
+                        logdateAdapter = LogdateAdapter(view!!.context, datedatas)
+                        rv_datelog.adapter = logdateAdapter
+                        logdateAdapter.datas = datedatas
                         logdateAdapter.notifyDataSetChanged()
-                       // rv_datelog.adapter = logdateAdapter
-                    }else {
+                        // rv_datelog.adapter = logdateAdapter
+                    } else {
                         Log.d("실패", "${response.body()}")
-                        haveData=false
+                        haveData = false
                         ll_rv.visibility = View.GONE
                         cl_empty.visibility = View.VISIBLE
                     }
                 }
             }
-
         })
     }
+
 
 /*
     private fun loaddateDatas() {
