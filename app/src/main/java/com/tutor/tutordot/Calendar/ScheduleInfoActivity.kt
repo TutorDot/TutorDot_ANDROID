@@ -15,12 +15,40 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
+import kotlinx.android.synthetic.main.activity_myinfo.*
 import kotlinx.android.synthetic.main.activity_schedule_info.*
 
 class ScheduleInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_info)
+        //화면구현
+        var color= intent.getStringExtra("color")
+        var title= intent.getStringExtra("title")
+        var start= intent.getStringExtra("start")
+        var end= intent.getStringExtra("end")
+        var date= intent.getStringExtra("date")
+        var location= intent.getStringExtra("location")
+        var cid=intent.getIntExtra("mycid", 0)
+
+        if(color == "yellow")
+            schedule_info_color.setImageResource(R.drawable.notice_color_img_yellow)
+        if(color == "green")
+            schedule_info_color.setImageResource(R.drawable.notice_color_img_green)
+        if(color == "blue")
+            schedule_info_color.setImageResource(R.drawable.notice_color_img_blue)
+        if(color == "purple")
+            schedule_info_color.setImageResource(R.drawable.notice_color_img_purple)
+        if(color == "red")
+            schedule_info_color.setImageResource(R.drawable.notice_color_img_red)
+
+        schedule_info_txt.setText(title)
+        schedule_info_date_txt.setText(date)
+        schedule_info_start_txt.setText(start)
+        schedule_info_end_txt.setText(end)
+        schedule_info_location_txt.setText(location)
+
+
 
         schedule_info_edit.setOnClickListener {
             val intent = Intent(this, ScheduleEditActivity::class.java)

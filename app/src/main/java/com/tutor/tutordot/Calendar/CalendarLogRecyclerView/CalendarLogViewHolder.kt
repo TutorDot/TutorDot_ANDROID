@@ -86,6 +86,15 @@ class CalendarLogViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
             override fun onClick(v: View?) {
                 val context: Context = v!!.context
                 val nextIntent = Intent(v!!.context, ScheduleInfoActivity::class.java)
+                nextIntent.putExtra("color",calendarLogData.color)
+                nextIntent.putExtra("start",calendarLogData.startTime)
+                nextIntent.putExtra("end",calendarLogData.endTime)
+                nextIntent.putExtra("title",calendarLogData.lectureName)
+                nextIntent.putExtra("date",calendarLogData.classDate)
+                nextIntent.putExtra("location",calendarLogData.location)
+                nextIntent.putExtra("mycid",calendarLogData.classId)
+
+
                 context.startActivity(nextIntent.addFlags(FLAG_ACTIVITY_NEW_TASK))
 
                 //moveActi(nextIntent, v)
