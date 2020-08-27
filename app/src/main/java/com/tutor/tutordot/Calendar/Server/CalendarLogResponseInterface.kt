@@ -14,10 +14,9 @@ interface CalendarLogResponseInterface{
     @POST("/calander/class")
     fun scheduleAddRequest(@Header("jwt") header: String, @Body body : ScheduleAddRequest) : Call<ScheduleAddResponse>
 
-    @PUT("/calander/class/1")
-    fun scheduleEditRequest(@Header("jwt") header: String, @Body body : ScheduleEditRequest) : Call<ScheduleEditResponse>
+    @PUT("/calander/class/{cid}")
+    fun scheduleEditRequest(@Header("jwt") header: String, @Body body : ScheduleEditRequest, @Path("cid") path:String) : Call<ScheduleEditResponse>
 
-    @GET("/calander/class/1")
-    fun scheduleInfoRequest(@Header("jwt") header: String, @Body body : ScheduleInfoRequest) : Call<ScheduleInfoResponse>
-
+    @DELETE("/calander/class/{cid}")
+    fun scheduleDeleteRequest(@Header("jwt") header: String, @Path("cid") path:String): Call<ScheduleAddResponse>
 }
