@@ -3,7 +3,7 @@ package com.tutor.tutordot.MyPage.Server
 data class MyAddRequest(
     val lectureName: String,
     val color: String,
-    val schedules: List<ScehduleData>,
+    var schedules: List<ScheduleData>,
     val orgLocation: String,
     val bank: String,
     val accountNumber: String,
@@ -11,7 +11,7 @@ data class MyAddRequest(
     val price: Int
 )
 
-data class ScehduleData(
+data class ScheduleData(
     val day: String,
     val orgStartTime: String,
     val orgEndTime: String

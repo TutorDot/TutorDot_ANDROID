@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -42,9 +41,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/myscroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout_my_add"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mmy_class_add_img_topbg">
 
@@ -217,6 +220,7 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+
             <ImageButton
                 android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
@@ -379,33 +383,893 @@
 
             <ImageButton
                 android:id="@+id/btn_plus"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="6dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/my_class_tap_edit_btn_timeadd"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/rv_new_classtime" />
+                app:layout_constraintTop_toBottomOf="@+id/constraint_5th" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_new_classtime"
-                android:layout_width="match_parent"
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_1st"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="13dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@+id/btn_plus"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/textView51"
-                tools:listitem="@layout/item_myclass_edit" />
+                app:layout_constraintTop_toBottomOf="@+id/textView51">
+
+                <ImageButton
+                    android:id="@+id/btn_day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_weekday1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="월"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_day1"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day1"
+                    app:layout_constraintTop_toTopOf="@+id/btn_day1"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_start1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/my_class_tap_edit_btn_time1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_day1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_start1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start1"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_end1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time2"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_end1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_end1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start1"
+                    app:layout_constraintTop_toTopOf="@+id/btn_end1" />
+
+                <ImageButton
+                    android:id="@+id/btn_x1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time_x"
+                    app:layout_constraintStart_toEndOf="@+id/btn_end1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <NumberPicker
+                    android:id="@+id/tp_day1"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="19dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.333"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day1" />
+
+
+                <TimePicker
+                    android:id="@+id/tp_myclass_time_1"
+                    android:layout_width="320dp"
+                    android:layout_height="132dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="19dp"
+                    android:timePickerMode="spinner"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day1"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day1" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutthird1"
+                    android:layout_width="320dp"
+                    android:layout_height="167dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_start1">
+
+                    <TextView
+                        android:id="@+id/textView42_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sdgothic_neo_m"
+                        android:lineSpacingExtra="4sp"
+                        android:text="수업 시간을 설정해주세요"
+                        android:textColor="#707070"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/layoutthird1" />
+
+                    <NumberPicker
+                        android:id="@+id/tp_myclass_time2_1"
+                        android:layout_width="320dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="19dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/layoutthird1"
+                        app:layout_constraintTop_toBottomOf="@+id/textView42_1" />
+
+                    <Button
+                        android:id="@+id/btn_save1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="132dp"
+                        android:background="#00000000"
+                        android:fontFamily="@font/apple_sdgothic_neo_sb"
+                        android:lineSpacingExtra="6sp"
+                        android:text="확인"
+                        android:textColor="#6875dd"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_2nd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_1st">
+
+                <ImageButton
+                    android:id="@+id/btn_day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_weekday2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="월"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_day2"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day2"
+                    app:layout_constraintTop_toTopOf="@+id/btn_day2"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_start2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/my_class_tap_edit_btn_time1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_day2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_start2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start2"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_end2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time2"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_end2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_end2"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start2"
+                    app:layout_constraintTop_toTopOf="@+id/btn_end2" />
+
+                <ImageButton
+                    android:id="@+id/btn_x2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time_x"
+                    app:layout_constraintStart_toEndOf="@+id/btn_end2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <NumberPicker
+                    android:id="@+id/tp_day2"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="19dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.333"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day2" />
+
+                <TimePicker
+                    android:id="@+id/tp_myclass_time_2"
+                    android:layout_width="320dp"
+                    android:layout_height="132dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="19dp"
+                    android:timePickerMode="spinner"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day2"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day2" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutthird2"
+                    android:layout_width="320dp"
+                    android:layout_height="167dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_start2">
+
+                    <TextView
+                        android:id="@+id/textView42_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sdgothic_neo_m"
+                        android:lineSpacingExtra="4sp"
+                        android:text="수업 시간을 설정해주세요"
+                        android:textColor="#707070"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/layoutthird2" />
+
+                    <NumberPicker
+                        android:id="@+id/tp_myclass_time2_2"
+                        android:layout_width="320dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="19dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/layoutthird2"
+                        app:layout_constraintTop_toBottomOf="@+id/textView42_2" />
+
+                    <Button
+                        android:id="@+id/btn_save2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="132dp"
+                        android:background="#00000000"
+                        android:fontFamily="@font/apple_sdgothic_neo_sb"
+                        android:lineSpacingExtra="6sp"
+                        android:text="확인"
+                        android:textColor="#6875dd"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_3rd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_2nd">
+
+                <ImageButton
+                    android:id="@+id/btn_day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_weekday3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="월"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_day3"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day3"
+                    app:layout_constraintTop_toTopOf="@+id/btn_day3"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_start3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/my_class_tap_edit_btn_time1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_day3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_start3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start3"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_end3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time2"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_end3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_end3"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start3"
+                    app:layout_constraintTop_toTopOf="@+id/btn_end3" />
+
+                <ImageButton
+                    android:id="@+id/btn_x3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time_x"
+                    app:layout_constraintStart_toEndOf="@+id/btn_end3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <NumberPicker
+                    android:id="@+id/tp_day3"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="19dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.333"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day3" />
+
+
+                <TimePicker
+                    android:id="@+id/tp_myclass_time_3"
+                    android:layout_width="320dp"
+                    android:layout_height="132dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="19dp"
+                    android:timePickerMode="spinner"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day3"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day3" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutthird3"
+                    android:layout_width="320dp"
+                    android:layout_height="167dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_start3">
+
+                    <TextView
+                        android:id="@+id/textView42_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sdgothic_neo_m"
+                        android:lineSpacingExtra="4sp"
+                        android:text="수업 시간을 설정해주세요"
+                        android:textColor="#707070"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/layoutthird3" />
+
+                    <NumberPicker
+                        android:id="@+id/tp_myclass_time2_3"
+                        android:layout_width="320dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="19dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/layoutthird3"
+                        app:layout_constraintTop_toBottomOf="@+id/textView42_3" />
+
+                    <Button
+                        android:id="@+id/btn_save3"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="132dp"
+                        android:background="#00000000"
+                        android:fontFamily="@font/apple_sdgothic_neo_sb"
+                        android:lineSpacingExtra="6sp"
+                        android:text="확인"
+                        android:textColor="#6875dd"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_4th"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_3rd">
+
+                <ImageButton
+                    android:id="@+id/btn_day4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_weekday4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="월"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_day4"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day4"
+                    app:layout_constraintTop_toTopOf="@+id/btn_day4"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_start4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/my_class_tap_edit_btn_time1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_day4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_start4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start4"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_end4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time2"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_end4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_end4"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start4"
+                    app:layout_constraintTop_toTopOf="@+id/btn_end4" />
+
+                <ImageButton
+                    android:id="@+id/btn_x4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time_x"
+                    app:layout_constraintStart_toEndOf="@+id/btn_end4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <NumberPicker
+                    android:id="@+id/tp_day4"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="19dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.333"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day4" />
+
+
+                <TimePicker
+                    android:id="@+id/tp_myclass_time_4"
+                    android:layout_width="320dp"
+                    android:layout_height="132dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="19dp"
+                    android:timePickerMode="spinner"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day4"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day4" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutthird4"
+                    android:layout_width="320dp"
+                    android:layout_height="167dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_start4">
+
+                    <TextView
+                        android:id="@+id/textView42_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sdgothic_neo_m"
+                        android:lineSpacingExtra="4sp"
+                        android:text="수업 시간을 설정해주세요"
+                        android:textColor="#707070"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/layoutthird4" />
+
+                    <NumberPicker
+                        android:id="@+id/tp_myclass_time2_4"
+                        android:layout_width="320dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="19dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/layoutthird4"
+                        app:layout_constraintTop_toBottomOf="@+id/textView42_4" />
+
+                    <Button
+                        android:id="@+id/btn_save4"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="132dp"
+                        android:background="#00000000"
+                        android:fontFamily="@font/apple_sdgothic_neo_sb"
+                        android:lineSpacingExtra="6sp"
+                        android:text="확인"
+                        android:textColor="#6875dd"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_5th"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_4th">
+
+                <ImageButton
+                    android:id="@+id/btn_day5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_weekday5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="월"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_day5"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day5"
+                    app:layout_constraintTop_toTopOf="@+id/btn_day5"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_start5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/my_class_tap_edit_btn_time1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_day5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_start5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_end5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time2"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tp_end5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:lineSpacingExtra="5sp"
+                    android:text="00:00am"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_end5"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start5"
+                    app:layout_constraintTop_toTopOf="@+id/btn_end5" />
+
+                <ImageButton
+                    android:id="@+id/btn_x5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_class_tap_edit_btn_time_x"
+                    app:layout_constraintStart_toEndOf="@+id/btn_end5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <NumberPicker
+                    android:id="@+id/tp_day5"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="19dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.333"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day5" />
+
+
+                <TimePicker
+                    android:id="@+id/tp_myclass_time_5"
+                    android:layout_width="320dp"
+                    android:layout_height="132dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="19dp"
+                    android:timePickerMode="spinner"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/btn_day5"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_day5" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutthird5"
+                    android:layout_width="320dp"
+                    android:layout_height="167dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_start5">
+
+                    <TextView
+                        android:id="@+id/textView42_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sdgothic_neo_m"
+                        android:lineSpacingExtra="4sp"
+                        android:text="수업 시간을 설정해주세요"
+                        android:textColor="#707070"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/layoutthird5" />
+
+                    <NumberPicker
+                        android:id="@+id/tp_myclass_time2_5"
+                        android:layout_width="320dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="19dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/layoutthird5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView42_5" />
+
+                    <Button
+                        android:id="@+id/btn_save5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="132dp"
+                        android:background="#00000000"
+                        android:fontFamily="@font/apple_sdgothic_neo_sb"
+                        android:lineSpacingExtra="6sp"
+                        android:text="확인"
+                        android:textColor="#6875dd"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/textView9"
@@ -425,11 +1289,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="13dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginBottom="18dp"
                 android:background="@drawable/my_class_tap_edit_btn_location"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -455,36 +1319,37 @@
     </ScrollView>
 
     <LinearLayout
-        android:layout_marginTop="11dp"
         android:id="@+id/linearLayout_my_add"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_cancel_my_add"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:background="@color/colorBackground"
-            android:textSize="20sp"
-            android:textColor="#eb6b6b"
-            android:lineSpacingExtra="8sp"
             android:layout_weight="1"
+            android:background="@color/colorBackground"
             android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:text="취소" />
+            android:lineSpacingExtra="8sp"
+            android:text="취소"
+            android:textColor="#eb6b6b"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btn_save_my_add"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:background="@color/colorBackground"
-            android:textSize="20sp"
-            android:textColor="#6875dd"
-            android:lineSpacingExtra="8sp"
             android:layout_weight="1"
+            android:background="@color/colorBackground"
             android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:text="저장" />
+            android:lineSpacingExtra="8sp"
+            android:text="저장"
+            android:textColor="#6875dd"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
