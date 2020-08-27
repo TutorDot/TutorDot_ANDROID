@@ -11,20 +11,20 @@ import java.util.*
 
 
 class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val tp_weekday=itemView.findViewById<TextView>(R.id.tp_weekday)
-    val tp_start=itemView.findViewById<TextView>(R.id.tp_start)
-    val tp_end=itemView.findViewById<TextView>(R.id.tp_end)
+    val tp_weekday=itemView.findViewById<TextView>(R.id.tp_weekday1)
+    val tp_start=itemView.findViewById<TextView>(R.id.tp_start1)
+    val tp_end=itemView.findViewById<TextView>(R.id.tp_end1)
 
-    val tp_day=itemView.findViewById<NumberPicker>(R.id.tp_day)
+    val tp_day=itemView.findViewById<NumberPicker>(R.id.tp_day1)
     val tp_myclass_time1=itemView.findViewById<TimePicker>(R.id.tp_myclass_time1)
-    val tp_myclass_time2=itemView.findViewById<NumberPicker>(R.id.tp_myclass_time2)
-    val endtime_set= itemView.findViewById<ConstraintLayout>(R.id.layoutthird)
+    val tp_myclass_time2=itemView.findViewById<NumberPicker>(R.id.tp_myclass_time2_1)
+    val endtime_set= itemView.findViewById<ConstraintLayout>(R.id.layoutthird1)
 
-    val btn_day=itemView.findViewById<ImageButton>(R.id.btn_day)
+    val btn_day=itemView.findViewById<ImageButton>(R.id.btn_day1)
     val btn_start=itemView.findViewById<ImageButton>(R.id.btn_start)
-    val btn_end=itemView.findViewById<ImageButton>(R.id.btn_end)
+    val btn_end=itemView.findViewById<ImageButton>(R.id.btn_end1)
     val btn_x=itemView.findViewById<ImageButton>(R.id.btn_x)
-    val btn_save=itemView.findViewById<Button>(R.id.btn_save)
+    val btn_save=itemView.findViewById<Button>(R.id.btn_save1)
 
 
 
@@ -131,9 +131,8 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
     // Custom method to get AM PM value from provided hour
     private fun getAMPM(hour:Int):String{
-        return if(hour>11)"PM" else "AM"
+        return if(hour>11)"pm" else "am"
     }
-
 
     // Custom method to get hour for AM PM time format
     private fun getHourAMPM(hour:Int):Int{
