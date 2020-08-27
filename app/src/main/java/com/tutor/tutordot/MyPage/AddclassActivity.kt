@@ -22,36 +22,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
 import retrofit2.Response
-
 class AddclassActivity : AppCompatActivity() {
     lateinit var myclassEditAdapter_add: MyclassEditAdapter
     val adata= mutableListOf<MyclassEditData>()
 
     var color : String = "yellow"        //수업시간 추가
-    //전체
-    val constraint_no: List<ConstraintLayout> = listOf(constraint_1st, constraint_2nd, constraint_3rd, constraint_4th, constraint_5th)
-
-    val btn_x: List<ImageButton> = listOf(btn_x1, btn_x2, btn_x3, btn_x4, btn_x5)
-
-    //타임피커-요일
-    val dayvalues = arrayOf("월", "화", "수", "목", "금", "토", "일")
-    val btn_day: List<ImageButton> = listOf(btn_day1, btn_day2, btn_day3, btn_day4, btn_day5)
-    val tp_day: List<NumberPicker> = listOf(tp_day1, tp_day2, tp_day3, tp_day4, tp_day5)
-    var tv_weekday: List<TextView> = listOf(tp_weekday1, tp_weekday2, tp_weekday3, tp_weekday4, tp_weekday5 )
-
-    //타임피커-시작시간
-    var tmptime = mutableListOf<Int>(2, 2, 2, 2, 2)
-    var tmpmin = mutableListOf<Int>(30, 30, 30, 30, 30)
-    val btn_start: List<ImageButton> = listOf(btn_start1, btn_start2, btn_start3, btn_start4, btn_start5)
-    val tp_myclass_time1: List<TimePicker> = listOf(tp_myclass_time_1, tp_myclass_time_2, tp_myclass_time_3, tp_myclass_time_4, tp_myclass_time_5)
-    val tv_start: List<TextView> = listOf(tp_start1, tp_start2, tp_start3, tp_start4, tp_start5)
-
-    //타임피커-끝시간
-    val tv_end: List<TextView> = listOf(tp_end1, tp_end2, tp_end3, tp_end4, tp_end5)
-    val tp_myclass_time2: List<NumberPicker> = listOf(tp_myclass_time2_1, tp_myclass_time2_2, tp_myclass_time2_3, tp_myclass_time2_4, tp_myclass_time2_5)
-    val btn_end: List<ImageButton> =  listOf(btn_end1, btn_end2, btn_end3, btn_end4, btn_end5)
-    val endtime_set: List<ConstraintLayout> = listOf(layoutthird1, layoutthird2, layoutthird3, layoutthird4, layoutthird5)
-    val btn_save: List<Button> = listOf(btn_save1, btn_save2, btn_save3, btn_save4, btn_save5)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +35,31 @@ class AddclassActivity : AppCompatActivity() {
 
         val mypageRequestToServer = MyPageRequestToServer
         val newclassname = editTextname.text.toString()
-        lateinit var allSchedule: MutableList<ScheduleData>
+        var allSchedule: MutableList<ScheduleData2> = mutableListOf<ScheduleData2>()
+        //전체
+        val constraint_no: List<ConstraintLayout> = listOf(constraint_1st, constraint_2nd, constraint_3rd, constraint_4th, constraint_5th)
+        val btn_x: List<ImageButton> = listOf(btn_x1, btn_x2, btn_x3, btn_x4, btn_x5)
+
+        //타임피커-요일
+        val dayvalues = arrayOf("월", "화", "수", "목", "금", "토", "일")
+        val btn_day: List<ImageButton> = listOf(btn_day1, btn_day2, btn_day3, btn_day4, btn_day5)
+        val tp_day: List<NumberPicker> = listOf(tp_day1, tp_day2, tp_day3, tp_day4, tp_day5)
+        var tv_weekday: List<TextView> = listOf(tp_weekday1, tp_weekday2, tp_weekday3, tp_weekday4, tp_weekday5 )
+
+        //타임피커-시작시간
+        var tmptime = mutableListOf<Int>(2, 2, 2, 2, 2)
+        var tmpmin = mutableListOf<Int>(30, 30, 30, 30, 30)
+        val btn_start: List<ImageButton> = listOf(btn_start1, btn_start2, btn_start3, btn_start4, btn_start5)
+        val tp_myclass_time1: List<TimePicker> = listOf(tp_myclass_time_1, tp_myclass_time_2, tp_myclass_time_3, tp_myclass_time_4, tp_myclass_time_5)
+        val tv_start: List<TextView> = listOf(tp_start1, tp_start2, tp_start3, tp_start4, tp_start5)
+
+        //타임피커-끝시간
+        val tv_end: List<TextView> = listOf(tp_end1, tp_end2, tp_end3, tp_end4, tp_end5)
+        val tp_myclass_time2: List<NumberPicker> = listOf(tp_myclass_time2_1, tp_myclass_time2_2, tp_myclass_time2_3, tp_myclass_time2_4, tp_myclass_time2_5)
+        val btn_end: List<ImageButton> =  listOf(btn_end1, btn_end2, btn_end3, btn_end4, btn_end5)
+        val endtime_set: List<ConstraintLayout> = listOf(layoutthird1, layoutthird2, layoutthird3, layoutthird4, layoutthird5)
+        val btn_save: List<Button> = listOf(btn_save1, btn_save2, btn_save3, btn_save4, btn_save5)
+
 
 
         myclassEditAdapter_add= MyclassEditAdapter(this)
@@ -78,11 +77,14 @@ class AddclassActivity : AppCompatActivity() {
         //저장버튼
         btn_save_my_add.setOnClickListener{
             var i =0
-            for(i in 0 until 5){
+            for(i in 0 until 1){
+                Log.d("for문", "for문")
+                if (tv_start[i].text == null) break
                 if(tv_start[i].text != "00:00am"){
-                    allSchedule.add(ScheduleData(day=tv_weekday[i].text.toString(), orgStartTime = tv_start[i].text.toString(), orgEndTime = tv_end[i].text.toString()))
+                   // allSchedule.add(ScheduleData2(day=tv_weekday[i].text.toString(), orgStartTime = tv_start[i].text.toString(), orgEndTime = tv_end[i].text.toString()))
                 }
             }
+
 
 
             //서버에 데이터 PUT
@@ -91,21 +93,22 @@ class AddclassActivity : AppCompatActivity() {
                 MyAddRequest(
                     lectureName = newclassname,
                     color = color,
-                    schedules = allSchedule.toList(),
-                    orgLocation = "합정역 할리스커피",
+                    //schedules = allSchedule.toList(),
+                    schedules = listOf(ScheduleData2(orgStartTime = "00:00am", orgEndTime = "03:30am",day="수")),
+                    orgLocation = orglocation.text.toString(),
                     bank = et_bank.text.toString(),
                     accountNumber = editText3.text.toString(),
-                    totalHours = 10,
-                    price = 80
+                    totalHours = et_newtime.text.toString().toInt(),
+                    price = et_newprice.text.toString().toInt()
                 )
-            ).enqueue(object : Callback<MyAddResponse> {
-                override fun onFailure(call: Call<MyAddResponse>, t: Throwable) {
+            ).enqueue(object : Callback<ProfileEditResponse> {
+                override fun onFailure(call: Call<ProfileEditResponse>, t: Throwable) {
                     Log.d("통신 실패", "수업 추가 통신 실패${t}")
                 }
 
                 override fun onResponse(
-                    call: Call<MyAddResponse>,
-                    response: Response<MyAddResponse>
+                    call: Call<ProfileEditResponse>,
+                    response: Response<ProfileEditResponse>
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {

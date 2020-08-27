@@ -237,10 +237,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
                 android:background="@color/colorBackground"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:hint="16"
+                android:inputType="number"
                 android:lineSpacingExtra="5sp"
                 android:paddingTop="11dp"
                 android:paddingRight="70dp"
@@ -1299,10 +1299,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <EditText
+                android:id="@+id/orglocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
                 android:background="@color/colorBackground"
