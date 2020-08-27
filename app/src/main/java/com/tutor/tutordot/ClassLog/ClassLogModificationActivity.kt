@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.item_classlog.*
 import kotlin.math.log
 
-var complete : Int = 1
+var complete : Int = 0
 
 class ClassLogModificationActivity : AppCompatActivity() {
 
@@ -115,7 +115,7 @@ class ClassLogModificationActivity : AppCompatActivity() {
                         classProgress = ser_progress,
                         homework = ser_hw,
                         hwPerformance = complete
-                    )//정보를 전달
+                    ),"${mydiaryId}"
                 ).customEnqueue(
                     onError = {Log.d("올바르지 못한 요청입니다","올바르지 못한 요청입니다")},
                     onSuccess = {
