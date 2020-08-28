@@ -11,12 +11,22 @@ interface CalendarLogResponseInterface{
     @GET("/calander")
     fun calendarlogRequest(@Header("jwt") header: String) : Call<CalendarLogResponseData>
 
+    //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
     @POST("/calander/class")
     fun scheduleAddRequest(@Header("jwt") header: String, @Body body : ScheduleAddRequest) : Call<ScheduleAddResponse>
 
-    @PUT("/calander/class/{cid}")
-    fun scheduleEditRequest(@Header("jwt") header: String, @Body body : ScheduleEditRequest, @Path("cid") path:String) : Call<ScheduleEditResponse>
+    //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
+    @PUT("/calander/class/2")
+    fun scheduleEditRequest(@Header("jwt") header: String, @Body body : ScheduleEditRequest) : Call<ScheduleEditResponse>
 
-    @DELETE("/calander/class/{cid}")
-    fun scheduleDeleteRequest(@Header("jwt") header: String, @Path("cid") path:String): Call<ScheduleAddResponse>
+//    @Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NDgzMzkwMywiZXhwIjoxNTk2MDQzNTAzLCJpc3MiOiJvdXItc29wdCJ9.E4RNGNpeJENsAOZ5v8W_9tXpZjqKdXypbBZFYOSpZMI")
+//    @GET("/calander/class/1")
+//    fun scheduleInfoRequest() : Call<ScheduleInfoRequest>
+
+//    fun calendarlogRequest(
+//        @Header("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NDgzMzkwMywiZXhwIjoxNTk2MDQzNTAzLCJpc3MiOiJvdXItc29wdCJ9.E4RNGNpeJENsAOZ5v8W_9tXpZjqKdXypbBZFYOSpZMI")  token : String,
+//    ) : Call<CalendarLogResponseData>
+
+//    @GET("/calander/1")
+//    fun calendarlogRequest() : Call<CalendarLogResponseData>
 }

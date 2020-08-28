@@ -2,7 +2,6 @@ package com.tutor.tutordot.MyPage.MypageRecylerView
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -48,11 +47,9 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
 
         rv_class_name.setOnClickListener(object :View.OnClickListener {
             override fun onClick(mypageview: View?) {
-                //val pos= adapterPosition
-                //Log.d("pos","${pos}")
+                val pos= adapterPosition
                 //val context: Context = mypageview!!.context
                 val intent = Intent(mypageview!!.context, MyinfoActivity::class.java)
-                intent.putExtra("mylid", mypageData.lectureId)
                 //context.startActivity(intent)
                 moveActi(intent, mypageview)
             }

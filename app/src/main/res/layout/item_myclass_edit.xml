@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="6dp"
-    android:visibility="visible">
+    android:layout_marginBottom="6dp">
 
     <ImageButton
-        android:id="@+id/btn_day1"
+        android:id="@+id/btn_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/my_class_tap_edit_btn_week"
@@ -16,88 +16,90 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tp_weekday1"
+        android:id="@+id/tp_weekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="13dp"
-        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:lineSpacingExtra="5sp"
         android:text="월"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:textColor="#707070"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_day1"
-        app:layout_constraintStart_toStartOf="@+id/btn_day1"
-        app:layout_constraintTop_toTopOf="@+id/btn_day1"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_day"
+        app:layout_constraintStart_toStartOf="@+id/btn_day"
+        app:layout_constraintTop_toTopOf="@+id/btn_day"
         app:layout_constraintVertical_bias="0.0" />
 
 
+
     <ImageButton
-        android:id="@+id/btn_start1"
+        android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
         android:background="@drawable/my_class_tap_edit_btn_time1"
-        app:layout_constraintStart_toEndOf="@+id/btn_day1"
+        app:layout_constraintStart_toEndOf="@+id/btn_day"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tp_start1"
+        android:id="@+id/tp_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="12dp"
-        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:lineSpacingExtra="5sp"
         android:text="00:00 AM"
         android:textColor="#707070"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_start1"
-        app:layout_constraintStart_toStartOf="@+id/btn_start1"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_start"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
     <ImageButton
-        android:id="@+id/btn_end1"
+        android:id="@+id/btn_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/my_class_tap_edit_btn_time2"
-        app:layout_constraintStart_toEndOf="@+id/btn_start1"
+        app:layout_constraintStart_toEndOf="@+id/btn_start"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tp_end1"
+        android:id="@+id/tp_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="13dp"
-        android:fontFamily="@font/apple_sdgothic_neo_m"
         android:lineSpacingExtra="5sp"
         android:text="00:00 AM"
         android:textColor="#707070"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_end1"
-        app:layout_constraintStart_toEndOf="@+id/btn_start1"
-        app:layout_constraintTop_toTopOf="@+id/btn_end1" />
+        android:fontFamily="@font/apple_sdgothic_neo_m"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_end"
+        app:layout_constraintStart_toEndOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_end" />
 
     <ImageButton
-        android:id="@+id/btn_x1"
+        android:id="@+id/btn_x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/my_class_tap_edit_btn_time_x"
-        app:layout_constraintStart_toEndOf="@+id/btn_end1"
+        app:layout_constraintStart_toEndOf="@+id/btn_end"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <NumberPicker
-        android:id="@+id/tp_day1"
+        android:id="@+id/tp_day"
         android:layout_width="320dp"
         android:layout_height="120dp"
         android:layout_marginTop="40dp"
@@ -107,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_day1" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_day" />
 
 
     <TimePicker
@@ -120,57 +122,59 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btn_day1"
-        app:layout_constraintTop_toBottomOf="@+id/btn_day1" />
+        app:layout_constraintStart_toStartOf="@+id/btn_day"
+        app:layout_constraintTop_toBottomOf="@+id/btn_day" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutthird1"
+        android:id="@+id/layoutthird"
         android:layout_width="320dp"
         android:layout_height="167dp"
         android:layout_marginTop="15dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start1">
+        app:layout_constraintTop_toBottomOf="@+id/btn_start">
 
         <TextView
-            android:id="@+id/textView42_1"
+            android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/apple_sdgothic_neo_m"
             android:lineSpacingExtra="4sp"
-            android:text="수업 시간을 설정해주세요"
             android:textColor="#707070"
             android:textSize="12sp"
+            android:fontFamily="@font/apple_sdgothic_neo_m"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/layoutthird1" />
+            app:layout_constraintTop_toTopOf="@+id/layoutthird"
+            android:text="수업 시간을 설정해주세요" />
 
         <NumberPicker
-            android:id="@+id/tp_myclass_time2_1"
+            android:id="@+id/tp_myclass_time2"
             android:layout_width="320dp"
             android:layout_height="120dp"
             android:layout_marginBottom="19dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/layoutthird1"
-            app:layout_constraintTop_toBottomOf="@+id/textView42_1" />
+            app:layout_constraintStart_toStartOf="@+id/layoutthird"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <Button
-            android:id="@+id/btn_save1"
+            android:id="@+id/btn_save"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="132dp"
             android:background="#00000000"
             android:fontFamily="@font/apple_sdgothic_neo_sb"
             android:lineSpacingExtra="6sp"
-            android:text="확인"
             android:textColor="#6875dd"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="확인" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

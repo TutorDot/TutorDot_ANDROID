@@ -72,12 +72,12 @@ class ScheduleAddActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleAddRequest(
-                    "${myjwt}",
+                    "$myjwt",
                     ScheduleAddRequest(
                         lectureId = 1,
-                        date = schedule_add_date_txt.text.toString(),
-                        startTime = "${schedule_add_start_txt.text}",
-                        endTime = "${schedule_add_end_txt.text}",
+                        date = schedule_add_date_txt.toString(),
+                        startTime = "${schedule_add_start_txt}",
+                        endTime = "${schedule_add_end_txt}",
                         location = schedule_add_location_txt.text.toString()
                     )// 정보를 전달
                 ).enqueue(object : Callback<ScheduleAddResponse> { // Callback 등록 (서버 통신 비동기적 요청)
@@ -86,7 +86,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<ScheduleAddResponse>, t: Throwable){
                         // 통신 실패
                         //Toast.makeText(this@ScheduleAddActivity, "통신 실패", Toast.LENGTH_SHORT).show()
-                        Log.d("일정 추가 통신 실패","${t}")
+                        Log.d("통신 실패","${t}")
                     }
                     override fun onResponse(
                         call: Call<ScheduleAddResponse>,
@@ -94,14 +94,19 @@ class ScheduleAddActivity : AppCompatActivity() {
                     ) {
                         // 통신 성공
                         if(response.isSuccessful){  // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                            if(response.body()!!.success){  // ResponseLogin의 success가 true이면
+                            if(response.body()!!.success){  // ResponseLogin의 success가 true인 경우 -> 로그인
                                 //Toast.makeText(this@ScheduleAddActivity, "추가 성공", Toast.LENGTH_SHORT).show()
                                 showToast("일정 추가가 완료되었습니다.")
-                                Log.d("응답결과","${response.body().toString()}")
 
+                                Log.d("startTime","${schedule_add_start_txt}")
+                                Log.d("location","${schedule_add_location_txt}")
+
+                                val intent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
+                                startActivity(intent)
+                                finish()
                             } else{
                                 //Toast.makeText(this@ScheduleAddActivity, "추가 실패", Toast.LENGTH_SHORT).show()
-                                Log.d("추가 실패","일정 추가 실패")
+                                Log.d("추가 실패","추가 실패")
                             }
                         }
                     }
@@ -135,7 +140,7 @@ class ScheduleAddActivity : AppCompatActivity() {
 
         // 날짜 선택
         date_picker.setOnDateChangedListener{
-                view, year, monthOfYear, dayOfMonth ->
+            view, year, monthOfYear, dayOfMonth ->
 
             schedule_add_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-${dayOfMonth}"
 
@@ -162,17 +167,17 @@ class ScheduleAddActivity : AppCompatActivity() {
             schedule_add_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
 
             // 시간 포맷 통일
-//            if (getHourAMPM(hourOfDay) < 10) {
-//                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
-//                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
-//            }
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
 
             if (minute < 10) {
                 schedule_add_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
             }
-//            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
-//                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
-//            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
 
             Log.i("최종 찍히는 시간: ", "${schedule_add_start_txt.text}")
         }
@@ -180,20 +185,20 @@ class ScheduleAddActivity : AppCompatActivity() {
         // Set a time change listener for time picker widget
         time_picker2.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-            schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+            schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute${getAMPM(hourOfDay)}"
 
-//            // 시간 포맷 통일
-//            if (getHourAMPM(hourOfDay) < 10) {
-//                schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
-//                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
-//            }
+            // 시간 포맷 통일
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_add_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
 
             if (minute < 10) {
                 schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
             }
-//            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
-//                schedule_add_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
-//            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_add_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
 
             Log.i("최종 찍히는 시간: ", "${schedule_add_end_txt.text}")
         }
@@ -266,7 +271,7 @@ class ScheduleAddActivity : AppCompatActivity() {
 
     // Custom method to get AM PM value from provided hour
     private fun getAMPM(hour:Int):String{
-        return if(hour>11)"pm" else "am"
+        return if(hour>11)"PM" else "AM"
     }
 
 

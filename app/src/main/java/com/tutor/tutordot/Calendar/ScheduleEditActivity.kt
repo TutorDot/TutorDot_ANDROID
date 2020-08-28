@@ -29,7 +29,6 @@ import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_edit.*
-import kotlinx.android.synthetic.main.activity_schedule_info.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,39 +40,10 @@ class ScheduleEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_edit)
 
-        //화면구현
-        var color= intent.getStringExtra("color")
-        var title= intent.getStringExtra("title")
-        var start= intent.getStringExtra("start")
-        var end= intent.getStringExtra("end")
-        var date= intent.getStringExtra("date")
-        var location= intent.getStringExtra("location")
-        var cid=intent.getIntExtra("mycid", 0)
-
-        if(color == "yellow")
-            schedule_edit_color.setImageResource(R.drawable.notice_color_img_yellow)
-        if(color == "green")
-            schedule_edit_color.setImageResource(R.drawable.notice_color_img_green)
-        if(color == "blue")
-            schedule_edit_color.setImageResource(R.drawable.notice_color_img_blue)
-        if(color == "purple")
-            schedule_edit_color.setImageResource(R.drawable.notice_color_img_purple)
-        if(color == "red")
-            schedule_edit_color.setImageResource(R.drawable.notice_color_img_red)
-
-        schedule_edit_txt.setText(title)
-        schedule_edit_date_txt.setText(date)
-        schedule_edit_start_txt.setText(start)
-        schedule_edit_end_txt.setText(end)
-        schedule_edit_location_txt.setText(location)
-
         var start_time : String = ""
         var end_time : String = ""
         var date_time : String = ""
 
-        start_time=start
-        end_time=end
-        date_time=date
         //서버 연결
         val calendarLogRequestToServer = CalendarLogRequestToServer
 
@@ -104,25 +74,20 @@ class ScheduleEditActivity : AppCompatActivity() {
         // Set a time change listener for time picker widget
         time_picker_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
-
+            schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
 
             // 시간 포맷 통일
-//            if (getHourAMPM(hourOfDay) < 10) {
-//                schedule_edit_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
-//                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
-//            }
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_edit_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
 
-            var tmptime=""
-            if (getHourAMPM(hourOfDay) < 10 ) {
-                tmptime = "0${getHourAMPM(hourOfDay)}"
-            }else{tmptime="${getHourAMPM(hourOfDay)}"}
             if (minute < 10) {
-                tmptime += ":0$minute${getAMPM(hourOfDay)}"
-            }else{tmptime +=":$minute${getAMPM(hourOfDay)}"}
-            schedule_edit_start_txt.text=tmptime
-//            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
-//                schedule_edit_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
-//            }
+                schedule_edit_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_edit_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
 
             start_time = "${schedule_edit_start_txt.text}"
             Log.i("수정된 시간: ", "${start_time}")
@@ -131,15 +96,20 @@ class ScheduleEditActivity : AppCompatActivity() {
         // Set a time change listener for time picker widget
         time_picker2_edit.setOnTimeChangedListener{
                 view,hourOfDay,minute->
+            schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)} " + ": $minute${getAMPM(hourOfDay)}"
 
-            var tmptime=""
-            if (getHourAMPM(hourOfDay) < 10 ) {
-                tmptime = "0${getHourAMPM(hourOfDay)}"
-            }else{tmptime="${getHourAMPM(hourOfDay)}"}
+            // 시간 포맷 통일
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_edit_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
+
             if (minute < 10) {
-                tmptime += ":0$minute${getAMPM(hourOfDay)}"
-            }else{tmptime +=":$minute${getAMPM(hourOfDay)}"}
-            schedule_edit_end_txt.text=tmptime
+                schedule_edit_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_edit_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
 
             end_time = "${schedule_edit_end_txt.text}"
             Log.i("수정된 시간: ", "${end_time}")
@@ -201,26 +171,21 @@ class ScheduleEditActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleEditRequest(
-                    "${myjwt}",
+                    "$myjwt",
                     ScheduleEditRequest(
+                        lectureId = 1,
                         date = date_time,
                         startTime = start_time,
                         endTime = end_time,
                         location = schedule_edit_location_txt.text.toString()
                     )//정보를 전달
-                ,"${cid}"
                 ).enqueue(object : Callback<ScheduleEditResponse> { // Callback 등록 (서버 통신 비동기적 요청)
 
                     // 비동기 요청 후 응답을 받았을 때 수행할 행동이 정의된 곳
                     override fun onFailure(call: Call<ScheduleEditResponse>, t: Throwable){
                         // 통신 실패
                         //Toast.makeText(this@ScheduleEditActivity, "통신 실패", Toast.LENGTH_SHORT).show()
-                        Log.d("일정 수정 통신 실패","${t}")
-
-                        Log.d("실패date","${date_time}")
-                        Log.d("startTime","${start_time}")
-                        Log.d("endTime","${end_time}")
-                        Log.d("location","${schedule_edit_location_txt.text}")
+                        Log.d("통신 실패","${t}")
                     }
                     override fun onResponse(
                         call: Call<ScheduleEditResponse>,
@@ -231,17 +196,16 @@ class ScheduleEditActivity : AppCompatActivity() {
                             if(response.body()!!.success){  // ResponseLogin의 success가 true인 경우 -> 로그인
                                 //Toast.makeText(this@ScheduleEditActivity, "추가 성공", Toast.LENGTH_SHORT).show()
                                 showToast("일정 수정이 완료되었습니다.")
-                                Log.d("응답결과","${response.body().toString()}")
 
-                                Log.d("date","${date_time}")
-                                Log.d("startTime","${start_time}")
-                                Log.d("endTime","${end_time}")
-                                Log.d("location","${schedule_edit_location_txt.text}")
+                                Log.d("startTime","${schedule_edit_start_txt}")
+                                Log.d("location","${schedule_edit_location_txt}")
 
+                                val intent = Intent(this@ScheduleEditActivity, CalenderActivity::class.java)
+                                startActivity(intent)
+                                finish()
                             } else{
                                 //Toast.makeText(this@ScheduleAddActivity, "추가 실패", Toast.LENGTH_SHORT).show()
-                                Log.d("수정 실패","일정 수정 실패")
-                                Log.d("실패응답결과","${response.body().toString()}")
+                                Log.d("수정 실패","수정 실패")
                             }
                         }
                     }
@@ -274,7 +238,7 @@ class ScheduleEditActivity : AppCompatActivity() {
 
     // Custom method to get AM PM value from provided hour
     private fun getAMPM(hour:Int):String{
-        return if(hour>11)"pm" else "am"
+        return if(hour>11)"PM" else "AM"
     }
 
     // Custom method to get hour for AM PM time format

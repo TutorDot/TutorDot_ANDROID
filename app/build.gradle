@@ -8,8 +8,8 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.tutordot"
-        minSdkVersion 26
+        applicationId "com.tutor.tutordot"
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

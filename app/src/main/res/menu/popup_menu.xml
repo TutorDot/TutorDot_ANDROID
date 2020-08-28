@@ -5,8 +5,8 @@
         android:title="전체"/>
     <item
         android:id="@+id/math"
-        android:title="신연상 학생 수학 수업" />
+        android:title="신연상 학생 수학 수업"/>
     <item
         android:id="@+id/english"
-        android:title="신연상 학생 영어 수업" />
+        android:title="신연상 학생 영어 수업"/>
 </menu>

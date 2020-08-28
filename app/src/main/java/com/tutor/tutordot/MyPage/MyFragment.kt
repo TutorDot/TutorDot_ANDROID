@@ -67,11 +67,12 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
-        one_sentense.setText(newIntro)
+        //one_sentense.setText(newIntro)
 
         //myinfo 서버연결(user)
 
 
+        Log.d("jwt보기:", "$myjwt2")
 
         userRequestToServer.service.myInfoRequest(
             "${myjwt}"
@@ -95,10 +96,16 @@ class MyFragment : Fragment() {
 
                         textView.setText(userinfoname)
                         textView2.setText(userinforole)
-                        one_sentense.setText(userinfointro)
+                        //one_sentense.setText(userinfointro)
                         Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
 
                         role = userinforole
+
+                        //데이터가 있을 경우에 한줄소개 넣어줌
+                        if(datas.size > 0)
+                        {
+                            one_sentense.setText(userinfointro)
+                        }
 
                     }else{
                         Log.d("실패", "myinfo실패")
@@ -170,6 +177,7 @@ class MyFragment : Fragment() {
             dialog.show()
         }
 
+        /*
         //데이터 있을때 / 없을때
         if(haveMyData == true) {
             cl_my.visibility =View.GONE
@@ -178,7 +186,7 @@ class MyFragment : Fragment() {
         else {
             recyclerView_my.visibility = View.GONE
             cl_my.visibility =View.VISIBLE
-        }
+        }*/
     }
 
     private fun loadDatas(){
@@ -221,7 +229,9 @@ class MyFragment : Fragment() {
                         else
                         { haveMyData = true
                             cl_my.visibility =View.GONE
-                            recyclerView_my.visibility = View.VISIBLE}
+                            recyclerView_my.visibility = View.VISIBLE
+                            userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                        }
 
                         for (i in 0 until response.body()!!.data.size){
                         classlistColor=response.body()!!.data[i]!!.color.toString()
@@ -243,8 +253,7 @@ class MyFragment : Fragment() {
                                     color = classlistColor,
                                     content= classlistLectureName,
                                     profileUrl1 = classlistprofile1,
-                                    profileUrl2 = classlistprofile2,
-                                    lectureId = response.body()!!.data[i].lectureId
+                                    profileUrl2 = classlistprofile2
                                 ))}
                         mypageAdapter.datas = datas
                         mypageAdapter.notifyDataSetChanged()

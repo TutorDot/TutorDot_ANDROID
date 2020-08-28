@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.tutor.tutordot.*
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
+import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
+import com.tutor.tutordot.ClassLog.LogRecyclerView.completeTmp
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.*
 import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
@@ -17,10 +20,9 @@ import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.item_classlog.*
 import kotlin.math.log
 
-var complete : Int = 0
+var complete : Int = 1
 
 class ClassLogModificationActivity : AppCompatActivity() {
-
 
     //버튼 늘림 표시
     var circle : Boolean = false
@@ -34,64 +36,32 @@ class ClassLogModificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_class_log_modification)
 
-        var mydiaryId:Int=0
-        var mycolor: String=""
-        var mytimes: String=""
-        var myprogress: String=""
-        var mycomplete: Int=0
-        var myhomework: String=""
-        mydiaryId= intent.getIntExtra("diaryId", 0)
-        mycomplete= intent.getIntExtra("mycomplete", 0)
-        mycolor= intent.getStringExtra("mycolor")
-        mytimes= intent.getStringExtra("mytimes")
-        myprogress= intent.getStringExtra("myprogress")
-        myhomework= intent.getStringExtra("myhomework")
-
-
-
-
         //EditText의 기본 텍스트는 사용자가 이전에 입력했던 값으로
-        //et_log_modi_progress.setText(ser_progress)
-        et_log_modi_progress.setText(myprogress)
-        //et_log_modi_hw.setText(ser_hw)
-        et_log_modi_hw.setText(myhomework)
+        et_log_modi_progress.setText(ser_progress)
+        et_log_modi_hw.setText(ser_hw)
 
-        //tv_log_modi_title.setText(ser_date_times.toString() + "회차 " +  ser_date_studytime.toString() + "시간 / " + ser_date_alltime.toString() + "시간")
-        tv_log_modi_title.setText(mytimes)
+        tv_log_modi_title.setText(ser_date_times.toString() + "회차 " +  ser_date_studytime.toString() + "시간 / " + ser_date_alltime.toString() + "시간")
 
-
-
-        if (mycomplete == 0) {
+        if (completeTmp == 0) {
             btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if (mycomplete == 1) {
+        if (completeTmp == 1) {
             btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_pick)
             btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(mycomplete == 2) {
+        if(completeTmp == 2) {
             btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_pick)
             btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_unpick)
         }
-        if(mycomplete == 3) {
+        if(completeTmp == 3) {
             btn_modi_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)
             btn_modi_triangle.setBackgroundResource(R.drawable.class_log_btn_triangle_unpick)
             btn_modi_x.setBackgroundResource(R.drawable.class_log_btn_x_pick)
         }
-
-        if(mycolor == "yellow")
-            iv_log_modi_color.setImageResource(R.drawable.notice_color_img_yellow)
-        if(mycolor == "green")
-            iv_log_modi_color.setImageResource(R.drawable.notice_color_img_green)
-        if(mycolor == "blue")
-            iv_log_modi_color.setImageResource(R.drawable.notice_color_img_blue)
-        if(mycolor == "purple")
-            iv_log_modi_color.setImageResource(R.drawable.notice_color_img_purple)
-        if(mycolor == "red")
-            iv_log_modi_color.setImageResource(R.drawable.notice_color_img_red)
 
         //취소, 저장 버튼 이벤트
         btn_log_cancel.setOnClickListener(object : View.OnClickListener {
@@ -110,12 +80,12 @@ class ClassLogModificationActivity : AppCompatActivity() {
 
                 //서버에 전달
                 logRequestToServer.service.logModiRequest(
-                    "${myjwt}",
+                    "$myjwt",
                     LogModiRequest(
                         classProgress = ser_progress,
                         homework = ser_hw,
                         hwPerformance = complete
-                    ),"${mydiaryId}"
+                    )//정보를 전달
                 ).customEnqueue(
                     onError = {Log.d("올바르지 못한 요청입니다","올바르지 못한 요청입니다")},
                     onSuccess = {
@@ -206,4 +176,3 @@ class ClassLogModificationActivity : AppCompatActivity() {
         })
     }
 }
-
