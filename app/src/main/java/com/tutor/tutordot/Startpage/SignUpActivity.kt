@@ -11,8 +11,8 @@ import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
-
-var role: String = "tutor"
+var role:String = ""
+//var role: String = "tutor"
 
 class SignUpActivity : AppCompatActivity() {
 

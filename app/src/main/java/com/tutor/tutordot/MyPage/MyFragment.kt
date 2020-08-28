@@ -67,7 +67,7 @@ class MyFragment : Fragment() {
         recyclerView_my.adapter=mypageAdapter
         loadDatas()
 
-        one_sentense.setText(newIntro)
+        //one_sentense.setText(newIntro)
 
         //myinfo 서버연결(user)
 
@@ -96,10 +96,16 @@ class MyFragment : Fragment() {
 
                         textView.setText(userinfoname)
                         textView2.setText(userinforole)
-                        one_sentense.setText(userinfointro)
+                        //one_sentense.setText(userinfointro)
                         Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
 
                         role = userinforole
+
+                        //데이터가 있을 경우에 한줄소개 넣어줌
+                        if(datas.size > 0)
+                        {
+                            one_sentense.setText(userinfointro)
+                        }
 
                     }else{
                         Log.d("실패", "myinfo실패")
@@ -171,6 +177,7 @@ class MyFragment : Fragment() {
             dialog.show()
         }
 
+        /*
         //데이터 있을때 / 없을때
         if(haveMyData == true) {
             cl_my.visibility =View.GONE
@@ -179,7 +186,7 @@ class MyFragment : Fragment() {
         else {
             recyclerView_my.visibility = View.GONE
             cl_my.visibility =View.VISIBLE
-        }
+        }*/
     }
 
     private fun loadDatas(){
@@ -209,7 +216,7 @@ class MyFragment : Fragment() {
                     if(response.body()!!.success) {
                         Log.d("성공", "classlist성공"+response.body())
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                        //userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
 
 
@@ -222,7 +229,9 @@ class MyFragment : Fragment() {
                         else
                         { haveMyData = true
                             cl_my.visibility =View.GONE
-                            recyclerView_my.visibility = View.VISIBLE}
+                            recyclerView_my.visibility = View.VISIBLE
+                            userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                        }
 
                         for (i in 0 until response.body()!!.data.size){
                         classlistColor=response.body()!!.data[i]!!.color.toString()

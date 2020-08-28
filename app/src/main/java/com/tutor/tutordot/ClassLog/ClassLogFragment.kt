@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogAdapter
 import com.tutor.tutordot.ClassLog.LogRecyclerView.LogData
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
@@ -24,6 +25,7 @@ import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
 import retrofit2.Call
@@ -240,6 +242,7 @@ class ClassLogFragment : Fragment() {
             }
         })
 
+        /*빈 화면일 때
         if (haveData == true) {
             cl_empty.visibility = View.GONE
             ll_rv.visibility = View.VISIBLE
@@ -247,7 +250,7 @@ class ClassLogFragment : Fragment() {
             ll_rv.visibility = View.GONE
             cl_empty.visibility = View.VISIBLE
 
-        }
+        }*/
 
 
         /* 팝업 메뉴 아이템 추가할 때 사용할 코드
@@ -316,6 +319,18 @@ class ClassLogFragment : Fragment() {
                             }
 
                     }
+                        if(datas.size == 0) {
+                            cl_empty.visibility = View.VISIBLE
+                            ll_rv.visibility = View.GONE
+                            haveData = false
+                        }
+
+                        else {
+                            cl_empty.visibility = View.GONE
+                            ll_rv.visibility = View.VISIBLE
+                            haveData = true
+                        }
+
                        // logdateAdapter = LogdateAdapter(getActivity()!!.getApplicationContext(), response!!.body()!!.data)
                         logdateAdapter= LogdateAdapter(view!!.context, datedatas)
                         rv_datelog.adapter=logdateAdapter
