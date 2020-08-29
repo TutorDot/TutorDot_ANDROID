@@ -55,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
                         if (it.success) {
                             /////
                             myjwt = it.data!!.accessToken
+                            role = it.data!!.role
                             Log.d("myjwt", "${myjwt}")
                             Log.d("myjwt2", "${it}")
                             if(autologincheck) {
