@@ -1,6 +1,8 @@
 package com.tutor.tutordot.Startpage
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,7 @@ import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_login.*
 var myjwt:String = ""
+var role: String = ""
 class LoginActivity : AppCompatActivity() {
     //서버 이용
     val requestToServer = RequestToServer
@@ -57,11 +60,19 @@ class LoginActivity : AppCompatActivity() {
                             myjwt = it.data!!.accessToken
                             role = it.data!!.role
                             Log.d("myjwt", "${myjwt}")
-                            Log.d("myjwt2", "${it}")
+                            Log.d("role", "${role}")
                             if(autologincheck) {
+                                MySharedPreferences.tmpjwt = myjwt
                                 MySharedPreferences.email = et_email.text.toString()
                                 MySharedPreferences.password = et_pw.text.toString()
                                 MySharedPreferences.islogin = true
+                                MySharedPreferences.tmprole = role
+                                //밑에 아닐듯
+                                myjwt = it.data!!.accessToken
+                                role = it.data!!.role
+                                Log.d("myjwt여기아닌가", "${myjwt}")
+                                Log.d("여기아닌가", "여기여기")
+                                //var sf:SharedPreferences=getSharedPreferences("sFile", Context.MODE_PRIVATE)
                                 //.clear()
                             }
                             /////
