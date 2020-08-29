@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditAdapter
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.MyPage.Server.*
@@ -25,6 +26,7 @@ import retrofit2.Response
 class AddclassActivity : AppCompatActivity() {
     lateinit var myclassEditAdapter_add: MyclassEditAdapter
     val adata= mutableListOf<MyclassEditData>()
+    val addata= mutableListOf<MyAddRequest>()
 
     var color : String = "yellow"        //수업시간 추가
 
@@ -67,7 +69,7 @@ class AddclassActivity : AppCompatActivity() {
         val myLayoutManager = LinearLayoutManager(this)
         //rv_new_classtime.layoutManager= myLayoutManager
 
-        loadDatas()
+        //loadDatas()
 
         //취소버튼
         btn_cancel_my_add.setOnClickListener{
@@ -77,30 +79,34 @@ class AddclassActivity : AppCompatActivity() {
         //저장버튼
         btn_save_my_add.setOnClickListener{
             var i =0
-            for(i in 0 until 1){
+            for(i in 0 until 5){
                 Log.d("for문", "for문")
                 if (tv_start[i].text == null) break
                 if(tv_start[i].text != "00:00am"){
-                   // allSchedule.add(ScheduleData2(day=tv_weekday[i].text.toString(), orgStartTime = tv_start[i].text.toString(), orgEndTime = tv_end[i].text.toString()))
+                    allSchedule.add(ScheduleData2(day=tv_weekday[i].text.toString(), orgStartTime = tv_start[i].text.toString(), orgEndTime = tv_end[i].text.toString()))
                 }
             }
+            addata.add(MyAddRequest(
+                lectureName = editTextname.text.toString(),
+                color = color,
+                schedules = allSchedule.toList(),
+                //schedules = listOf(ScheduleData2(orgStartTime = "00:00am", orgEndTime = "03:30am",day="수")),
+                orgLocation = orglocation.text.toString(),
+                bank = et_bank.text.toString(),
+                accountNumber = editText3.text.toString(),
+                totalHours = et_newtime.text.toString().toInt(),
+                price = et_newprice.text.toString().toInt()
+            ))
+            Log.d("정보", "${addata}")
+
+
+
 
 
 
             //서버에 데이터 PUT
             mypageRequestToServer.service.myAddRequest(
-                "$myjwt",
-                MyAddRequest(
-                    lectureName = newclassname,
-                    color = color,
-                    //schedules = allSchedule.toList(),
-                    schedules = listOf(ScheduleData2(orgStartTime = "00:00am", orgEndTime = "03:30am",day="수")),
-                    orgLocation = orglocation.text.toString(),
-                    bank = et_bank.text.toString(),
-                    accountNumber = editText3.text.toString(),
-                    totalHours = et_newtime.text.toString().toInt(),
-                    price = et_newprice.text.toString().toInt()
-                )
+                "$myjwt",addata[0]
             ).enqueue(object : Callback<ProfileEditResponse> {
                 override fun onFailure(call: Call<ProfileEditResponse>, t: Throwable) {
                     Log.d("통신 실패", "수업 추가 통신 실패${t}")
@@ -112,6 +118,7 @@ class AddclassActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
+                            showToast("수업 추가가 완료되었습니다.")
                             Log.d("성공", "수업 추가 성공")
                         } else {
                             Log.d("실패", "수업 추가 실패")
@@ -119,6 +126,9 @@ class AddclassActivity : AppCompatActivity() {
                     }
                 }
             })
+
+            var finishintent= Intent(this, CalenderActivity::class.java)
+            startActivity(finishintent)
             finish()
         }
 

@@ -17,14 +17,15 @@ interface MypageInterface {
         @GET("/lecture/{lid}")
         fun classInfoRequest(@Header("jwt") header: String, @Path("lid") path: String) : Call<ClassInfoResponse>
 
-
+        @DELETE("lecture/{lid}")
+        fun classDeleteRequest(@Header("jwt") header:String, @Path("lid") path: String): Call<ConnectResponse>
 
         //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
         @PUT("/user/profile")
         fun profileEditRequest(@Header("jwt") header: String, @Body body : ProfileEditRequest) : Call<ProfileEditResponse>
 
         //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
-        @PUT("/lecture")
+        @POST("/lecture")
         fun myAddRequest(@Header("jwt") header: String, @Body body : MyAddRequest) : Call<ProfileEditResponse>
 
         //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
