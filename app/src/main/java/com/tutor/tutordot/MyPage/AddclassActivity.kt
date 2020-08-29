@@ -178,6 +178,6 @@ class AddclassActivity : AppCompatActivity() {
 
         }
         myclassEditAdapter_add.datas=adata
-       // myclassEditAdapter_add.notifyDataSetChanged()
+        // myclassEditAdapter_add.notifyDataSetChanged()
     }
 }

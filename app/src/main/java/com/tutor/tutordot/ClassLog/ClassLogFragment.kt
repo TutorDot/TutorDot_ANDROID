@@ -44,6 +44,9 @@ var mm : String = ""
 var dd : String = ""
 var yy : String = ""
 
+//일지 과목 번호
+var lid = 0
+
 class ClassLogFragment : Fragment() {
 
     //서버 연결
@@ -172,7 +175,7 @@ class ClassLogFragment : Fragment() {
                                         if(response.body()!!.success){
                                             Log.d("첫번째 과목 프로그레스바 성공", "성공")
 
-                                            progressDate = response.body()!!.data[5].classDate
+                                            progressDate = response.body()!!.data[1].classDate
                                             progressCycle = response.body()!!.data[5].depositCycle
                                             progressTimes = response.body()!!.data[5].times
                                             progressHour = response.body()!!.data[5].hour
@@ -319,7 +322,7 @@ class ClassLogFragment : Fragment() {
                             }
 
                     }
-                        if(datas.size == 0) {
+                        if(datedatas.size == 0 && datas.size == 0) {
                             cl_empty.visibility = View.VISIBLE
                             ll_rv.visibility = View.GONE
                             haveData = false

@@ -70,15 +70,15 @@ class MyclassEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         // Set a time change listener for time picker widget
         tp_myclass_time2.setOnValueChangedListener{
                 numberPicker, oldValue, newValue ->
-                howlongh=(newValue+1)/2
-                howlongm=((newValue+1)%2)*30
+            howlongh=(newValue+1)/2
+            howlongm=((newValue+1)%2)*30
             assign=((tmpmin+howlongm)%60)/10
             if( assign== 0) zero="0" else zero=""
             tp_end.text = "${getHourAMPM(tmptime+howlongh)}" + ":"+ zero +"${(tmpmin+howlongm)%60} ${getAMPM(tmptime+howlongh)}"
 
         }
         tp_day.setOnValueChangedListener{
-            numberPicker, oldValue, newValue -> tp_weekday.text= "${dayvalues[newValue]}"
+                numberPicker, oldValue, newValue -> tp_weekday.text= "${dayvalues[newValue]}"
         }
 
 
