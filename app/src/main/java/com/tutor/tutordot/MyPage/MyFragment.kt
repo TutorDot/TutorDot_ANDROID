@@ -102,7 +102,7 @@ class MyFragment : Fragment() {
                         role = userinforole
 
                         //데이터가 있을 경우에 한줄소개 넣어줌
-                        if(datas.size > 0)
+                        if(datas.size > 0 && userinfointro!!.length > 0)
                         {
                             one_sentense.setText(userinfointro)
                         }
