@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.CalenderActivity
@@ -25,6 +26,9 @@ class SplashActivity : Activity() {
 
         Handler().postDelayed({ //delay를 위한 handler
             if (MySharedPreferences.islogin) {
+                myjwt=MySharedPreferences.tmpjwt
+                role=MySharedPreferences.tmprole
+                Log.d("롤2","롤2${role}")
                 showToast("자동로그인 되었습니다")
                 // MySharedPreferences.islogin = false     // 실험용
                 val intent = Intent(this, CalenderActivity::class.java)

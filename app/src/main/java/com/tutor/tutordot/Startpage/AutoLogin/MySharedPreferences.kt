@@ -2,6 +2,8 @@ package com.tutor.tutordot.Startpage.AutoLogin
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.Startpage.role
 
 object MySharedPreferences{
     private const val NAME = "tutor.tutordot"
@@ -12,6 +14,8 @@ object MySharedPreferences{
     private val IS_LOGIN = Pair("is_login", false)
     private val EMAIL = Pair("email", "")
     private val PASSWORD = Pair("password", "")
+    var JWT = Pair("myjwt", myjwt)
+    var ROLE = Pair("role", role)
 
     fun init(context: Context){
         preferences = context.getSharedPreferences(NAME, MODE)
@@ -36,6 +40,19 @@ object MySharedPreferences{
         set(value) = preferences.edit {
             it.putString(EMAIL.first, value)
         }
+
+    var tmpjwt: String
+        get() = preferences.getString(JWT.first, JWT.second) ?: ""
+        set(value) = preferences.edit{
+            it.putString(JWT.first, value)
+        }
+
+    var tmprole: String
+        get() = preferences.getString(ROLE.first, ROLE.second) ?: ""
+        set(value) = preferences.edit{
+            it.putString(ROLE.first, value)
+        }
+
 
     var password: String
         get() = preferences.getString(PASSWORD.first, PASSWORD.second) ?: ""

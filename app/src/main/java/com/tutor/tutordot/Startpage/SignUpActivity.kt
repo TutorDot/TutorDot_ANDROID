@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 //var role: String = "tutor"
-var role: String = ""
+
 
 class SignUpActivity : AppCompatActivity() {
 
