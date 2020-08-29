@@ -235,6 +235,7 @@ class ClassLogFragment : Fragment() {
             }
         })
 
+        /* 빈화면일때
         if (haveData == true) {
             cl_empty.visibility = View.GONE
             ll_rv.visibility = View.VISIBLE
@@ -243,6 +244,8 @@ class ClassLogFragment : Fragment() {
             cl_empty.visibility = View.VISIBLE
 
         }
+
+         */
 
 
         /* 팝업 메뉴 아이템 추가할 때 사용할 코드
@@ -282,6 +285,11 @@ class ClassLogFragment : Fragment() {
                             haveData = false
                             ll_rv.visibility = View.GONE
                             cl_empty.visibility = View.VISIBLE
+                        }
+                        else {
+                            cl_empty.visibility = View.GONE
+                            ll_rv.visibility = View.VISIBLE
+                            haveData = true
                         }
 
 
