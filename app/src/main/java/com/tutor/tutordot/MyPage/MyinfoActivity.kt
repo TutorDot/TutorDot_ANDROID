@@ -20,6 +20,8 @@ import com.tutor.tutordot.MyPage.Server.ClassInfoResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_myinfo.*
 import kotlinx.android.synthetic.main.activity_onesentense.*
@@ -128,8 +130,23 @@ class MyinfoActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
             no.setOnClickListener{
-                val intent9=Intent(this, AddclassActivity::class.java)
+                myPageRequestToServer.service.classDeleteRequest(
+                    "${myjwt}", "${mylid}"
+                ).customEnqueue(
+                    onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
+                    onSuccess = {
+                        if (it.success) {
+                            Log.d("삭제 완료", "삭제 완료")
+                            showToast("삭제가 완료되었습니다.")
+                        } else {
+                            Log.d("삭제 실패", "삭제 실패")
+                        }
+                    }
+                )
+
+                val intent9=Intent(this, CalenderActivity::class.java)
                 startActivity(intent9)
+                finish()
                 //delete기능구현필요
 
             }
