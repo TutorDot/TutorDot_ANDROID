@@ -31,18 +31,18 @@
 
     <TextView
         android:id="@+id/rv_class_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="12dp"
-        android:lineSpacingExtra="6sp"
         android:background="#00000000"
+        android:fontFamily="@font/apple_sdgothic_neo_m"
+        android:gravity="left"
+        android:lineSpacingExtra="6sp"
         android:paddingBottom="55dp"
         android:text="수업명 입력 (17자까지 가능\n하다)"
         android:textColor="#000000"
         android:textSize="14sp"
-        android:fontFamily="@font/apple_sdgothic_neo_m"
         app:layout_constraintStart_toEndOf="@+id/rv_colorcircle"
         app:layout_constraintTop_toTopOf="@+id/rv_mypage_button" />
 
@@ -67,4 +67,5 @@
         android:background="@drawable/my_img_proifle_tutee2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

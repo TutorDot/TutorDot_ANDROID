@@ -78,6 +78,9 @@ class AddclassActivity : AppCompatActivity() {
 
         //저장버튼
         btn_save_my_add.setOnClickListener{
+            if (editTextname.text.toString().length>17) {
+                showToast("수업명의 최대 글자수는 17글자입니다")
+            }else{
             var i =0
             for(i in 0 until 5){
                 Log.d("for문", "for문")
@@ -129,7 +132,7 @@ class AddclassActivity : AppCompatActivity() {
 
             var finishintent= Intent(this, CalenderActivity::class.java)
             startActivity(finishintent)
-            finish()
+            finish()}
         }
 
         //컬러팔레트
