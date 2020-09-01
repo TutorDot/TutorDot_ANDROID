@@ -86,7 +86,9 @@ class AddclassActivity : AppCompatActivity() {
                 Log.d("for문", "for문")
                 if (tv_start[i].text == null) break
                 if(tv_start[i].text != "00:00am"){
+
                     allSchedule.add(ScheduleData2(day=tv_weekday[i].text.toString(), orgStartTime = tv_start[i].text.toString(), orgEndTime = tv_end[i].text.toString()))
+
                 }
             }
             addata.add(MyAddRequest(
@@ -316,7 +318,7 @@ class AddclassActivity : AppCompatActivity() {
 
         }
         myclassEditAdapter_add.datas=adata
-       // myclassEditAdapter_add.notifyDataSetChanged()
+        // myclassEditAdapter_add.notifyDataSetChanged()
     }
     // Custom method to get AM PM value from provided hour
     private fun getAMPM(hour:Int):String{
