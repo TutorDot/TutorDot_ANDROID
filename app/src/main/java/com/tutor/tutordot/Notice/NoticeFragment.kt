@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
+import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.dd
 import com.tutor.tutordot.ClassLog.haveData
 import com.tutor.tutordot.ClassLog.mm
@@ -25,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_notice.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import java.util.ArrayList
 
 
 class NoticeFragment : Fragment() {
@@ -51,15 +53,57 @@ class NoticeFragment : Fragment() {
         rv_notice_date.adapter = noticeAdapter //리사이클러뷰의 어댑터를 지정해줌
         loadndateDatas() //데이터를 어댑터에 전달
          */
+
+    //수업정보 받아옴 (토글 위해)
+        val popup =
+            PopupMenu(context, btn_notice_choice)
+        //Inflating the Popup using xml file
+        popup.menuInflater
+            .inflate(R.menu.popup_menu, popup.menu)
+
+        noticeRequestToServer.service.lectureRequest(
+            "${myjwt}"
+        ).enqueue(object :Callback<LectureResponse>{
+            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                Log.d("통신 실패", "통신 실패")
+            }
+
+            override fun onResponse(
+                call: Call<LectureResponse>,
+                response: Response<LectureResponse>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body()!!.success){
+                        Log.d("토글 수업 정보", "성공")
+
+                        val lecnt = response.body()!!.data.size
+                        Log.d("수업 개수", "{$lecnt}")
+
+                        val lename : ArrayList<String> = ArrayList()
+                        for(i in 1..lecnt) {
+                            lename.add(response.body()!!.data[i - 1].lectureName)
+                            //수업 개수에 맞게 토글 항목 추가
+                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                        }
+                        Log.d("수업 이름", "{$lename}")
+
+                    }else{
+                        Log.d("토글 수업 정보", "실패")
+                    }
+                }
+            }
+        })
+
         //상단 수업 선택 메뉴
         ll_noticee_choice.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                /*
                 val popup =
                     PopupMenu(context, btn_notice_choice)
                 //Inflating the Popup using xml file
                 popup.menuInflater
                     .inflate(R.menu.popup_menu, popup.menu)
-
+*/
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
                     tv_notice_choice.text = item.title

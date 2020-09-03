@@ -1,5 +1,6 @@
 package com.tutor.tutordot.Calendar.Server
 
+import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogModiResponse
 import retrofit2.Call
@@ -19,4 +20,7 @@ interface CalendarLogResponseInterface{
 
     @DELETE("/calander/class/{cid}")
     fun scheduleDeleteRequest(@Header("jwt") header: String, @Path("cid") path:String): Call<ScheduleAddResponse>
+
+    @GET("/lecture/name")
+    fun lectureRequest(@Header("jwt") header: String) : Call<LectureResponse>
 }

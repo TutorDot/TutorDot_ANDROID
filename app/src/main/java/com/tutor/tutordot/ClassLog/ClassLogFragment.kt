@@ -15,10 +15,7 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
-import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
-import com.tutor.tutordot.ClassLog.Server.LogResponse
-import com.tutor.tutordot.ClassLog.Server.ProgressResponse
-import com.tutor.tutordot.ClassLog.Server.ProgressResponse2
+import com.tutor.tutordot.ClassLog.Server.*
 import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.Startpage.myjwt
@@ -129,15 +126,57 @@ class ClassLogFragment : Fragment() {
             }
         })
 
+        val popup =
+            PopupMenu(context, btn_class_choice)
+        //Inflating the Popup using xml file
+        popup.menuInflater
+            .inflate(R.menu.popup_menu, popup.menu)
+
+        //수업정보 받아옴 (토글 위해)
+        logRequestToServer.service.lectureRequest(
+            "${myjwt}"
+        ).enqueue(object :Callback<LectureResponse>{
+            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                Log.d("통신 실패", "통신 실패")
+            }
+
+            override fun onResponse(
+                call: Call<LectureResponse>,
+                response: Response<LectureResponse>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body()!!.success){
+                        Log.d("토글 수업 정보", "성공")
+
+                        val lecnt = response.body()!!.data.size
+                        Log.d("수업 개수", "{$lecnt}")
+
+                        val lename : ArrayList<String> = ArrayList()
+                        for(i in 1..lecnt) {
+                            lename.add(response.body()!!.data[i - 1].lectureName)
+                            //수업 개수에 맞게 토글 항목 추가
+                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                        }
+                        Log.d("수업 이름", "{$lename}")
+
+                    }else{
+                        Log.d("토글 수업 정보", "실패")
+                    }
+                }
+            }
+        })
+
+
         //상단 수업 선택 메뉴
         ll_log_choice.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                /*
                 val popup =
                     PopupMenu(context, btn_class_choice)
                 //Inflating the Popup using xml file
                 popup.menuInflater
                     .inflate(R.menu.popup_menu, popup.menu)
-
+*/
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
                     tv_class_choice.text = item.title
@@ -145,10 +184,12 @@ class ClassLogFragment : Fragment() {
                         ll_progress.visibility = View.GONE
                     else{
                         ll_progress.visibility = View.VISIBLE
-
+                        if(item.itemId == 1){
+                            ser_color = "yellow"
+/*
                         if(item.title.equals("신연상 학생 수학 수업")){
                             ser_color = "yellow"
-
+*/
                             //프로그레스바 서버에서 정보 받아옴
                             logRequestToServer.service.progressRequest(
                                 "${myjwt}"
