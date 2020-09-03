@@ -23,6 +23,7 @@ import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
@@ -176,15 +177,58 @@ class CalenderFragment : Fragment() {
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
 
 
+        //수업정보 받아옴 (토글 위해)
+        val popup =
+            PopupMenu(context, calendar_select)
+        //Inflating the Popup using xml file
+        popup.menuInflater
+            .inflate(R.menu.popup_menu, popup.menu)
+
+        val calendarlogRequestToServer = CalendarLogRequestToServer
+        calendarlogRequestToServer.service.lectureRequest(
+            "${myjwt}"
+        ).enqueue(object :Callback<LectureResponse>{
+            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                Log.d("통신 실패", "통신 실패")
+            }
+
+            override fun onResponse(
+                call: Call<LectureResponse>,
+                response: Response<LectureResponse>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body()!!.success){
+                        Log.d("토글 수업 정보", "성공")
+
+                        val lecnt = response.body()!!.data.size
+                        Log.d("수업 개수", "{$lecnt}")
+
+                        val lename : ArrayList<String> = ArrayList()
+                        for(i in 1..lecnt) {
+                            lename.add(response.body()!!.data[i - 1].lectureName)
+                            //수업 개수에 맞게 토글 항목 추가
+                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                        }
+                        Log.d("수업 이름", "{$lename}")
+
+                    }else{
+                        Log.d("토글 수업 정보", "실패")
+                    }
+                }
+            }
+        })
+
+
         //상단 수업 선택 메뉴
         constarintlayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                /*
                 val popup =
                     PopupMenu(context, calendar_select)
                 //Inflating the Popup using xml file
                 popup.menuInflater
                     .inflate(R.menu.popup_menu, popup.menu)
-
+*/
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
                     tv_calendar_title.text = item.title
@@ -216,7 +260,7 @@ class CalenderFragment : Fragment() {
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
         calendarLogAdapter= CalendarLogAdapter(view.context, datas)
 
-        val calendarlogRequestToServer = CalendarLogRequestToServer
+        //val calendarlogRequestToServer = CalendarLogRequestToServer
         val mydate=LocalDate.now()
         val formatter = DateTimeFormatter.ISO_DATE
         val formatted = mydate.format(formatter)
