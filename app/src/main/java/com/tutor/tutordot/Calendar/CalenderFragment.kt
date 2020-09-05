@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
+import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
@@ -26,19 +27,16 @@ import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.R
-import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.myjwt
-import com.tutor.tutordot.extention.customEnqueue
-import com.tutor.tutordot.extention.showToast
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
+import java.time.Month
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.Executors
@@ -60,7 +58,6 @@ class CalenderFragment : Fragment() {
 
     //현재 달 구하기
     val curDate = Calendar.getInstance()
-    val month = curDate.get(Calendar.MONTH) + 1
 
     var time: String? = null
     var kcal: kotlin.String? = null
@@ -84,10 +81,10 @@ class CalenderFragment : Fragment() {
 
             /*특정날짜 달력에 점표시해주는곳*/
             /*월은 0이 1월 년,일은 그대로*/
-            //string 문자열인 Time_Result 을 받아와서 ,를 기준으로 자르고 string을 int 로 변환
+            //string 문자열인 Time_Result 을 받아와서 -를 기준으로 자르고 string을 int 로 변환
             for (i in Time_Result.indices) {
                 //val day = CalendarDay.from(calendar)
-                val time = Time_Result[i].split(",".toRegex()).toTypedArray()
+                val time = Time_Result[i].split("-".toRegex()).toTypedArray()
                 val year = time[0].toInt()
                 val month = time[1].toInt()
                 val dayy = time[2].toInt()
@@ -160,15 +157,24 @@ class CalenderFragment : Fragment() {
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
         // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
-        calendarlog_all_date.text = "18"
-        calendarlog_all_month.text = "7" + "월"
+
+        // 오늘날짜 보여주기
+        calendarlog_all_date.text = curDate.get(Calendar.DATE).toString()
+        calendarlog_all_month.text = (curDate.get(Calendar.MONTH) + 1).toString() + "월"
+
+        Log.i("today date", "${calendarlog_all_date.text}")
+        Log.i("today month", "${calendarlog_all_month.text}")
+
+        // 오늘날짜 이벤트
         materialCalendarView.addDecorators(
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
+//            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
         )
 
 
+        // 점찍을 날짜
         val result =
-            arrayOf("2020,06,30", "2020,07,12", "2020,07,13", "2020,07,17", "2020,07,18", "2020,07,24", "2020,07,25", "2020,07,31", "2020,08,14")
+            arrayOf("2020-08-21","2020-09-01","2020-09-03","2020-09-04","2020-09-05")
 //        for (i in 0..4) {
 //            val eventCount = 3
 //            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
@@ -254,7 +260,6 @@ class CalenderFragment : Fragment() {
             startActivity(intent)
         }
 
-
         //오늘기준 수업표시
         // 서버 연결
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
@@ -281,7 +286,7 @@ class CalenderFragment : Fragment() {
                 if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                     if (response.body()!!.success) {  // 참고 코드에서 없는 부분
 
-
+                        // 데이터 전체 한번에 받아와서 날짜 같으면 그 날짜 데이터 추가
                         var i: Int = 0
                         for (i in 0 until response.body()!!.data.size) {
 
@@ -334,15 +339,6 @@ class CalenderFragment : Fragment() {
             }
         })
 
-//        //데이터 없을 때 나오는 화면
-//        if (haveCalendarData == true) {
-//            cl_calendar_empty.visibility = View.VISIBLE
-//            rv_calendarlog.visibility = View.GONE
-//        } else {
-//            rv_calendarlog.visibility = View.GONE
-//            cl_calendar_empty.visibility = View.VISIBLE
-//        }
-
 
         // 캘린더 날짜 클릭 변경
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
@@ -352,11 +348,6 @@ class CalenderFragment : Fragment() {
             var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
             calendarlog_all_date.text = "${Day}"
             calendarlog_all_month.text = "$Month" + "월"
-//            Log.i("Year test", Year.toString() + "")
-//            Log.i("Month test", Month.toString() + "")
-//            Log.i("Day test", Day.toString() + "")
-//            Log.i("rvdate test", "${calendarlog_all_date.text}")
-//            Log.i("rvmonth test", "${calendarlog_all_month.text}")
 
 
             // 날짜 포맷 통일
@@ -392,38 +383,7 @@ class CalenderFragment : Fragment() {
                         if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
 
-
-                            // 로그 띄우는거 앞부분 수정했더니 갑자기 된다...확인 결과 fatal 오류 로그 때문이었음
                             Log.d("받아온 데이터 ", response.body()!!.data.toString())
-
-
-//                            val Year = date.year
-//                            Log.d("연도: ", "${Year}")
-//                            var Month = (date.month + 1).toString()
-//                            Log.d("월: ", "${Month}")
-//                            var Day = (date.day).toString()
-//                            Log.d("일: ", "${Day}")
-//
-//                            calendarlog_all_date.text = "$Day"
-//                            calendarlog_all_month.text = "$Month" + "월"
-//
-//                            // 날짜 포맷 통일
-//                            if (Month.toInt() < 10) {
-//                                Month = "0$Month"
-//                            }
-//                            if (Day.toInt() < 10) {
-//                                Day = "0$Day"
-//                            }
-//
-//                            val shot_Day = "$Year-$Month-$Day"
-//                            Log.i("shot_Day short_Day", shot_Day + "")
-//                            materialCalendarView.clearSelection()
-
-//                            Toast.makeText(
-//                                requireContext(),
-//                                shot_Day,
-//                                Toast.LENGTH_SHORT
-//                            ).show()
 
                             var i: Int = 0
                             for (i in 0 until response.body()!!.data.size) {
@@ -477,45 +437,8 @@ class CalenderFragment : Fragment() {
                         }
                 }
             })
-
-            // 이부분 수정함(통신 안에 있는 오늘 날짜 설정 주석 + 선택 날짜 초기화는 setonClickListener 안에서 -> 클릭은 되고 튕김)
-            materialCalendarView.clearSelection()
-
+            // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
+            //materialCalendarView.clearSelection()
         }
     }
-
-
-//    private fun allloadDatas() {
-//        val calendarlogRequestToServer = CalendarLogRequestToServer
-//        // 서버 요청
-//        calendarlogRequestToServer.service.calendarlogRequest(
-//        ).enqueue(object : Callback<CalendarLogResponseData> {
-//            override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
-//                Log.d("통신 실패", "${t}")
-//            }
-//
-//            override fun onResponse(
-//                call: Call<CalendarLogResponseData>,
-//                response: Response<CalendarLogResponseData>
-//            ) {
-//                // 통신 성공
-//                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-//                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-//                        Log.d("성공", "성공")
-//                        Log.d(response.body()!!.data.toString(), response.body()!!.data.toString())
-//
-//                        calendarLogAdapter = CalendarLogAdapter(
-//                            getActivity()!!.getApplicationContext(), response!!.body()!!.data
-//                        )
-//                        calendarLogAdapter.notifyDataSetChanged()
-//                        rv_calendarlog.adapter = calendarLogAdapter
-//
-//                    } else {
-//                        Log.d("실패", "${response.body()}")
-//                    }
-//                }
-//            }
-//
-//        })
-//    }
 }

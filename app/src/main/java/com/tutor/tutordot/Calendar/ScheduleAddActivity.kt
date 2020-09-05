@@ -162,17 +162,17 @@ class ScheduleAddActivity : AppCompatActivity() {
             schedule_add_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
 
             // 시간 포맷 통일
-//            if (getHourAMPM(hourOfDay) < 10) {
-//                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
-//                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
-//            }
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
 
             if (minute < 10) {
                 schedule_add_start_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
             }
-//            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
-//                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
-//            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_add_start_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
 
             Log.i("최종 찍히는 시간: ", "${schedule_add_start_txt.text}")
         }
@@ -183,17 +183,17 @@ class ScheduleAddActivity : AppCompatActivity() {
             schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
 
 //            // 시간 포맷 통일
-//            if (getHourAMPM(hourOfDay) < 10) {
-//                schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
-//                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
-//            }
+            if (getHourAMPM(hourOfDay) < 10) {
+                schedule_add_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":$minute${getAMPM(hourOfDay)}"
+                //Log.i("time test1", "0${getHourAMPM(hourOfDay)}" + ":$minute ${getAMPM(hourOfDay)}")
+            }
 
             if (minute < 10) {
                 schedule_add_end_txt.text = "${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
             }
-//            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
-//                schedule_add_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
-//            }
+            if (getHourAMPM(hourOfDay) < 10 && minute < 10) {
+                schedule_add_end_txt.text = "0${getHourAMPM(hourOfDay)}" + ":0$minute${getAMPM(hourOfDay)}"
+            }
 
             Log.i("최종 찍히는 시간: ", "${schedule_add_end_txt.text}")
         }

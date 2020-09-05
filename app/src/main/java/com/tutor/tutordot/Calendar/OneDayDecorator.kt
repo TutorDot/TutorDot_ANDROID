@@ -6,11 +6,13 @@ import android.graphics.Typeface
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
+import androidx.core.content.ContextCompat
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.R
+import java.security.AccessController.getContext
 import java.util.*
 
 
@@ -30,7 +32,14 @@ class OneDayDecorator : DayViewDecorator {
         view.addSpan(StyleSpan(Typeface.BOLD))
         view.addSpan(RelativeSizeSpan(1.0f))
         view.addSpan(ForegroundColorSpan(Color.BLUE))
-//        mPaintBackgroundToday.setColor(ContextCompat.getColor(getContext(), R.color.colorAccent))
+//        mPaintBackgroundToday.setColor(ContextCompat.getColor(getContext(), R.color.blue))
+
+        val eventcolors = intArrayOf(
+            //R.color.blue, R.color.purple
+            Color.parseColor("#6875dd"), Color.parseColor("#b88de3")
+        )
+
+//        view.addSpan(CurrentDayDecorator(8f, eventcolors))
     }
 
     /**
