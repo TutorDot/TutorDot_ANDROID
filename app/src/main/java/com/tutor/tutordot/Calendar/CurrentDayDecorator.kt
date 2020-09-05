@@ -12,6 +12,8 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayViewDecorator {
     private val drawable: Drawable?
     var myDay = currentDay
+
+
     override fun shouldDecorate(day: CalendarDay): Boolean {
         return day == myDay
     }
@@ -22,10 +24,10 @@ class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayView
 
     init {
         // You can set background for Decorator via drawable here
-        drawable = ContextCompat.getDrawable(context!!, R.drawable.editbox_background)
+//        drawable = ContextCompat.getDrawable(context!!, R.drawable.editbox_background)
 
         // 오늘 날짜 원이 들어가긴 하는데 크기 조절 필요
-        //drawable = context?.resources?.getDrawable(com.tutor.tutordot.R.drawable.calender_img_today)
+        drawable = context?.resources?.getDrawable(com.tutor.tutordot.R.drawable.calender_img_today)
 
     }
 }
