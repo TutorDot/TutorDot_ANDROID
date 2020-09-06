@@ -31,7 +31,7 @@ class OneDayDecorator : DayViewDecorator {
     override fun decorate(view: DayViewFacade) {
         view.addSpan(StyleSpan(Typeface.BOLD))
         view.addSpan(RelativeSizeSpan(1.0f))
-        view.addSpan(ForegroundColorSpan(Color.BLUE))
+        view.addSpan(ForegroundColorSpan(Color.BLACK))
 //        mPaintBackgroundToday.setColor(ContextCompat.getColor(getContext(), R.color.blue))
 
         val eventcolors = intArrayOf(
