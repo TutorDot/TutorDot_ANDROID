@@ -24,7 +24,9 @@ class SplashActivity : Activity() {
         //val gifImage = GlideDrawableImageViewTarget(splashGif)
         Glide.with(this).load(R.raw.splash_anim).into(splashGif)
 
+
         Handler().postDelayed({ //delay를 위한 handler
+            /*
             if (MySharedPreferences.islogin) {
                 myjwt=MySharedPreferences.tmpjwt
                 role=MySharedPreferences.tmprole
@@ -37,6 +39,9 @@ class SplashActivity : Activity() {
             else {
                 startActivity(Intent(this, StartActivity::class.java))
             }
+
+             */
+            startActivity(Intent(this, StartActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
 
