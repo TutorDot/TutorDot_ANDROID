@@ -212,7 +212,8 @@ class MyFragment : Fragment() {
                     if(response.body()!!.success) {
                         Log.d("성공", "classlist성공"+response.body())
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                        if (response.body()!!.data[0]!!.profileUrls.size>0){
+                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl}
                         //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
 
 
@@ -225,8 +226,8 @@ class MyFragment : Fragment() {
                         else
                         { haveMyData = true
                             cl_my.visibility =View.GONE
-                            recyclerView_my.visibility = View.VISIBLE
-                            userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl}
+                            recyclerView_my.visibility = View.VISIBLE}
+                            //userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl}
 
                         for (i in 0 until response.body()!!.data.size){
                         classlistColor=response.body()!!.data[i]!!.color.toString()

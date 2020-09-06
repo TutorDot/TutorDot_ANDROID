@@ -27,8 +27,46 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        ///// login_auto  로그인체크박스 id
+        if (MySharedPreferences.islogin) {
+            //myjwt=MySharedPreferences.tmpjwt
+            //role=MySharedPreferences.tmprole
 
+
+            requestToServer.service.requestLogin(
+                RequestLogin(
+                    //email = et_email.text.toString(),
+                    email = MySharedPreferences.email,
+                    //password = et_pw.text.toString()
+                    password = MySharedPreferences.password
+                )   //로그인 정보를 전달
+            ).customEnqueue(
+                onError = { showToast("아이디/비밀번호를 확인하세요!") },
+                onSuccess = {
+                    if (it.success) {
+                        /////
+                        myjwt = it.data!!.accessToken
+                        role = it.data!!.role
+                        Log.d("myjwt", "${myjwt}")
+                        Log.d("role", "${role}")
+                        /////
+
+                        showToast("로그인 성공")
+
+                        Log.d("롤2","롤2${role}")
+                        showToast("자동로그인 되었습니다")
+                        // MySharedPreferences.islogin = false     // 실험용
+                        val intent = Intent(this, CalenderActivity::class.java)
+                        startActivity(intent)
+                        finish()
+
+
+                    }
+                })
+        }
+
+
+        ///// login_auto  로그인체크박스 id
+ 
         login_btn_autologin_picktouchguide.setOnClickListener {
             if (autologincheck == false) {//false
                 login_btn_autologin_picktouchguide.setBackgroundResource(R.drawable.login_btn_autologinagree_pick)
