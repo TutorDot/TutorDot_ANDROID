@@ -3,6 +3,7 @@ package com.tutor.tutordot.MyPage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import com.tutor.tutordot.MyPage.Server.ConnectRequest
 import com.tutor.tutordot.MyPage.Server.ConnectResponse
 import com.tutor.tutordot.MyPage.Server.InviteResponse
@@ -21,6 +22,7 @@ class InviteForTuteeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_invite_for_tutee)
         //서버 연결
         val mypageRequestToServer = MyPageRequestToServer
+        var copytexttutee = findViewById<TextView>(R.id.copytext2)
 
         schedule_class_math_btn_back.setOnClickListener{
             finish()
@@ -28,10 +30,11 @@ class InviteForTuteeActivity : AppCompatActivity() {
 
         btn_connect.setOnClickListener {
             //초대코드 연결
+
             mypageRequestToServer.service.requestConnect(
-                "$myjwt",
+                "${myjwt}",
                 ConnectRequest(
-                    code = codeInvite
+                    code = "${copytexttutee.text}"
                 )
             ).enqueue(object : Callback<ConnectResponse> {
                 override fun onFailure(call: Call<ConnectResponse>, t: Throwable) {
@@ -47,10 +50,11 @@ class InviteForTuteeActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
                             Log.d("튜터 연결 성공", "성공")
                             showToast("튜터와 연결되었습니다.")
+                            Log.d("codeInvite값", "${copytexttutee.text}")
                             finish()
 
                         } else {
-                            Log.d("튜터와 연결에실패했습니다.", "${response.body()}")
+                            Log.d("튜터와 연결에 실패했습니다.", "${response.body()}")
                         }
                     }
                 }
