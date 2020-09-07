@@ -50,6 +50,8 @@ class ClassLogFragment : Fragment() {
     val curDate= Calendar.getInstance()
     val month = curDate.get(Calendar.MONTH) + 1
 
+    lateinit var leid : ArrayList<Int>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,7 +67,7 @@ class ClassLogFragment : Fragment() {
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
-                Log.d( "통신 성공!","성공") 
+                Log.d( "통신 성공!","성공")
             } else {
                 Log.d( "통신 실패!","실패")
             }
@@ -87,7 +89,7 @@ class ClassLogFragment : Fragment() {
         var progressStatus : Int
 
 
-        
+
         //프로그레스바 값 지정 (나중에 서버에서 값 받아와서 지정)
         pb_class.progress = 75  //status
 
@@ -147,17 +149,21 @@ class ClassLogFragment : Fragment() {
                 if(response.isSuccessful){
                     if(response.body()!!.success){
                         Log.d("토글 수업 정보", "성공")
+                        Log.d("토글 수업 정보", response.body()!!.data.toString())
 
                         val lecnt = response.body()!!.data.size
                         Log.d("수업 개수", "{$lecnt}")
 
                         val lename : ArrayList<String> = ArrayList()
+                        leid = ArrayList()
                         for(i in 1..lecnt) {
                             lename.add(response.body()!!.data[i - 1].lectureName)
+                            leid.add(response.body()!!.data[i - 1].lid)
                             //수업 개수에 맞게 토글 항목 추가
                             popup.menu.add(response.body()!!.data[i - 1].lectureName)
                         }
-                        Log.d("수업 이름", "{$lename}")
+                        Log.d("토글 수업 이름", "{$lename}")
+                        Log.d("토글 수업 번호", "{$leid}")
 
                     }else{
                         Log.d("토글 수업 정보", "실패")
@@ -165,7 +171,6 @@ class ClassLogFragment : Fragment() {
                 }
             }
         })
-
 
         //상단 수업 선택 메뉴
         ll_log_choice.setOnClickListener(object : View.OnClickListener {
@@ -182,93 +187,51 @@ class ClassLogFragment : Fragment() {
                     tv_class_choice.text = item.title
                     if (item.title.equals("전체"))
                         ll_progress.visibility = View.GONE
-                    else{
-                        ll_progress.visibility = View.VISIBLE
-                        if(item.itemId == 1){
-                            ser_color = "yellow"
-/*
-                        if(item.title.equals("신연상 학생 수학 수업")){
-                            ser_color = "yellow"
-*/
-                            //프로그레스바 서버에서 정보 받아옴
-                            logRequestToServer.service.progressRequest(
-                                "${myjwt}"
-                            ).enqueue(object :Callback<ProgressResponse>{
-                                override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
-                                    Log.d("통신 실패", "통신 실패")
-                                }
+                    else {
+                        Log.d("성공", "프로그레스바1")
 
-                                override fun onResponse(
-                                    call: Call<ProgressResponse>,
-                                    response: Response<ProgressResponse>
-                                ) {
-                                    if(response.isSuccessful){
-                                        if(response.body()!!.success){
-                                            Log.d("첫번째 과목 프로그레스바 성공", "성공")
+                        //프로그레스바 서버에서 정보 받아옴
+                        logRequestToServer.service.progressRequest(
+                            "${myjwt}", "${leid.get(item.itemId + 1)}"
+                        ).enqueue(object : Callback<ProgressResponse> {
+                            override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
+                                Log.d("통신 실패", "통신 실패")
+                            }
 
-                                            progressDate = response.body()!!.data[5].classDate
-                                            progressCycle = response.body()!!.data[5].depositCycle
-                                            progressTimes = response.body()!!.data[5].times
-                                            progressHour = response.body()!!.data[5].hour
-                                            tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
-                                            tv_progress_alltime.setText(progressCycle.toString() + "시간")
-                                            progressStatus = 100*progressHour/progressCycle
-                                            pb_class.progress = progressStatus
-                                            tv_percent.setText(progressStatus.toString() + "%")
+                            override fun onResponse(
+                                call: Call<ProgressResponse>,
+                                response: Response<ProgressResponse>
+                            ) {
+                                if (response.isSuccessful) {
+                                    if (response.body()!!.success) {
+                                        Log.d("프로그레스바 서버", "프로그레스바 서버")
+                                        Log.d("성공", response.body()!!.data.toString())
 
-                                            Log.d("첫번째 과목 입금 주기", progressCycle.toString())
-                                            Log.d("첫번째 과목 회차", progressTimes.toString())
-                                            Log.d("첫번째 과목 총 수업시간", progressHour.toString())
-                                            Log.d("첫번째 과목 프로그레스바 퍼센트", progressStatus.toString())
-                                            Log.d("첫번째 과목 날짜", progressDate)
-                                        }else{
-                                            Log.d("실패", "실패")
-                                        }
+                                        val procnt = response.body()!!.data.size
+
+                                        progressDate = response.body()!!.data[procnt].classDate
+                                        progressCycle = response.body()!!.data[procnt].depositCycle
+                                        progressTimes = response.body()!!.data[procnt].times
+                                        progressHour = response.body()!!.data[procnt].hour
+                                        tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+                                        tv_progress_alltime.setText(progressCycle.toString() + "시간")
+                                        progressStatus = 100 * progressHour / progressCycle
+                                        pb_class.progress = progressStatus
+                                        tv_percent.setText(progressStatus.toString() + "%")
+
+                                        Log.d("첫번째 과목 입금 주기", progressCycle.toString())
+                                        Log.d("첫번째 과목 회차", progressTimes.toString())
+                                        Log.d("첫번째 과목 총 수업시간", progressHour.toString())
+                                        Log.d("첫번째 과목 프로그레스바 퍼센트", progressStatus.toString())
+                                        Log.d("첫번째 과목 날짜", progressDate)
+                                    } else {
+                                        Log.d("실패1", "실패1")
                                     }
                                 }
-                            })
-                        }else{
-                            ser_color = "green"
+                            }
+                        })
 
-                            //프로그레스바 서버에서 정보 받아옴
-                            logRequestToServer.service.progressRequest2(
-                                "${myjwt}"
-                            ).enqueue(object :Callback<ProgressResponse2>{
-                                override fun onFailure(call: Call<ProgressResponse2>, t: Throwable) {
-                                    Log.d("통신 실패", "통신 실패")
-                                }
-                                override fun onResponse(
-                                    call: Call<ProgressResponse2>,
-                                    response: Response<ProgressResponse2>
-                                ) {
-                                    if(response.isSuccessful){
-                                        if(response.body()!!.success){
-                                            Log.d("두번째 과목 프로그레스바 성공", "성공")
-                                           // Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                                            progressDate = response.body()!!.data[5].classDate
-                                            progressCycle = response.body()!!.data[5].depositCycle
-                                            progressTimes = response.body()!!.data[5].times
-                                            progressHour = response.body()!!.data[5].hour
-                                            tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
-                                            tv_progress_alltime.setText(progressCycle.toString() + "시간")
-                                            progressStatus = 100*progressHour/progressCycle
-                                            pb_class.progress = progressStatus
-                                            tv_percent.setText(progressStatus.toString() + "%")
-
-                                            Log.d("두번째 과목 입금 주기", progressCycle.toString())
-                                            Log.d("두번째 과목 회차", progressTimes.toString())
-                                            Log.d("두번째 과목 총 수업시간", progressHour.toString())
-                                            Log.d("두번째 과목 프로그레스바 퍼센트", progressStatus.toString())
-                                            Log.d("두번째 과목 날짜", progressDate)
-                                        }else{
-                                            Log.d("실패", "실패")
-                                        }
-                                    }
-                                }
-
-                            })
-                        }
-
+                        
                     }
                     true
                 }
@@ -338,7 +301,7 @@ class ClassLogFragment : Fragment() {
                         var i: Int = 0
                         for (i in 0 until response.body()!!.data.size) {
                             if(response.body()!!.data[i].classDate != null){
-                            var cd = response.body()!!.data[i].classDate.split("-")
+                                var cd = response.body()!!.data[i].classDate.split("-")
                                 yy = cd[0]
                                 mm = cd[1]
                                 dd = cd[2]}
