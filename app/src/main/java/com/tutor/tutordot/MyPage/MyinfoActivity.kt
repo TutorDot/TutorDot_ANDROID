@@ -15,11 +15,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.tutor.tutordot.Calendar.ScheduleInfoActivity
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.MyPage.Server.ClassInfoResponse
-import com.tutor.tutordot.MyPage.Server.ClassListData
+import com.tutor.tutordot.MyPage.Server.MyAddRequest
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
+import com.tutor.tutordot.MyPage.Server.ScheduleData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
@@ -42,9 +42,22 @@ class MyinfoActivity : AppCompatActivity() {
         profile_introduce.setText(userinfointro)
 
         val myPageRequestToServer = MyPageRequestToServer
+        var tmpcolor:String=""
+        var mycname:String=""
+        var mytime:String=""
+        var mybank:String=""
+        var mymoney:String=""
+        var myaccount:String=""
+        var myclasstime: String=""
+        var myplace:String=""
+
+        var classtimeforedit: String=""
+
+
 
         var mylid:Int=0
         mylid = intent.getIntExtra("mylid",1)
+        Log.d("나의 아이디는","${mylid}")
 
         //서버연결
         myPageRequestToServer.service.classInfoRequest(
@@ -62,7 +75,7 @@ class MyinfoActivity : AppCompatActivity() {
                     if(response.body()!!.success){
                         Log.d("성공", "myinfoactivity성공")
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        var tmpcolor: String = response.body()!!.data!!.color
+                        tmpcolor = response.body()!!.data!!.color
                         if(tmpcolor == "yellow")
                             my_class_tap_img_yellow.setImageResource(R.drawable.notice_color_img_yellow)
                         if(tmpcolor == "green")
@@ -75,24 +88,34 @@ class MyinfoActivity : AppCompatActivity() {
                             my_class_tap_img_yellow.setImageResource(R.drawable.notice_color_img_red)
 
                         class_info_title.setText(response.body()!!.data!!.lectureName)
+                        mycname=response.body()!!.data!!.lectureName
                         profile_name.setText(response.body()!!.data!!.userName)
                         Glide.with(this@MyinfoActivity).load(response.body()!!.data!!.profileUrl).into(my_class_tap_img_profile)
                         profile_introduce.setText(response.body()!!.data!!.intro)
                         var tmpprice:String= response.body()!!.data!!.depositCycle.toString()+"시간 / "+response.body()!!.data!!.price.toString()+"만원"
                         price.setText(tmpprice)
+                        mytime=response.body()!!.data!!.depositCycle.toString()
+                        mymoney=response.body()!!.data!!.price.toString()
                         var tmpaccount: String=response.body()!!.data!!.bank+" "+response.body()!!.data!!.accountNo
+                        mybank=response.body()!!.data!!.bank
+                        myaccount=response.body()!!.data!!.accountNo
                         account_number.setText(tmpaccount)
                         var tmpclasstime: String=""
+
                         var i=0
                         var schlen=response.body()!!.data!!.schedules.size
                         for (i in 0 until schlen){
                             tmpclasstime += response.body()!!.data!!.schedules[i].day + " " + response.body()!!.data!!.schedules[i].orgStartTime+" ~ "+response.body()!!.data!!.schedules[i].orgEndTime
+                            classtimeforedit += response.body()!!.data!!.schedules[i].day + "*" + response.body()!!.data!!.schedules[i].orgStartTime+"~"+response.body()!!.data!!.schedules[i].orgEndTime
                             if (i != (schlen-1)){
                                 tmpclasstime += "\n"
+                                classtimeforedit += "-"
                             }
                         }
                         time1.setText(tmpclasstime)
+                        myclasstime=tmpclasstime
                         location_info.setText(response.body()!!.data!!.orgLocation)
+                        myplace=response.body()!!.data!!.orgLocation
 
 
                     }
@@ -113,12 +136,25 @@ class MyinfoActivity : AppCompatActivity() {
         })
         my_class_tap_btn_edit.setOnClickListener{
             val intent2= Intent(this, MyclassEdit::class.java)
+            intent2.putExtra("mylid2", "${mylid.toString()}")
+            intent2.putExtra("mycname", "${mycname}")
+            intent2.putExtra("mycolor", "${tmpcolor}")
+            intent2.putExtra("mytime", "${mytime}")
+            intent2.putExtra("mymoney", "${mymoney}")
+            intent2.putExtra("mybank", "${mybank}")
+            intent2.putExtra("myaccount", "${myaccount}")
+            intent2.putExtra("myclasstime", "${classtimeforedit}")
+            intent2.putExtra("myplace", "${myplace}")
+            Log.d("가는내용","가는내용${mylid}, ${mycname}, ${tmpcolor}")
+
+
+
+
             startActivity(intent2)
             finish()
         }
         my_class_tap_btn_invite.setOnClickListener{
             var invIntent = Intent(this, InviteActivity::class.java)
-            invIntent.putExtra("mylid", mylid)
             startActivity(invIntent)
         }
 
