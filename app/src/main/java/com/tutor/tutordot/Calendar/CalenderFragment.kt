@@ -53,7 +53,7 @@ class CalenderFragment : Fragment() {
     //val calendarlogRequestToServer = CalendarLogRequestToServer
 
     // 캘린더 일정 더미
-     val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
+    val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
     lateinit var calendarLogAdapter: CalendarLogAdapter
 
     //현재 달 구하기
@@ -380,7 +380,7 @@ class CalenderFragment : Fragment() {
                     response: Response<CalendarLogResponseData>
                 ) {
                     // 통신 성공
-                        if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                         if (response.body()!!.success) {  // 참고 코드에서 없는 부분
 
                             Log.d("받아온 데이터 ", response.body()!!.data.toString())
@@ -416,17 +416,17 @@ class CalenderFragment : Fragment() {
                             }
 
                         }
-                            if(datas.size == 0) {
-                                cl_calendar_empty.visibility = View.VISIBLE
-                                rv_calendarlog.visibility = View.GONE
-                                haveCalendarData = false
-                            }
+                        if(datas.size == 0) {
+                            cl_calendar_empty.visibility = View.VISIBLE
+                            rv_calendarlog.visibility = View.GONE
+                            haveCalendarData = false
+                        }
 
-                            else {
-                                cl_calendar_empty.visibility = View.GONE
-                                rv_calendarlog.visibility = View.VISIBLE
-                                haveCalendarData = true
-                            }
+                        else {
+                            cl_calendar_empty.visibility = View.GONE
+                            rv_calendarlog.visibility = View.VISIBLE
+                            haveCalendarData = true
+                        }
                         calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
                         calendarLogAdapter.notifyDataSetChanged()
                         rv_calendarlog.adapter = calendarLogAdapter
@@ -434,7 +434,7 @@ class CalenderFragment : Fragment() {
                     } else {
                         Log.d("실패", "${response.message()}")
 
-                        }
+                    }
                 }
             })
             // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
