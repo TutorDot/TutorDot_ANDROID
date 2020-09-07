@@ -51,11 +51,13 @@ class MyinfoActivity : AppCompatActivity() {
         var myclasstime: String=""
         var myplace:String=""
 
+        var classtimeforedit: String=""
 
 
 
         var mylid:Int=0
         mylid = intent.getIntExtra("mylid",1)
+        Log.d("나의 아이디는","${mylid}")
 
         //서버연결
         myPageRequestToServer.service.classInfoRequest(
@@ -99,12 +101,15 @@ class MyinfoActivity : AppCompatActivity() {
                         myaccount=response.body()!!.data!!.accountNo
                         account_number.setText(tmpaccount)
                         var tmpclasstime: String=""
+
                         var i=0
                         var schlen=response.body()!!.data!!.schedules.size
                         for (i in 0 until schlen){
                             tmpclasstime += response.body()!!.data!!.schedules[i].day + " " + response.body()!!.data!!.schedules[i].orgStartTime+" ~ "+response.body()!!.data!!.schedules[i].orgEndTime
+                            classtimeforedit += response.body()!!.data!!.schedules[i].day + "*" + response.body()!!.data!!.schedules[i].orgStartTime+"~"+response.body()!!.data!!.schedules[i].orgEndTime
                             if (i != (schlen-1)){
                                 tmpclasstime += "\n"
+                                classtimeforedit += "-"
                             }
                         }
                         time1.setText(tmpclasstime)
@@ -131,14 +136,14 @@ class MyinfoActivity : AppCompatActivity() {
         })
         my_class_tap_btn_edit.setOnClickListener{
             val intent2= Intent(this, MyclassEdit::class.java)
-            intent2.putExtra("mylid", "${mylid}")
+            intent2.putExtra("mylid2", "${mylid.toString()}")
             intent2.putExtra("mycname", "${mycname}")
             intent2.putExtra("mycolor", "${tmpcolor}")
             intent2.putExtra("mytime", "${mytime}")
             intent2.putExtra("mymoney", "${mymoney}")
             intent2.putExtra("mybank", "${mybank}")
             intent2.putExtra("myaccount", "${myaccount}")
-            intent2.putExtra("myclasstime", "${myclasstime}")
+            intent2.putExtra("myclasstime", "${classtimeforedit}")
             intent2.putExtra("myplace", "${myplace}")
             Log.d("가는내용","가는내용${mylid}, ${mycname}, ${tmpcolor}")
 
