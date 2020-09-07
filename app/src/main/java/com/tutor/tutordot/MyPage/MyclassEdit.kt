@@ -11,18 +11,55 @@ import kotlinx.android.synthetic.main.activity_myclass_edit.*
 
 class MyclassEdit : AppCompatActivity() {
 
-    lateinit var myclassEditAdapter: MyclassEditAdapter
+   // lateinit var myclassEditAdapter: MyclassEditAdapter
     val datas= mutableListOf<MyclassEditData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myclass_edit)
 
-        myclassEditAdapter= MyclassEditAdapter(this)
-        recyclerView2.adapter=myclassEditAdapter
+        var mylid:Int=0
+        mylid = intent.getIntExtra("mylid",1)
+        var mycname = intent.getStringExtra("mycname")
+        var mycolor = intent.getStringExtra("mycolor")
+        var mytime = intent.getStringExtra("mytime")
+        var mymoney = intent.getStringExtra("mymoney")
+        var mybank = intent.getStringExtra("mybank")
+        var myaccount = intent.getStringExtra("myaccount")
+        var myclasstime = intent.getStringExtra("myclasstime")
+        var myplace = intent.getStringExtra("myplace")
+
+        editText.setText(mycname)
+        et_mytime.setText(mytime)
+        editText2.setText(mymoney)
+        et_mybank.setText(mybank)
+        editText4.setText(myaccount)
+        et_myplace.setText(myplace)
+
+        if (mycolor=="yellow"){
+            my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_select_yellow)
+        }else if (mycolor=="red"){
+            my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_select_red)
+        }else if (mycolor=="green"){
+            my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_select_green)
+        }else if (mycolor=="blue"){
+            my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_select_blue)
+        }else if (mycolor=="purple"){
+            my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_select_purple)
+        }
+
+
+
+
+
+
+
+
+        //myclassEditAdapter= MyclassEditAdapter(this)
+        //recyclerView2.adapter=myclassEditAdapter
         val myLayoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager= myLayoutManager
 
-        loadDatas()
+
 
         //취소 버튼
         btn_cancle_myedit.setOnClickListener{
@@ -40,41 +77,8 @@ class MyclassEdit : AppCompatActivity() {
                     endtime = "00:00pm"
                 )
             )
-            myclassEditAdapter.notifyDataSetChanged()
         }
 
     }
 
-
-
-    private fun loadDatas(){
-        datas.apply {
-            add(
-                MyclassEditData(
-                    weekday = "월",
-                    starttime = "2:00pm",
-                    endtime="3:00pm"
-
-                )
-            )
-            add(
-                MyclassEditData(
-                    weekday = "화",
-                    starttime = "2:00pm",
-                    endtime="3:00pm"
-
-                )
-            )
-            add(
-                MyclassEditData(
-                    weekday = "수",
-                    starttime = "2:00pm",
-                    endtime="3:00pm"
-
-                )
-            )
-        }
-        myclassEditAdapter.datas=datas
-        myclassEditAdapter.notifyDataSetChanged()
-    }
 }
