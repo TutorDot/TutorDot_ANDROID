@@ -94,36 +94,36 @@ class MyclassEdit : AppCompatActivity() {
         val endtime_set: List<ConstraintLayout> = listOf(layoutthird1e, layoutthird2e, layoutthird3e, layoutthird4e, layoutthird5e)
         val btn_save: List<Button> = listOf(btn_save1e, btn_save2e, btn_save3e, btn_save4e, btn_save5e)
 
-
+        var i=0
+        if(myclasstime != null) {
         var tmptimes=myclasstime.split("-")
         ti=tmptimes.size.toInt()
-        Log.d("ti!","${ti}")
-        Log.d("ti!","${myclasstime}")
-        Log.d("ti!","${tmptimes}")
-        Log.d("ti!","${myclasstime}")
-        var i=0
-        for (i in 1 until ti+1){
-            if (i==2){
-                constraint_2nde.setVisibility(View.VISIBLE)
-            }else if (i==3){
-                constraint_3rde.setVisibility(View.VISIBLE)
-            }else if (i==4){
-                constraint_4the.setVisibility(View.VISIBLE)
-            }else if (i==5){
-                constraint_5the.setVisibility(View.VISIBLE)
+
+            Log.d("ti!", "${ti}")
+            Log.d("ti!", "${myclasstime}")
+            Log.d("ti!", "${tmptimes}")
+            Log.d("ti!", "${myclasstime}")
+            i = 0
+            for (i in 1 until ti + 1) {
+                if (i == 2) {
+                    constraint_2nde.setVisibility(View.VISIBLE)
+                } else if (i == 3) {
+                    constraint_3rde.setVisibility(View.VISIBLE)
+                } else if (i == 4) {
+                    constraint_4the.setVisibility(View.VISIBLE)
+                } else if (i == 5) {
+                    constraint_5the.setVisibility(View.VISIBLE)
+                }
+
+                var listtmp = tmptimes[i - 1].split("*")
+                var listtimp2 = listtmp[1].split("~")
+                tv_weekday[i - 1].text = listtmp[0]
+                tv_start[i - 1].text = listtimp2[0]
+                tv_end[i - 1].text = listtimp2[1]
+
+
             }
-
-            var listtmp =tmptimes[i-1].split("*")
-            var listtimp2=listtmp[1].split("~")
-            tv_weekday[i-1].text=listtmp[0]
-            tv_start[i-1].text=listtimp2[0]
-            tv_end[i-1].text=listtimp2[1]
-
-
-
-
         }
-
 
 
 
@@ -147,7 +147,10 @@ class MyclassEdit : AppCompatActivity() {
 
         for(i in 0 until 5){
             //삭제버튼
-            btn_x[i].setOnClickListener{constraint_no[i].setVisibility(View.GONE)}
+            btn_x[i].setOnClickListener{
+                constraint_no[i].setVisibility(View.GONE)
+                tv_start[i].text="00:00am"
+            }
             btn_save[i].setOnClickListener { endtime_set[i].setVisibility(View.GONE) }
             //요일피커
             tp_day[i].minValue=0
@@ -219,6 +222,77 @@ class MyclassEdit : AppCompatActivity() {
 
 
 
+        //컬러팔레트 클릭
+        my_class_tap_img_yellow.setOnClickListener {
+            if(mycolor.equals("yellow")) {
+                my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
+                mycolor = ""
+            }
+            else {
+                mycolor = "yellow"
+                my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_select_yellow)
+                my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_red)
+                my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_green)
+                my_class_tap_edit_img_blue.setImageResource(R.drawable.my_class_tap_edit_img_blue)
+                my_class_tap_edit_img_purple.setImageResource(R.drawable.my_class_tap_edit_img_purple)
+            }
+        }
+        my_class_tap_edit_img_red.setOnClickListener {
+            if(mycolor.equals("red")) {
+                my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_red)
+                mycolor = ""
+            }
+            else {
+                mycolor = "red"
+                my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
+                my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_select_red)
+                my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_green)
+                my_class_tap_edit_img_blue.setImageResource(R.drawable.my_class_tap_edit_img_blue)
+                my_class_tap_edit_img_purple.setImageResource(R.drawable.my_class_tap_edit_img_purple)
+            }
+        }
+        my_class_tap_edit_img_green.setOnClickListener {
+            if(mycolor.equals("green")) {
+                my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_green)
+                mycolor = ""
+            }
+            else {
+                mycolor = "green"
+                my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
+                my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_red)
+                my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_select_green)
+                my_class_tap_edit_img_blue.setImageResource(R.drawable.my_class_tap_edit_img_blue)
+                my_class_tap_edit_img_purple.setImageResource(R.drawable.my_class_tap_edit_img_purple)
+            }
+        }
+        my_class_tap_edit_img_blue.setOnClickListener {
+            if(mycolor.equals("blue")) {
+                my_class_tap_edit_img_blue.setImageResource(R.drawable.my_class_tap_edit_img_blue)
+                mycolor = ""
+            }
+            else {
+                mycolor = "blue"
+                my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
+                my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_red)
+                my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_green)
+                my_class_tap_edit_img_blue.setImageResource(R.drawable.my_class_tap_edit_img_select_blue)
+                my_class_tap_edit_img_purple.setImageResource(R.drawable.my_class_tap_edit_img_purple)
+            }
+        }
+        my_class_tap_edit_img_purple.setOnClickListener {
+            if(mycolor.equals("purple")) {
+                my_class_tap_edit_img_purple.setImageResource(R.drawable.my_class_tap_edit_img_purple)
+                mycolor = ""
+            }
+            else {
+                mycolor = "purple"
+                my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
+                my_class_tap_edit_img_red.setImageResource(R.drawable.my_class_tap_edit_img_red)
+                my_class_tap_edit_img_green.setImageResource(R.drawable.my_class_tap_edit_img_green)
+                my_class_tap_edit_img_blue.setImageResource(R.drawable.my_class_tap_edit_img_blue)
+                my_class_tap_edit_img_purple.setImageResource(R.drawable.my_class_tap_edit_img_select_purple)
+            }
+        }
 
         //myclassEditAdapter= MyclassEditAdapter(this)
         //recyclerView2.adapter=myclassEditAdapter

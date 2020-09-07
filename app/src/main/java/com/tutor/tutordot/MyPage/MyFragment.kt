@@ -45,7 +45,7 @@ var myjwt2: String= myjwt.toString()
 class MyFragment : Fragment() {
 
     lateinit var mypageAdapter: MypageAdapter
-    val datas= mutableListOf<MypageData>()
+    var datas= mutableListOf<MypageData>()
     //서버 연결
     val mypageRequestToServer = MyPageRequestToServer
     val userRequestToServer = UserRequestToServer
@@ -63,6 +63,7 @@ class MyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        datas= mutableListOf<MypageData>()
 
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
