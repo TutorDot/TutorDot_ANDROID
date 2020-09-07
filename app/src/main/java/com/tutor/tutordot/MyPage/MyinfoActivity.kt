@@ -15,8 +15,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.tutor.tutordot.Calendar.ScheduleInfoActivity
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.MyPage.Server.ClassInfoResponse
+import com.tutor.tutordot.MyPage.Server.ClassListData
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
@@ -116,6 +118,7 @@ class MyinfoActivity : AppCompatActivity() {
         }
         my_class_tap_btn_invite.setOnClickListener{
             var invIntent = Intent(this, InviteActivity::class.java)
+            invIntent.putExtra("mylid", mylid)
             startActivity(invIntent)
         }
 
