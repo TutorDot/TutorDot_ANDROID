@@ -267,7 +267,7 @@ class AddclassActivity : AppCompatActivity() {
                 var zero2=""
                 if(minute/10==0) zero="0" else zero=""
                 if(getHourAMPM(hourOfDay)/10==0) zero2="0" else zero2=""
-                tv_start[i].text = zero2+"${getHourAMPM(hourOfDay)}" + ":"+zero+ "$minute ${getAMPM(hourOfDay)}"
+                tv_start[i].text = zero2+"${getHourAMPM(hourOfDay)}" + ":"+zero+ "$minute${getAMPM(hourOfDay)}"
                 tmptime[i]=hourOfDay
                 tmpmin[i]=minute
             }
@@ -295,7 +295,7 @@ class AddclassActivity : AppCompatActivity() {
                 var zero2=""
                 if( assign== 0) zero="0" else zero=""
                 if(getHourAMPM(tmptime[i]+howlongh)/10 == 0) zero2="0" else zero2=""
-                tv_end[i].text = zero2+"${getHourAMPM(tmptime[i]+howlongh)}" + ":"+ zero +"${(tmpmin[i]+howlongm)%60} ${getAMPM(tmptime[i]+howlongh)}"
+                tv_end[i].text = zero2+"${getHourAMPM(tmptime[i]+howlongh)}" + ":"+ zero +"${(tmpmin[i]+howlongm)%60}${getAMPM(tmptime[i]+howlongh)}"
 
             }
 

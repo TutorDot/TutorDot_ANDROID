@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         ///// login_auto  로그인체크박스 id
- 
+
         login_btn_autologin_picktouchguide.setOnClickListener {
             if (autologincheck == false) {//false
                 login_btn_autologin_picktouchguide.setBackgroundResource(R.drawable.login_btn_autologinagree_pick)
