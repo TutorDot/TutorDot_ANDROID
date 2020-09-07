@@ -24,12 +24,16 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-var codeInvite : String = "DJFJSHJFKSr"
+var codeInvite : String = ""
 
 class InviteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_invite)
+
+        var mylid:Int = intent.getIntExtra("mylid", 1)
+        Log.d("lid는", "${mylid}")
+        var copytextshow = copytext
 
         //서버 연결
         val mypageRequestToServer = MyPageRequestToServer
@@ -47,10 +51,10 @@ class InviteActivity : AppCompatActivity() {
 
         //초대코드 서버에서 받아옴
         mypageRequestToServer.service.inviteRequest(
-            "$myjwt"
+            "${myjwt}", "${mylid}"
         ).enqueue(object : Callback<InviteResponse> {
             override fun onFailure(call: Call<InviteResponse>, t: Throwable) {
-                Log.d("통신 실패", "${t}")
+                Log.d("초대코드 통신 실패", "${t}")
             }
 
             override fun onResponse(
@@ -62,8 +66,9 @@ class InviteActivity : AppCompatActivity() {
                     if (response.body()!!.success) {
                         Log.d("초대코드 받아오기 성공", "성공")
                         Log.d("데이터", response.body()!!.data.toString())
-                        copytext = response.body()!!.data[0].code
+                        copytext = response.body()!!.data!!.code
                         codeInvite = copytext
+                        copytextshow.text = copytext
 
                     } else {
                         Log.d("초대코드 받아오기 실패", "${response.body()}")
