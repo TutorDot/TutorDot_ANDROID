@@ -1,5 +1,6 @@
 package com.tutor.tutordot.Calendar.Server
 
+import com.tutor.tutordot.ClassLog.Server.DiaryResponse
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogModiResponse
@@ -23,4 +24,7 @@ interface CalendarLogResponseInterface{
 
     @GET("/lecture/name")
     fun lectureRequest(@Header("jwt") header: String) : Call<LectureResponse>
+
+    @GET("/calander/{lid}")
+    fun calRequest(@Header("jwt") header: String, @Path("lid") path: String) : Call<CalResponse>
 }

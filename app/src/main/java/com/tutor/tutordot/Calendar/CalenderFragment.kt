@@ -19,10 +19,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
-import com.tutor.tutordot.Calendar.Server.CalendarData
-import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
-import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
-import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
+import com.tutor.tutordot.Calendar.Server.*
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogResponse
@@ -67,6 +64,9 @@ class CalenderFragment : Fragment() {
 
     lateinit var materialCalendarView: MaterialCalendarView
 
+    lateinit var leid1 : ArrayList<Int>
+    lateinit var lename1 : ArrayList<String>
+    var lecnt1 : Int = 0
 
     inner class ApiSimulator internal constructor(var Time_Result: Array<String>) :
         AsyncTask<Void, Void, List<CalendarDay>>() {
@@ -206,16 +206,16 @@ class CalenderFragment : Fragment() {
                     if(response.body()!!.success){
                         Log.d("토글 수업 정보", "성공")
 
-                        val lecnt = response.body()!!.data.size
-                        Log.d("수업 개수", "{$lecnt}")
+                        lecnt1 = response.body()!!.data.size
+                        lename1 = ArrayList()
+                        leid1 = ArrayList()
 
-                        val lename : ArrayList<String> = ArrayList()
-                        for(i in 1..lecnt) {
-                            lename.add(response.body()!!.data[i - 1].lectureName)
+                        for(i in 1..lecnt1) {
+                            lename1.add(response.body()!!.data[i - 1].lectureName)
+                            leid1.add(response.body()!!.data[i-1].lectureId)
                             //수업 개수에 맞게 토글 항목 추가
                             popup.menu.add(response.body()!!.data[i - 1].lectureName)
                         }
-                        Log.d("수업 이름", "{$lename}")
 
                     }else{
                         Log.d("토글 수업 정보", "실패")
@@ -228,31 +228,210 @@ class CalenderFragment : Fragment() {
         //상단 수업 선택 메뉴
         constarintlayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                /*
-                val popup =
-                    PopupMenu(context, calendar_select)
-                //Inflating the Popup using xml file
-                popup.menuInflater
-                    .inflate(R.menu.popup_menu, popup.menu)
-*/
-                //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
                     tv_calendar_title.text = item.title
+
+                    if (item.title.equals("전체")) {
+                        calAlldata()
+                        secondAlldata()
+                    }
+                    else {
+                        var lid : Int = 0
+                        for(i in 1..lecnt1) {
+                            if(item.title.equals(lename1[i-1]))
+                                lid = leid1[i-1]
+                        }
+                        Log.d("아이디", "${lid}")
+
+                        //오늘기준 수업표시
+                        // 서버 연결
+                        val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
+                        calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
+
+                        //val calendarlogRequestToServer = CalendarLogRequestToServer
+                        val mydate=LocalDate.now()
+                        val formatter = DateTimeFormatter.ISO_DATE
+                        val formatted = mydate.format(formatter)
+
+                        val calendarlogRequestToServer = CalendarLogRequestToServer
+
+                        // 서버 요청
+                        calendarlogRequestToServer.service.calRequest(
+                            "${myjwt}","${lid}"
+                        ).enqueue(object : Callback<CalResponse> {
+                            override fun onFailure(call: Call<CalResponse>, t: Throwable) {
+                                Log.d("1 특정 통신 실패", "${t}")
+                            }
+
+                            override fun onResponse(
+                                call: Call<CalResponse>,
+                                response: Response<CalResponse>
+                            ) {
+                                // 통신 성공
+                                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                                    if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+
+                                        // 데이터 전체 한번에 받아와서 날짜 같으면 그 날짜 데이터 추가
+                                        var i: Int = 0
+                                        for (i in 0 until response.body()!!.data.size) {
+
+                                            if (formatted.toString() == response.body()!!.data[i].classDate) {
+                                                Log.d("test", "동일")
+                                                Log.d("test", "${response.body()!!.data[i].classDate}")
+                                                datas.apply {
+                                                    add(
+                                                        CalendarData(
+                                                            classId = "${response.body()!!.data[i].classId}".toInt(),
+                                                            startTime = "${response.body()!!.data[i].startTime}",
+                                                            endTime = "${response.body()!!.data[i].endTime}",
+                                                            color = "${response.body()!!.data[i].color}",
+                                                            times = "${response.body()!!.data[i].times}".toInt(),
+                                                            lectureName = "${response.body()!!.data[i].lectureName}",
+                                                            hour = "${response.body()!!.data[i].hour}".toInt(),
+                                                            location = "${response.body()!!.data[i].location}",
+                                                            classDate = "${response.body()!!.data[i].classDate}"
+                                                        )
+                                                    )
+                                                }
+                                                Log.i("test", "${response.body()!!.data[i].lectureName}")
+                                                Log.i("test", "${response.body()!!.data[i].color}")
+                                                calendarLogAdapter.notifyDataSetChanged()
+                                            } else {
+                                                continue
+                                            }
+                                        }
+
+                                    }
+                                    if(datas.size == 0) {
+                                        cl_calendar_empty.visibility = View.VISIBLE
+                                        rv_calendarlog.visibility = View.GONE
+                                        haveCalendarData = false
+                                    }
+
+                                    else {
+                                        cl_calendar_empty.visibility = View.GONE
+                                        rv_calendarlog.visibility = View.VISIBLE
+                                        haveCalendarData = true
+                                    }
+                                    calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+                                    calendarLogAdapter.notifyDataSetChanged()
+                                    rv_calendarlog.adapter = calendarLogAdapter
+
+                                } else {
+                                    Log.d("1 특정 실패", "${response.message()}")
+
+                                }
+                            }
+                        })
+
+                        // 캘린더 날짜 클릭 변경
+                        materialCalendarView.setOnDateChangedListener { widget, date, selected ->
+                            val Year = date.year
+                            var Month = (date.month + 1).toString()
+                            var Day = (date.day).toString()
+                            var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
+                            calendarlog_all_date.text = "${Day}"
+                            calendarlog_all_month.text = "$Month" + "월"
+
+
+                            // 날짜 포맷 통일
+                            if (Month.toInt() < 10) {
+                                Month = "0$Month"
+                            }
+                            if (Day.toInt() < 10) {
+                                Day = "0$Day"
+                            }
+
+                            val shot_Day = "$Year-$Month-$Day"
+                            Log.i("shot_Day test", shot_Day + "")
+
+
+
+                            // 서버 연결
+                            calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
+
+                            val calendarlogRequestToServer = CalendarLogRequestToServer
+                            // 서버 요청
+                            calendarlogRequestToServer.service.calRequest(
+                                "${myjwt}", "${lid}"
+                            ).enqueue(object : Callback<CalResponse> {
+                                override fun onFailure(call: Call<CalResponse>, t: Throwable) {
+                                    Log.d("1 특정 통신 실패", "${t}")
+                                }
+
+                                override fun onResponse(
+                                    call: Call<CalResponse>,
+                                    response: Response<CalResponse>
+                                ) {
+                                    // 통신 성공
+                                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+
+                                            Log.d("받아온 데이터 ", response.body()!!.data.toString())
+
+                                            var i: Int = 0
+                                            for (i in 0 until response.body()!!.data.size) {
+                                                Log.d("인덱스", "${i}")
+
+                                                if (shot_Day == response.body()!!.data[i].classDate) {
+                                                    Log.d("test", "동일")
+                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+                                                    datas.apply {
+                                                        add(
+                                                            CalendarData(
+                                                                classId = "${response.body()!!.data[i].classId}".toInt(),
+                                                                startTime = "${response.body()!!.data[i].startTime}",
+                                                                endTime = "${response.body()!!.data[i].endTime}",
+                                                                color = "${response.body()!!.data[i].color}",
+                                                                times = "${response.body()!!.data[i].times}".toInt(),
+                                                                lectureName = "${response.body()!!.data[i].lectureName}",
+                                                                hour = "${response.body()!!.data[i].hour}".toInt(),
+                                                                location = "${response.body()!!.data[i].location}",
+                                                                classDate = "${response.body()!!.data[i].classDate}"
+                                                            )
+                                                        )
+                                                    }
+                                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
+                                                    Log.i("test", "${response.body()!!.data[i].color}")
+                                                    calendarLogAdapter.notifyDataSetChanged()
+                                                } else {
+                                                    continue
+                                                }
+                                            }
+
+                                        }
+                                        if(datas.size == 0) {
+                                            cl_calendar_empty.visibility = View.VISIBLE
+                                            rv_calendarlog.visibility = View.GONE
+                                            haveCalendarData = false
+                                        }
+
+                                        else {
+                                            cl_calendar_empty.visibility = View.GONE
+                                            rv_calendarlog.visibility = View.VISIBLE
+                                            haveCalendarData = true
+                                        }
+                                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+                                        calendarLogAdapter.notifyDataSetChanged()
+                                        rv_calendarlog.adapter = calendarLogAdapter
+
+                                    } else {
+                                        Log.d("1 특정 실패", "${response.message()}")
+
+                                    }
+                                }
+                            })
+                            // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
+                            //materialCalendarView.clearSelection()
+                        }
+
+                    }
                     true
                 }
                 popup.show() //showing popup menu
             }
         })
-//
-//        /* 팝업 메뉴 아이템 추가할 때 사용할 코드
-//        val menu = PopupMenu(context, view)
-//
-//        menu.menu.add("One")
-//        menu.menu.add("Two")
-//        menu.menu.add("Three")
-//
-//        menu.show()
-//        */
+
 
         // 플로팅 버튼 누르면 일정 추가
         floatingActionButton.setOnClickListener {
@@ -260,15 +439,24 @@ class CalenderFragment : Fragment() {
             startActivity(intent)
         }
 
+        calAlldata()
+
+        secondAlldata()
+
+    }
+
+    private fun calAlldata(){
         //오늘기준 수업표시
         // 서버 연결
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
-        calendarLogAdapter= CalendarLogAdapter(view.context, datas)
+        calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
         //val calendarlogRequestToServer = CalendarLogRequestToServer
         val mydate=LocalDate.now()
         val formatter = DateTimeFormatter.ISO_DATE
         val formatted = mydate.format(formatter)
+
+        val calendarlogRequestToServer = CalendarLogRequestToServer
 
         // 서버 요청
         calendarlogRequestToServer.service.calendarlogRequest(
@@ -338,8 +526,9 @@ class CalenderFragment : Fragment() {
                 }
             }
         })
+    }
 
-
+    private fun secondAlldata(){
         // 캘린더 날짜 클릭 변경
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
@@ -364,7 +553,7 @@ class CalenderFragment : Fragment() {
 
 
             // 서버 연결
-            calendarLogAdapter= CalendarLogAdapter(view.context, datas)
+            calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
             val calendarlogRequestToServer = CalendarLogRequestToServer
             // 서버 요청

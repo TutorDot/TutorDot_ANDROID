@@ -93,7 +93,7 @@ class SignUpActivity : AppCompatActivity() {
                         role = role
                     )//정보를 전달
                 ).customEnqueue(
-                    onError = {showToast("올바르지 못한 요청입니다")},
+                    onError = {showToast("중복된 정보입니다.")},
                     onSuccess = {
                         if (it.success) {
                             showToast("회원가입 성공")

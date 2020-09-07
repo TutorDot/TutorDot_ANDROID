@@ -113,10 +113,10 @@ class NoticeFragment : Fragment() {
 */
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
-                    tv_notice_choice.text = item.title
-                    if (item.title.equals("전체")) {
-                        alldata()
-                    }
+                        tv_notice_choice.text = item.title
+                        if (item.title.equals("전체")) {
+                            alldata()
+                        }
                     else {
                         var lid : Int = 0
                         for(i in 1..lecnt) {
