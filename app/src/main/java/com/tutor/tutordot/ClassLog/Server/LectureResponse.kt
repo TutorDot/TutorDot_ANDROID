@@ -8,6 +8,6 @@ data class LectureResponse (
 )
 
 data class LectureSomeData(
-    val lid : Int,
+    val lectureId : Int,
     val lectureName : String
 )
