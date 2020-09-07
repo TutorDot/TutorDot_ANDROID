@@ -33,8 +33,8 @@ interface MypageInterface {
         fun myEditRequest(@Header("jwt") header: String, @Body body : MyAddRequest, @Path("lid") path:String) : Call<ProfileEditResponse>
 
         //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
-        @GET("/lecture/invitation/1")
-        fun inviteRequest(@Header("jwt") header: String) : Call<InviteResponse>
+        @GET("/lecture/invitation/{lid}")
+        fun inviteRequest(@Header("jwt") header: String, @Path("lid") path: String) : Call<InviteResponse>
 
         //@Headers("jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJTZW95b3VuZyIsImlhdCI6MTU5NzA1Njg4MywiZXhwIjoxNTk4MjY2NDgzLCJpc3MiOiJvdXItc29wdCJ9.ltbLv_xIZGpjf9L10d2TZ0jn6mCk8RTyn6PADpr7EgE")
         @POST("/lecture/invitation")

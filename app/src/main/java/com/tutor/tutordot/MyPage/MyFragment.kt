@@ -1,5 +1,4 @@
 package com.tutor.tutordot.MyPage
-
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
@@ -25,6 +25,7 @@ import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.SignUpActivity
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
+import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
@@ -36,7 +37,7 @@ import retrofit2.Response
 //간단정보
 var userinfoname:String = ""
 var userinforole: String = ""
-var userinfointro: String? = ""
+var userinfointro: String = ""
 var userinfopicture: String? = ""
 var userinfopicture1 : String? = ""
 var myjwt2: String= myjwt.toString()
@@ -90,7 +91,10 @@ class MyFragment : Fragment() {
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
                         userinfoname = response.body()!!.data!!.userName
                         userinforole = response.body()!!.data!!.role
-                        userinfointro = response. body()!!.data!!.intro
+                        if(role=="tutor"){
+                            userinfointro = response. body()!!.data!!.intro
+                        }
+
                         userinfopicture = response. body()!!.data!!.profileUrl
 
                         textView.setText(userinfoname)
@@ -98,7 +102,7 @@ class MyFragment : Fragment() {
                         one_sentense.setText(userinfointro)
                         Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
 
-                        if(datas.size > 0  && userinfointro!!.length > 0)
+                        if(datas.size > 0  && userinfointro.length > 0)
                         {
                             one_sentense.setText(userinfointro)
                         }
@@ -213,8 +217,13 @@ class MyFragment : Fragment() {
                         Log.d("성공", "classlist성공"+response.body())
                         Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
 
-                        if (response.body()!!.data[0]!!.profileUrls.size>0){
-                            userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl}
+                        if (response.body()!!.data.size>0){
+                            if(response.body()!!.data[0]!!.profileUrls.size>0){
+                                userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
+                            }
+
+                        }
+
 
 //                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
                         //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)

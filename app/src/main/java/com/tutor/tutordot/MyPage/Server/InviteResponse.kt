@@ -4,7 +4,7 @@ data class InviteResponse(
     val status: Int,
     val success: Boolean,
     val message: String,
-    val data: List<InviteData>
+    val data: InviteData?
 )
 
 data class InviteData(

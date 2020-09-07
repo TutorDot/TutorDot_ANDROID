@@ -2,31 +2,28 @@ package com.tutor.tutordot.MyPage
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.ProfileEditRequest
 import com.tutor.tutordot.MyPage.Server.ProfileEditResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
-import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_onesentense.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
-import java.io.InputStream
 
-var newImage : String = "https://purepng.com/public/uploads/medium/purepng.com-female-studentstudenteducationalinstitutionstudentsuniversity-studentschoolfemale-student-1421526922778bm4rh.png"
+
 var newIntro = "수학, 과탐 1등급 만들어드립니다."
+var newImage: String = ""
 
 class OnesentenseActivity : AppCompatActivity() {
     val mypageRequestToServer = MyPageRequestToServer
@@ -34,6 +31,14 @@ class OnesentenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onesentense)
+
+        //새로만든 코드 프로필이미지 클릭 시
+        imageButton5.setOnClickListener(View.OnClickListener {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(intent, 10)
+        })
 
         btn_cancel_my_one.setOnClickListener {
             finish()
@@ -77,6 +82,25 @@ class OnesentenseActivity : AppCompatActivity() {
         textView5.setText(userinfoname)
         textView12.setText(userinforole)
 
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 10 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            val selectedImageUri = data.data
+            newImage = data.data.toString()
+            imageButton5!!.setImageURI(selectedImageUri)
+            Glide.with(this@OnesentenseActivity).load(selectedImageUri).into(imageButton5)
+            Log.d("image","${newImage}")
+        }
+    }
+}
+
+        /*
         //프로필이미지 클릭 시
         imageButton5.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -86,7 +110,9 @@ class OnesentenseActivity : AppCompatActivity() {
             }
         })
     }
+*/
 
+/*
     //갤러리에서 이미지 불러온 후 행동
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -116,8 +142,8 @@ class OnesentenseActivity : AppCompatActivity() {
         } else if (resultCode == UCrop.RESULT_ERROR) {
             Toast.makeText(this, "사진을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
         }
-    }
-
+    }*/
+/*
     private fun openCropActivity(
         sourceUri: Uri,
         destinationUri: Uri
@@ -126,4 +152,4 @@ class OnesentenseActivity : AppCompatActivity() {
             .start(this)
     }
 
-}
+}*/

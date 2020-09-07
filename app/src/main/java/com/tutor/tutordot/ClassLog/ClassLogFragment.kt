@@ -44,11 +44,14 @@ class ClassLogFragment : Fragment() {
     val logRequestToServer = LogRequestToServer
 
     lateinit var logdateAdapter: LogdateAdapter
-    var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
 
     //현재 달 구하기
     val curDate= Calendar.getInstance()
     val month = curDate.get(Calendar.MONTH) + 1
+
+    lateinit var leid : ArrayList<Int>
+    lateinit var lename : ArrayList<String>
+    var lecnt : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +68,7 @@ class ClassLogFragment : Fragment() {
         /*되는 코드 (Volley, 헤더는 못함)
         VolleyService.testVolley(view.context) { testSuccess ->
             if (testSuccess) {
-                Log.d( "통신 성공!","성공") 
+                Log.d( "통신 성공!","성공")
             } else {
                 Log.d( "통신 실패!","실패")
             }
@@ -73,6 +76,7 @@ class ClassLogFragment : Fragment() {
 */
         //logdateAdapter = LogdateAdapter(view.context)
         //rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
+
         loaddateDatas() //데이터를 어댑터에 전달
 
         //프로그레스바 서버에서 받아온 날짜 데이터
@@ -87,9 +91,9 @@ class ClassLogFragment : Fragment() {
         var progressStatus : Int
 
 
-        
+
         //프로그레스바 값 지정 (나중에 서버에서 값 받아와서 지정)
-        pb_class.progress = 75  //status
+        //pb_class.progress = progressStatus  //status
 
         if (pb_class.progress == 100)
             tv_percent.setTextColor(Color.parseColor("#FFFFFF"));
@@ -147,17 +151,21 @@ class ClassLogFragment : Fragment() {
                 if(response.isSuccessful){
                     if(response.body()!!.success){
                         Log.d("토글 수업 정보", "성공")
+                        Log.d("토글 수업 정보", response.body()!!.data.toString())
 
-                        val lecnt = response.body()!!.data.size
+                        lecnt = response.body()!!.data.size
                         Log.d("수업 개수", "{$lecnt}")
 
-                        val lename : ArrayList<String> = ArrayList()
+                        lename = ArrayList()
+                        leid = ArrayList()
                         for(i in 1..lecnt) {
                             lename.add(response.body()!!.data[i - 1].lectureName)
+                            leid.add(response.body()!!.data[i-1].lectureId)
                             //수업 개수에 맞게 토글 항목 추가
                             popup.menu.add(response.body()!!.data[i - 1].lectureName)
                         }
-                        Log.d("수업 이름", "{$lename}")
+                        Log.d("토글 수업 이름", "{$lename}")
+                        Log.d("토글 수업 번호", "{$leid}")
 
                     }else{
                         Log.d("토글 수업 정보", "실패")
@@ -165,7 +173,6 @@ class ClassLogFragment : Fragment() {
                 }
             }
         })
-
 
         //상단 수업 선택 메뉴
         ll_log_choice.setOnClickListener(object : View.OnClickListener {
@@ -180,94 +187,150 @@ class ClassLogFragment : Fragment() {
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener { item ->
                     tv_class_choice.text = item.title
-                    if (item.title.equals("전체"))
+                    if (item.title.equals("전체")) {
                         ll_progress.visibility = View.GONE
-                    else{
+                        loaddateDatas()
+                    }
+                    else {
                         ll_progress.visibility = View.VISIBLE
-                        if(item.itemId == 1){
-                            ser_color = "yellow"
-/*
-                        if(item.title.equals("신연상 학생 수학 수업")){
-                            ser_color = "yellow"
-*/
-                            //프로그레스바 서버에서 정보 받아옴
-                            logRequestToServer.service.progressRequest(
-                                "${myjwt}"
-                            ).enqueue(object :Callback<ProgressResponse>{
-                                override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
-                                    Log.d("통신 실패", "통신 실패")
-                                }
 
-                                override fun onResponse(
-                                    call: Call<ProgressResponse>,
-                                    response: Response<ProgressResponse>
-                                ) {
-                                    if(response.isSuccessful){
-                                        if(response.body()!!.success){
-                                            Log.d("첫번째 과목 프로그레스바 성공", "성공")
-
-                                            progressDate = response.body()!!.data[5].classDate
-                                            progressCycle = response.body()!!.data[5].depositCycle
-                                            progressTimes = response.body()!!.data[5].times
-                                            progressHour = response.body()!!.data[5].hour
-                                            tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
-                                            tv_progress_alltime.setText(progressCycle.toString() + "시간")
-                                            progressStatus = 100*progressHour/progressCycle
-                                            pb_class.progress = progressStatus
-                                            tv_percent.setText(progressStatus.toString() + "%")
-
-                                            Log.d("첫번째 과목 입금 주기", progressCycle.toString())
-                                            Log.d("첫번째 과목 회차", progressTimes.toString())
-                                            Log.d("첫번째 과목 총 수업시간", progressHour.toString())
-                                            Log.d("첫번째 과목 프로그레스바 퍼센트", progressStatus.toString())
-                                            Log.d("첫번째 과목 날짜", progressDate)
-                                        }else{
-                                            Log.d("실패", "실패")
-                                        }
-                                    }
-                                }
-                            })
-                        }else{
-                            ser_color = "green"
-
-                            //프로그레스바 서버에서 정보 받아옴
-                            logRequestToServer.service.progressRequest2(
-                                "${myjwt}"
-                            ).enqueue(object :Callback<ProgressResponse2>{
-                                override fun onFailure(call: Call<ProgressResponse2>, t: Throwable) {
-                                    Log.d("통신 실패", "통신 실패")
-                                }
-                                override fun onResponse(
-                                    call: Call<ProgressResponse2>,
-                                    response: Response<ProgressResponse2>
-                                ) {
-                                    if(response.isSuccessful){
-                                        if(response.body()!!.success){
-                                            Log.d("두번째 과목 프로그레스바 성공", "성공")
-                                           // Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                                            progressDate = response.body()!!.data[5].classDate
-                                            progressCycle = response.body()!!.data[5].depositCycle
-                                            progressTimes = response.body()!!.data[5].times
-                                            progressHour = response.body()!!.data[5].hour
-                                            tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
-                                            tv_progress_alltime.setText(progressCycle.toString() + "시간")
-                                            progressStatus = 100*progressHour/progressCycle
-                                            pb_class.progress = progressStatus
-                                            tv_percent.setText(progressStatus.toString() + "%")
-
-                                            Log.d("두번째 과목 입금 주기", progressCycle.toString())
-                                            Log.d("두번째 과목 회차", progressTimes.toString())
-                                            Log.d("두번째 과목 총 수업시간", progressHour.toString())
-                                            Log.d("두번째 과목 프로그레스바 퍼센트", progressStatus.toString())
-                                            Log.d("두번째 과목 날짜", progressDate)
-                                        }else{
-                                            Log.d("실패", "실패")
-                                        }
-                                    }
-                                }
-
-                            })
+                        var lid : Int = 0
+                        for(i in 1..lecnt) {
+                            if(item.title.equals(lename[i-1]))
+                                lid = leid[i-1]
                         }
+                        Log.d("아이디", "${lid}")
+
+                        //프로그레스바 서버에서 정보 받아옴
+                        logRequestToServer.service.progressRequest(
+                            "${myjwt}", "${lid}"
+                        ).enqueue(object : Callback<ProgressResponse> {
+                            override fun onFailure(call: Call<ProgressResponse>, t: Throwable) {
+                                Log.d("통신 실패", "통신 실패")
+                            }
+
+                            override fun onResponse(
+                                call: Call<ProgressResponse>,
+                                response: Response<ProgressResponse>
+                            ) {
+                                if (response.isSuccessful) {
+                                    if (response.body()!!.success) {
+                                        Log.d("프로그레스바 서버", "프로그레스바 서버")
+                                        Log.d("성공", response.body()!!.data.toString())
+
+                                        val procnt = response.body()!!.data.size-1
+
+                                        progressDate = response.body()!!.data[procnt].classDate
+                                        progressCycle = response.body()!!.data[procnt].depositCycle
+                                        progressTimes = response.body()!!.data[procnt].times
+                                        progressHour = response.body()!!.data[procnt].hour
+                                        tv_progress_times.setText(progressTimes.toString() + "회차 " + progressHour.toString() + "시간")
+                                        tv_progress_alltime.setText(progressCycle.toString() + "회차")
+                                        progressStatus = 100 * progressTimes / progressCycle
+                                        pb_class.progress = progressStatus
+                                        tv_percent.setText(progressStatus.toString() + "%")
+
+                                        Log.d("과목 입금 주기", progressCycle.toString())
+                                        Log.d("과목 회차", progressTimes.toString())
+                                        Log.d("과목 총 수업시간", progressHour.toString())
+                                        Log.d("과목 프로그레스바 퍼센트", progressStatus.toString())
+                                        Log.d("과목 날짜", progressDate)
+                                    } else {
+                                        Log.d("실패", "실패")
+                                    }
+                                }
+                            }
+                        })
+
+                        // 토글에 따라 서버 요청
+                        var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
+                        logRequestToServer.service.diaryRequest(
+                            "${myjwt}","${lid}"
+                        ).enqueue(object : Callback<DiaryResponse> {
+                            override fun onFailure(call: Call<DiaryResponse>, t: Throwable) {
+                                Log.d("특정일지 통신 실패", "${t}")
+                                haveData = false
+                                ll_rv.visibility = View.GONE
+                                cl_empty.visibility = View.VISIBLE
+                            }
+
+                            override fun onResponse(
+                                call: Call<DiaryResponse>,
+                                response: Response<DiaryResponse>
+                            ) {
+                                // 통신 성공
+                                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                                    if (response.body()!!.success) {
+                                        Log.d("토글 일지 받기 성공", response.body()!!.data.toString())
+                                        if (response.body()!!.data.size == 0) {
+                                            haveData = false
+                                            ll_rv.visibility = View.GONE
+                                            cl_empty.visibility = View.VISIBLE
+                                        }
+                                        else {
+                                            cl_empty.visibility = View.GONE
+                                            ll_rv.visibility = View.VISIBLE
+                                            haveData = true
+                                        }
+
+                                        //바깥쪽 날짜 데이터
+                                        var i: Int = 0
+                                        for (i in 0 until response.body()!!.data.size) {
+                                            if(response.body()!!.data[i].classDate != null){
+                                                var cd = response.body()!!.data[i].classDate.split("-")
+                                                yy = cd[0]
+                                                mm = cd[1]
+                                                dd = cd[2]}
+                                            datedatas.apply {
+                                                add(
+                                                    LogdateData(
+                                                        month = mm.toInt(),
+                                                        day = dd.toInt(),
+                                                        color = response.body()!!.data[i].color,
+                                                        times = response.body()!!.data[i].times,
+                                                        studytime = response.body()!!.data[i].hour,
+                                                        alltime = response.body()!!.data[i].depositCycle,
+                                                        progress = response.body()!!.data[i].classProgress,
+                                                        homework = response.body()!!.data[i].homework,
+                                                        complete = response.body()!!.data[i].hwPerformance,
+                                                        first = false,
+                                                        diaryId = response.body()!!.data[i].diaryId
+                                                    )
+                                                )
+                                            }
+                                        }
+                                        datedatas =
+                                            datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
+                                                .toMutableList()
+                                        datedatas = datedatas.distinct().toMutableList()
+                                        var j = 0
+                                        if (datedatas.size > 0) {
+                                            var mymon = "${datedatas[0].month}" + "${datedatas[0].day}"
+                                            var tmp: String = ""
+                                            datedatas[0].first = true
+                                            for (i in 1 until datedatas.size) {
+                                                tmp = "${datedatas[i].month}" + "${datedatas[i].day}"
+                                                if (tmp != mymon) {
+                                                    datedatas[i].first = true
+                                                    mymon = tmp
+
+                                                }
+                                            }
+                                        }
+
+                                        logdateAdapter = LogdateAdapter(view!!.context, datedatas)
+                                        rv_datelog.adapter = logdateAdapter
+                                        logdateAdapter.datas = datedatas
+                                        logdateAdapter.notifyDataSetChanged()
+                                    } else {
+                                        Log.d("실패", "${response.body()}")
+                                        haveData = false
+                                        ll_rv.visibility = View.GONE
+                                        cl_empty.visibility = View.VISIBLE
+                                    }
+                                }
+                            }
+                        })
 
                     }
                     true
@@ -275,33 +338,11 @@ class ClassLogFragment : Fragment() {
                 popup.show() //showing popup menu
             }
         })
-
-        /* 빈화면일때
-        if (haveData == true) {
-            cl_empty.visibility = View.GONE
-            ll_rv.visibility = View.VISIBLE
-        } else {
-            ll_rv.visibility = View.GONE
-            cl_empty.visibility = View.VISIBLE
-
-        }
-
-         */
-
-
-        /* 팝업 메뉴 아이템 추가할 때 사용할 코드
-        val menu = PopupMenu(context, view)
-
-        menu.menu.add("One")
-        menu.menu.add("Two")
-        menu.menu.add("Three")
-
-        menu.show()
-        */
     }
 
     //서버 연결
     private fun loaddateDatas() {
+        var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
         // 서버 요청
         logRequestToServer.service.logRequest(
             "${myjwt}"
@@ -333,12 +374,11 @@ class ClassLogFragment : Fragment() {
                             haveData = true
                         }
 
-
                         //바깥쪽 날짜 데이터
                         var i: Int = 0
                         for (i in 0 until response.body()!!.data.size) {
                             if(response.body()!!.data[i].classDate != null){
-                            var cd = response.body()!!.data[i].classDate.split("-")
+                                var cd = response.body()!!.data[i].classDate.split("-")
                                 yy = cd[0]
                                 mm = cd[1]
                                 dd = cd[2]}
@@ -407,8 +447,100 @@ class ClassLogFragment : Fragment() {
             }
         })
     }
+/*
+    private fun diaryLoadData(){
+        // 토글에 따라 서버 요청
+        logRequestToServer.service.diaryRequest(
+            "${myjwt}","132"
+        ).enqueue(object : Callback<DiaryResponse> {
+            override fun onFailure(call: Call<DiaryResponse>, t: Throwable) {
+                Log.d("특정일지 통신 실패", "${t}")
+                haveData = false
+                ll_rv.visibility = View.GONE
+                cl_empty.visibility = View.VISIBLE
+            }
 
+            override fun onResponse(
+                call: Call<DiaryResponse>,
+                response: Response<DiaryResponse>
+            ) {
+                // 통신 성공
+                if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                    if (response.body()!!.success) {
+                        Log.d("토글 일지 받기 성공", response.body()!!.data.toString())
+                        if (response.body()!!.data.size == 0) {
+                            haveData = false
+                            ll_rv.visibility = View.GONE
+                            cl_empty.visibility = View.VISIBLE
+                        }
+                        else {
+                            cl_empty.visibility = View.GONE
+                            ll_rv.visibility = View.VISIBLE
+                            haveData = true
+                        }
 
+                        //바깥쪽 날짜 데이터
+                        var i: Int = 0
+                        for (i in 0 until response.body()!!.data.size) {
+                            if(response.body()!!.data[i].classDate != null){
+                                var cd = response.body()!!.data[i].classDate.split("-")
+                                yy = cd[0]
+                                mm = cd[1]
+                                dd = cd[2]}
+
+                            datedatas.apply {
+                                add(
+                                    LogdateData(
+                                        month = mm.toInt(),
+                                        day = dd.toInt(),
+                                        color = response.body()!!.data[i].color,
+                                        times = response.body()!!.data[i].times,
+                                        studytime = response.body()!!.data[i].hour,
+                                        alltime = response.body()!!.data[i].depositCycle,
+                                        progress = response.body()!!.data[i].classProgress,
+                                        homework = response.body()!!.data[i].homework,
+                                        complete = response.body()!!.data[i].hwPerformance,
+                                        first = false,
+                                        diaryId = response.body()!!.data[i].diaryId
+                                    )
+                                )
+                            }
+                        }
+                        datedatas =
+                            datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
+                                .toMutableList()
+                        datedatas = datedatas.distinct().toMutableList()
+                        var j = 0
+                        if (datedatas.size > 0) {
+                            var mymon = "${datedatas[0].month}" + "${datedatas[0].day}"
+                            var tmp: String = ""
+                            datedatas[0].first = true
+                            for (i in 1 until datedatas.size) {
+                                tmp = "${datedatas[i].month}" + "${datedatas[i].day}"
+                                if (tmp != mymon) {
+                                    datedatas[i].first = true
+                                    mymon = tmp
+
+                                }
+                            }
+                        }
+
+                        logdateAdapter = LogdateAdapter(view!!.context, datedatas)
+                        rv_datelog.adapter = logdateAdapter
+                        logdateAdapter.datas = datedatas
+                        logdateAdapter.notifyDataSetChanged()
+                        // rv_datelog.adapter = logdateAdapter
+                    } else {
+                        Log.d("실패", "${response.body()}")
+                        haveData = false
+                        ll_rv.visibility = View.GONE
+                        cl_empty.visibility = View.VISIBLE
+                    }
+                }
+            }
+        })
+    }
+*/
 /*
     private fun loaddateDatas() {
         datedatas.apply {
