@@ -28,9 +28,6 @@ import java.util.*
 
 
 var month1 : Int = 7
-var day1 : Int = 15
-var day2 : Int = 14
-var day3 : Int = 13
 
 var mm: String=""
 var dd: String=""
@@ -109,10 +106,106 @@ class ClassLogFragment : Fragment() {
                 tv_month_log.setText(mon.toString() + "월 수업일지")
                 btn_month_next.setImageResource(R.drawable.class_log_blank_btn_next_month)
                 month1 = mon
-                day1 = 15
-                day2 = 14
-                day3 = 13
-                logdateAdapter.notifyDataSetChanged()
+
+                var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
+                // 서버 요청
+                logRequestToServer.service.logRequest(
+                    "${myjwt}"
+                ).enqueue(object : Callback<LogResponse> {
+                    override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+                        Log.d("통신 실패", "${t}")
+                        haveData = false
+                        ll_rv.visibility = View.GONE
+                        cl_empty.visibility = View.VISIBLE
+                    }
+
+                    override fun onResponse(
+                        call: Call<LogResponse>,
+                        response: Response<LogResponse>
+                    ) {
+                        // 통신 성공
+                        if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                            if (response.body()!!.success) {
+                                Log.d("성공", "성공")
+                                Log.d("데이터 받기성공", response.body()!!.data.toString())
+                                if (response.body()!!.data.size == 0) {
+                                    haveData = false
+                                    ll_rv.visibility = View.GONE
+                                    cl_empty.visibility = View.VISIBLE
+                                }
+                                else {
+                                    cl_empty.visibility = View.GONE
+                                    ll_rv.visibility = View.VISIBLE
+                                    haveData = true
+                                }
+
+                                //바깥쪽 날짜 데이터
+                                var i: Int = 0
+                                for (i in 0 until response.body()!!.data.size) {
+                                    if(response.body()!!.data[i].classDate != null){
+                                        var cd = response.body()!!.data[i].classDate.split("-")
+                                        yy = cd[0]
+                                        mm = cd[1]
+                                        dd = cd[2]}
+                                        if(mm.toInt()==mon){
+
+                                            datedatas.apply {
+                                                add(
+                                                    LogdateData(
+                                                        month = mm.toInt(),
+                                                        day = dd.toInt(),
+                                                        color = response.body()!!.data[i].color,
+                                                        times = response.body()!!.data[i].times,
+                                                        studytime = response.body()!!.data[i].hour,
+                                                        alltime = response.body()!!.data[i].depositCycle,
+                                                        progress = response.body()!!.data[i].classProgress,
+                                                        homework = response.body()!!.data[i].homework,
+                                                        complete = response.body()!!.data[i].hwPerformance,
+                                                        first = false,
+                                                        diaryId = response.body()!!.data[i].diaryId
+                                                    )
+                                                )
+
+                                            }
+                                        }
+
+                                }
+                                datedatas =
+                                    datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
+                                        .toMutableList()
+                                datedatas = datedatas.distinct().toMutableList()
+                                var j = 0
+                                if (datedatas.size > 0) {
+                                    var mymon = "${datedatas[0].month}" + "${datedatas[0].day}"
+                                    var tmp: String = ""
+                                    datedatas[0].first = true
+                                    for (i in 1 until datedatas.size) {
+                                        tmp = "${datedatas[i].month}" + "${datedatas[i].day}"
+                                        if (tmp != mymon) {
+                                            datedatas[i].first = true
+                                            mymon = tmp
+
+                                        }
+                                    }
+                                }
+
+
+                                logdateAdapter = LogdateAdapter(view!!.context, datedatas)
+                                rv_datelog.adapter = logdateAdapter
+                                logdateAdapter.datas = datedatas
+                                logdateAdapter.notifyDataSetChanged()
+                                // rv_datelog.adapter = logdateAdapter
+                            } else {
+                                Log.d("실패", "${response.body()}")
+                                haveData = false
+                                ll_rv.visibility = View.GONE
+                                cl_empty.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                })
+
+                //logdateAdapter.notifyDataSetChanged()
             }
         })
         //월 이후 이동
@@ -123,10 +216,107 @@ class ClassLogFragment : Fragment() {
                     tv_month_log.setText(mon.toString() + "월 수업일지")
                     btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
                     month1 = mon
-                    day1 = 15
-                    day2 = 14
-                    day3 = 13
-                    logdateAdapter.notifyDataSetChanged()                }
+
+                    var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
+                    // 서버 요청
+                    logRequestToServer.service.logRequest(
+                        "${myjwt}"
+                    ).enqueue(object : Callback<LogResponse> {
+                        override fun onFailure(call: Call<LogResponse>, t: Throwable) {
+                            Log.d("통신 실패", "${t}")
+                            haveData = false
+                            ll_rv.visibility = View.GONE
+                            cl_empty.visibility = View.VISIBLE
+                        }
+
+                        override fun onResponse(
+                            call: Call<LogResponse>,
+                            response: Response<LogResponse>
+                        ) {
+                            // 통신 성공
+                            if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                                if (response.body()!!.success) {
+                                    Log.d("성공", "성공")
+                                    Log.d("데이터 받기성공", response.body()!!.data.toString())
+                                    if (response.body()!!.data.size == 0) {
+                                        haveData = false
+                                        ll_rv.visibility = View.GONE
+                                        cl_empty.visibility = View.VISIBLE
+                                    }
+                                    else {
+                                        cl_empty.visibility = View.GONE
+                                        ll_rv.visibility = View.VISIBLE
+                                        haveData = true
+                                    }
+
+                                    //바깥쪽 날짜 데이터
+                                    var i: Int = 0
+                                    for (i in 0 until response.body()!!.data.size) {
+                                        if(response.body()!!.data[i].classDate != null){
+                                            var cd = response.body()!!.data[i].classDate.split("-")
+                                            yy = cd[0]
+                                            mm = cd[1]
+                                            dd = cd[2]}
+                                        if(mm.toInt()==mon){
+
+                                            datedatas.apply {
+                                                add(
+                                                    LogdateData(
+                                                        month = mm.toInt(),
+                                                        day = dd.toInt(),
+                                                        color = response.body()!!.data[i].color,
+                                                        times = response.body()!!.data[i].times,
+                                                        studytime = response.body()!!.data[i].hour,
+                                                        alltime = response.body()!!.data[i].depositCycle,
+                                                        progress = response.body()!!.data[i].classProgress,
+                                                        homework = response.body()!!.data[i].homework,
+                                                        complete = response.body()!!.data[i].hwPerformance,
+                                                        first = false,
+                                                        diaryId = response.body()!!.data[i].diaryId
+                                                    )
+                                                )
+
+                                            }
+                                        }
+
+                                    }
+                                    datedatas =
+                                        datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
+                                            .toMutableList()
+                                    datedatas = datedatas.distinct().toMutableList()
+                                    var j = 0
+                                    if (datedatas.size > 0) {
+                                        var mymon = "${datedatas[0].month}" + "${datedatas[0].day}"
+                                        var tmp: String = ""
+                                        datedatas[0].first = true
+                                        for (i in 1 until datedatas.size) {
+                                            tmp = "${datedatas[i].month}" + "${datedatas[i].day}"
+                                            if (tmp != mymon) {
+                                                datedatas[i].first = true
+                                                mymon = tmp
+
+                                            }
+                                        }
+                                    }
+
+
+                                    logdateAdapter = LogdateAdapter(view!!.context, datedatas)
+                                    rv_datelog.adapter = logdateAdapter
+                                    logdateAdapter.datas = datedatas
+                                    logdateAdapter.notifyDataSetChanged()
+                                    // rv_datelog.adapter = logdateAdapter
+                                } else {
+                                    Log.d("실패", "${response.body()}")
+                                    haveData = false
+                                    ll_rv.visibility = View.GONE
+                                    cl_empty.visibility = View.VISIBLE
+                                }
+                            }
+                        }
+                    })
+
+                    logdateAdapter.notifyDataSetChanged()
+                }
             }
         })
 

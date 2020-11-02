@@ -1275,6 +1275,7 @@
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:lineSpacingExtra="5sp"
                 android:text="강남구청역"
+                android:hint="위치를 입력해주세요"
                 android:textColor="#707070"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView5"
