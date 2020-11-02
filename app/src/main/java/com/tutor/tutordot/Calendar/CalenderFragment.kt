@@ -188,7 +188,7 @@ class CalenderFragment : Fragment() {
 
         //수업정보 받아옴 (토글 위해)
         val popup =
-            PopupMenu(context, calendar_select)
+            PopupMenu(context, btn_calendar_filter1)
         //Inflating the Popup using xml file
         popup.menuInflater
             .inflate(R.menu.popup_menu, popup.menu)
@@ -244,7 +244,7 @@ class CalenderFragment : Fragment() {
                             var Day = (dd.day).toString()
                             var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
                             calendarlog_all_date.text = "${Day}"
-                            calendarlog_all_month.text = "$Month" + "월"
+                            calendarlog_all_month.text = "${Month}" + "월"
 
 
                             // 날짜 포맷 통일

@@ -7,42 +7,48 @@
     tools:context="com.tutor.tutordot.Calendar.CalenderFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constarintlayout"
+        android:id = "@+id/constarintlayout"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
             android:id="@+id/tv_calendar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginStart="31dp"
             android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:layout_weight="1"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="6sp"
             android:text="전체"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="#1a1a1a"
+            android:textSize="14sp"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageView
-            android:id="@+id/calendar_select"
+            android:id="@+id/btn_calendar_filter1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:src="@drawable/qna_btn_fillter"
+            app:layout_constraintRight_toLeftOf="@+id/btn_calendar_save1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/class_log_math_subjectsection"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_title"
-            app:layout_constraintStart_toEndOf="@+id/tv_calendar_title"
-            app:layout_constraintTop_toTopOf="@+id/tv_calendar_title" />
+        <ImageView
+            android:id="@+id/btn_calendar_save1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qna_btn_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
