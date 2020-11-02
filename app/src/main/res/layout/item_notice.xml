@@ -21,6 +21,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="19dp"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="6sp"
             android:fontFamily="@font/apple_sdgothic_neo_b"
             android:text="5월 29일"
             android:textColor="#707070" />
@@ -71,8 +75,11 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/apple_sdgothic_neo_sb"
                 android:text="알림 메시지"
-                android:textColor="#1a1a1a"
-                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#1c1c1c"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="6sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_notice"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,8 +92,11 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/apple_sdgothic_neo_m"
                 android:text="알림 내용"
-                android:textColor="#707070"
-                android:textSize="12sp"
+                android:textSize="11sp"
+                android:textStyle="normal"
+                android:textColor="#585858"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="6sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_notice"
                 app:layout_constraintTop_toBottomOf="@+id/tv_notice" />
 

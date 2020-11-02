@@ -8,41 +8,53 @@
     android:orientation="vertical"
     android:background="@color/colorBackground">
 
-    <LinearLayout
-        android:id="@+id/ll_noticee_choice"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id = "@+id/constarintlayout"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
+        android:layout_height="50dp"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/btn_notice_back1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qna_btn_previoustop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:id="@+id/tv_notice_choice"
+            android:id="@+id/tv_notice_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:text="전체"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_weight="1"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="6sp"
+            android:text="전체 알림"
+            android:textColor="#1c1c1c"
+            android:textSize="14sp"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageView
-            android:id="@+id/btn_notice_choice"
+            android:id="@+id/btn_notice_filter1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/class_log_math_subjectsection" />
+            android:src="@drawable/qna_btn_fillter"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_rv_notice"
@@ -51,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_noticee_choice">
+        app:layout_constraintTop_toBottomOf="@+id/constarintlayout">
 
         <TextView
             android:id="@+id/textView48"
