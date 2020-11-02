@@ -50,7 +50,7 @@ class CalenderFragment : Fragment() {
     //val calendarlogRequestToServer = CalendarLogRequestToServer
 
     // 캘린더 일정 더미
-     val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
+    val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
     lateinit var calendarLogAdapter: CalendarLogAdapter
 
     //현재 달 구하기
