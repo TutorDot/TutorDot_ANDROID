@@ -36,7 +36,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="12dp"
         android:background="#00000000"
-        android:fontFamily="@font/apple_sdgothic_neo_m"
+        android:fontFamily="@font/spoqa_han_sans_regular"
         android:gravity="left"
         android:lineSpacingExtra="6dp"
         android:paddingBottom="55dp"

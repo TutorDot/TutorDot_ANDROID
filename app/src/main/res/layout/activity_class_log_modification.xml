@@ -8,30 +8,50 @@
     tools:context="com.tutor.tutordot.ClassLog.ClassLogModificationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_up"
+        android:id = "@+id/cl_up"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <TextView
+            android:id="@+id/tv_question_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
-            android:text="일지 수정"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/spoqa_han_sans"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#1c1c1c"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="6sp"
+            tools:text="전체 수업일지"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <ImageView
+            android:id="@+id/btn_question_filter1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qna_btn_fillter"
+            app:layout_constraintRight_toLeftOf="@+id/btn_question_save1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_question_save1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qna_btn_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -72,7 +92,7 @@
             android:layout_marginBottom="13dp"
             android:lineSpacingExtra="7sp"
             android:text="4회차   12시간 / 16시간"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:textColor="#161616"
             android:textSize="18sp">
         </TextView>
@@ -103,7 +123,7 @@
                 android:id="@+id/tv_log_modi_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
                 android:text="진도"
                 android:textColor="#1c1c1c"
@@ -128,7 +148,7 @@
                     android:id="@+id/et_log_modi_progress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:text=" "
                     android:textSize="15sp"
                     android:textColor="@color/black"
@@ -150,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
                 android:text="숙제"
                 android:textColor="#1c1c1c"
@@ -175,7 +195,7 @@
                     android:id="@+id/et_log_modi_hw"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:text=" "
                     android:lineSpacingExtra="5sp"
                     android:paddingLeft="16dp"
@@ -198,7 +218,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
                 android:text="숙제 이행률"
                 android:textColor="#1c1c1c"
@@ -261,7 +281,7 @@
             android:textColor="#eb6b6b"
             android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="취소" />
 
         <Button
@@ -273,7 +293,7 @@
             android:textColor="#6875dd"
             android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="저장" />
     </LinearLayout>
 

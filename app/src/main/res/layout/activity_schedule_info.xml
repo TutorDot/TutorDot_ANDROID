@@ -8,42 +8,56 @@
     tools:context="com.tutor.tutordot.Calendar.ScheduleInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constarintlayout"
+        android:id = "@+id/constarintlayout"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/btn_back"
+            android:id="@+id/btn_question_back1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:src="@drawable/qna_btn_previoustop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/my_class_tap_btn_back" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_question_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
-            android:text="일정 정보"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_weight="1"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="6sp"
+            android:text="일정 상세"
+            android:textColor="#1c1c1c"
+            android:textSize="14sp"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <ImageView
+            android:id="@+id/btn_question_filter1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qna_btn_fillter"
+            app:layout_constraintRight_toLeftOf="@+id/btn_question_save1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
+        <ImageView
+            android:id="@+id/btn_question_save1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qna_btn_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -82,11 +96,13 @@
             android:layout_marginLeft="19dp"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="13dp"
-            android:lineSpacingExtra="7sp"
             android:text="김회진 학생 수학 수업"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
-            android:textColor="#161616"
-            android:textSize="18sp">
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#1c1c1c"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="7sp">
         </TextView>
 
 
@@ -104,7 +120,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="편집"
                 android:lineHeight="21sp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:textColor="#6875dd"
                 android:textSize="15sp">
             </TextView>
@@ -138,11 +154,13 @@
                 android:id="@+id/schedule_info_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="6sp"
                 android:text="수업 날짜"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
-                android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#611c1c1c"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="6sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,13 +181,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2020년 7월 18일"
-                    android:fontFamily="@font/apple_sdgothic_neo_m"
-                    android:lineSpacingExtra="5sp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
-                    android:textColor="#707070"
-                    android:textSize="15sp"
                     app:layout_constraintEnd_toStartOf="@+id/fix1"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -186,11 +206,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:lineSpacingExtra="6sp"
                 android:text="수업 시작"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
-                android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#611c1c1c"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="6sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/schedule_info_date_constraint" />
 
@@ -210,14 +232,16 @@
                     android:id="@+id/schedule_info_start_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3:00 pm"
-                    android:fontFamily="@font/apple_sdgothic_neo_m"
-                    android:lineSpacingExtra="5sp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
-                    android:textColor="#707070"
-                    android:textSize="15sp"
+                    android:text="3:00 pm"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/fix2"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -234,11 +258,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:lineSpacingExtra="6sp"
                 android:text="수업 종료"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
-                android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#611c1c1c"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="6sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/schedule_info_start_constraint" />
 
@@ -259,13 +285,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8:00 pm"
-                    android:fontFamily="@font/apple_sdgothic_neo_m"
-                    android:lineSpacingExtra="5sp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
-                    android:textColor="#707070"
-                    android:textSize="15sp"
                     app:layout_constraintEnd_toStartOf="@+id/fix3"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -280,11 +308,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:lineSpacingExtra="6sp"
                 android:text="위치"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
-                android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#611c1c1c"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="6sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/schedule_info_end_constraint" />
 
@@ -305,14 +335,16 @@
                     android:layout_height="wrap_content"
                     android:text="강남구청역 스타벅스"
                     android:background="@color/white"
-                    android:lineSpacingExtra="5sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="14dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="10dp"
-                    android:textColor="#707070"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/apple_sdgothic_neo_m"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="6sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                 </EditText>
@@ -339,7 +371,7 @@
             android:textSize="20sp"
             android:textColor="#eb6b6b"
             android:lineSpacingExtra="8sp"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="일정 삭제" />
     </LinearLayout>
 
