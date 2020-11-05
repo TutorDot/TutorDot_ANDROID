@@ -192,12 +192,12 @@ class ScheduleEditActivity : AppCompatActivity() {
         }
 
         // 취소 버튼 누르면 일정 정보 화면으로 이동
-        schedule_edit_btn_cancle.setOnClickListener{
+        btn_calendar_back4.setOnClickListener{
             finish()
         }
 
         //저장 버튼 누르면 일정 정보 화면으로 이동
-        schedule_edit_btn_save.setOnClickListener(object : View.OnClickListener {
+        btn_calendar_save4.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleEditRequest(
