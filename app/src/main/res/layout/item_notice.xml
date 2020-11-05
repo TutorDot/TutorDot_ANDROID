@@ -25,7 +25,7 @@
             android:textSize="12sp"
             android:letterSpacing="-0.02"
             android:lineSpacingExtra="6sp"
-            android:fontFamily="@font/apple_sdgothic_neo_b"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="5월 29일"
             android:textColor="#707070" />
 
@@ -73,7 +73,7 @@
                 android:layout_marginStart="13dp"
                 android:layout_marginLeft="13dp"
                 android:layout_marginTop="15dp"
-                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="알림 메시지"
                 android:textStyle="normal"
                 android:textSize="13sp"
@@ -90,7 +90,7 @@
                 android:layout_marginStart="13dp"
                 android:layout_marginLeft="13dp"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/apple_sdgothic_neo_m"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="알림 내용"
                 android:textSize="11sp"
                 android:textStyle="normal"

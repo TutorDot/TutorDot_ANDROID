@@ -26,7 +26,7 @@
                 android:lineSpacingExtra="9sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="35dp"
-                android:fontFamily="@font/apple_sdgothic_neo_b"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="29"/>
 
             <TextView
@@ -38,7 +38,7 @@
                 android:lineSpacingExtra="5sp"
                 android:layout_marginLeft="20dp"
                 android:text="5월"
-                android:fontFamily="@font/apple_sdgothic_neo_m"/>
+                android:fontFamily="@font/spoqa_han_sans_regular"/>
         </LinearLayout>
 
         <View
