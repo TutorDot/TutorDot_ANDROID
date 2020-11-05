@@ -63,12 +63,12 @@ class ScheduleAddActivity : AppCompatActivity() {
         })
 
         // 취소 버튼 누르면 캘린더뷰로 이동
-        schedule_add_btn_cancle.setOnClickListener{
+        btn_calendar_back2.setOnClickListener{
             finish()
         }
 
         // (서버) 저장 버튼 누르면 일정 정보 화면으로 이동
-        schedule_add_btn_save.setOnClickListener(object : View.OnClickListener {
+        btn_calendar_save2.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleAddRequest(

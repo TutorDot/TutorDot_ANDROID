@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.PopupMenu
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
@@ -20,12 +21,18 @@ import com.tutor.tutordot.extention.moveActi
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_myinfo.*
+import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_info.*
+import kotlinx.android.synthetic.main.activity_schedule_info.iv_schedule_add
+import kotlinx.android.synthetic.main.activity_schedule_info.schedule_add
 
 class ScheduleInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_info)
+
+        val calendarLogRequestToServer = CalendarLogRequestToServer
+
         //화면구현
         var color= intent.getStringExtra("color")
         var title= intent.getStringExtra("title")
@@ -53,51 +60,108 @@ class ScheduleInfoActivity : AppCompatActivity() {
         schedule_info_location_txt.setText(location)
 
 
-
-        schedule_info_edit.setOnClickListener(object : View.OnClickListener{
+        //상단 수업 선택 메뉴
+        btn_calendar_save3.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                val context: Context = v!!.context
-                val nextIntent = Intent(context, ScheduleEditActivity::class.java)
-                nextIntent.putExtra("color",color)
-                nextIntent.putExtra("start",start)
-                nextIntent.putExtra("end",end)
-                nextIntent.putExtra("title",title)
-                nextIntent.putExtra("date",date)
-                nextIntent.putExtra("location",location)
-                nextIntent.putExtra("mycid",cid)
-                moveActi(nextIntent, v)
-            }
-        })
+                val popup =
+                    PopupMenu(getApplicationContext(), iv_schedule_add)
+                //Inflating the Popup using xml file
+                popup.menuInflater
+                    .inflate(R.menu.calendar_popup_menu, popup.menu)
 
-
-        val calendarLogRequestToServer = CalendarLogRequestToServer
-        schedule_delte_btn.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //서버에 전달
-                calendarLogRequestToServer.service.scheduleDeleteRequest(
-                    "${myjwt}","${cid}"
-                ).customEnqueue(
-                    onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
-                    onSuccess = {
-                        if (it.success) {
-                            Log.d("삭제 완료", "삭제 완료")
-                            showToast("삭제가 완료되었습니다.")
-                        } else {
-                            Log.d("삭제 실패", "삭제 실패")
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener { item ->
+//                    schedule_add_select_txt.setText(item.title)
+                    when(item?.itemId){
+                        R.id.edit -> {
+                            val context: Context = v!!.context
+                            val nextIntent = Intent(context, ScheduleEditActivity::class.java)
+                            nextIntent.putExtra("color",color)
+                            nextIntent.putExtra("start",start)
+                            nextIntent.putExtra("end",end)
+                            nextIntent.putExtra("title",title)
+                            nextIntent.putExtra("date",date)
+                            nextIntent.putExtra("location",location)
+                            nextIntent.putExtra("mycid",cid)
+                            moveActi(nextIntent, v)
+                        }
+                        R.id.delete -> {
+                            //서버에 전달
+                            calendarLogRequestToServer.service.scheduleDeleteRequest(
+                                "${myjwt}","${cid}"
+                            ).customEnqueue(
+                                onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
+                                onSuccess = {
+                                    if (it.success) {
+                                        Log.d("삭제 완료", "삭제 완료")
+                                        showToast("삭제가 완료되었습니다.")
+                                    } else {
+                                        Log.d("삭제 실패", "삭제 실패")
+                                    }
+                                }
+                            )
+                            val backIntent = Intent(this@ScheduleInfoActivity, CalenderActivity::class.java)
+                            startActivity(backIntent)
+                            finish()
                         }
                     }
-                )
-                val backIntent = Intent(this@ScheduleInfoActivity, CalenderActivity::class.java)
-                startActivity(backIntent)
-                finish()
+                    true
+                }
+
+                popup.show() //showing popup menu
             }
         })
 
-        // 뒤로가기 버튼 이벤트
-        btn_back.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                finish()
-            }
-        })
+
+
+//        // 여기 xml로 바꾸면서 수정함 (팝업 적용)
+//        btn_calendar_save3.setOnClickListener(object : View.OnClickListener{
+//            override fun onClick(v: View?) {
+//                val context: Context = v!!.context
+//                val nextIntent = Intent(context, ScheduleEditActivity::class.java)
+//                nextIntent.putExtra("color",color)
+//                nextIntent.putExtra("start",start)
+//                nextIntent.putExtra("end",end)
+//                nextIntent.putExtra("title",title)
+//                nextIntent.putExtra("date",date)
+//                nextIntent.putExtra("location",location)
+//                nextIntent.putExtra("mycid",cid)
+//                moveActi(nextIntent, v)
+//            }
+//        })
+//
+//
+////        val calendarLogRequestToServer = CalendarLogRequestToServer
+//        schedule_delte_btn.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(v: View?) {
+//                //서버에 전달
+//                calendarLogRequestToServer.service.scheduleDeleteRequest(
+//                    "${myjwt}","${cid}"
+//                ).customEnqueue(
+//                    onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
+//                    onSuccess = {
+//                        if (it.success) {
+//                            Log.d("삭제 완료", "삭제 완료")
+//                            showToast("삭제가 완료되었습니다.")
+//                        } else {
+//                            Log.d("삭제 실패", "삭제 실패")
+//                        }
+//                    }
+//                )
+//                val backIntent = Intent(this@ScheduleInfoActivity, CalenderActivity::class.java)
+//                startActivity(backIntent)
+//                finish()
+//            }
+//        })
+
+
+
+
+//        // 뒤로가기 버튼 이벤트 (없애야 하는 부분인듯)
+//        btn_back.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(v: View?) {
+//                finish()
+//            }
+//        })
     }
 }
