@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans"
             android:letterSpacing="-0.03"
             android:lineSpacingExtra="4sp"
             android:text="질문할래요!"
