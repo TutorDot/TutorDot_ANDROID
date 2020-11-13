@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1047488000030",
+    "firebase_url": "https://tutordot-ff6d6.firebaseio.com",
+    "project_id": "tutordot-ff6d6",
+    "storage_bucket": "tutordot-ff6d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047488000030:android:4575a1180aa2df2e9cbe0f",
+        "android_client_info": {
+          "package_name": "com.example.tutordot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047488000030-h3np7e3hplq494repmi0dpdbn7fo45cj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3IxFb39-HHyIZ2Ka0MH4OTuEDIDBgNQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047488000030-h3np7e3hplq494repmi0dpdbn7fo45cj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1047488000030-vo8tpiolr7h5qr6l51lbte573evr77lk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.TutorDot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,13 +7,14 @@ import com.tutor.tutordot.Calendar.CalenderFragment
 import com.tutor.tutordot.ClassLog.ClassLogFragment
 import com.tutor.tutordot.MyPage.MyFragment
 import com.tutor.tutordot.Notice.NoticeFragment
+import com.tutor.tutordot.Question.QuestionFragment
 
 class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {
         return when(position){
             0 -> CalenderFragment()
             1 -> ClassLogFragment()
-            2 -> NoticeFragment()
+            2 -> QuestionFragment()
             else -> MyFragment()
         }
     }
