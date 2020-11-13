@@ -23,7 +23,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
-        android:fontFamily="@font/apple_sdgothic_neo_sb"
+        android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="한줄소개"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:lineSpacingExtra="6sp"
             android:text="변정인"
             android:textColor="#000000"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:fontFamily="@font/apple_sdgothic_neo_m"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:lineSpacingExtra="4sp"
             android:text="tutor"
             android:textColor="#707070"
@@ -121,7 +121,7 @@
             android:layout_marginRight="195dp"
             android:layout_marginBottom="11dp"
             android:background="@color/colorBackground"
-            android:fontFamily="@font/apple_sdgothic_neo_m"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:hint="글자수 제한 18자 이내"
             android:lineSpacingExtra="6sp"
             android:textColor="@color/black"
@@ -150,7 +150,7 @@
             android:textColor="#eb6b6b"
             android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="취소" />
 
         <Button
@@ -162,7 +162,7 @@
             android:textColor="#6875dd"
             android:lineSpacingExtra="8sp"
             android:layout_weight="1"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="저장" />
     </LinearLayout>
 

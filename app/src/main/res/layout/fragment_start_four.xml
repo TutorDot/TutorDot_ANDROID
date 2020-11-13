@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/apple_sdgothic_neo_m"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="잊지않게"
             android:textColor="#1c1c1c"
             android:textSize="22sp" />
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text=" 알림체크"
             android:textColor="#1c1c1c"
             android:textSize="22sp" />
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/apple_sdgothic_neo_m"
+        android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="수업관리에 필요한 알림들을 받아 보세요!"
         android:textColor="#707070"
         android:textSize="15sp"
