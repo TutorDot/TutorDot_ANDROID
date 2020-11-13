@@ -84,7 +84,8 @@
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView42"
@@ -93,11 +94,129 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_question"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="13dp"
-            android:text="질문을 입력하세요"
+            android:text="질문을 입력해주세요"
+            android:textSize="11sp"
             android:paddingTop="14dp"
-            android:paddingStart="14dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:paddingStart="14dp"
+            android:background="@drawable/bg_custom_button"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#f8f8f8"
+        android:paddingTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constarintlayout2"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/dontknow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="4sp"
+                android:text="모르겠어요"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/n_dontknow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="4sp"
+                android:text="33"
+                android:textColor="#5a60e3"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/dontknow"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginEnd="43dp"
+                android:src="@drawable/qna_img_line"
+                app:layout_constraintEnd_toStartOf="@+id/know"
+                app:layout_constraintStart_toEndOf="@+id/n_dontknow"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/know"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="4sp"
+                android:text="알겠어요"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="170dp" />
+
+            <TextView
+                android:id="@+id/n_know"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/apple_sdgothic_neo_sb"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="4sp"
+                android:text="12"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/know"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_qrv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp"
+                tools:listitem="@layout/item_question" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
