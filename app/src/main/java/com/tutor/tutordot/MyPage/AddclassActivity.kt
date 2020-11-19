@@ -77,10 +77,17 @@ class AddclassActivity : AppCompatActivity() {
         }
 
         //저장버튼
+        //tndjqdlfma, 사클단 돈이랑 시간->NN
         btn_save_my_add.setOnClickListener{
             if (editTextname.text.toString().length>17) {
                 showToast("수업명의 최대 글자수는 17글자입니다")
-            }else{
+            }else if(editTextname.text.isNullOrBlank()){
+                showToast("수업명을 설정해 주세요")
+            }
+            else if(et_newtime.text.isNullOrBlank() || et_newprice.text.isNullOrBlank()){
+                showToast("시간별 금액을 설정해 주세요")
+            }
+            else{
             var i =0
             for(i in 0 until 5){
                 Log.d("for문", "for문")
@@ -139,74 +146,61 @@ class AddclassActivity : AppCompatActivity() {
 
         //컬러팔레트
         my_class_tap_img_yellow2.setOnClickListener {
+            /*
             if(color.equals("yellow")) {
                 my_class_tap_img_yellow2.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
                 color = ""
             }
-            else {
+            */
+
+
                 color = "yellow"
                 my_class_tap_img_yellow2.setImageResource(R.drawable.my_class_tap_edit_img_select_yellow)
                 my_class_tap_edit_img_red2.setImageResource(R.drawable.my_class_tap_edit_img_red)
                 my_class_tap_edit_img_green2.setImageResource(R.drawable.my_class_tap_edit_img_green)
                 my_class_tap_edit_img_blue2.setImageResource(R.drawable.my_class_tap_edit_img_blue)
                 my_class_tap_edit_img_purple2.setImageResource(R.drawable.my_class_tap_edit_img_purple)
-            }
+
         }
         my_class_tap_edit_img_red2.setOnClickListener {
-            if(color.equals("red")) {
-                my_class_tap_edit_img_red2.setImageResource(R.drawable.my_class_tap_edit_img_red)
-                color = ""
-            }
-            else {
+
                 color = "red"
                 my_class_tap_img_yellow2.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
                 my_class_tap_edit_img_red2.setImageResource(R.drawable.my_class_tap_edit_img_select_red)
                 my_class_tap_edit_img_green2.setImageResource(R.drawable.my_class_tap_edit_img_green)
                 my_class_tap_edit_img_blue2.setImageResource(R.drawable.my_class_tap_edit_img_blue)
                 my_class_tap_edit_img_purple2.setImageResource(R.drawable.my_class_tap_edit_img_purple)
-            }
+
         }
         my_class_tap_edit_img_green2.setOnClickListener {
-            if(color.equals("green")) {
-                my_class_tap_edit_img_green2.setImageResource(R.drawable.my_class_tap_edit_img_green)
-                color = ""
-            }
-            else {
+
                 color = "green"
                 my_class_tap_img_yellow2.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
                 my_class_tap_edit_img_red2.setImageResource(R.drawable.my_class_tap_edit_img_red)
                 my_class_tap_edit_img_green2.setImageResource(R.drawable.my_class_tap_edit_img_select_green)
                 my_class_tap_edit_img_blue2.setImageResource(R.drawable.my_class_tap_edit_img_blue)
                 my_class_tap_edit_img_purple2.setImageResource(R.drawable.my_class_tap_edit_img_purple)
-            }
+
         }
         my_class_tap_edit_img_blue2.setOnClickListener {
-            if(color.equals("blue")) {
-                my_class_tap_edit_img_blue2.setImageResource(R.drawable.my_class_tap_edit_img_blue)
-                color = ""
-            }
-            else {
+
                 color = "blue"
                 my_class_tap_img_yellow2.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
                 my_class_tap_edit_img_red2.setImageResource(R.drawable.my_class_tap_edit_img_red)
                 my_class_tap_edit_img_green2.setImageResource(R.drawable.my_class_tap_edit_img_green)
                 my_class_tap_edit_img_blue2.setImageResource(R.drawable.my_class_tap_edit_img_select_blue)
                 my_class_tap_edit_img_purple2.setImageResource(R.drawable.my_class_tap_edit_img_purple)
-            }
+
         }
         my_class_tap_edit_img_purple2.setOnClickListener {
-            if(color.equals("purple")) {
-                my_class_tap_edit_img_purple2.setImageResource(R.drawable.my_class_tap_edit_img_purple)
-                color = ""
-            }
-            else {
+
                 color = "purple"
                 my_class_tap_img_yellow2.setImageResource(R.drawable.my_class_tap_edit_img_yellow)
                 my_class_tap_edit_img_red2.setImageResource(R.drawable.my_class_tap_edit_img_red)
                 my_class_tap_edit_img_green2.setImageResource(R.drawable.my_class_tap_edit_img_green)
                 my_class_tap_edit_img_blue2.setImageResource(R.drawable.my_class_tap_edit_img_blue)
                 my_class_tap_edit_img_purple2.setImageResource(R.drawable.my_class_tap_edit_img_select_purple)
-            }
+
         }
 
 
