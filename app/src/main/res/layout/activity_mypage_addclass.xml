@@ -157,7 +157,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="280dp"
                 android:background="#00000000"
-                android:src="@drawable/my_class_tap_edit_img_yellow"
+                android:src="@drawable/my_class_tap_edit_img_select_yellow"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="parent" />
 
