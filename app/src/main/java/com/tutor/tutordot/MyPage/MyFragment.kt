@@ -141,6 +141,10 @@ class MyFragment : Fragment() {
             startActivity(pintent)
         }
 
+        my_btn_withdrawl.setOnClickListener{
+            //회원탈퇴기능
+        }
+
 
         //팝업
         my_btn_logout.setOnClickListener {
