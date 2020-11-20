@@ -140,26 +140,25 @@
                 android:id="@+id/색상"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="259dp"
+                android:layout_marginTop="29dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
                 android:text="색상"
                 android:textColor="#0f0f0f"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/my_class_add_btn_classname" />
 
             <ImageButton
                 android:id="@+id/my_class_tap_img_yellow2"
                 android:layout_width="38dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="7dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="280dp"
+                android:layout_marginTop="2dp"
                 android:background="#00000000"
                 android:src="@drawable/my_class_tap_edit_img_select_yellow"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/색상" />
 
             <ImageButton
                 android:id="@+id/my_class_tap_edit_img_red2"
@@ -202,14 +201,14 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="345dp"
+                android:layout_marginTop="17dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="5sp"
                 android:text="시간별 금액"
                 android:textColor="#0f0f0f"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/my_class_tap_edit_img_green2" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
@@ -309,23 +308,23 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="448dp"
+                android:layout_marginTop="28dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="5sp"
                 android:text="계좌정보"
                 android:textColor="#121212"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="480dp"
+                android:layout_marginTop="13dp"
                 android:background="@drawable/my_class_tap_edit_btn_bank"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -372,14 +371,14 @@
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="552dp"
+                android:layout_marginTop="29dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="5sp"
                 android:text="정기 수업시간"
                 android:textColor="#121212"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <ImageButton
                 android:id="@+id/btn_plus"
