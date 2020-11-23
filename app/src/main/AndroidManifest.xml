@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tutor.tutordot">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--갤러리 권한--> <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!--갤러리 권한-->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 갤러리 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 갤러리 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".Startpage.AutoLogin.App"
@@ -18,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyPage.InviteForTuteeActivity"></activity>
+        <activity android:name=".Startpage.LoginFor1stActivity"></activity>
+        <activity android:name=".MyPage.InviteForTuteeActivity" />
         <activity android:name=".MyPage.DeveloperActivity" />
         <activity android:name=".MyPage.InviteActivity" />
         <activity android:name=".MyPage.OnesentenseActivity" />
@@ -29,7 +29,7 @@
         <activity android:name=".Calendar.ScheduleInfoActivity" />
         <activity android:name=".Calendar.ScheduleAddActivity" />
         <activity android:name=".MyPage.MyinfoActivity" />
-        <activity android:name=".CalenderActivity"/>
+        <activity android:name=".CalenderActivity" />
         <activity android:name=".Startpage.SignUpActivity" />
         <activity android:name=".Startpage.StartActivity" />
         <activity android:name=".Startpage.LoginActivity" />
@@ -41,15 +41,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--- 안드로이드 8.0 이상 푸시 처리 추가 코드-->
+        </activity> <!-- - 안드로이드 8.0 이상 푸시 처리 추가 코드 -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_push"/>
+            android:resource="@drawable/ic_push" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorPrimary"/>
+            android:resource="@color/colorPrimary" />
     </application>
 
 </manifest>

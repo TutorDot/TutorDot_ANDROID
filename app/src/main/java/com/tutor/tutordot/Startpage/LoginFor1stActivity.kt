@@ -1,13 +1,11 @@
 package com.tutor.tutordot.Startpage
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.MyPage.userinfoname
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -15,29 +13,30 @@ import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_login.*
-/*
+import kotlinx.android.synthetic.main.activity_login.et_email
+import kotlinx.android.synthetic.main.activity_login.et_pw
+import kotlinx.android.synthetic.main.activity_login.login_btn_login
+import kotlinx.android.synthetic.main.activity_login_for1st.*
+
+
 var myjwt:String = ""
 var role: String = ""
-class LoginActivity : AppCompatActivity() {
+var name: String = ""
+var looking: Boolean = false
+class LoginFor1stActivity : AppCompatActivity() {
     //서버 이용
     val requestToServer = RequestToServer
     //자동로그인에 필요한 변수
     var autologincheck : Boolean = false
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView( R.layout.activity_login_for1st)
 
         if (MySharedPreferences.islogin) {
-            //myjwt=MySharedPreferences.tmpjwt
-            //role=MySharedPreferences.tmprole
-
 
             requestToServer.service.requestLogin(
                 RequestLogin(
-                    //email = et_email.text.toString(),
                     email = MySharedPreferences.email,
-                    //password = et_pw.text.toString()
                     password = MySharedPreferences.password
                 )   //로그인 정보를 전달
             ).customEnqueue(
@@ -47,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
                         /////
                         myjwt = it.data!!.accessToken
                         role = it.data!!.role
+                        name = it.data!!.userName
                         Log.d("myjwt", "${myjwt}")
                         Log.d("role", "${role}")
                         /////
@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
                         Log.d("롤2","롤2${role}")
                         showToast("자동로그인 되었습니다")
-                        // MySharedPreferences.islogin = false     // 실험용
+
                         val intent = Intent(this, CalenderActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -64,22 +64,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
         }
-
-
-        ///// login_auto  로그인체크박스 id
-
-        login_btn_autologin_picktouchguide.setOnClickListener {
-            if (autologincheck == false) {//false
-                login_btn_autologin_picktouchguide.setBackgroundResource(R.drawable.login_btn_autologinagree_pick)
-                autologincheck = true
-                //MySharedPreferences.islogin = true
-            } else {//true
-                login_btn_autologin_picktouchguide.setBackgroundResource(R.drawable.login_b_btn_autologin_disagree_pick)
-                autologincheck = false
-                MySharedPreferences.islogin = false
-            }
-        }
-        
         login_btn_login.setOnClickListener {
             if (et_email.text.isNullOrBlank() || et_pw.text.isNullOrBlank()) {
                 showToast("이메일과 비밀번호를 모두 입력하세요.")
@@ -98,26 +82,23 @@ class LoginActivity : AppCompatActivity() {
                             /////
                             myjwt = it.data!!.accessToken
                             role = it.data!!.role
+                            name = it.data!!.userName
+
                             Log.d("myjwt", "${myjwt}")
                             Log.d("role", "${role}")
-                            if(autologincheck) {
-                                MySharedPreferences.tmpjwt = myjwt
-                                MySharedPreferences.email = et_email.text.toString()
-                                MySharedPreferences.password = et_pw.text.toString()
-                                MySharedPreferences.islogin = true
-                                MySharedPreferences.tmprole = role
-                                //밑에 아닐듯
-                                myjwt = it.data!!.accessToken
-                                role = it.data!!.role
-                                Log.d("myjwt여기아닌가", "${myjwt}")
-                                Log.d("여기아닌가", "여기여기")
-                                //var sf:SharedPreferences=getSharedPreferences("sFile", Context.MODE_PRIVATE)
-                                //.clear()
-                            }
-                            /////
 
                             showToast("로그인 성공")
-                            val intent = Intent(this@LoginActivity, CalenderActivity::class.java)
+                            MySharedPreferences.tmpjwt = myjwt
+                            MySharedPreferences.email = et_email.text.toString()
+                            MySharedPreferences.password = et_pw.text.toString()
+                            MySharedPreferences.islogin = true
+                            MySharedPreferences.tmprole = role
+                            //밑에 아닐듯
+                            myjwt = it.data!!.accessToken
+                            role = it.data!!.role
+                            name = it.data!!.userName
+                            Log.d("myjwt여기아닌가", "${myjwt}")
+                            val intent = Intent(this@LoginFor1stActivity, CalenderActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {
@@ -135,8 +116,46 @@ class LoginActivity : AppCompatActivity() {
                 et_pw.setText(password)
             }
         }
+        tv_look_around.setOnClickListener {
+            requestToServer.service.requestLogin(
+                RequestLogin(
+                    email = "around",
+                    password = "around"
+                )   //로그인 정보를 전달
+            ).customEnqueue(
+                onError = { showToast("아이디/비밀번호를 확인하세요!") },
+                onSuccess = {
+                    if (it.success) {
+
+                        myjwt = it.data!!.accessToken
+                        role = it.data!!.role
+                        name = it.data!!.userName
+
+                        Log.d("myjwt", "${myjwt}")
+                        Log.d("role", "${role}")
+                        looking = true
+
+
+                        showToast("둘러보기를 시작합니다.")
+                        val intent = Intent(this@LoginFor1stActivity, CalenderActivity::class.java)
+
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            )
+
+
+        }
+        tv_signup2.setOnClickListener {
+            object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    val intent = Intent(this@LoginFor1stActivity, SignUpActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
+
+
     }
- }
-
-*/
-
+}
