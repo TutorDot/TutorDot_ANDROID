@@ -24,7 +24,6 @@ class StartActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 val intent = Intent(this@StartActivity, LoginActivity::class.java)
                 startActivity(intent)
-                finish()
             }
         })
 
@@ -32,7 +31,6 @@ class StartActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 val intent = Intent(this@StartActivity, SignUpActivity::class.java)
                 startActivity(intent)
-                finish()
             }
         })
 

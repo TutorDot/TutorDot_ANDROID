@@ -36,7 +36,6 @@ class MyclassEdit : AppCompatActivity() {
         val mypageRequestToServer = MyPageRequestToServer
 
         var mylid = intent.getStringExtra("mylid2").toInt()
-        Log.d("왜 안넘어오니","$mylid")
         var mycname = intent.getStringExtra("mycname")
         var mycolor = intent.getStringExtra("mycolor")
         var mytime = intent.getStringExtra("mytime")
