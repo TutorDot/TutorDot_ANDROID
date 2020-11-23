@@ -8,48 +8,31 @@
     tools:context="com.tutor.tutordot.Calendar.ScheduleAddActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/constarintlayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@color/white"
+        android:id="@+id/constarintlayout"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/btn_calendar_back2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/calender_add_picker_btn_cancel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/tv_calendar_title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:layout_weight="1"
-            android:letterSpacing="-0.02"
-            android:lineSpacingExtra="6sp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="일정 추가"
-            android:textColor="#1c1c1c"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/btn_calendar_save2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/calender_add_picker_btn_save"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -64,7 +47,8 @@
         android:id="@+id/schedule_add_selection_linear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="17dp"
         android:layout_marginRight="17dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +59,7 @@
             android:id="@+id/schedule_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="19dp"
             android:src="@drawable/notice_color_img_yellow">
         </ImageView>
 
@@ -84,14 +68,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:fontFamily="@font/spoqa_han_sans_regular"
-            android:letterSpacing="-0.03"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="13dp"
             android:lineSpacingExtra="7sp"
             android:text="신연상 학생 수학 수업"
-            android:textColor="#1c1c1c"
-            android:textSize="15sp"
-            android:textStyle="normal">
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textColor="#161616"
+            android:textSize="18sp">
         </TextView>
+
 
         <LinearLayout
             android:id="@+id/schedule_add"
@@ -104,18 +90,21 @@
                 android:id="@+id/iv_schedule_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/calender_add_btn_subjectsection">
             </ImageView>
+
         </LinearLayout>
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/schedule_add_selection_linear">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,13 +125,11 @@
                 android:id="@+id/schedule_add_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="수업 날짜"
-                android:textStyle="normal"
-                android:textSize="13sp"
-                android:textColor="#611c1c1c"
-                android:letterSpacing="-0.03"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
-                android:font="@font/spoqa_han_sans_regular"
+                android:text="수업 날짜"
+                android:textColor="#1c1c1c"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,15 +150,14 @@
                     android:id="@+id/schedule_add_date_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:textSize="14sp"
-                    android:textColor="#000000"
-                    android:letterSpacing="-0.02"
+
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:lineSpacingExtra="6sp"
-                    android:font="@font/spoqa_han_sans_regular"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toStartOf="@+id/fix1"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -185,11 +171,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:lineSpacingExtra="6sp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:text="수정"
-                    android:font="@font/spoqa_han_sans_regular"
                     android:textColor="#6875dd"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -206,8 +192,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
-                android:spinnersShown="true"
                 android:datePickerMode="spinner"
+                android:spinnersShown="true"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/schedule_add_date_constraint" />
@@ -217,13 +203,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="수업 시작"
-                android:textStyle="normal"
-                android:textSize="13sp"
-                android:textColor="#611c1c1c"
-                android:letterSpacing="-0.03"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
-                android:font="@font/spoqa_han_sans_regular"
+                android:text="수업 시작"
+                android:textColor="#1c1c1c"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/date_picker" />
 
@@ -244,15 +228,14 @@
                     android:id="@+id/schedule_add_start_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:textSize="14sp"
-                    android:textColor="#000000"
-                    android:letterSpacing="-0.02"
-                    android:lineSpacingExtra="6sp"
+
                     android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/fix2"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -266,11 +249,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:lineSpacingExtra="6sp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:text="수정"
-                    android:font="@font/spoqa_han_sans_regular"
                     android:textColor="#6875dd"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -295,12 +278,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="수업 종료"
-                android:textSize="13sp"
-                android:textColor="#611c1c1c"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="6sp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
+                android:lineSpacingExtra="6sp"
+                android:text="수업 종료"
+                android:textColor="#1c1c1c"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/time_picker" />
 
@@ -321,12 +303,14 @@
                     android:id="@+id/schedule_add_end_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:textSize="14sp"
-                    android:textColor="#000000"
-                    android:letterSpacing="-0.02"
-                    android:lineSpacingExtra="6sp"
+
                     android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:lineSpacingExtra="6sp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toStartOf="@+id/fix3"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -339,11 +323,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:lineSpacingExtra="6sp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:text="수정"
-                    android:font="@font/spoqa_han_sans_regular"
                     android:textColor="#6875dd"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -368,13 +352,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="위치"
-                android:textStyle="normal"
-                android:textSize="13sp"
-                android:textColor="#611c1c1c"
-                android:letterSpacing="-0.03"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="6sp"
-                android:font="@font/spoqa_han_sans_regular"
+                android:text="위치"
+                android:textColor="#1c1c1c"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/time_picker2" />
 
@@ -395,17 +377,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/stringbox_custom"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:hint="위치를 입력해주세요"
+                    android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="14dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="10dp"
-                    android:hint="위치를 입력해주세요"
-                    android:textStyle="normal"
-                    android:textSize="14sp"
-                    android:textColor="#000000"
-                    android:letterSpacing="-0.02"
-                    android:lineSpacingExtra="6sp"
-                    android:font="@font/spoqa_han_sans_regular"
+                    android:textColor="#707070"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                 </EditText>
@@ -415,5 +395,40 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/schedule_add_btn_cancle"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_weight="1"
+            android:background="@color/colorBackground"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:lineSpacingExtra="8sp"
+            android:text="취소"
+            android:textColor="#eb6b6b"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/schedule_add_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_weight="1"
+            android:background="@color/colorBackground"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:lineSpacingExtra="8sp"
+            android:text="저장"
+            android:textColor="#6875dd"
+            android:textSize="20sp" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,14 +77,16 @@
             android:id="@+id/tv_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/apple_sdgothic_neo_sb"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:letterSpacing="-0.03"
             android:lineSpacingExtra="4sp"
             android:text="질문할래요!"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView42"

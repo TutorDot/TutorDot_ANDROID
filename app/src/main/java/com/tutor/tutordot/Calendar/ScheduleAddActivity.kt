@@ -63,12 +63,12 @@ class ScheduleAddActivity : AppCompatActivity() {
         })
 
         // 취소 버튼 누르면 캘린더뷰로 이동
-        btn_calendar_back2.setOnClickListener{
+        schedule_add_btn_cancle.setOnClickListener{
             finish()
         }
 
         // (서버) 저장 버튼 누르면 일정 정보 화면으로 이동
-        btn_calendar_save2.setOnClickListener(object : View.OnClickListener {
+        schedule_add_btn_save.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleAddRequest(
@@ -140,14 +140,14 @@ class ScheduleAddActivity : AppCompatActivity() {
             schedule_add_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-${dayOfMonth}"
 
             // 날짜 포맷 통일
-            if (monthOfYear < 10) {
+            if (monthOfYear < 9) {
                 schedule_add_date_txt.text = "${year}" + "-0${monthOfYear+1}" + "-${dayOfMonth}"
                 //Log.i("shot_Day test", "${schedule_add_date_txt.text}")
             }
             if (dayOfMonth < 10) {
                 schedule_add_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-0${dayOfMonth}"
             }
-            if (monthOfYear < 10 && dayOfMonth < 10) {
+            if (monthOfYear < 9 && dayOfMonth < 10) {
                 schedule_add_date_txt.text = "${year}" + "-0${monthOfYear+1}" + "-0${dayOfMonth}"
             }
 

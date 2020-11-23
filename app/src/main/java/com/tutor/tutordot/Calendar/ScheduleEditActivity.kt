@@ -83,14 +83,14 @@ class ScheduleEditActivity : AppCompatActivity() {
             schedule_edit_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-${dayOfMonth}"
 
             // 날짜 포맷 통일
-            if (monthOfYear < 10) {
+            if (monthOfYear < 9) {
                 schedule_edit_date_txt.text = "${year}" + "-0${monthOfYear+1}" + "-${dayOfMonth}"
                 //Log.i("shot_Day test", "${schedule_edit_date_txt.text}")
             }
             if (dayOfMonth < 10) {
                 schedule_edit_date_txt.text = "${year}" + "-${monthOfYear+1}" + "-0${dayOfMonth}"
             }
-            if (monthOfYear < 10 && dayOfMonth < 10) {
+            if (monthOfYear < 9 && dayOfMonth < 10) {
                 schedule_edit_date_txt.text = "${year}" + "-0${monthOfYear+1}" + "-0${dayOfMonth}"
             }
 
@@ -192,12 +192,12 @@ class ScheduleEditActivity : AppCompatActivity() {
         }
 
         // 취소 버튼 누르면 일정 정보 화면으로 이동
-        btn_calendar_back4.setOnClickListener{
+        schedule_edit_btn_cancle.setOnClickListener{
             finish()
         }
 
         //저장 버튼 누르면 일정 정보 화면으로 이동
-        btn_calendar_save4.setOnClickListener(object : View.OnClickListener {
+        schedule_edit_btn_save.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //서버에 전달
                 calendarLogRequestToServer.service.scheduleEditRequest(
