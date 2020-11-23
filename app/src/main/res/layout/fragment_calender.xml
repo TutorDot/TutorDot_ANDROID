@@ -7,56 +7,49 @@
     tools:context="com.tutor.tutordot.Calendar.CalenderFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/constarintlayout"
+        android:id="@+id/constarintlayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@color/white"
+        android:layout_height="58dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/tv_calendar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
+            android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:layout_weight="1"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="전체"
-            android:font="@font/spoqa_han_sans_regular"
-            android:textStyle="normal"
-            android:textSize="14sp"
-            android:textColor="#1a1a1a"
-            android:letterSpacing="-0.02"
-            android:lineSpacingExtra="6sp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageView
-            android:id="@+id/btn_calendar_filter1"
+            android:id="@+id/calendar_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/qna_btn_fillter"
-            app:layout_constraintRight_toLeftOf="@+id/btn_calendar_save1"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="10dp"
 
-        <ImageView
-            android:id="@+id/btn_calendar_save1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/qna_btn_notice"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/class_log_math_subjectsection"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_calendar_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_calendar_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="362dp"
-        android:background="@drawable/calender_math_section_img_calenderback"
+        android:background="@drawable/calender_img_calenderbgyo"
         android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="35dp"
-                android:font="@font/spoqa_han_sans_regular"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="9sp"
                 android:text="18"
                 android:textColor="#000000"
@@ -115,11 +108,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/datelinear"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_calendarlog"
@@ -127,7 +119,7 @@
             android:layout_height="wrap_content"
             android:background="#f8f8f8"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_calendarlog" />
 
@@ -135,7 +127,7 @@
             android:id="@+id/cl_calendar_empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/tv1"
@@ -144,7 +136,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:font="@font/spoqa_han_sans_regular"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="00:00am"
                 android:textColor="#707070"
                 android:textSize="12sp"
@@ -159,7 +151,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="30dp"
-                android:font="@font/spoqa_han_sans_regular"
+                android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="00:00pm"
                 android:textColor="#707070"
                 android:textSize="12sp"
@@ -185,7 +177,7 @@
                     android:id="@+id/textView43"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:font="@font/spoqa_han_sans_regular"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:text="새로운 일정을 추가해주세요"
                     android:textColor="#707070"
                     android:textSize="14sp"

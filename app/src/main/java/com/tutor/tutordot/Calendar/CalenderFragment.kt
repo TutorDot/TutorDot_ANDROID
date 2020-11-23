@@ -188,7 +188,7 @@ class CalenderFragment : Fragment() {
 
         //수업정보 받아옴 (토글 위해)
         val popup =
-            PopupMenu(context, btn_calendar_filter1)
+            PopupMenu(context, calendar_select)
         //Inflating the Popup using xml file
         popup.menuInflater
             .inflate(R.menu.popup_menu, popup.menu)
