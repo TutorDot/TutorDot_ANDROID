@@ -1,5 +1,7 @@
 package com.tutor.tutordot.MyPage
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
+import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.Startpage.LoginActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
@@ -25,6 +28,7 @@ import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.SignUpActivity
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
+import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
@@ -141,10 +145,6 @@ class MyFragment : Fragment() {
             startActivity(pintent)
         }
 
-        my_btn_withdrawl.setOnClickListener{
-            //회원탈퇴기능
-        }
-
 
         //팝업
         my_btn_logout.setOnClickListener {
@@ -176,7 +176,21 @@ class MyFragment : Fragment() {
                 dialog.dismiss()
             }
             no.setOnClickListener{
+                MyPageRequestToServer.service.memberDeleteRequest(
+                    "${myjwt}"
+                ).customEnqueue(
+                    onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
+                    onSuccess = {
+                        if (it.success) {
+                            MySharedPreferences.islogin = false
+                            Log.d("삭제 완료", "삭제 완료")
+                        } else {
+                            Log.d("삭제 실패", "삭제 실패")
+                        }
+                    }
+                )
                 val intent7=Intent(activity, SignUpActivity::class.java)
+                activity?.finish()
                 startActivity(intent7)
             }
             dialog.setView(dialogView)
@@ -229,11 +243,7 @@ class MyFragment : Fragment() {
 
                         }
 
-
-//                        userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl
-                        //Glide.with(this@MyFragment).load(userinfopicture1).into(my_img_profile)
-
-
+                        
                         //데이터가 없을 경우 haveData를 false로 바꿔줌
                         if(response.body()!!.data.size == 0)
                         {haveMyData = false
@@ -285,13 +295,7 @@ class MyFragment : Fragment() {
             }
 
         })
-/*
-        datas.apply{
-        }
-        mypageAdapter.datas = datas
-        mypageAdapter.notifyDataSetChanged
 
- */
     }
 
 
