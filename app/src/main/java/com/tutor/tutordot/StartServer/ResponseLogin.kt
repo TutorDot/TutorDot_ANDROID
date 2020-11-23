@@ -9,5 +9,6 @@ data class ResponseLogin(
 
 data class SomeData(
     val accessToken : String,
-    val role : String
+    val role : String,
+    val userName : String
 )

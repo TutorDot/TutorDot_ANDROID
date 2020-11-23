@@ -15,7 +15,7 @@ import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.Startpage.LoginActivity
+import com.tutor.tutordot.Startpage.LoginFor1stActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
@@ -156,7 +156,7 @@ class MyFragment : Fragment() {
             val yes= dialogView.findViewById<ImageButton>(R.id.my_logout_btn_yes)
             val no= dialogView.findViewById<ImageButton>(R.id.my_logout_btn_no)
             yes.setOnClickListener{
-                val intent4=Intent(activity, LoginActivity::class.java)
+                val intent4=Intent(activity, LoginFor1stActivity::class.java)
                 startActivity(intent4)
                 MySharedPreferences.islogin = false
                 activity?.finish()

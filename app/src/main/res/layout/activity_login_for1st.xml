@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tutor.tutordot.Startpage.LoginFor1stActivity">
+
+    <ImageView
+        android:id="@+id/login_img_tutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginEnd="112dp"
+        android:src="@drawable/login_img_tutor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/front_1st"
+        app:layout_constraintEnd_toEndOf="@+id/login_img_tutor"
+        app:layout_constraintStart_toStartOf="@+id/login_img_tutor"
+        app:layout_constraintTop_toBottomOf="@+id/login_img_tutor" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="37dp"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:lineSpacingExtra="5sp"
+        android:textColor="@color/colorTuti"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+    <EditText
+        android:id="@+id/et_pw"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:lineSpacingExtra="5sp"
+        android:textColor="@color/colorTuti"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
+        tools:ignore="MissingConstraint" />
+
+    <ImageButton
+        android:id="@+id/login_btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="36dp"
+        android:background="#00000000"
+        android:src="@drawable/login_btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="8sp"
+        android:text="로그인"
+        android:textColor="#fafafa"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/login_btn_login"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn_login"
+        app:layout_constraintStart_toStartOf="@+id/login_btn_login"
+        app:layout_constraintTop_toTopOf="@+id/login_btn_login" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/spoqa_han_sans"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#1c1c1c"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@+id/tv_signup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_login"
+        android:text="아이디가 없으신가요?" />
+
+    <TextView
+        android:id="@+id/tv_signup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="91dp"
+        android:fontFamily="@font/spoqa_han_sans"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#6875dd"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView53"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_login"
+        android:text="회원가입" />
+
+    <TextView
+        android:id="@+id/tv_look_around"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
+        android:fontFamily="@font/spoqa_han_sans"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#6875dd"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView53"
+        android:text="일단 둘러볼래요" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

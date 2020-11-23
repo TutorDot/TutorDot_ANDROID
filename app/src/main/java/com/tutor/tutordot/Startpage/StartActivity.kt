@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tutor.tutordot.ClassLog.ClassLogModificationActivity
 import com.tutor.tutordot.R
 import kotlinx.android.synthetic.main.activity_start.*
-
+/*
 class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,3 +54,5 @@ class StartActivity : AppCompatActivity() {
         })
     }
 }
+
+ */
