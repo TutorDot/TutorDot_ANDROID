@@ -243,7 +243,7 @@ class MyFragment : Fragment() {
 
                         }
 
-                        
+
                         //데이터가 없을 경우 haveData를 false로 바꿔줌
                         if(response.body()!!.data.size == 0)
                         {haveMyData = false

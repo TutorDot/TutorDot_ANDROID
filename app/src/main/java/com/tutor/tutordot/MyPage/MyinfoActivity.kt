@@ -152,9 +152,12 @@ class MyinfoActivity : AppCompatActivity() {
 
             startActivity(intent2)
             finish()
+            finish()
         }
         my_class_tap_btn_invite.setOnClickListener{
             var invIntent = Intent(this, InviteActivity::class.java)
+            var tmplid:Int=mylid.toInt()
+            invIntent.putExtra("mylid", tmplid)
             startActivity(invIntent)
         }
 
