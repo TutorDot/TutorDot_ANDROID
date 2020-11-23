@@ -97,7 +97,9 @@ class MyFragment : Fragment() {
                         userinfoname = response.body()!!.data!!.userName
                         userinforole = response.body()!!.data!!.role
                         if(role=="tutor"){
+                            if(!response. body()!!.data!!.intro.isNullOrBlank()){
                             userinfointro = response. body()!!.data!!.intro
+                            }
                         }
 
                         userinfopicture = response. body()!!.data!!.profileUrl
