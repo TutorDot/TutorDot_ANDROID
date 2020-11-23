@@ -41,7 +41,7 @@ class SplashActivity : Activity() {
             }
 
              */
-            startActivity(Intent(this, StartActivity::class.java))
+            startActivity(Intent(this, LoginFor1stActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
 

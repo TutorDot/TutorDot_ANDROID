@@ -97,7 +97,7 @@ class SignUpActivity : AppCompatActivity() {
                     onSuccess = {
                         if (it.success) {
                             showToast("회원가입 성공")
-                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                            val intent = Intent(this@SignUpActivity, LoginFor1stActivity::class.java)
                             intent.putExtra("check", "1")
                             intent.putExtra("email", 이메일.text.toString())
                             intent.putExtra("password", 비밀번호.text.toString())
