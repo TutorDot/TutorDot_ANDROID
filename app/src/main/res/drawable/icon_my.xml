@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/tabber_btn_my_unpick" android:state_selected="false"
+    <item android:drawable="@drawable/tabbar_ic_my_unpick" android:state_selected="false"
         android:state_focused="false" android:state_pressed="false"/>
-    <item android:drawable="@drawable/tabber_btn_my_pick" android:state_checked="true"/>
+    <item android:drawable="@drawable/tabbar_ic_my_pick" android:state_checked="true"/>
 </selector>
