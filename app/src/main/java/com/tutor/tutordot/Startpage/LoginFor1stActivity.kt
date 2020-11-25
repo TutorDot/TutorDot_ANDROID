@@ -148,12 +148,8 @@ class LoginFor1stActivity : AppCompatActivity() {
 
         }
         tv_signup2.setOnClickListener {
-            object : View.OnClickListener {
-                override fun onClick(v: View?) {
                     val intent = Intent(this@LoginFor1stActivity, SignUpActivity::class.java)
                     startActivity(intent)
-                }
-            }
         }
 
 
