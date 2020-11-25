@@ -1,21 +1,23 @@
 package com.tutor.tutordot
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_calender.*
 
 
@@ -76,11 +78,31 @@ class CalenderActivity : AppCompatActivity() {
 
 
 
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+
+            Log.d("나의 토큰은: ", "$token")
+            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+        })
+
+
+
         //registerPushToken()
-        getToken()
+        //getToken()
 
 
-    }/*
+    }
+
+    /*
     fun registerPushToken() {
         //v17.0.0 이전까지는
         ////var pushToken = FirebaseInstanceId.getInstance().token
@@ -96,10 +118,12 @@ class CalenderActivity : AppCompatActivity() {
             FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
         }
 
-        Log.d("FBToken", pushToken)
+        Log.d("FBToken", pushToken!!)
     }
-*/
 
+     */
+
+/*
     fun getToken() {
         //토큰값을 받아옵니다.
         FirebaseApp.initializeApp(this)
@@ -112,4 +136,6 @@ class CalenderActivity : AppCompatActivity() {
                 Log.d("FBToken", token)
             })
     }
+
+ */
 }
