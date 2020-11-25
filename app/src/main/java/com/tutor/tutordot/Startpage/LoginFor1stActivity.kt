@@ -119,7 +119,7 @@ class LoginFor1stActivity : AppCompatActivity() {
         tv_look_around.setOnClickListener {
             requestToServer.service.requestLogin(
                 RequestLogin(
-                    email = "around",
+                    email = "around-tutee",
                     password = "around"
                 )   //로그인 정보를 전달
             ).customEnqueue(

@@ -15,7 +15,6 @@ import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.Startpage.LoginFor1stActivity
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
@@ -24,10 +23,8 @@ import com.tutor.tutordot.MyPage.Server.MyInfoResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.UserRequestToServer
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.*
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
-import com.tutor.tutordot.Startpage.SignUpActivity
-import com.tutor.tutordot.Startpage.myjwt
-import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.*
@@ -138,8 +135,13 @@ class MyFragment : Fragment() {
         }
 
         my_img_profile.setOnClickListener{
-            val profileintent=Intent(activity, OnesentenseActivity::class.java)
-            startActivity(profileintent)
+            if (looking== true){
+                Toast.makeText(activity, "둘러보기 계정은 정보수정이 불가능합니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val profileintent = Intent(activity, OnesentenseActivity::class.java)
+                startActivity(profileintent)
+            }
 
         }
         my_btn_developer.setOnClickListener{
@@ -178,6 +180,11 @@ class MyFragment : Fragment() {
                 dialog.dismiss()
             }
             no.setOnClickListener{
+                if (looking== true){
+                    Toast.makeText(activity, "둘러보기 계정은 탈퇴가 불가능합니다.", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                else{
                 MyPageRequestToServer.service.memberDeleteRequest(
                     "${myjwt}"
                 ).customEnqueue(
@@ -194,6 +201,7 @@ class MyFragment : Fragment() {
                 val intent7=Intent(activity, SignUpActivity::class.java)
                 activity?.finish()
                 startActivity(intent7)
+                }
             }
             dialog.setView(dialogView)
             dialog.show()
