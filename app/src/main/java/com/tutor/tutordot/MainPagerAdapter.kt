@@ -14,7 +14,7 @@ class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
         return when(position){
             0 -> CalenderFragment()
             1 -> ClassLogFragment()
-            2 -> QuestionFragment()
+            2 -> NoticeFragment()
             else -> MyFragment()
         }
     }

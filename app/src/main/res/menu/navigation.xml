@@ -9,7 +9,7 @@
         android:title="수업일지"/>
     <item android:id="@+id/menu_question"
         android:icon="@drawable/icon_notice"
-        android:title="질문하기"/>
+        android:title="알림"/>
     <item android:id="@+id/menu_my"
         android:icon="@drawable/icon_my"
         android:title="내정보"/>

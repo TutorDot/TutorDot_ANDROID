@@ -61,9 +61,9 @@ class NoticeFragment : Fragment() {
         loadndateDatas() //데이터를 어댑터에 전달
          */
 
-    //수업정보 받아옴 (토글 위해)
+    //수업정보 받아옴 (토글 위해) (2차 릴리즈에서는 btn_notice_filter1 로 변경)
         val popup =
-            PopupMenu(context, btn_notice_filter1)
+            PopupMenu(context, btn_notice_choice)
         //Inflating the Popup using xml file
         popup.menuInflater
             .inflate(R.menu.popup_menu, popup.menu)
@@ -101,8 +101,8 @@ class NoticeFragment : Fragment() {
             }
         })
 
-        //상단 수업 선택 메뉴
-        btn_notice_filter1.setOnClickListener(object : View.OnClickListener {
+        //상단 수업 선택 메뉴 (2차 릴리즈에서는 btn_notice_filter1 로 변경)
+        btn_notice_choice.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 /*
                 val popup =
@@ -111,9 +111,9 @@ class NoticeFragment : Fragment() {
                 popup.menuInflater
                     .inflate(R.menu.popup_menu, popup.menu)
 */
-                //registering popup with OnMenuItemClickListener
+                //registering popup with OnMenuItemClickListener (2차 릴리즈에서는 tv_notice_title 로 변경
                 popup.setOnMenuItemClickListener { item ->
-                    tv_notice_title.text = item.title
+                    tv_notice_choice.text = item.title
                         if (item.title.equals("전체")) {
                             alldata()
                         }
