@@ -78,6 +78,8 @@ dependencies {
     //파이어베이스
     //noinspection GradleDynamicVersion
     implementation 'com.google.firebase:firebase-messaging:21.0.0+'
+    //noinspection GradleDynamicVersion
+    implementation 'com.google.firebase:firebase-messaging-directboot:21.0.0+'
 
     //noinspection GradleDynamicVersion
     implementation 'com.google.firebase:firebase-core:18.0.0+'

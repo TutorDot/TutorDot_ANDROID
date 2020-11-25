@@ -94,6 +94,9 @@ class CalenderActivity : AppCompatActivity() {
             Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
         })
 
+        FirebaseMessaging.getInstance().isAutoInitEnabled = true
+
+
 
 
         //registerPushToken()
