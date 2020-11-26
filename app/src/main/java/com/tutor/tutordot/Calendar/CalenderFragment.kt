@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -42,7 +43,6 @@ import kotlinx.android.synthetic.main.item_calendarlog_all.calendarlog_all_month
 
 
 class CalenderFragment : Fragment() {
-
     // 일정 추가 서버 연결
     val requestToServer = RequestToServer
 
@@ -60,6 +60,7 @@ class CalenderFragment : Fragment() {
     var kcal: kotlin.String? = null
     var menu: kotlin.String? = null
     private val oneDayDecorator = OneDayDecorator()
+    val sundayDecorator = SundayDecorator()
     var cursor: Cursor? = null
 
     lateinit var materialCalendarView: MaterialCalendarView
@@ -159,7 +160,11 @@ class CalenderFragment : Fragment() {
             .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
-        // materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
+//         materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
+
+        // 2차 릴리즈 때 캘린더 디자인 수정 (캘린더 윗부분 글자 앞으로)
+//        val testcaledar = view.findViewById(R.id.tv_calendar) as TextView
+//        testcaledar.bringToFront()
 
         // 오늘날짜 보여주기
         calendarlog_all_date.text = curDate.get(Calendar.DATE).toString()
@@ -171,8 +176,10 @@ class CalenderFragment : Fragment() {
         // 오늘날짜 이벤트
         materialCalendarView.addDecorators(
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
-//            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
         )
+
+        // 일요일 이벤트
+        materialCalendarView.addDecorators(sundayDecorator)
 
 
         // 점찍을 날짜
