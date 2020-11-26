@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true">
         <!---->
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".Firebase.MyFirebaseMessagingService"
             android:exported="false"
             android:directBootAware="true">
             <intent-filter>
