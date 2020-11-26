@@ -58,6 +58,15 @@ class SignUpActivity : AppCompatActivity() {
             }
 
         }
+        btn_next.setOnClickListener {
+            val intent = Intent(this@SignUpActivity, SignUpActivity2::class.java)
+            startActivity(intent)
+        }
+        btn_back.setOnClickListener {
+            val intent = Intent(this@SignUpActivity, LoginFor1stActivity::class.java)
+            startActivity(intent)
+        }
+        /*
         signup_btn_agree.setOnClickListener{
             if (agree == false){//false
                 signup_btn_agree.setBackgroundResource(R.drawable.signup_btn_agree_pick)
@@ -109,6 +118,6 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 )
             }
-        }
+        }*/
     }
 }
