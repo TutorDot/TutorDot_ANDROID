@@ -97,7 +97,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         var notificationBuilder = NotificationCompat.Builder(this,CHANNEL_ID)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.mipmap.ic_launcher_tutor)
             .setContentTitle("Push Notification FCM")
             .setContentText(body)
             .setAutoCancel(true)
