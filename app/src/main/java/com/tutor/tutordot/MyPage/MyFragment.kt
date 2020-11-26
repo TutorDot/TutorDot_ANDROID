@@ -258,7 +258,7 @@ class MyFragment : Fragment() {
                         if(response.body()!!.data.size == 0)
                         {haveMyData = false
                             recyclerView_my.visibility = View.GONE
-                            cl_my.visibility =View.VISIBLE
+                            cl_my.visibility = View.VISIBLE
                         }
                         else {
                             haveMyData = true
