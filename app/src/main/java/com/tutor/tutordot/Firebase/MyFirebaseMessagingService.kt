@@ -1,4 +1,4 @@
-package com.tutor.tutordot
+package com.tutor.tutordot.Firebase
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -11,11 +11,14 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.R
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         Log.d("토큰", "Refreshed token: $token")
+        //sendRegistrationToServer(token)
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -60,7 +63,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
             Log.d("메세지이", "Message Notification Body: ${it.body}")
-            sendNotification(it.body.toString())
+            Log.d("메세지이", "Message Notification Title: ${it.title}")
+
+            sendNotification(it.title.toString(),it.body.toString())
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -69,9 +74,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
 
-    private fun sendNotification(body: String?) {
+    private fun sendNotification(title: String?, body: String?) {
         val intent = Intent(this, CalenderActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            putExtra("Notificationtitle", title)
             putExtra("Notification", body)
         }
         val CHANNEL_ID = "CollocNotification"
@@ -100,6 +106,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setSmallIcon(R.mipmap.ic_launcher_tutor)
             .setContentTitle("Push Notification FCM")
             .setContentText(body)
+            .setContentTitle(title)
             .setAutoCancel(true)
             .setSound(notificationSound)
             .setContentIntent(pendingIntent)
