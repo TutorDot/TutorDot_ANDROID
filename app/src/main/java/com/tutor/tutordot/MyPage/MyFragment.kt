@@ -262,7 +262,7 @@ class MyFragment : Fragment() {
                             haveMyData = false
                         }
                         else {
-                            cl_my.visibility = View.GONE
+                            cl_my?.visibility = View.GONE
                             recyclerView_my.visibility = View.VISIBLE
                             haveMyData = true
                         }

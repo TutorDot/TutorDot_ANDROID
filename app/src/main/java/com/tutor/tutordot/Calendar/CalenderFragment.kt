@@ -28,6 +28,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.item_calendarlog_all.*
 import retrofit2.Call
@@ -192,6 +193,11 @@ class CalenderFragment : Fragment() {
 
         ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
 
+
+        // 튜티에겐 플로팅 버튼 보이지 않음
+        if(role == "tutee"){
+            floatingActionButton.visibility = View.GONE
+        }
 
         //수업정보 받아옴 (토글 위해)
         val popup =

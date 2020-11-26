@@ -22,11 +22,13 @@ import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.ScheduleData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_myinfo.*
 import kotlinx.android.synthetic.main.activity_onesentense.*
+import kotlinx.android.synthetic.main.fragment_my.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -128,6 +130,7 @@ class MyinfoActivity : AppCompatActivity() {
         })
 
 
+
         //버튼
         my_class_tap_btn_back.setOnClickListener(object : View.OnClickListener {
             override fun onClick(arg0: View?) {
@@ -135,30 +138,39 @@ class MyinfoActivity : AppCompatActivity() {
             }
         })
         my_class_tap_btn_edit.setOnClickListener{
-            val intent2= Intent(this, MyclassEdit::class.java)
-            intent2.putExtra("mylid2", "${mylid.toString()}")
-            intent2.putExtra("mycname", "${mycname}")
-            intent2.putExtra("mycolor", "${tmpcolor}")
-            intent2.putExtra("mytime", "${mytime}")
-            intent2.putExtra("mymoney", "${mymoney}")
-            intent2.putExtra("mybank", "${mybank}")
-            intent2.putExtra("myaccount", "${myaccount}")
-            intent2.putExtra("myclasstime", "${classtimeforedit}")
-            intent2.putExtra("myplace", "${myplace}")
-            Log.d("가는내용","가는내용${mylid}, ${mycname}, ${tmpcolor}")
+            if(role == "tutor"){
+                val intent2= Intent(this, MyclassEdit::class.java)
+                intent2.putExtra("mylid2", "${mylid.toString()}")
+                intent2.putExtra("mycname", "${mycname}")
+                intent2.putExtra("mycolor", "${tmpcolor}")
+                intent2.putExtra("mytime", "${mytime}")
+                intent2.putExtra("mymoney", "${mymoney}")
+                intent2.putExtra("mybank", "${mybank}")
+                intent2.putExtra("myaccount", "${myaccount}")
+                intent2.putExtra("myclasstime", "${classtimeforedit}")
+                intent2.putExtra("myplace", "${myplace}")
+                Log.d("가는내용","가는내용${mylid}, ${mycname}, ${tmpcolor}")
 
-
-
-
-            startActivity(intent2)
-            finish()
-            finish()
+                startActivity(intent2)
+                finish()
+                finish()
+            }
+            else if(role == "tutee"){
+                showToast("튜터만 가능한 기능입니다.")
+            }
         }
+
+        // 과외 초대
         my_class_tap_btn_invite.setOnClickListener{
-            var invIntent = Intent(this, InviteActivity::class.java)
-            var tmplid:Int=mylid.toInt()
-            invIntent.putExtra("mylid", tmplid)
-            startActivity(invIntent)
+            if(role == "tutor"){
+                var invIntent = Intent(this, InviteActivity::class.java)
+                var tmplid:Int=mylid.toInt()
+                invIntent.putExtra("mylid", tmplid)
+                startActivity(invIntent)
+            }
+            else if(role == "tutee"){
+                showToast("튜터만 가능한 기능입니다.")
+            }
         }
 
         //팝업창
@@ -206,7 +218,6 @@ class MyinfoActivity : AppCompatActivity() {
         copybutton.setOnTouchListener(object : View.OnTouchListener {
             //터치 이벤트 리스너 등록(누를때)
             override fun onTouch(v: View?, event: MotionEvent): Boolean {
-                // TODO Auto-generated method stub
                 if (event.action == MotionEvent.ACTION_DOWN) { //눌렀을 때 동작
 
                     //클립보드 사용 코드

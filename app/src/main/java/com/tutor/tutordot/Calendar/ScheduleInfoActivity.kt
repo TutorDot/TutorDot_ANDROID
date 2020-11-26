@@ -16,6 +16,7 @@ import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.moveActi
 import com.tutor.tutordot.extention.showToast
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_myinfo.*
 import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_info.*
+import kotlinx.android.synthetic.main.fragment_calender.*
 
 
 class ScheduleInfoActivity : AppCompatActivity() {
@@ -31,6 +33,12 @@ class ScheduleInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_schedule_info)
 
         val calendarLogRequestToServer = CalendarLogRequestToServer
+
+        // 튜티에겐 편집,삭제 버튼 보이지 않음
+        if(role == "tutee"){
+            schedule_info_edit.visibility = View.GONE
+            schedule_delte_btn.visibility = View.GONE
+        }
 
         //화면구현
         var color= intent.getStringExtra("color")

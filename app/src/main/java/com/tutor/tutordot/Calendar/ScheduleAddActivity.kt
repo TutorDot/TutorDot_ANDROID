@@ -19,6 +19,7 @@ import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.Calendar.Server.ScheduleAddResponse
 import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
@@ -36,6 +37,12 @@ import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
+
+    lateinit var leid2 : ArrayList<Int>
+    lateinit var lename2 : ArrayList<String>
+    var lecnt2 : Int = 0
+    var alid : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_add)
@@ -43,7 +50,7 @@ class ScheduleAddActivity : AppCompatActivity() {
         //서버 연결
         val calendarLogRequestToServer = CalendarLogRequestToServer
 
-        //상단 수업 선택 메뉴
+        //상단 수업 선택 메뉴 (토글)
         schedule_add.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val popup =
@@ -52,15 +59,53 @@ class ScheduleAddActivity : AppCompatActivity() {
                 popup.menuInflater
                     .inflate(R.menu.schedule_add_popup, popup.menu)
 
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener { item ->
-                    schedule_add_select_txt.setText(item.title)
-                    true
-                }
+                val calendarlogRequestToServer = CalendarLogRequestToServer
+                calendarlogRequestToServer.service.lectureRequest(
+                    "${myjwt}"
+                ).enqueue(object : Callback<LectureResponse> {
+                    override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                        Log.d("통신 실패", "통신 실패")
+                    }
 
-                popup.show() //showing popup menu
+                    override fun onResponse(
+                        call: Call<LectureResponse>,
+                        response: Response<LectureResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            if (response.body()!!.success) {
+                                Log.d("토글 수업 추가 정보", "성공")
+
+                                lecnt2 = response.body()!!.data.size
+                                lename2 = ArrayList()
+                                leid2 = ArrayList()
+
+                                for (i in 1..lecnt2) {
+                                    lename2.add(response.body()!!.data[i - 1].lectureName)
+                                    leid2.add(response.body()!!.data[i - 1].lectureId)
+                                    //수업 개수에 맞게 토글 항목 추가
+                                    popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                                }
+                                popup.setOnMenuItemClickListener { item ->
+                                    schedule_add_select_txt.setText(item.title)
+
+                                    for(i in 1..lecnt2) {
+                                        if(item.title.equals(lename2[i-1]))
+                                            alid = leid2[i-1]
+                                    }
+                                    Log.d("추가할 수업 lid", "${alid}")
+                                    true
+                                }
+                                popup.show() //showing popup menu
+
+                            } else {
+                                Log.d("토글 수업 추가 정보", "실패")
+                            }
+                        }
+                    }
+                })
             }
         })
+
 
         // 취소 버튼 누르면 캘린더뷰로 이동
         schedule_add_btn_cancle.setOnClickListener{
@@ -74,7 +119,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                 calendarLogRequestToServer.service.scheduleAddRequest(
                     "${myjwt}",
                     ScheduleAddRequest(
-                        lectureId = 1,
+                        lectureId = "${alid}".toInt(),
                         date = schedule_add_date_txt.text.toString(),
                         startTime = "${schedule_add_start_txt.text}",
                         endTime = "${schedule_add_end_txt.text}",
@@ -112,26 +157,6 @@ class ScheduleAddActivity : AppCompatActivity() {
                 finish()
             }
         })
-
-        //상단 수업 선택 메뉴
-//        calendar_select.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(v: View?) {
-//                val popup =
-//                    PopupMenu(context, calendar_select)
-//                //Inflating the Popup using xml file
-//                popup.menuInflater
-//                    .inflate(R.menu.popup_menu, popup.menu)
-//
-//                //registering popup with OnMenuItemClickListener
-//                popup.setOnMenuItemClickListener { item ->
-//                    tv_calendar_title.text = item.title
-//
-//                    true
-//                }
-//                popup.show() //showing popup menu
-//            }
-//        })
-
 
         // 날짜 선택
         date_picker.setOnDateChangedListener{
@@ -304,6 +329,6 @@ class ScheduleAddActivity : AppCompatActivity() {
 
         //get the next random number within range
         // Including both minimum and maximum number
-        return r.nextInt((max - min) + 1) + min;
+        return r.nextInt((max - min) + 1) + min
     }
 }
