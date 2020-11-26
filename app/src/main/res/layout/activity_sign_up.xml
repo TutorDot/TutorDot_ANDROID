@@ -5,8 +5,93 @@
     android:id="@+id/login_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Startpage.LoginActivity">
+    tools:context=".Startpage.SignUpActivity">
 
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:background="#00000000"
+        android:src="@drawable/signup_4_class_math_btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="60dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="3dp"
+        android:background="#00000000"
+        android:src="@drawable/signup_btn_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="46dp"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:text="환영합니다!"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:text="튜터닷을 이용할 사용자를 선택해주세요."
+        android:textColor="#707070"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:text="( 1 / 4 )"
+        android:textColor="#707070"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView54"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView54"
+        tools:layout_editor_absoluteX="-16dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/signup_btn_tutor"
+                android:layout_width="136dp"
+                android:layout_height="175dp"
+                android:background="@drawable/signup_btn_tutor_3" />
+
+            <ImageButton
+                android:id="@+id/signup_btn_tutee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/signup_btn_tutee_2" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/login_img_tutor"
         android:layout_width="wrap_content"
@@ -161,5 +246,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_btn_agree" />
 
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>
