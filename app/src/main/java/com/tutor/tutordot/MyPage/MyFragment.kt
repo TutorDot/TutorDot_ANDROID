@@ -256,14 +256,15 @@ class MyFragment : Fragment() {
 
                         //데이터가 없을 경우 haveData를 false로 바꿔줌
                         if(response.body()!!.data.size == 0)
-                        {haveMyData = false
+                        {
                             recyclerView_my.visibility = View.GONE
                             cl_my.visibility = View.VISIBLE
+                            haveMyData = false
                         }
                         else {
-                            haveMyData = true
-                            cl_my.visibility = View.GONE
+                            cl_my?.visibility = View.GONE
                             recyclerView_my.visibility = View.VISIBLE
+                            haveMyData = true
                         }
 //                            userinfopicture1 = response.body()!!.data[0]!!.profileUrls[0]!!.profileUrl}
 
