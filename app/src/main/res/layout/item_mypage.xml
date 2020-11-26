@@ -3,26 +3,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:background="@drawable/bg_rvquestion"
+    android:layout_marginEnd="10dp"
+    android:layout_width="211dp"
     android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/rv_mypage_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/my_btn_math_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/rv_colorcircle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/notice_color_img_yellow"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,29 +22,33 @@
 
     <TextView
         android:id="@+id/rv_class_name"
-        android:layout_width="match_parent"
+        android:layout_width="153dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
         android:background="#00000000"
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:gravity="left"
-        android:lineSpacingExtra="6dp"
-        android:paddingBottom="55dp"
-        android:text="수업명 입력 (17자까지 가능\n하다)"
-        android:textColor="#000000"
+        android:includeFontPadding="false"
+        android:lineHeight="20sp"
+        android:lineSpacingExtra="6sp"
+        android:text="수업명 입력 (17자까지 가능하다)"
+        android:textColor="#1c1c1c"
         android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rv_colorcircle"
-        app:layout_constraintTop_toTopOf="@+id/rv_mypage_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rv_grey1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
-        android:layout_marginLeft="43dp"
         android:layout_marginTop="63dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/my_img_proifle_tutee2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,11 +56,12 @@
         android:id="@+id/rv_grey2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="63dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/my_img_proifle_tutee2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rv_grey1"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
