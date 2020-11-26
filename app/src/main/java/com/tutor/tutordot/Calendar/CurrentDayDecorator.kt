@@ -3,7 +3,11 @@ package com.tutor.tutordot.Calendar
 import android.R
 import android.app.Activity
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import androidx.core.content.ContextCompat
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
@@ -20,14 +24,16 @@ class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayView
 
     override fun decorate(view: DayViewFacade) {
         view.setSelectionDrawable(drawable!!)
+        view.addSpan(StyleSpan(Typeface.BOLD))
+        view.addSpan(object: ForegroundColorSpan(Color.parseColor("#6875dd")){})
     }
 
     init {
         // You can set background for Decorator via drawable here
-//        drawable = ContextCompat.getDrawable(context!!, R.drawable.editbox_background)
+        drawable = ContextCompat.getDrawable(context!!, R.drawable.editbox_background)
 
         // 오늘 날짜 원이 들어가긴 하는데 크기 조절 필요
-        drawable = context?.resources?.getDrawable(com.tutor.tutordot.R.drawable.calender_img_today)
+//        drawable = context?.resources?.getDrawable(com.tutor.tutordot.R.drawable.calender_img_today)
 
     }
 }

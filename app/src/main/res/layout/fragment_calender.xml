@@ -6,6 +6,7 @@
     android:background="@color/colorBackground"
     tools:context="com.tutor.tutordot.Calendar.CalenderFragment">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constarintlayout"
         android:layout_width="match_parent"
@@ -13,6 +14,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -37,8 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-
-            android:layout_marginLeft="10dp"
             android:src="@drawable/class_log_math_subjectsection"
             app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_title"
             app:layout_constraintStart_toEndOf="@+id/tv_calendar_title"
