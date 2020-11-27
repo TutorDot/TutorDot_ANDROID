@@ -59,8 +59,13 @@ class SignUpActivity : AppCompatActivity() {
 
         }
         btn_next.setOnClickListener {
-            val intent = Intent(this@SignUpActivity, SignUpActivity2::class.java)
-            startActivity(intent)
+            if(!tutor && !tutee){
+                showToast("역할중 하나를 선택해주세요.")
+            }
+            else {
+                val intent = Intent(this@SignUpActivity, SignUpActivity2::class.java)
+                startActivity(intent)
+            }
         }
         btn_back.setOnClickListener {
             val intent = Intent(this@SignUpActivity, LoginFor1stActivity::class.java)
