@@ -337,108 +337,108 @@ class CalenderFragment : Fragment() {
 
                     if (item.title.equals("전체")) {
                         calAlldata()
-                        secondAlldata()
-                        if(select){
-
-                            val Year = dd.year
-                            var Month = (dd.month + 1).toString()
-                            var Day = (dd.day).toString()
-                            var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
-                            calendarlog_all_date.text = "${Day}"
-                            calendarlog_all_month.text = "${Month}" + "월"
-
-
-                            // 날짜 포맷 통일
-                            if (Month.toInt() < 10) {
-                                Month = "0$Month"
-                            }
-                            if (Day.toInt() < 10) {
-                                Day = "0$Day"
-                            }
-
-                            val shot_Day = "$Year-$Month-$Day"
-                            Log.i("shot_Day test", shot_Day + "")
-
-                            select = true   //날짜 선택 되어 있다는 것 알림
-
-                            // 서버 연결
-                            calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
-
-                            val calendarlogRequestToServer = CalendarLogRequestToServer
-                            // 서버 요청
-                            calendarlogRequestToServer.service.calendarlogRequest(
-                                "${myjwt}"
-                            ).enqueue(object : Callback<CalendarLogResponseData> {
-                                override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
-                                    Log.d("통신 실패", "${t}")
-                                }
-
-                                override fun onResponse(
-                                    call: Call<CalendarLogResponseData>,
-                                    response: Response<CalendarLogResponseData>
-                                ) {
-                                    // 통신 성공
-                                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-
-                                            Log.d("받아온 데이터 ", response.body()!!.data.toString())
-
-                                            var i: Int = 0
-                                            for (i in 0 until response.body()!!.data.size) {
-                                                Log.d("인덱스", "${i}")
-
-                                                if (shot_Day == response.body()!!.data[i].classDate) {
-                                                    Log.d("test", "동일")
-//                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
-                                                    datas.apply {
-                                                        add(
-                                                            CalendarData(
-                                                                classId = "${response.body()!!.data[i].classId}".toInt(),
-                                                                startTime = "${response.body()!!.data[i].startTime}",
-                                                                endTime = "${response.body()!!.data[i].endTime}",
-                                                                color = "${response.body()!!.data[i].color}",
-                                                                times = "${response.body()!!.data[i].times}".toInt(),
-                                                                lectureName = "${response.body()!!.data[i].lectureName}",
-                                                                hour = "${response.body()!!.data[i].hour}".toInt(),
-                                                                location = "${response.body()!!.data[i].location}",
-                                                                classDate = "${response.body()!!.data[i].classDate}"
-                                                            )
-                                                        )
-                                                    }
-                                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
-                                                    Log.i("test", "${response.body()!!.data[i].color}")
-                                                    calendarLogAdapter.notifyDataSetChanged()
-                                                } else {
-                                                    continue
-                                                }
-                                            }
-
-                                        }
-                                        if(datas.size == 0) {
-                                            cl_calendar_empty.visibility = View.VISIBLE
-                                            rv_calendarlog.visibility = View.GONE
-                                            haveCalendarData = false
-                                        }
-
-                                        else {
-                                            cl_calendar_empty.visibility = View.GONE
-                                            rv_calendarlog.visibility = View.VISIBLE
-                                            haveCalendarData = true
-                                        }
-                                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
-                                        calendarLogAdapter.notifyDataSetChanged()
-                                        rv_calendarlog.adapter = calendarLogAdapter
-
-                                    } else {
-                                        Log.d("실패", "${response.message()}")
-
-                                    }
-                                }
-                            })
-                            // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
-                            //materialCalendarView.clearSelection()
-                        }
+                        clickAlldata()
+//                        if(select){
+//                            val Year = dd.year
+//                            var Month = (dd.month + 1).toString()
+//                            var Day = (dd.day).toString()
+//                            var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
+//                            calendarlog_all_date.text = "${Day}"
+//                            calendarlog_all_month.text = "${Month}" + "월"
+//
+//
+//                            // 날짜 포맷 통일
+//                            if (Month.toInt() < 10) {
+//                                Month = "0$Month"
+//                            }
+//                            if (Day.toInt() < 10) {
+//                                Day = "0$Day"
+//                            }
+//
+//                            val shot_Day = "$Year-$Month-$Day"
+//                            Log.i("shot_Day test", shot_Day + "")
+//
+//                            select = true   //날짜 선택 되어 있다는 것 알림
+//
+//                            // 서버 연결
+//                            calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
+//
+//                            val calendarlogRequestToServer = CalendarLogRequestToServer
+//                            // 서버 요청
+//                            calendarlogRequestToServer.service.calendarlogRequest(
+//                                "${myjwt}"
+//                            ).enqueue(object : Callback<CalendarLogResponseData> {
+//                                override fun onFailure(call: Call<CalendarLogResponseData>, t: Throwable) {
+//                                    Log.d("통신 실패", "${t}")
+//                                }
+//
+//                                override fun onResponse(
+//                                    call: Call<CalendarLogResponseData>,
+//                                    response: Response<CalendarLogResponseData>
+//                                ) {
+//                                    // 통신 성공
+//                                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+//                                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+//
+//                                            Log.d("받아온 데이터 ", response.body()!!.data.toString())
+//
+//                                            var i: Int = 0
+//                                            for (i in 0 until response.body()!!.data.size) {
+//                                                Log.d("인덱스", "${i}")
+//
+//                                                if (shot_Day == response.body()!!.data[i].classDate) {
+//                                                    Log.d("test", "동일")
+////                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+//                                                    datas.apply {
+//                                                        add(
+//                                                            CalendarData(
+//                                                                classId = "${response.body()!!.data[i].classId}".toInt(),
+//                                                                startTime = "${response.body()!!.data[i].startTime}",
+//                                                                endTime = "${response.body()!!.data[i].endTime}",
+//                                                                color = "${response.body()!!.data[i].color}",
+//                                                                times = "${response.body()!!.data[i].times}".toInt(),
+//                                                                lectureName = "${response.body()!!.data[i].lectureName}",
+//                                                                hour = "${response.body()!!.data[i].hour}".toInt(),
+//                                                                location = "${response.body()!!.data[i].location}",
+//                                                                classDate = "${response.body()!!.data[i].classDate}"
+//                                                            )
+//                                                        )
+//                                                    }
+//                                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
+//                                                    Log.i("test", "${response.body()!!.data[i].color}")
+//                                                    calendarLogAdapter.notifyDataSetChanged()
+//                                                } else {
+//                                                    continue
+//                                                }
+//                                            }
+//
+//                                        }
+//                                        if(datas.size == 0) {
+//                                            cl_calendar_empty.visibility = View.VISIBLE
+//                                            rv_calendarlog.visibility = View.GONE
+//                                            haveCalendarData = false
+//                                        }
+//
+//                                        else {
+//                                            cl_calendar_empty.visibility = View.GONE
+//                                            rv_calendarlog.visibility = View.VISIBLE
+//                                            haveCalendarData = true
+//                                        }
+//                                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+//                                        calendarLogAdapter.notifyDataSetChanged()
+//                                        rv_calendarlog.adapter = calendarLogAdapter
+//
+//                                    } else {
+//                                        Log.d("실패", "${response.message()}")
+//
+//                                    }
+//                                }
+//                            })
+//                            // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
+//                            //materialCalendarView.clearSelection()
+//                        }
                     }
+                    // 특정 수업 서버 연결
                     else {
                         var lid : Int = 0
                         for(i in 1..lecnt1) {
@@ -628,103 +628,103 @@ class CalenderFragment : Fragment() {
                             //materialCalendarView.clearSelection()
                         }
 
-                        if(select){
-                            val Year = dd.year
-                            var Month = (dd.month + 1).toString()
-                            var Day = (dd.day).toString()
-                            var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
-                            calendarlog_all_date.text = "${Day}"
-                            calendarlog_all_month.text = "$Month" + "월"
-
-
-                            // 날짜 포맷 통일
-                            if (Month.toInt() < 10) {
-                                Month = "0$Month"
-                            }
-                            if (Day.toInt() < 10) {
-                                Day = "0$Day"
-                            }
-
-                            val shot_Day = "$Year-$Month-$Day"
-                            Log.i("shot_Day test", shot_Day + "")
-
-                            // 서버 연결
-                            calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
-
-                            val calendarlogRequestToServer = CalendarLogRequestToServer
-                            // 서버 요청
-                            calendarlogRequestToServer.service.calRequest(
-                                "${myjwt}", "${lid}"
-                            ).enqueue(object : Callback<CalResponse> {
-                                override fun onFailure(call: Call<CalResponse>, t: Throwable) {
-                                    Log.d("1 특정 통신 실패", "${t}")
-                                }
-
-                                override fun onResponse(
-                                    call: Call<CalResponse>,
-                                    response: Response<CalResponse>
-                                ) {
-                                    // 통신 성공
-                                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
-
-                                            Log.d("받아온 데이터 ", response.body()!!.data.toString())
-
-                                            var i: Int = 0
-                                            for (i in 0 until response.body()!!.data.size) {
-                                                Log.d("인덱스", "${i}")
-
-                                                if (shot_Day == response.body()!!.data[i].classDate) {
-                                                    Log.d("test", "동일")
-                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
-                                                    datas.apply {
-                                                        add(
-                                                            CalendarData(
-                                                                classId = "${response.body()!!.data[i].classId}".toInt(),
-                                                                startTime = "${response.body()!!.data[i].startTime}",
-                                                                endTime = "${response.body()!!.data[i].endTime}",
-                                                                color = "${response.body()!!.data[i].color}",
-                                                                times = "${response.body()!!.data[i].times}".toInt(),
-                                                                lectureName = "${response.body()!!.data[i].lectureName}",
-                                                                hour = "${response.body()!!.data[i].hour}".toInt(),
-                                                                location = "${response.body()!!.data[i].location}",
-                                                                classDate = "${response.body()!!.data[i].classDate}"
-                                                            )
-                                                        )
-                                                    }
-                                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
-                                                    Log.i("test", "${response.body()!!.data[i].color}")
-                                                    calendarLogAdapter.notifyDataSetChanged()
-                                                } else {
-                                                    continue
-                                                }
-                                            }
-
-                                        }
-                                        if(datas.size == 0) {
-                                            cl_calendar_empty.visibility = View.VISIBLE
-                                            rv_calendarlog.visibility = View.GONE
-                                            haveCalendarData = false
-                                        }
-
-                                        else {
-                                            cl_calendar_empty.visibility = View.GONE
-                                            rv_calendarlog.visibility = View.VISIBLE
-                                            haveCalendarData = true
-                                        }
-                                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
-                                        calendarLogAdapter.notifyDataSetChanged()
-                                        rv_calendarlog.adapter = calendarLogAdapter
-
-                                    } else {
-                                        Log.d("1 특정 실패", "${response.message()}")
-
-                                    }
-                                }
-                            })
-                            // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
-                            //materialCalendarView.clearSelection()
-                        }
+//                        if(select){
+//                            val Year = dd.year
+//                            var Month = (dd.month + 1).toString()
+//                            var Day = (dd.day).toString()
+//                            var datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
+//                            calendarlog_all_date.text = "${Day}"
+//                            calendarlog_all_month.text = "$Month" + "월"
+//
+//
+//                            // 날짜 포맷 통일
+//                            if (Month.toInt() < 10) {
+//                                Month = "0$Month"
+//                            }
+//                            if (Day.toInt() < 10) {
+//                                Day = "0$Day"
+//                            }
+//
+//                            val shot_Day = "$Year-$Month-$Day"
+//                            Log.i("shot_Day test", shot_Day + "")
+//
+//                            // 서버 연결
+//                            calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
+//
+//                            val calendarlogRequestToServer = CalendarLogRequestToServer
+//                            // 서버 요청
+//                            calendarlogRequestToServer.service.calRequest(
+//                                "${myjwt}", "${lid}"
+//                            ).enqueue(object : Callback<CalResponse> {
+//                                override fun onFailure(call: Call<CalResponse>, t: Throwable) {
+//                                    Log.d("1 특정 통신 실패", "${t}")
+//                                }
+//
+//                                override fun onResponse(
+//                                    call: Call<CalResponse>,
+//                                    response: Response<CalResponse>
+//                                ) {
+//                                    // 통신 성공
+//                                    if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+//                                        if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+//
+//                                            Log.d("받아온 데이터 ", response.body()!!.data.toString())
+//
+//                                            var i: Int = 0
+//                                            for (i in 0 until response.body()!!.data.size) {
+//                                                Log.d("인덱스", "${i}")
+//
+//                                                if (shot_Day == response.body()!!.data[i].classDate) {
+//                                                    Log.d("test", "동일")
+//                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+//                                                    datas.apply {
+//                                                        add(
+//                                                            CalendarData(
+//                                                                classId = "${response.body()!!.data[i].classId}".toInt(),
+//                                                                startTime = "${response.body()!!.data[i].startTime}",
+//                                                                endTime = "${response.body()!!.data[i].endTime}",
+//                                                                color = "${response.body()!!.data[i].color}",
+//                                                                times = "${response.body()!!.data[i].times}".toInt(),
+//                                                                lectureName = "${response.body()!!.data[i].lectureName}",
+//                                                                hour = "${response.body()!!.data[i].hour}".toInt(),
+//                                                                location = "${response.body()!!.data[i].location}",
+//                                                                classDate = "${response.body()!!.data[i].classDate}"
+//                                                            )
+//                                                        )
+//                                                    }
+//                                                    Log.i("test", "${response.body()!!.data[i].lectureName}")
+//                                                    Log.i("test", "${response.body()!!.data[i].color}")
+//                                                    calendarLogAdapter.notifyDataSetChanged()
+//                                                } else {
+//                                                    continue
+//                                                }
+//                                            }
+//
+//                                        }
+//                                        if(datas.size == 0) {
+//                                            cl_calendar_empty.visibility = View.VISIBLE
+//                                            rv_calendarlog.visibility = View.GONE
+//                                            haveCalendarData = false
+//                                        }
+//
+//                                        else {
+//                                            cl_calendar_empty.visibility = View.GONE
+//                                            rv_calendarlog.visibility = View.VISIBLE
+//                                            haveCalendarData = true
+//                                        }
+//                                        calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
+//                                        calendarLogAdapter.notifyDataSetChanged()
+//                                        rv_calendarlog.adapter = calendarLogAdapter
+//
+//                                    } else {
+//                                        Log.d("1 특정 실패", "${response.message()}")
+//
+//                                    }
+//                                }
+//                            })
+//                            // 여기 있으면 그 날짜 클릭하고 바로 회색 표시가 사라짐
+//                            //materialCalendarView.clearSelection()
+//                        }
 
                     }
                     true
@@ -740,10 +740,10 @@ class CalenderFragment : Fragment() {
             startActivity(intent)
         }
 
-        Log.d("여기출력","해라1")
+        Log.d("처음시작","전체출력")
         calAlldata()
-        Log.d("여기출력","해라2")
-        secondAlldata()
+        Log.d("처음시작","클릭출력")
+        clickAlldata()
 
     }
 
@@ -752,13 +752,14 @@ class CalenderFragment : Fragment() {
         // 서버 연결
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
-        Log.d("여기출력","해라3")
+        Log.d("여기출력","해라")
 
 
         //val calendarlogRequestToServer = CalendarLogRequestToServer
         val mydate=LocalDate.now()
         val formatter = DateTimeFormatter.ISO_DATE
         val formatted = mydate.format(formatter)
+        var redday:Array<String> = arrayOf()
 
         val calendarlogRequestToServer = CalendarLogRequestToServer
 
@@ -778,12 +779,19 @@ class CalenderFragment : Fragment() {
                 if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                     if (response.body()!!.success) {  // 참고 코드에서 없는 부분
 
-                        // 데이터 전체 한번에 받아와서 날짜 같으면 그 날짜 데이터 추가
+                        // 데이터 전체 한번에 받아와서 날짜 같으면 그 날짜 데이터 추가(오늘날짜)
                         var i: Int = 0
+                        var c: Int = 0
                         for (i in 0 until response.body()!!.data.size) {
+                            // 점 찍을 날짜 배열에 추가
+                            if (response.body()!!.data[i].color == "purple"){
+//                                redday[c] = response.body()!!.data[i].classDate
+//                                c += 1
+//                                Log.d("보라날", redday[c])
+                            }
 
                             if (formatted.toString() == response.body()!!.data[i].classDate) {
-                                Log.d("calAlldata", "동일")
+                                Log.d("calandertest", "동일")
 //                                Log.d("test", "${response.body()!!.data[i].classDate}")
                                 datas.apply {
                                     add(
@@ -830,10 +838,10 @@ class CalenderFragment : Fragment() {
                 }
             }
         })
-        Log.d("여기출력","해라4")
+        Log.d("여기출력","해라2")
     }
 
-    private fun secondAlldata(){
+    private fun clickAlldata(){
         // 캘린더 날짜 클릭 변경
         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val Year = date.year
