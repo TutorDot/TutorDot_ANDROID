@@ -84,6 +84,11 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.google.firebase:firebase-core:18.0.0+'
 
+    //이미지 서버에 올리기
+    compile 'com.amazonaws:aws-android-sdk-core:2.2.+'
+    compile 'com.amazonaws:aws-android-sdk-s3:2.2.+'
+    compile 'com.amazonaws:aws-android-sdk-ddb:2.2.+'
+
     //클리어 에딧텍스트
     implementation 'com.google.android.material:material:1.1.0'
 }
