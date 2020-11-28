@@ -33,7 +33,7 @@ import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.main.fragment_calender.*
-import kotlinx.android.synthetic.main.item_calendarlog_all.*
+import kotlinx.android.synthetic.main.item_calendarlog.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,8 +42,7 @@ import java.time.Month
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.Executors
-import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_date as calendarlog_all_date1
-import kotlinx.android.synthetic.main.item_calendarlog_all.calendarlog_all_month as calendarlog_all_month1
+
 
 class CalenderFragment : Fragment() {
     // 일정 추가 서버 연결
