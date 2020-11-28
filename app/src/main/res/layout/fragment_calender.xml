@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    android:id="@+id/mainconstarintlayout"
     tools:context="com.tutor.tutordot.Calendar.CalenderFragment">
 
 
@@ -106,12 +107,12 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/datelinear"
-        tools:layout_editor_absoluteX="0dp"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/mainconstarintlayout"
+        app:layout_constraintTop_toBottomOf="@+id/datelinear">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_calendarlog"
@@ -119,15 +120,18 @@
             android:layout_height="wrap_content"
             android:background="#f8f8f8"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_calendarlog" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_calendar_empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tv1"
@@ -189,7 +193,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
