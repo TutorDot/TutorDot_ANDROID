@@ -5,11 +5,13 @@ import android.graphics.Color
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
+import com.prolificinteractive.materialcalendarview.spans.DotSpan
 
 
 /**
  * Decorate several days with a dot
  */
+// 1차
 //class EventDecorator(
 //    color: Int,
 //    dates: Collection<CalendarDay>,
@@ -36,38 +38,44 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 //}
 
 
-//class EventDecorator(private val color: Int, dates: Collection<CalendarDay>) :
-//    DayViewDecorator {
-//    private val dates: HashSet<CalendarDay>
+// 2차
+class EventDecorator(private val color: Int, dates: Collection<CalendarDay>) :
+    DayViewDecorator {
+    private val dates: HashSet<CalendarDay>
+
+    // 캘린더의 모든 날짜를 띄울 때 decoration이 필요한지 판단하여 출력
+    override fun shouldDecorate(day: CalendarDay): Boolean {
+        return dates.contains(day)
+    }
+
+    override fun decorate(view: DayViewFacade) {
+//        // 이거 하려면 EventDecorator 파라미터 var vs 줘야함
+//        if(vs==1){
+//            view.addSpan(DotSpan(8F, color))
+//        }
+//        if(vs==2){
+//            view.addSpan(DotSpan(4F, color))
+//        }
+        view.addSpan(DotSpan(8F, color))
+    }
+
+    init {
+        this.dates = HashSet(dates)
+    }
+}
+
+// 시도3(현재적용 -> 여러 점 찍힘)
+//class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayViewDecorator{
 //
-//    // 캘린더의 모든 날짜를 띄울 때 decoration이 필요한지 판단하여 출력
-//    override fun shouldDecorate(day: CalendarDay): Boolean {
-//        return dates.contains(day)
-//    }
-//
-//    override fun decorate(view: DayViewFacade) {
-//        view.addSpan(DotSpan(8F, color))
-//    }
+//    private lateinit var colors: IntArray
+//    private var dates: HashSet<CalendarDay>
 //
 //    init {
 //        this.dates = HashSet(dates)
 //    }
-//}
 
 
-class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayViewDecorator{
-
-        private lateinit var colors: IntArray
-        private var dates: HashSet<CalendarDay>
-
-        init {
-        this.dates = HashSet(dates)
-
-
-    }
-
-
-
+// 연습용
 //    fun EventDecorator(filteredEvents: List<MainActivity.Filter>) {
 //        val oneEventDays: MutableCollection<CalendarDay> = ArrayList()
 //        val oneColors = IntArray(1)
@@ -138,21 +146,22 @@ class EventDecorator (context: Context,  dates : Collection<CalendarDay>) : DayV
 //        return dates.add(day)
 //    }
 
-    override fun shouldDecorate(day: CalendarDay): Boolean {
-        return dates.contains(day)
-    }
-
-    override fun decorate(view: DayViewFacade){
-//        colors = IntArray(stringProductColor.size)
-//        for(i in stringProductColor.indices){
-//            colors[i] = Color.parseColor(stringProductColor[i])
-//        }
-        val eventcolors = intArrayOf(
-            //R.color.yellow, R.color.green, R.color.red, R.color.blue, R.color.purple
-             Color.parseColor("#ffe966"), Color.parseColor("#86d5e3"), Color.parseColor("#b88de3")
-        )
-
-        view.addSpan(CustomMultipleDotSpan(8f, eventcolors))
-    }
-
-}
+// 시도3(현재적용) -> 여러 점 찍힘
+//    override fun shouldDecorate(day: CalendarDay): Boolean {
+//        return dates.contains(day)
+//    }
+//
+//    override fun decorate(view: DayViewFacade){
+////        colors = IntArray(stringProductColor.size)
+////        for(i in stringProductColor.indices){
+////            colors[i] = Color.parseColor(stringProductColor[i])
+////        }
+//        val eventcolors = intArrayOf(
+//            //R.color.yellow, R.color.green, R.color.red, R.color.blue, R.color.purple
+//            Color.parseColor("#ffe966"), Color.parseColor("#86d5e3"), Color.parseColor("#b88de3")
+//        )
+//
+//        view.addSpan(CustomMultipleDotSpan(8f, eventcolors))
+//    }
+//
+//}
