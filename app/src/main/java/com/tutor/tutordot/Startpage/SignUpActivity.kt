@@ -70,6 +70,7 @@ class SignUpActivity : AppCompatActivity() {
         btn_back.setOnClickListener {
             val intent = Intent(this@SignUpActivity, LoginFor1stActivity::class.java)
             startActivity(intent)
+            finish()
         }
         /*
         signup_btn_agree.setOnClickListener{

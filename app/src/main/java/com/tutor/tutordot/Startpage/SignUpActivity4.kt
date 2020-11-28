@@ -7,6 +7,8 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestSignup
 import com.tutor.tutordot.StartServer.SignupRequestToServer
 import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_sign_up4.*
 
@@ -19,18 +21,17 @@ class SignUpActivity4 : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up4)
 
         btn_back4.setOnClickListener {
-            val intent = Intent(this@SignUpActivity4, SignUpActivity4::class.java)
+            val intent = Intent(this@SignUpActivity4, SignUpActivity3::class.java)
             startActivity(intent)
+            finish()
         }
         btn_signup.setOnClickListener{
             if (et_pw.text.isNullOrBlank()||et_pw2.text.isNullOrBlank()){
-                //Toast.makeText(this, "빈칸을 모두 입력하세요.", Toast.LENGTH_SHORT).show()
                 showToast("모두 입력해주세요.")
             }else if(et_pw.text.toString() != et_pw2.text.toString()){
-                //Toast.makeText(this, "비밀번호와 비밀번호확인이 같은지 확인하세요.", Toast.LENGTH_SHORT).show()
                 showToast("비밀번호를 확인해주세요.")
             }else {
-
+                progressON(this)
                 signupRequestToServer.service.requestSignup(
                     RequestSignup(
                         userName = join_name,
@@ -39,7 +40,9 @@ class SignUpActivity4 : AppCompatActivity() {
                         role = role
                     )//정보를 전달
                 ).customEnqueue(
-                    onError = { showToast("중복된 정보입니다.") },
+                    onError = {
+                        progressOFF()
+                        showToast("중복된 정보입니다.") },
                     onSuccess = {
                         if (it.success) {
                             showToast("회원가입 성공")
@@ -50,8 +53,11 @@ class SignUpActivity4 : AppCompatActivity() {
                             intent.putExtra("password", et_pw.text.toString())
                             startActivity(intent)
                             finish()
+                            progressOFF()
                         } else {
+                            progressOFF()
                             showToast("회원가입 실패")
+
                         }
                     }
                 )
