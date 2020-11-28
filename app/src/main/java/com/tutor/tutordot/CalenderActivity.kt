@@ -47,6 +47,10 @@ class CalenderActivity : AppCompatActivity() {
         bottomNavigationView2.itemIconTintList = null
 
         bottomNavigationView2.setOnNavigationItemSelectedListener { item ->
+            Log.d("여긴가", "${item.itemId}")
+
+            Log.d("여긴가22", "${main_viewPager.currentItem}")
+            
             when(item.itemId){
                 R.id.menu_calender -> main_viewPager.currentItem = 0
 
@@ -57,6 +61,7 @@ class CalenderActivity : AppCompatActivity() {
                 R.id.menu_my -> main_viewPager.currentItem = 3
             }
             true
+
         }
 
         val bottomNavigation =

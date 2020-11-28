@@ -13,10 +13,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.fragment.app.FragmentPagerAdapter
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.LoadingDialog
+import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
@@ -77,8 +79,10 @@ class MyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         datas= mutableListOf<MypageData>()
 
-        var now=bottomNavigationView2!!.main_viewPager.currentItem.toInt()
-        
+        //var now=bottomNavigationView2!!.main_viewPager.CurrentPosition
+        //var now1=view.CurrentPosition
+        var now=MainPagerAdapter(childFragmentManager).getItemPosition(view)
+
         
         
         Log.d("지금은", "$now")

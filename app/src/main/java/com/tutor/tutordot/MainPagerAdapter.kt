@@ -13,6 +13,7 @@ import java.util.*
 
 class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {
+
         return when(position){
             0 -> CalenderFragment()
             1 -> ClassLogFragment()
@@ -25,7 +26,11 @@ class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
 
     // 뷰페이저 프래그먼트 갱신
     override fun getItemPosition(`object`: Any): Int {
-        Log.d("여기까지", "된다어댑터")
-        return PagerAdapter.POSITION_NONE
+        
+        //Log.d("여기까지", "된다어댑터")
+        return PagerAdapter.POSITION_UNCHANGED
     }
+
+
+
 }
