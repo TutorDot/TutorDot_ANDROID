@@ -106,7 +106,7 @@
         android:textColor="#1c1c1c"
         android:textSize="14sp"
         android:textStyle="normal"
-        app:layout_constraintEnd_toStartOf="@+id/tv_signup"
+        app:layout_constraintEnd_toStartOf="@+id/tv_signup2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"

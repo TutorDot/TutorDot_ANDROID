@@ -26,6 +26,7 @@ class SignUpActivity2 : AppCompatActivity() {
         btn_back2.setOnClickListener {
             val intent = Intent(this@SignUpActivity2, SignUpActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
