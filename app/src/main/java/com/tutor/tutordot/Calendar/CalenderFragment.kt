@@ -13,6 +13,8 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
@@ -24,6 +26,7 @@ import com.tutor.tutordot.Calendar.Server.*
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogResponse
+import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
@@ -41,7 +44,6 @@ import java.util.*
 import java.util.concurrent.Executors
 import kotlinx.android.synthetic.main.fragment_calender.calendarlog_all_date as calendarlog_all_date1
 import kotlinx.android.synthetic.main.item_calendarlog_all.calendarlog_all_month as calendarlog_all_month1
-
 
 class CalenderFragment : Fragment() {
     // 일정 추가 서버 연결
@@ -154,6 +156,7 @@ class CalenderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
         materialCalendarView.state().edit()
             .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -185,7 +188,7 @@ class CalenderFragment : Fragment() {
 
         // 점찍을 날짜
         val result =
-            arrayOf("2020-08-21","2020-09-01","2020-09-03","2020-09-04","2020-09-05")
+            arrayOf("2020-11-01","2020-11-11","2020-11-23","2020-11-27","2020-11-28")
 //        for (i in 0..4) {
 //            val eventCount = 3
 //            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
@@ -200,8 +203,7 @@ class CalenderFragment : Fragment() {
         }
 
         //수업정보 받아옴 (토글 위해)
-        val popup =
-            PopupMenu(context, calendar_select)
+        val popup = PopupMenu(context, calendar_select)
         //Inflating the Popup using xml file
         popup.menuInflater
             .inflate(R.menu.popup_menu, popup.menu)
@@ -220,7 +222,7 @@ class CalenderFragment : Fragment() {
             ) {
                 if(response.isSuccessful){
                     if(response.body()!!.success){
-                        Log.d("토글 수업 정보", "성공")
+                        Log.d("토글 수업 정보1", "성공")
 
                         lecnt1 = response.body()!!.data.size
                         lename1 = ArrayList()
@@ -234,7 +236,7 @@ class CalenderFragment : Fragment() {
                         }
 
                     }else{
-                        Log.d("토글 수업 정보", "실패")
+                        Log.d("토글 수업 정보1", "실패")
                     }
                 }
             }
@@ -301,7 +303,7 @@ class CalenderFragment : Fragment() {
 
                                                 if (shot_Day == response.body()!!.data[i].classDate) {
                                                     Log.d("test", "동일")
-                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+//                                                    Log.d("test", "${response.body()!!.data[i].classDate}")
                                                     datas.apply {
                                                         add(
                                                             CalendarData(
@@ -652,8 +654,9 @@ class CalenderFragment : Fragment() {
             startActivity(intent)
         }
 
+        Log.d("여기출력","해라1")
         calAlldata()
-
+        Log.d("여기출력","해라2")
         secondAlldata()
 
     }
@@ -663,6 +666,8 @@ class CalenderFragment : Fragment() {
         // 서버 연결
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
+        Log.d("여기출력","해라3")
+
 
         //val calendarlogRequestToServer = CalendarLogRequestToServer
         val mydate=LocalDate.now()
@@ -692,8 +697,8 @@ class CalenderFragment : Fragment() {
                         for (i in 0 until response.body()!!.data.size) {
 
                             if (formatted.toString() == response.body()!!.data[i].classDate) {
-                                Log.d("test", "동일")
-                                Log.d("test", "${response.body()!!.data[i].classDate}")
+                                Log.d("calAlldata", "동일")
+//                                Log.d("test", "${response.body()!!.data[i].classDate}")
                                 datas.apply {
                                     add(
                                         CalendarData(
@@ -739,6 +744,7 @@ class CalenderFragment : Fragment() {
                 }
             }
         })
+        Log.d("여기출력","해라4")
     }
 
     private fun secondAlldata(){
@@ -794,7 +800,7 @@ class CalenderFragment : Fragment() {
 
                                 if (shot_Day == response.body()!!.data[i].classDate) {
                                     Log.d("test", "동일")
-                                    Log.d("test", "${response.body()!!.data[i].classDate}")
+//                                    Log.d("test", "${response.body()!!.data[i].classDate}")
                                     datas.apply {
                                         add(
                                             CalendarData(
@@ -811,7 +817,7 @@ class CalenderFragment : Fragment() {
                                         )
                                     }
                                     Log.i("test", "${response.body()!!.data[i].lectureName}")
-                                    Log.i("test", "${response.body()!!.data[i].color}")
+                                    Log.i("SecondAlldata", "${response.body()!!.data[i].color}")
                                     calendarLogAdapter.notifyDataSetChanged()
                                 } else {
                                     continue
@@ -844,5 +850,4 @@ class CalenderFragment : Fragment() {
             //materialCalendarView.clearSelection()
         }
     }
-
 }

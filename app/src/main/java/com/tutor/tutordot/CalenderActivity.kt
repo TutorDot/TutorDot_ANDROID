@@ -40,6 +40,7 @@ class CalenderActivity : AppCompatActivity() {
 
             override fun onPageSelected(position: Int) {
                 bottomNavigationView2.menu.getItem(position).isChecked = true
+                refresh()
             }
         })
 
@@ -103,6 +104,17 @@ class CalenderActivity : AppCompatActivity() {
         //getToken()
 
 
+    }
+
+    // 다시 이 액티비티로 돌아올 때 뷰페이저 내부의 프래그먼트 새로고침
+//    override fun onResume() {
+//        super.onResume()
+//        Log.d("여기까지", "된다")
+//        refresh()
+//    }
+
+    private fun refresh(){
+        main_viewPager.adapter?.notifyDataSetChanged()
     }
 
     /*
