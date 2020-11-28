@@ -2,6 +2,7 @@ package com.tutor.tutordot.Calendar
 
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Color
 import android.graphics.Insets.add
 import android.os.AsyncTask
 import android.os.Bundle
@@ -48,9 +49,6 @@ class CalenderFragment : Fragment() {
     // 일정 추가 서버 연결
     val requestToServer = RequestToServer
 
-    //캘린더 일정 목록 서버 연결
-    //val calendarlogRequestToServer = CalendarLogRequestToServer
-
     // 캘린더 일정 더미
     val datas: MutableList<CalendarLogData> = mutableListOf<CalendarLogData>()
     lateinit var calendarLogAdapter: CalendarLogAdapter
@@ -74,8 +72,10 @@ class CalenderFragment : Fragment() {
     var select : Boolean = false
     lateinit var dd : CalendarDay
 
-    inner class ApiSimulator internal constructor(var Time_Result: Array<String>) :
+
+    inner class ApiSimulator internal constructor(var Time_Result: Array<String>, var vs: String) :
         AsyncTask<Void, Void, List<CalendarDay>>() {
+        @Suppress("UNREACHABLE_CODE")
         override fun doInBackground(vararg voids: Void): List<CalendarDay> {
             try {
                 Thread.sleep(500)
@@ -84,8 +84,12 @@ class CalenderFragment : Fragment() {
             }
             val calendar = Calendar.getInstance()
             val dates: ArrayList<CalendarDay> = ArrayList()
+            val dates2: ArrayList<CalendarDay> = ArrayList()
+            val dates3: ArrayList<CalendarDay> = ArrayList()
+            val dates4: ArrayList<CalendarDay> = ArrayList()
+            val dates5: ArrayList<CalendarDay> = ArrayList()
 
-            /*특정날짜 달력에 점표시해주는곳*/
+            /*특정날짜 달력에 점표시해주는곳 -> 점 색깔별로 날짜 저장*/
             /*월은 0이 1월 년,일은 그대로*/
             //string 문자열인 Time_Result 을 받아와서 -를 기준으로 자르고 string을 int 로 변환
             for (i in Time_Result.indices) {
@@ -94,35 +98,103 @@ class CalenderFragment : Fragment() {
                 val year = time[0].toInt()
                 val month = time[1].toInt()
                 val dayy = time[2].toInt()
-                //dates.add(day)
-                //calendar[year, month - 1] = dayy
 
                 // 날짜 마지막 안 찍히고 오늘 날짜에도 찍히는 것 해결한 부분
                 calendar[year, month - 1] = dayy
                 val day = CalendarDay.from(calendar)
-                dates.add(day)
+                when (vs) {
+                    "red" -> {
+                        dates.add(day)
+                    }
+                    "yellow" -> {
+                        dates2.add(day)
+                    }
+                    "green" -> {
+                        dates3.add(day)
+                    }
+                    "blue" -> {
+                        dates4.add(day)
+                    }
+                    "purple" -> {
+                        dates5.add(day)
+                    }
+                    //                else {
+                    //                    dates.add(day)
+                    //                }
+                }
             }
-            return dates
+            Log.d("리턴값1", "${dates}")
+            Log.d("리턴값2", "${dates2}")
+            Log.d("리턴값3", "${dates3}")
+            Log.d("리턴값4", "${dates4}")
+            Log.d("리턴값5", "${dates5}")
+
+            return when(vs){
+                "red" -> dates
+                "yellow" -> dates2
+                "green" -> dates3
+                "blue" -> dates4
+                "purple" -> dates5
+                else -> dates
+            }
         }
 
         override fun onPostExecute(calendarDays: List<CalendarDay>) {
             super.onPostExecute(calendarDays)
-//                if (isFinishing()) {
-//                    return
-//                }
 
-//                materialCalendarView.addDecorator(
-//                    EventDecorator(
-//                        // 원하는 색으로 점 찍기
-//                        Color.parseColor("#f28d8d"), calendarDays,
-//                        this@CalenderFragment
-//                    )
-//                )
+            // 시도1,2(this@CalenderFramgent 빼고 실행) -> 점 1개 찍힘
+            if (vs == "red"){
+                materialCalendarView.addDecorator(
+                    EventDecorator(
+                        // 빨간점 찍기
+                        Color.parseColor("#f28d8d"), calendarDays
+//                    this@CalenderFragment
+                    )
+                )
+            }
+            if (vs == "yellow"){
+                materialCalendarView.addDecorator(
+                    EventDecorator(
+                        // 노란점 찍기
+                        Color.parseColor("#ffe966"), calendarDays
+//                    this@CalenderFragment
+                    )
+                )
+            }
+            if (vs == "green"){
+                materialCalendarView.addDecorator(
+                    EventDecorator(
+                        // 초록점 찍기
+                        Color.parseColor("#90d672"), calendarDays
+//                    this@CalenderFragment
+                    )
+                )
+            }
+            if (vs == "blue"){
+                materialCalendarView.addDecorator(
+                    EventDecorator(
+                        // 파란점 찍기
+                        Color.parseColor("#86d5e3"), calendarDays
+//                    this@CalenderFragment
+                    )
+                )
+            }
+            if (vs == "purple"){
+                materialCalendarView.addDecorator(
+                    EventDecorator(
+                        // 보라점 찍기
+                        Color.parseColor("#b88de3"), calendarDays
+//                    this@CalenderFragment
+                    )
+                )
+            }
 
-            materialCalendarView.addDecorator(
-                context?.let { EventDecorator(it, calendarDays) }
-            )
+//            // 시도3(현재적용) -> 점 여러개 찍힘
+//            materialCalendarView.addDecorator(
+//                context?.let { EventDecorator(it, calendarDays) }
+//            )
 
+            // 연습용
 //            val decoratorArray =
 //                arrayOfNulls<EventDecorator>(3) //Max 3 dots
 //
@@ -135,8 +207,8 @@ class CalenderFragment : Fragment() {
 //            for ((currDay, currDayCount) in dayInstanceMap.entrySet()) {
 //                for (i in 0 until currDayCount) decoratorArray[i].addDate(currDay)
 //            }
-
-            // 일정 개수에 맞게 점 찍기
+//
+//            // 일정 개수에 맞게 점 찍기
 //            materialCalendarView.addDecorator(EventDecorator(oneEventDays, oneColors))
 //            materialCalendarView.addDecorator(OneDayDecorator(twoEventDays, twoColors))
 //            materialCalendarView.addDecorator(OneDayDecorator(threeEventDays, threeColors))
@@ -159,7 +231,7 @@ class CalenderFragment : Fragment() {
         materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
         materialCalendarView.state().edit()
             .setFirstDayOfWeek(Calendar.SUNDAY)
-            .setMinimumDate(CalendarDay.from(2018, 0, 1)) // 달력의 시작
+            .setMinimumDate(CalendarDay.from(2019, 0, 1)) // 달력의 시작
             .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
@@ -186,14 +258,29 @@ class CalenderFragment : Fragment() {
 
 
         // 점찍을 날짜
-        val result =
-            arrayOf("2020-11-01","2020-11-11","2020-11-23","2020-11-27","2020-11-28")
+        val redresult =
+            arrayOf("2020-11-01","2020-11-11","2020-11-20","2020-11-27","2020-11-28")
 //        for (i in 0..4) {
 //            val eventCount = 3
 //            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
 //        }
+        val yellowresult =
+            arrayOf("2020-11-03","2020-11-04")
 
-        ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor())
+        val greenresult =
+            arrayOf("2020-11-03","2020-11-04")
+
+        val blueresult =
+            arrayOf("2020-11-13","2020-11-14")
+
+        val purpleresult =
+            arrayOf("2020-11-23","2020-11-24")
+
+        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
 
 
         // 튜티에겐 플로팅 버튼 보이지 않음
