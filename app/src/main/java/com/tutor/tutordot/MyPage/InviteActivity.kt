@@ -18,6 +18,8 @@ import com.tutor.tutordot.MyPage.Server.InviteResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import kotlinx.android.synthetic.main.activity_invite.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +32,7 @@ class InviteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_invite)
+        progressON(this)
 
         var mylid:Int = intent.getIntExtra("mylid", 1)
         Log.d("lid는", "${mylid}")
@@ -40,7 +43,7 @@ class InviteActivity : AppCompatActivity() {
 
         schedule_class_math_btn_back.setOnClickListener{
             val intentback= Intent(this, MyinfoActivity::class.java)
-            startActivity(intentback)
+            //startActivity(intentback)
             finish()
         }
 
@@ -69,9 +72,11 @@ class InviteActivity : AppCompatActivity() {
                         copytext = response.body()!!.data!!.code
                         codeInvite = copytext
                         copytextshow.text = copytext
+                        progressOFF()
 
                     } else {
                         Log.d("초대코드 받아오기 실패", "${response.body()}")
+                        progressOFF()
                     }
                 }
             }
