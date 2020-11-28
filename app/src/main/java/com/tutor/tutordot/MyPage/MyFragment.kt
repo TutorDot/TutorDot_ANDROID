@@ -1,6 +1,7 @@
 package com.tutor.tutordot.MyPage
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
@@ -26,11 +28,19 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.*
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_calender.*
+import kotlinx.android.synthetic.main.activity_calender.view.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.item_mypage.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,6 +60,7 @@ class MyFragment : Fragment() {
     //서버 연결
     val mypageRequestToServer = MyPageRequestToServer
     val userRequestToServer = UserRequestToServer
+    private lateinit var dialog2: Dialog;
 
 
 
@@ -66,11 +77,25 @@ class MyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         datas= mutableListOf<MypageData>()
 
+        var now=bottomNavigationView2!!.main_viewPager.currentItem.toInt()
+        
+        
+        
+        Log.d("지금은", "$now")
+        Log.d("지금은?!", "으으으으으ㅡㅇ으")
+
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
+        //progressON(view.context)
+        //showLoadingDialog()
+        dialog2 = LoadingDialog(view!!.context)
+        CoroutineScope(Main).launch {
+            dialog2.show()
+        }
         loadDatas()
 
         one_sentense.setText(newIntro)
+        //progressOFF()
 
         //myinfo 서버연결(user)
 
@@ -111,6 +136,7 @@ class MyFragment : Fragment() {
                             one_sentense.setText(userinfointro)
                         }
                         role = userinforole
+
 
                     }else{
                         Log.d("실패", "myinfo실패")
@@ -294,6 +320,7 @@ class MyFragment : Fragment() {
                         mypageAdapter.datas = datas
                         mypageAdapter.notifyDataSetChanged()
                             }
+                        dialog2.dismiss()
                     }else{
                         Log.d("실패", "classlist실패"+response.headers())
 
@@ -308,7 +335,17 @@ class MyFragment : Fragment() {
         })
 
     }
+    private fun showLoadingDialog() {
+        val dialog = LoadingDialog(view!!.context)
+        CoroutineScope(Main).launch {
+            dialog.show()
+            delay(3000)
+            dialog.dismiss()
+            //button.text = "Finished"
+        }
 
+
+    }
 
 
 }

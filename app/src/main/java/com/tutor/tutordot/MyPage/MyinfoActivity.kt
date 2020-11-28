@@ -24,7 +24,11 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
+import kotlinx.android.synthetic.main.activity_calender.*
+import kotlinx.android.synthetic.main.activity_calender.view.*
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.activity_myinfo.*
 import kotlinx.android.synthetic.main.activity_onesentense.*
@@ -35,9 +39,11 @@ import retrofit2.Response
 
 
 class MyinfoActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myinfo)
+
 
         Glide.with(this@MyinfoActivity).load(userinfopicture1).into(my_class_tap_img_profile)
         profile_name.setText(userinfoname)
@@ -54,6 +60,7 @@ class MyinfoActivity : AppCompatActivity() {
         var myplace:String=""
 
         var classtimeforedit: String=""
+        progressON(this)
 
 
 
@@ -67,6 +74,7 @@ class MyinfoActivity : AppCompatActivity() {
         ).enqueue(object: Callback<ClassInfoResponse>{
             override fun onFailure(call: Call<ClassInfoResponse>, t: Throwable) {
                 Log.d("통신 실패", "${t}")
+                progressOFF()
             }
 
             override fun onResponse(
@@ -118,11 +126,13 @@ class MyinfoActivity : AppCompatActivity() {
                         myclasstime=tmpclasstime
                         location_info.setText(response.body()!!.data!!.orgLocation)
                         myplace=response.body()!!.data!!.orgLocation
+                        progressOFF()
 
 
                     }
                     else{
                         Log.d("실패", "실패")
+                        progressOFF()
                     }
                 }
             }
