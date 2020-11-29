@@ -2,10 +2,12 @@ package com.tutor.tutordot.MyPage.MypageRecylerView
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.media.Image
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,6 +21,7 @@ var haveMyData: Boolean = true
 class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
     val rv_colorcircle= itemView.findViewById<ImageView>(R.id.rv_colorcircle)
     val rv_class_name= itemView.findViewById<TextView>(R.id.rv_class_name)
+    val rv_boundary = itemView.findViewById<ConstraintLayout>(R.id.rv_constraint)
     val rv_grey1= itemView.findViewById<ImageView>(R.id.rv_grey1)
     val rv_grey2= itemView.findViewById<ImageView>(R.id.rv_grey2)
 
@@ -46,7 +49,8 @@ class MypageViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
 
 
 
-        rv_class_name.setOnClickListener(object :View.OnClickListener {
+        //rv_class_name.setOnClickListener(object :View.OnClickListener {
+        rv_boundary.setOnClickListener(object :View.OnClickListener {
             override fun onClick(mypageview: View?) {
                 //val pos= adapterPosition
                 //Log.d("pos","${pos}")

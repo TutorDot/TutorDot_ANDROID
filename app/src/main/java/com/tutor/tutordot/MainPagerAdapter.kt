@@ -1,6 +1,7 @@
 package com.tutor.tutordot
 
 import android.util.Log
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -12,6 +13,7 @@ import com.tutor.tutordot.Notice.NoticeFragment
 import java.util.*
 
 class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
     override fun getItem(position: Int): Fragment {
 
         return when(position){
@@ -26,11 +28,12 @@ class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
 
     // 뷰페이저 프래그먼트 갱신
     override fun getItemPosition(`object`: Any): Int {
-        
-        //Log.d("여기까지", "된다어댑터")
+
         return PagerAdapter.POSITION_UNCHANGED
     }
 
-
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+       //super.destroyItem(container, position, `object`)
+    }
 
 }

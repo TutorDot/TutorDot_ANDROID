@@ -14,11 +14,11 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Lifecycle
 import com.bumptech.glide.Glide
+import com.tutor.tutordot.*
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
-import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.LoadingDialog
-import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageData
 import com.tutor.tutordot.MyPage.MypageRecylerView.haveMyData
@@ -26,7 +26,6 @@ import com.tutor.tutordot.MyPage.Server.ClassListResponse
 import com.tutor.tutordot.MyPage.Server.MyInfoResponse
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.UserRequestToServer
-import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.*
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.extention.customEnqueue
@@ -54,6 +53,7 @@ var userinfointro: String = ""
 var userinfopicture: String? = ""
 var userinfopicture1 : String? = ""
 var myjwt2: String= myjwt.toString()
+var load=true;
 
 class MyFragment : Fragment() {
 
@@ -63,6 +63,83 @@ class MyFragment : Fragment() {
     val mypageRequestToServer = MyPageRequestToServer
     val userRequestToServer = UserRequestToServer
     private lateinit var dialog2: Dialog;
+
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if(menuVisible){
+            //Log.d("왔나3","$nowposition")
+            //Toast.makeText(context!!, "hi", Toast.LENGTH_SHORT).show()
+           // if (load){
+            dialog2 = LoadingDialog(view!!.context)
+            CoroutineScope(Main).launch {
+                dialog2.show()
+            }
+
+
+            //}
+
+
+            datas= mutableListOf<MypageData>()
+            loadDatas()
+            userRequestToServer.service.myInfoRequest(
+                "${myjwt}"
+            ).enqueue(object: Callback<MyInfoResponse>{
+
+                override fun onFailure(call: Call<MyInfoResponse>, t: Throwable) {
+                    Log.d("통신 실패", "myinfo통신 실패${t}")
+                }
+                override fun onResponse(
+                    call: Call<MyInfoResponse>,
+                    response: Response<MyInfoResponse>
+                ) {
+                    if (response.isSuccessful){
+                        if(response.body()!!.success) {
+                            Log.d("성공", "myinfo성공")
+                            Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                            userinfoname = response.body()!!.data!!.userName
+                            userinforole = response.body()!!.data!!.role
+                            if(role=="tutor"){
+                                if(!response. body()!!.data!!.intro.isNullOrBlank()){
+                                    userinfointro = response. body()!!.data!!.intro
+                                }
+                            }
+
+                            userinfopicture = response. body()!!.data!!.profileUrl
+
+                            textView.setText(userinfoname)
+                            textView2.setText(userinforole)
+                            one_sentense.setText(userinfointro)
+                            Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+
+                            if(datas.size > 0  && userinfointro.length > 0)
+                            {
+                                one_sentense.setText(userinfointro)
+                            }
+                            role = userinforole
+
+
+                        }else{
+                            Log.d("실패", "myinfo실패")
+                        }
+                    }
+                }
+            })
+
+            one_sentense.setText(newIntro)
+            //데이터 있을때 / 없을때
+            if(haveMyData == true) {
+                cl_my.visibility =View.GONE
+                recyclerView_my.visibility = View.VISIBLE
+            }
+            else {
+                recyclerView_my.visibility = View.GONE
+                cl_my.visibility =View.VISIBLE
+            }
+
+
+        }
+    }
+
 
 
 
@@ -77,90 +154,31 @@ class MyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        datas= mutableListOf<MypageData>()
 
-        //var now=bottomNavigationView2!!.main_viewPager.CurrentPosition
-        //var now1=view.CurrentPosition
-        var now=MainPagerAdapter(childFragmentManager).getItemPosition(view)
 
-        
-        
-        Log.d("지금은", "$now")
-        Log.d("지금은?!", "으으으으으ㅡㅇ으")
 
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
-        //progressON(view.context)
-        //showLoadingDialog()
-        dialog2 = LoadingDialog(view!!.context)
-        CoroutineScope(Main).launch {
-            dialog2.show()
-        }
-        loadDatas()
 
-        one_sentense.setText(newIntro)
-        //progressOFF()
+
+
 
         //myinfo 서버연결(user)
 
 
-
-        userRequestToServer.service.myInfoRequest(
-            "${myjwt}"
-        ).enqueue(object: Callback<MyInfoResponse>{
-
-            override fun onFailure(call: Call<MyInfoResponse>, t: Throwable) {
-                Log.d("통신 실패", "myinfo통신 실패${t}")
-            }
-            override fun onResponse(
-                call: Call<MyInfoResponse>,
-                response: Response<MyInfoResponse>
-            ) {
-                if (response.isSuccessful){
-                    if(response.body()!!.success) {
-                        Log.d("성공", "myinfo성공")
-                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        userinfoname = response.body()!!.data!!.userName
-                        userinforole = response.body()!!.data!!.role
-                        if(role=="tutor"){
-                            if(!response. body()!!.data!!.intro.isNullOrBlank()){
-                            userinfointro = response. body()!!.data!!.intro
-                            }
-                        }
-
-                        userinfopicture = response. body()!!.data!!.profileUrl
-
-                        textView.setText(userinfoname)
-                        textView2.setText(userinforole)
-                        one_sentense.setText(userinfointro)
-                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
-
-                        if(datas.size > 0  && userinfointro.length > 0)
-                        {
-                            one_sentense.setText(userinfointro)
-                        }
-                        role = userinforole
-
-
-                    }else{
-                        Log.d("실패", "myinfo실패")
-                    }
-                }
-            }
-        })
-
-
-
-
         //화면이동
         imageButton2.setOnClickListener{
-            if(role == "tutor"){
-                val intent = Intent(activity, AddclassActivity::class.java)
-                startActivity(intent)
+            if(looking==true){
+                Toast.makeText(activity, "둘러보기 계정은 수업추가가 불가능합니다.", Toast.LENGTH_SHORT).show()
             }
-            else if(role == "tutee"){
-                val intent = Intent(activity, InviteForTuteeActivity::class.java)
-                startActivity(intent)
+            else {
+                if (role == "tutor") {
+                    val intent = Intent(activity, AddclassActivity::class.java)
+                    startActivity(intent)
+                } else if (role == "tutee") {
+                    val intent = Intent(activity, InviteForTuteeActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
@@ -237,15 +255,7 @@ class MyFragment : Fragment() {
             dialog.show()
         }
 
-        //데이터 있을때 / 없을때
-        if(haveMyData == true) {
-            cl_my.visibility =View.GONE
-            recyclerView_my.visibility = View.VISIBLE
-        }
-        else {
-            recyclerView_my.visibility = View.GONE
-            cl_my.visibility =View.VISIBLE
-        }
+
     }
 
     private fun loadDatas(){

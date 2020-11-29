@@ -20,6 +20,7 @@ import com.google.firebase.iid.InstanceIdResult
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_calender.*
 
+var nowposition:Int=0
 
 class CalenderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +28,7 @@ class CalenderActivity : AppCompatActivity() {
         setContentView(R.layout.activity_calender)
 
         main_viewPager.adapter = MainPagerAdapter(supportFragmentManager)
-        main_viewPager.offscreenPageLimit = 2
+        main_viewPager.offscreenPageLimit = 3
 
         main_viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {}
@@ -39,18 +40,19 @@ class CalenderActivity : AppCompatActivity() {
             ) {}
 
             override fun onPageSelected(position: Int) {
+           // override fun setPrimaryItem(position: Int) {
                 bottomNavigationView2.menu.getItem(position).isChecked = true
+                nowposition=position
+                Log.d("여긴가333", "${nowposition}")
                 refresh()
             }
+
         })
 
         bottomNavigationView2.itemIconTintList = null
 
         bottomNavigationView2.setOnNavigationItemSelectedListener { item ->
-            Log.d("여긴가", "${item.itemId}")
 
-            Log.d("여긴가22", "${main_viewPager.currentItem}")
-            
             when(item.itemId){
                 R.id.menu_calender -> main_viewPager.currentItem = 0
 
@@ -97,7 +99,7 @@ class CalenderActivity : AppCompatActivity() {
             // Log and toast
 
             Log.d("나의 토큰은: ", "$token")
-            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
         })
 
         FirebaseMessaging.getInstance().isAutoInitEnabled = true

@@ -1,5 +1,6 @@
 package com.tutor.tutordot.ClassLog
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -16,11 +17,15 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.*
+import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,13 +53,76 @@ class ClassLogFragment : Fragment() {
 
     lateinit var leid : ArrayList<Int>
     lateinit var lename : ArrayList<String>
+    lateinit var popup : PopupMenu
     var lecnt : Int = 0
+
+    private lateinit var dialog3: Dialog
 
     //특정일지 조회 id
     var lid : Int = 0
 
     //토글 사용 확인
     var toggle_check = false
+
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (menuVisible){
+            dialog3 = LoadingDialog(view!!.context)
+            CoroutineScope(Dispatchers.Main).launch {
+                dialog3.show()
+            }
+
+            loaddateDatas(month) //데이터를 어댑터에 전달
+           popup =
+                PopupMenu(context, btn_class_choice)
+            //Inflating the Popup using xml file
+            popup.menuInflater
+                .inflate(R.menu.popup_menu, popup.menu)
+
+            //수업정보 받아옴 (토글 위해)
+            logRequestToServer.service.lectureRequest(
+                "${myjwt}"
+            ).enqueue(object :Callback<LectureResponse>{
+                override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                    Log.d("통신 실패", "통신 실패")
+                }
+
+                override fun onResponse(
+                    call: Call<LectureResponse>,
+                    response: Response<LectureResponse>
+                ) {
+                    if(response.isSuccessful){
+                        if(response.body()!!.success){
+                            Log.d("토글 수업 정보", "성공")
+                            Log.d("토글 수업 정보", response.body()!!.data.toString())
+
+                            lecnt = response.body()!!.data.size
+                            Log.d("수업 개수", "{$lecnt}")
+
+                            lename = ArrayList()
+                            leid = ArrayList()
+                            for(i in 1..lecnt) {
+                                lename.add(response.body()!!.data[i - 1].lectureName)
+                                leid.add(response.body()!!.data[i-1].lectureId)
+                                //수업 개수에 맞게 토글 항목 추가
+                                popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                            }
+                            Log.d("토글 수업 이름", "{$lename}")
+                            Log.d("토글 수업 번호", "{$leid}")
+
+                        }else{
+                            Log.d("토글 수업 정보", "실패")
+                        }
+                    }
+                }
+            })
+
+
+
+
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,21 +134,6 @@ class ClassLogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        /*되는 코드 (Volley, 헤더는 못함)
-        VolleyService.testVolley(view.context) { testSuccess ->
-            if (testSuccess) {
-                Log.d( "통신 성공!","성공")
-            } else {
-                Log.d( "통신 실패!","실패")
-            }
-        }
-*/
-        //logdateAdapter = LogdateAdapter(view.context)
-        //rv_datelog.adapter = logdateAdapter //리사이클러뷰의 어댑터를 지정해줌
-
-        loaddateDatas(month) //데이터를 어댑터에 전달
 
         //프로그레스바 서버에서 받아온 날짜 데이터
         var progressDate : String
@@ -126,51 +179,6 @@ class ClassLogFragment : Fragment() {
                 }
             }
         })
-
-        val popup =
-            PopupMenu(context, btn_class_choice)
-        //Inflating the Popup using xml file
-        popup.menuInflater
-            .inflate(R.menu.popup_menu, popup.menu)
-
-        //수업정보 받아옴 (토글 위해)
-        logRequestToServer.service.lectureRequest(
-            "${myjwt}"
-        ).enqueue(object :Callback<LectureResponse>{
-            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
-                Log.d("통신 실패", "통신 실패")
-            }
-
-            override fun onResponse(
-                call: Call<LectureResponse>,
-                response: Response<LectureResponse>
-            ) {
-                if(response.isSuccessful){
-                    if(response.body()!!.success){
-                        Log.d("토글 수업 정보", "성공")
-                        Log.d("토글 수업 정보", response.body()!!.data.toString())
-
-                        lecnt = response.body()!!.data.size
-                        Log.d("수업 개수", "{$lecnt}")
-
-                        lename = ArrayList()
-                        leid = ArrayList()
-                        for(i in 1..lecnt) {
-                            lename.add(response.body()!!.data[i - 1].lectureName)
-                            leid.add(response.body()!!.data[i-1].lectureId)
-                            //수업 개수에 맞게 토글 항목 추가
-                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
-                        }
-                        Log.d("토글 수업 이름", "{$lename}")
-                        Log.d("토글 수업 번호", "{$leid}")
-
-                    }else{
-                        Log.d("토글 수업 정보", "실패")
-                    }
-                }
-            }
-        })
-
 
         //상단 수업 선택 메뉴
         ll_log_choice.setOnClickListener(object : View.OnClickListener {
@@ -337,6 +345,9 @@ class ClassLogFragment : Fragment() {
                 popup.show() //showing popup menu
             }
         })
+
+
+
     }
 
     //서버 연결
@@ -352,6 +363,7 @@ class ClassLogFragment : Fragment() {
                     haveData = false
                     ll_rv.visibility = View.GONE
                     cl_empty.visibility = View.VISIBLE
+                    dialog3.dismiss()
                 }
 
                 override fun onResponse(
@@ -429,12 +441,14 @@ class ClassLogFragment : Fragment() {
                             rv_datelog.adapter = logdateAdapter
                             logdateAdapter.datas = datedatas
                             logdateAdapter.notifyDataSetChanged()
+                            dialog3.dismiss()
                             // rv_datelog.adapter = logdateAdapter
                         } else {
                             Log.d("실패", "${response.body()}")
                             haveData = false
                             ll_rv.visibility = View.GONE
                             cl_empty.visibility = View.VISIBLE
+                            dialog3.dismiss()
                         }
                     }
                 }
@@ -526,11 +540,13 @@ class ClassLogFragment : Fragment() {
                             logdateAdapter.datas = datedatas
                             logdateAdapter.notifyDataSetChanged()
                             // rv_datelog.adapter = logdateAdapter
+                            dialog3.dismiss()
                         } else {
                             Log.d("실패", "${response.body()}")
                             haveData = false
                             ll_rv.visibility = View.GONE
                             cl_empty.visibility = View.VISIBLE
+                            dialog3.dismiss()
                         }
                     }
                 }

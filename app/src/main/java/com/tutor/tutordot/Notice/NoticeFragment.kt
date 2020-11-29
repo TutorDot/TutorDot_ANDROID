@@ -42,31 +42,10 @@ class NoticeFragment : Fragment() {
     lateinit var leid : ArrayList<Int>
     lateinit var lename : ArrayList<String>
     var lecnt : Int = 0
+    lateinit var popup:PopupMenu
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notice, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        /*
-        noticeAdapter =
-            NoticeAdapter(view.context)
-        rv_notice_date.adapter = noticeAdapter //리사이클러뷰의 어댑터를 지정해줌
-        loadndateDatas() //데이터를 어댑터에 전달
-         */
-
-    //수업정보 받아옴 (토글 위해) (2차 릴리즈에서는 btn_notice_filter1 로 변경)
-        val popup =
-            PopupMenu(context, btn_notice_choice)
-        //Inflating the Popup using xml file
-        popup.menuInflater
-            .inflate(R.menu.popup_menu, popup.menu)
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
 
         noticeRequestToServer.service.lectureRequest(
             "${myjwt}"
@@ -100,6 +79,36 @@ class NoticeFragment : Fragment() {
                 }
             }
         })
+        alldata()
+
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_notice, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        /*
+        noticeAdapter =
+            NoticeAdapter(view.context)
+        rv_notice_date.adapter = noticeAdapter //리사이클러뷰의 어댑터를 지정해줌
+        loadndateDatas() //데이터를 어댑터에 전달
+         */
+
+    //수업정보 받아옴 (토글 위해) (2차 릴리즈에서는 btn_notice_filter1 로 변경)
+        popup =
+            PopupMenu(context, btn_notice_choice)
+        //Inflating the Popup using xml file
+        popup.menuInflater
+            .inflate(R.menu.popup_menu, popup.menu)
+
 
         //상단 수업 선택 메뉴 (2차 릴리즈에서는 btn_notice_filter1 로 변경)
         btn_notice_choice.setOnClickListener(object : View.OnClickListener {
@@ -114,9 +123,9 @@ class NoticeFragment : Fragment() {
                 //registering popup with OnMenuItemClickListener (2차 릴리즈에서는 tv_notice_title 로 변경
                 popup.setOnMenuItemClickListener { item ->
                     tv_notice_choice.text = item.title
-                        if (item.title.equals("전체")) {
-                            alldata()
-                        }
+                    if (item.title.equals("전체")) {
+                        alldata()
+                    }
                     else {
                         var lid : Int = 0
                         for(i in 1..lecnt) {
@@ -219,82 +228,7 @@ class NoticeFragment : Fragment() {
         }
 
         alldata()
-/*
-        //서버통신
-        noticeRequestToServer.service.noticeRequest(
-            "${myjwt}"
-        ).enqueue(object: Callback<NoticeResponse> {
-            override fun onFailure(call: Call<NoticeResponse>, t: Throwable) {
-                Log.d("통신 실패", "notice통신 실패${t}")
-            }
 
-            override fun onResponse(
-                call: Call<NoticeResponse>,
-                response: Response<NoticeResponse>
-            ) {
-                if(response.isSuccessful){
-                    if(response.body()!!.success){
-                        Log.d("성공", "notice성공")
-                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
-                        if(response.body()!!.data.size==0){
-                            haveNdata =false
-                            ll_rv_notice.visibility = View.GONE
-                            cl_empty_notice.visibility = View.VISIBLE
-                        }
-                        var i: Int = 0
-                        for (i in 0 until response.body()!!.data.size) {
-                            var cd = response.body()!!.data[i].noticeDate.split("-")
-                            var yy = cd[0]
-                            var mm = cd[1]
-                            var dd = cd[2]
-
-                            n_datas.apply {
-                                add(
-                                    NoticeData(
-                                        month = mm.toInt(),
-                                        day = dd.toInt(),
-                                        color_class = response.body()!!.data[i].color,
-                                        notice_type = response.body()!!.data[i].noticeType,
-                                        notice_msg = response.body()!!.data[i].lectureName,
-                                        first2 = false
-
-                                    )
-                                )
-                            }
-                        }
-
-                        n_datas= n_datas.sortedWith(compareBy<NoticeData>{it.month}.thenBy{it.day}).toMutableList()
-                        n_datas = n_datas.distinct().toMutableList()
-                        var j=0
-                        if(n_datas.size>0) {
-                            var mymon = "${n_datas[0].month}"+"${n_datas[0].day}"
-                            var tmp:String=""
-                            n_datas[0].first2=true
-                            for (i in 1 until n_datas.size) {
-                                tmp="${n_datas[i].month}"+"${n_datas[i].day}"
-                                if (tmp != mymon ){
-                                    n_datas[i].first2=true
-                                    mymon = tmp
-
-                                }
-                            }
-                        }
-
-                        Log.d("뭐지", "${n_datas}")
-
-
-                        noticeAdapter= NoticeAdapter(view.context, n_datas)
-                        rv_notice_date.adapter=noticeAdapter
-                        noticeAdapter.n_datas=n_datas
-                        noticeAdapter.notifyDataSetChanged()
-
-                    }else{Log.d("실패", "myinfo실패")}
-                }
-
-            }
-
-
-        })*/
     }
 
     private fun alldata(){
