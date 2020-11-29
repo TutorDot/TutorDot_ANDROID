@@ -61,7 +61,7 @@
             android:id="@+id/schedule_edit_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="24dp"
             android:src="@drawable/notice_color_img_yellow">
         </ImageView>
 
@@ -110,8 +110,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqa_han_sans_regular"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="3sp"
                 android:text="수업 날짜"
+                android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
@@ -156,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="3sp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:text="수정"
@@ -188,8 +189,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="3sp"
                 android:text="수업 시작"
+                android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
@@ -225,7 +227,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
                 <TextView
                     android:id="@+id/fix5"
@@ -233,7 +236,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="3sp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:text="수정"
@@ -242,7 +245,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/schedule_edit_start_txt"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -261,8 +265,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="3sp"
                 android:text="수업 종료"
+                android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
@@ -297,7 +302,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
                 <TextView
                     android:id="@+id/fix6"
@@ -305,7 +311,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:lineSpacingExtra="6sp"
+                    android:lineSpacingExtra="3sp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:text="수정"
@@ -314,7 +320,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/schedule_edit_end_txt"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -333,8 +340,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
-                android:lineSpacingExtra="6sp"
+                android:lineSpacingExtra="3sp"
                 android:text="위치"
+                android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"

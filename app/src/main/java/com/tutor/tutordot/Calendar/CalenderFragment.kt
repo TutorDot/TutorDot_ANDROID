@@ -33,6 +33,7 @@ import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
+import kotlinx.android.synthetic.main.activity_calender.*
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.item_calendarlog.*
 import retrofit2.Call
@@ -255,40 +256,45 @@ class CalenderFragment : Fragment() {
         Log.i("today date", "${calendarlog_all_date.text}")
         Log.i("today month", "${calendarlog_all_month.text}")
 
+        // 일요일 이벤트
+        materialCalendarView.addDecorators(sundayDecorator)
+
         // 오늘날짜 이벤트
         materialCalendarView.addDecorators(
             oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
         )
 
-        // 일요일 이벤트
-        materialCalendarView.addDecorators(sundayDecorator)
+//        fun refresh(){
+//            main_viewPager.adapter.notifyDataSetChanged()
+//        }
 
         Log.d("처음시작","전체출력")
         calAlldata()
+//        refresh()
         Log.d("처음시작","클릭출력")
         clickAlldata()
 
 
-        // 점찍을 날짜
-        val redresult = redday2
-        Log.d("redresult2", "${redresult}")
-//            listOf("2020-11-01","2020-11-11","2020-11-20","2020-11-27","2020-11-28")
-//        for (i in 0..4) {
-//            val eventCount = 3
-//            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
-//        }
-        val yellowresult = yellowday2
-        Log.d("yellowresult2", "${yellowresult}")
-
-        val greenresult = greenday2
-        val blueresult = blueday2
-        val purpleresult = listOf("2020-11-23","2020-11-24")
-
-        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
-        ApiSimulator(yellowday2, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
-        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
-        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
-        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+//        // 점찍을 날짜
+//        val redresult = redday2
+//        Log.d("redresult2", "${redresult}")
+////            listOf("2020-11-01","2020-11-11","2020-11-20","2020-11-27","2020-11-28")
+////        for (i in 0..4) {
+////            val eventCount = 3
+////            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
+////        }
+//        val yellowresult = yellowday2
+//        Log.d("yellowresult2", "${yellowresult}")
+//
+//        val greenresult = greenday2
+//        val blueresult = blueday2
+//        val purpleresult = listOf("2020-11-23","2020-11-24")
+//
+//        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+//        ApiSimulator(yellowday2, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+//        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+//        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+//        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
 
 
         // 튜티에겐 플로팅 버튼 보이지 않음
@@ -345,6 +351,7 @@ class CalenderFragment : Fragment() {
 
                     if (item.title.equals("전체")) {
                         calAlldata()
+//                        refresh()
                         clickAlldata()
                     }
                     // 특정 수업 서버 연결
@@ -365,6 +372,11 @@ class CalenderFragment : Fragment() {
                         val mydate=LocalDate.now()
                         val formatter = DateTimeFormatter.ISO_DATE
                         val formatted = mydate.format(formatter)
+                        var redday:MutableList<String> = mutableListOf()
+                        var yellowday:MutableList<String> = mutableListOf()
+                        var greenday:MutableList<String> = mutableListOf()
+                        var blueday:MutableList<String> = mutableListOf()
+                        var purpleday:MutableList<String> = mutableListOf()
 
                         val calendarlogRequestToServer = CalendarLogRequestToServer
 
@@ -383,12 +395,79 @@ class CalenderFragment : Fragment() {
                                 // 통신 성공
                                 if (response.isSuccessful) {   // statusCode가 200-300 사이일 때, 응답 body 이용 가능
                                     if (response.body()!!.success) {  // 참고 코드에서 없는 부분
+                                        Log.d("확인1", "ok2")
 
                                         // 데이터 전체 한번에 받아와서 날짜 같으면 그 날짜 데이터 추가
                                         var i: Int = 0
+                                        var c: Int = 0
                                         for (i in 0 until response.body()!!.data.size) {
+                                            Log.d("확인1", "ok")
+                                            // 점 찍을 날짜 배열에 추가
+                                            when(response.body()!!.data[i].color) {
+                                                "red" -> {
+                                                    var c: Int = 0
+                                                    redday.add(
+                                                        c,
+                                                        response.body()!!.data[i].classDate
+                                                    )//
+                                                    Log.d("빨강날", "${redday}")
+                                                    c += 1
 
-                                            if (formatted.toString() == response.body()!!.data[i].classDate) {
+                                                    redday2 = redday.distinct()
+                                                    Log.d("진짜빨강날", "${redday2}")
+                                                }
+                                                "yellow" -> {
+                                                    var c: Int = 0
+                                                    yellowday.add(
+                                                        c,
+                                                        response.body()!!.data[i].classDate
+                                                    )//
+                                                    Log.d("노랑날222", "${yellowday}")
+                                                    c += 1
+
+                                                    yellowday2 = yellowday.distinct()
+                                                    Log.d("진짜노랑날", "${yellowday2}")
+                                                }
+                                                "green" -> {
+                                                    var c: Int = 0
+                                                    greenday.add(
+                                                        c,
+                                                        response.body()!!.data[i].classDate
+                                                    )//
+                                                    Log.d("초록날", "${greenday}")
+                                                    c += 1
+
+                                                    greenday2 = greenday.distinct()
+                                                    Log.d("진짜초록날", "${greenday2}")
+                                                }
+                                                "blue" -> {
+                                                    var c: Int = 0
+                                                    blueday.add(
+                                                        c,
+                                                        response.body()!!.data[i].classDate
+                                                    )//
+                                                    Log.d("파랑날", "${blueday}")
+                                                    c += 1
+
+                                                    blueday2 = blueday.distinct()
+                                                    Log.d("진짜파랑날", "${blueday2}")
+                                                }
+                                                "purple" -> {
+                                                    var c: Int = 0
+                                                    purpleday.add(
+                                                        c,
+                                                        response.body()!!.data[i].classDate
+                                                    )//
+                                                    Log.d("보라날", "${purpleday}")
+                                                    c += 1
+
+                                                    purpleday2 = purpleday.distinct()
+                                                    Log.d("진짜보라날", "${purpleday2}")
+                                                }
+                                            }
+
+
+                                        if (formatted.toString() == response.body()!!.data[i].classDate) {
                                                 Log.d("test", "동일")
                                                 Log.d("test", "${response.body()!!.data[i].classDate}")
                                                 datas.apply {
@@ -413,6 +492,7 @@ class CalenderFragment : Fragment() {
                                                 continue
                                             }
                                         }
+//                                        refresh()
 
                                     }
                                     if(datas.size == 0) {
@@ -543,17 +623,37 @@ class CalenderFragment : Fragment() {
             }
         })
 
+        // 점찍을 날짜
+        val redresult = redday2
+        Log.d("redresult2", "${redresult}")
+//            listOf("2020-11-01","2020-11-11","2020-11-20","2020-11-27","2020-11-28")
+//        for (i in 0..4) {
+//            val eventCount = 3
+//            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
+//        }
+        val yellowresult = yellowday2
+        Log.d("yellowresult2", "${yellowresult}")
+
+        val greenresult = greenday2
+        val blueresult = blueday2
+        val purpleresult = listOf("2020-11-23","2020-11-24")
+
+
+        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+
+
+//        refresh()
+
 
         // 플로팅 버튼 누르면 일정 추가
         floatingActionButton.setOnClickListener {
             val intent = Intent(activity, ScheduleAddActivity::class.java)
             startActivity(intent)
         }
-
-//        Log.d("처음시작","전체출력")
-//        calAlldata()
-//        Log.d("처음시작","클릭출력")
-//        clickAlldata()
 
     }
 
@@ -612,7 +712,7 @@ class CalenderFragment : Fragment() {
                                     c += 1
 
                                     yellowday2 = yellowday.distinct()
-                                    Log.d("진짜보라날", "${yellowday2}")
+                                    Log.d("진짜노랑날", "${yellowday2}")
                                 }
                                 "green" -> {
                                     var c: Int = 0
@@ -642,14 +742,6 @@ class CalenderFragment : Fragment() {
                                     Log.d("진짜보라날", "${purpleday2}")
                                 }
                             }
-//                            if (response.body()!!.data[i].color == "purple"){
-//                                redday.add(c,response.body()!!.data[i].classDate)//
-//                                Log.d("보라날", "${redday}")
-//                                c += 1
-//                            }
-//                            var redday2 = redday.distinct()
-//                            Log.d("진짜보라날", "${redday2}")
-
 
                             // 데이터 전체 한번에 받아와서 날짜 같으면 그 날짜 데이터 추가(오늘날짜)
                             if (formatted.toString() == response.body()!!.data[i].classDate) {
