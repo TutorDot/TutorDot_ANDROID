@@ -77,7 +77,7 @@ class AddclassActivity : AppCompatActivity() {
         }
 
         //저장버튼
-        //tndjqdlfma, 사클단 돈이랑 시간->NN
+        //수업이름, 색상, 돈이랑 시간->NN
         btn_save_my_add.setOnClickListener{
             if (editTextname.text.toString().length>17) {
                 showToast("수업명의 최대 글자수는 17글자입니다")
@@ -141,7 +141,9 @@ class AddclassActivity : AppCompatActivity() {
 
             var finishintent= Intent(this, CalenderActivity::class.java)
             startActivity(finishintent)
-            finish()}
+            finish()
+            finish()
+            }
         }
 
         //컬러팔레트
