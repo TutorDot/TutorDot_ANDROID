@@ -68,7 +68,7 @@ class MyFragment : Fragment() {
         super.setMenuVisibility(menuVisible)
         if(menuVisible){
             //Log.d("왔나3","$nowposition")
-            Toast.makeText(context!!, "hi", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context!!, "hi", Toast.LENGTH_SHORT).show()
            // if (load){
             dialog2 = LoadingDialog(view!!.context)
             CoroutineScope(Main).launch {
