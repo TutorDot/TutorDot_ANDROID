@@ -158,7 +158,7 @@ class LoginFor1stActivity : AppCompatActivity() {
                         looking = true
 
 
-                        showToast("둘러보기를 시작합니다.")
+                        showToast("튜티계정으로 둘러보기를 시작합니다.")
                         val intent = Intent(this@LoginFor1stActivity, CalenderActivity::class.java)
 
                         startActivity(intent)

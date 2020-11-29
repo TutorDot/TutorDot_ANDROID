@@ -15,6 +15,11 @@ class SignupActivity5 : AppCompatActivity() {
         btn_goLogin.setOnClickListener {
             val intent = Intent(this@SignupActivity5, LoginFor1stActivity::class.java)
             startActivity(intent)
+            finish()
+            finish()
+            finish()
+            finish()
+            finish()
         }
     }
 }

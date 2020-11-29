@@ -168,13 +168,17 @@ class MyFragment : Fragment() {
 
         //화면이동
         imageButton2.setOnClickListener{
-            if(role == "tutor"){
-                val intent = Intent(activity, AddclassActivity::class.java)
-                startActivity(intent)
+            if(looking==true){
+                Toast.makeText(activity, "둘러보기 계정은 수업추가가 불가능합니다.", Toast.LENGTH_SHORT).show()
             }
-            else if(role == "tutee"){
-                val intent = Intent(activity, InviteForTuteeActivity::class.java)
-                startActivity(intent)
+            else {
+                if (role == "tutor") {
+                    val intent = Intent(activity, AddclassActivity::class.java)
+                    startActivity(intent)
+                } else if (role == "tutee") {
+                    val intent = Intent(activity, InviteForTuteeActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
