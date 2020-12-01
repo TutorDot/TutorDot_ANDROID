@@ -31,6 +31,7 @@ import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestToServer
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
+import com.tutor.tutordot.Startpage.looking
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.main.activity_calender.*
@@ -249,28 +250,35 @@ class CalenderFragment : Fragment() {
 //        val testcaledar = view.findViewById(R.id.tv_calendar) as TextView
 //        testcaledar.bringToFront()
 
-        // 오늘날짜 보여주기
-        calendarlog_all_date.text = curDate.get(Calendar.DATE).toString()
-        calendarlog_all_month.text = (curDate.get(Calendar.MONTH) + 1).toString() + "월"
 
-        Log.i("today date", "${calendarlog_all_date.text}")
-        Log.i("today month", "${calendarlog_all_month.text}")
+        // 오늘 날짜 보여주기 (둘러보기 날짜 고정)
+        if (looking == true){
+            materialCalendarView.setCurrentDate(CalendarDay.from(2020,11,16))
+            calendarlog_all_date.text = "7"
+            calendarlog_all_month.text = "12월"
+        }
+        else{
+            calendarlog_all_date.text = curDate.get(Calendar.DATE).toString()
+            calendarlog_all_month.text = (curDate.get(Calendar.MONTH) + 1).toString() + "월"
+        }
 
         // 일요일 이벤트
         materialCalendarView.addDecorators(sundayDecorator)
 
         // 오늘날짜 이벤트
-        materialCalendarView.addDecorators(
-            oneDayDecorator, CurrentDayDecorator(activity, CalendarDay.today())
-        )
-
-//        fun refresh(){
-//            main_viewPager.adapter.notifyDataSetChanged()
-//        }
+        if (looking == true){
+            materialCalendarView.addDecorators(
+                CurrentDayDecorator(activity, CalendarDay.from(2020,11,16))
+            )
+        }
+        else{
+            materialCalendarView.addDecorators(
+                CurrentDayDecorator(activity, CalendarDay.today())
+            )
+        }
 
         Log.d("처음시작","전체출력")
         calAlldata()
-//        refresh()
         Log.d("처음시작","클릭출력")
         clickAlldata()
 
@@ -664,15 +672,23 @@ class CalenderFragment : Fragment() {
         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
         //val calendarlogRequestToServer = CalendarLogRequestToServer
-        val mydate=LocalDate.now()
-        val formatter = DateTimeFormatter.ISO_DATE
-        val formatted = mydate.format(formatter)
+        lateinit var formatted : String
+
+        if(looking == true){
+            formatted = "2020-12-09"
+        }
+        else{
+            val mydate=LocalDate.now()
+            val formatter = DateTimeFormatter.ISO_DATE
+            formatted = mydate.format(formatter)
+        }
+
         var redday:MutableList<String> = mutableListOf()
         var yellowday:MutableList<String> = mutableListOf()
         var greenday:MutableList<String> = mutableListOf()
         var blueday:MutableList<String> = mutableListOf()
         var purpleday:MutableList<String> = mutableListOf()
-//
+
         val calendarlogRequestToServer = CalendarLogRequestToServer
 
         // 서버 요청
