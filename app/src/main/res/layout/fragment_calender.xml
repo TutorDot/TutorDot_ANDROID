@@ -55,6 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constarintlayout"
+        android:fontFamily="@font/spoqa_han_sans_regular"
         app:mcv_selectionColor="#dddddd"
         app:mcv_showOtherDates="other_months"
         app:mcv_tileSize="40dp"
