@@ -22,6 +22,10 @@ interface CalendarLogResponseInterface{
     @DELETE("/calander/class/{cid}")
     fun scheduleDeleteRequest(@Header("jwt") header: String, @Path("cid") path:String): Call<ScheduleAddResponse>
 
+    // 일정 편집용
+    @GET("/lecture/name")
+    fun callectureRequest(@Header("jwt") header: String) : Call<CalLectureResponse>
+
     @GET("/lecture/name")
     fun lectureRequest(@Header("jwt") header: String) : Call<LectureResponse>
 

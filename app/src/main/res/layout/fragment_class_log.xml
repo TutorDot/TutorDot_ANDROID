@@ -7,16 +7,16 @@
     android:orientation="vertical"
     tools:context="com.tutor.tutordot.ClassLog.ClassLogFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_log_choice"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/realparent"
-        app:layout_constraintStart_toStartOf="@+id/realparent"
-        app:layout_constraintTop_toTopOf="@+id/realparent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_class_choice"
@@ -38,10 +38,12 @@
             android:id="@+id/btn_class_choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/class_log_math_subjectsection" />
-
-    </LinearLayout>
+            android:layout_marginStart="10dp"
+            android:src="@drawable/class_log_math_subjectsection"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_class_choice"
+            app:layout_constraintStart_toEndOf="@+id/tv_class_choice"
+            app:layout_constraintTop_toTopOf="@+id/tv_class_choice" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -175,8 +177,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible">
-
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_datelog"

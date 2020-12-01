@@ -14,12 +14,12 @@ import android.widget.PopupMenu
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.tutor.tutordot.Calendar.Server.CalLectureResponse
 import retrofit2.Callback
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.Calendar.Server.ScheduleAddRequest
 import com.tutor.tutordot.Calendar.Server.ScheduleAddResponse
 import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
@@ -40,8 +40,10 @@ class ScheduleAddActivity : AppCompatActivity() {
 
     lateinit var leid2 : ArrayList<Int>
     lateinit var lename2 : ArrayList<String>
+    lateinit var lecolor2 : ArrayList<String>
     var lecnt2 : Int = 0
     var alid : Int = 0
+    var acolor : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,16 +62,16 @@ class ScheduleAddActivity : AppCompatActivity() {
                     .inflate(R.menu.schedule_add_popup, popup.menu)
 
                 val calendarlogRequestToServer = CalendarLogRequestToServer
-                calendarlogRequestToServer.service.lectureRequest(
+                calendarlogRequestToServer.service.callectureRequest(
                     "${myjwt}"
-                ).enqueue(object : Callback<LectureResponse> {
-                    override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                ).enqueue(object : Callback<CalLectureResponse> {
+                    override fun onFailure(call: Call<CalLectureResponse>, t: Throwable) {
                         Log.d("통신 실패", "통신 실패")
                     }
 
                     override fun onResponse(
-                        call: Call<LectureResponse>,
-                        response: Response<LectureResponse>
+                        call: Call<CalLectureResponse>,
+                        response: Response<CalLectureResponse>
                     ) {
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
@@ -78,10 +80,12 @@ class ScheduleAddActivity : AppCompatActivity() {
                                 lecnt2 = response.body()!!.data.size
                                 lename2 = ArrayList()
                                 leid2 = ArrayList()
+                                lecolor2 = ArrayList()
 
                                 for (i in 1..lecnt2) {
                                     lename2.add(response.body()!!.data[i - 1].lectureName)
-                                    leid2.add(response.body()!!.data[i - 1].lectureId)
+                                    leid2.add(response.body()!!.data[i - 1].lid)
+                                    lecolor2.add(response.body()!!.data[i - 1].color)
                                     //수업 개수에 맞게 토글 항목 추가
                                     popup.menu.add(response.body()!!.data[i - 1].lectureName)
                                 }
@@ -89,8 +93,20 @@ class ScheduleAddActivity : AppCompatActivity() {
                                     schedule_add_select_txt.setText(item.title)
 
                                     for(i in 1..lecnt2) {
-                                        if(item.title.equals(lename2[i-1]))
+                                        if(item.title.equals(lename2[i-1])){
                                             alid = leid2[i-1]
+                                            acolor = lecolor2[i-1]
+                                            if(acolor == "yellow")
+                                                schedule_color.setImageResource(R.drawable.notice_color_img_yellow)
+                                            if(acolor == "green")
+                                                schedule_color.setImageResource(R.drawable.notice_color_img_green)
+                                            if(acolor == "blue")
+                                                schedule_color.setImageResource(R.drawable.notice_color_img_blue)
+                                            if(acolor == "purple")
+                                                schedule_color.setImageResource(R.drawable.notice_color_img_purple)
+                                            if(acolor == "red")
+                                                schedule_color.setImageResource(R.drawable.notice_color_img_red)
+                                        }
                                     }
                                     Log.d("추가할 수업 lid", "${alid}")
                                     true

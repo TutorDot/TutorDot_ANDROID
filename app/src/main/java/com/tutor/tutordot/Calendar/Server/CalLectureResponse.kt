@@ -1,6 +1,6 @@
 package com.tutor.tutordot.Calendar.Server
 
-data class LectureResponse (
+data class CalLectureResponse (
     val status : Int,
     val success : Boolean,
     val message : String,
@@ -9,5 +9,6 @@ data class LectureResponse (
 
 data class LectureSomeData(
     val lid : Int,
-    val lectureName : String
+    val lectureName : String,
+    val color : String
 )
