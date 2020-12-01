@@ -659,8 +659,13 @@ class CalenderFragment : Fragment() {
 
         // 플로팅 버튼 누르면 일정 추가
         floatingActionButton.setOnClickListener {
-            val intent = Intent(activity, ScheduleAddActivity::class.java)
-            startActivity(intent)
+            if (role == "tutor" && looking == true){
+                Toast.makeText(activity, "둘러보기 계정은 수업추가가 불가능합니다.", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val intent = Intent(activity, ScheduleAddActivity::class.java)
+                startActivity(intent)
+            }
         }
 
     }

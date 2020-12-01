@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.modi_check
@@ -15,6 +16,7 @@ import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_progress
 import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.complete
 import com.tutor.tutordot.R
+import com.tutor.tutordot.Startpage.looking
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
 import com.tutor.tutordot.extention.customEnqueue
@@ -124,16 +126,21 @@ class ScheduleInfoActivity : AppCompatActivity() {
         // 여기 xml로 바꾸면서 수정함 (팝업 적용) -> 2차 릴리즈때는 이 아래로 다 삭제하고 위의 주석된 걸로 사용
         schedule_info_edit.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                val context: Context = v!!.context
-                val nextIntent = Intent(context, ScheduleEditActivity::class.java)
-                nextIntent.putExtra("color",color)
-                nextIntent.putExtra("start",start)
-                nextIntent.putExtra("end",end)
-                nextIntent.putExtra("title",title)
-                nextIntent.putExtra("date",date)
-                nextIntent.putExtra("location",location)
-                nextIntent.putExtra("mycid",cid)
-                moveActi(nextIntent, v)
+                if (role == "tutor" && looking == true){
+                    Toast.makeText(getApplicationContext(), "둘러보기 계정은 수업수정이 불가능합니다.", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    val context: Context = v!!.context
+                    val nextIntent = Intent(context, ScheduleEditActivity::class.java)
+                    nextIntent.putExtra("color",color)
+                    nextIntent.putExtra("start",start)
+                    nextIntent.putExtra("end",end)
+                    nextIntent.putExtra("title",title)
+                    nextIntent.putExtra("date",date)
+                    nextIntent.putExtra("location",location)
+                    nextIntent.putExtra("mycid",cid)
+                    moveActi(nextIntent, v)
+                }
             }
         })
 
@@ -141,23 +148,28 @@ class ScheduleInfoActivity : AppCompatActivity() {
 //        val calendarLogRequestToServer = CalendarLogRequestToServer
         schedule_delte_btn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                //서버에 전달
-                calendarLogRequestToServer.service.scheduleDeleteRequest(
-                    "${myjwt}","${cid}"
-                ).customEnqueue(
-                    onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
-                    onSuccess = {
-                        if (it.success) {
-                            Log.d("삭제 완료", "삭제 완료")
-                            showToast("삭제가 완료되었습니다.")
-                        } else {
-                            Log.d("삭제 실패", "삭제 실패")
+                if (role == "tutor" && looking == true){
+                    Toast.makeText(getApplicationContext(), "둘러보기 계정은 수업삭제가 불가능합니다.", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    //서버에 전달
+                    calendarLogRequestToServer.service.scheduleDeleteRequest(
+                        "${myjwt}","${cid}"
+                    ).customEnqueue(
+                        onError = { Log.d("올바르지 못한 요청입니다", "올바르지 못한 요청입니다") },
+                        onSuccess = {
+                            if (it.success) {
+                                Log.d("삭제 완료", "삭제 완료")
+                                showToast("삭제가 완료되었습니다.")
+                            } else {
+                                Log.d("삭제 실패", "삭제 실패")
+                            }
                         }
-                    }
-                )
-                val backIntent = Intent(this@ScheduleInfoActivity, CalenderActivity::class.java)
-                startActivity(backIntent)
-                finish()
+                    )
+                    val backIntent = Intent(this@ScheduleInfoActivity, CalenderActivity::class.java)
+                    startActivity(backIntent)
+                    finish()
+                }
             }
         })
 

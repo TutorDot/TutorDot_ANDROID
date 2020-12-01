@@ -8,15 +8,15 @@
     tools:context="com.tutor.tutordot.ClassLog.ClassLogModificationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/cl_up"
+        android:id="@+id/cl_up"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@color/white"
+        android:layout_height="58dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/tv_question_title"
@@ -24,33 +24,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/spoqa_han_sans"
-            android:textStyle="normal"
-            android:textSize="14sp"
-            android:textColor="#1c1c1c"
-            android:letterSpacing="-0.02"
-            android:lineSpacingExtra="6sp"
-            tools:text="전체 수업일지"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:text="일지 수정"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/btn_question_filter1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/qna_btn_fillter"
-            app:layout_constraintRight_toLeftOf="@+id/btn_question_save1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/btn_question_save1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/qna_btn_notice"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,7 +130,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:text=" "
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:lineSpacingExtra="5sp"
@@ -196,7 +176,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:text=" "
                     android:lineSpacingExtra="5sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"

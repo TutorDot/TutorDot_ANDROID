@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:hint="비밀번호를 입력해 주세요."
-            android:inputType="text"
+            android:inputType="textPassword"
             android:lineSpacingExtra="5sp"
             android:singleLine="true"
             android:textSize="13sp" />
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:hint="비밀번호를 입력해 주세요."
-            android:inputType="text"
+            android:inputType="textPassword"
             android:lineSpacingExtra="5sp"
             android:singleLine="true"
             android:textSize="13sp" />

@@ -52,9 +52,9 @@ class ClassLogModificationActivity : AppCompatActivity() {
 
         //EditText의 기본 텍스트는 사용자가 이전에 입력했던 값으로
         //et_log_modi_progress.setText(ser_progress)
-        et_log_modi_progress.setText(myprogress)
+        et_log_modi_progress.setHint(myprogress)
         //et_log_modi_hw.setText(ser_hw)
-        et_log_modi_hw.setText(myhomework)
+        et_log_modi_hw.setHint(myhomework)
 
         //tv_log_modi_title.setText(ser_date_times.toString() + "회차 " +  ser_date_studytime.toString() + "시간 / " + ser_date_alltime.toString() + "시간")
         tv_log_modi_title.setText(mytimes)
