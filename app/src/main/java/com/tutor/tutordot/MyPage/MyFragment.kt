@@ -56,7 +56,7 @@ var myjwt2: String= myjwt.toString()
 var load=true;
 
 class MyFragment : Fragment() {
-
+    val REQUEST_CODE=1
     lateinit var mypageAdapter: MypageAdapter
     var datas= mutableListOf<MypageData>()
     //서버 연결
@@ -66,6 +66,7 @@ class MyFragment : Fragment() {
 
     override fun setMenuVisibility(menuVisible: Boolean) {
         super.setMenuVisibility(menuVisible)
+        /*
         if(menuVisible){
             //Log.d("왔나3","$nowposition")
             //Toast.makeText(context!!, "hi", Toast.LENGTH_SHORT).show()
@@ -138,6 +139,8 @@ class MyFragment : Fragment() {
 
 
         }
+
+         */
     }
 
 
@@ -174,6 +177,7 @@ class MyFragment : Fragment() {
             else {
                 if (role == "tutor") {
                     val intent = Intent(activity, AddclassActivity::class.java)
+                    //activity!!.startActivityForResult(intent,REQUEST_CODE)
                     startActivity(intent)
                 } else if (role == "tutee") {
                     val intent = Intent(activity, InviteForTuteeActivity::class.java)
@@ -257,6 +261,82 @@ class MyFragment : Fragment() {
 
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(activity, "돌아옴hihi", Toast.LENGTH_SHORT).show()
+        dialog2 = LoadingDialog(view!!.context)
+        CoroutineScope(Main).launch {
+            dialog2.show()
+        }
+
+
+        //}
+
+
+        datas= mutableListOf<MypageData>()
+        loadDatas()
+        userRequestToServer.service.myInfoRequest(
+            "${myjwt}"
+        ).enqueue(object: Callback<MyInfoResponse>{
+
+            override fun onFailure(call: Call<MyInfoResponse>, t: Throwable) {
+                Log.d("통신 실패", "myinfo통신 실패${t}")
+            }
+            override fun onResponse(
+                call: Call<MyInfoResponse>,
+                response: Response<MyInfoResponse>
+            ) {
+                if (response.isSuccessful){
+                    if(response.body()!!.success) {
+                        Log.d("성공", "myinfo성공")
+                        Log.d(response.body()!!.data.toString(),response.body()!!.data.toString())
+                        userinfoname = response.body()!!.data!!.userName
+                        userinforole = response.body()!!.data!!.role
+                        if(role=="tutor"){
+                            if(!response. body()!!.data!!.intro.isNullOrBlank()){
+                                userinfointro = response. body()!!.data!!.intro
+                            }
+                        }
+
+                        userinfopicture = response. body()!!.data!!.profileUrl
+
+                        textView.setText(userinfoname)
+                        textView2.setText(userinforole)
+                        one_sentense.setText(userinfointro)
+                        Glide.with(this@MyFragment).load(userinfopicture).into(my_img_profile)
+
+                        if(datas.size > 0  && userinfointro.length > 0)
+                        {
+                            one_sentense.setText(userinfointro)
+                        }
+                        role = userinforole
+
+
+                    }else{
+                        Log.d("실패", "myinfo실패")
+                    }
+                }
+            }
+        })
+
+        one_sentense.setText(newIntro)
+        //데이터 있을때 / 없을때
+        if(haveMyData == true) {
+            cl_my.visibility =View.GONE
+            recyclerView_my.visibility = View.VISIBLE
+        }
+        else {
+            recyclerView_my.visibility = View.GONE
+            cl_my.visibility =View.VISIBLE
+        }
+
+    }
+
+
+
+
+
 
     private fun loadDatas(){
         //classlist 서버연결(mypage)
