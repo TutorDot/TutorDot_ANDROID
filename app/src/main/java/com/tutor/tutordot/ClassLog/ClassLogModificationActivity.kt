@@ -11,6 +11,8 @@ import com.tutor.tutordot.ClassLog.Server.LogModiRequest
 import com.tutor.tutordot.ClassLog.Server.LogRequestToServer
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_class_log_modification.*
 import kotlinx.android.synthetic.main.fragment_my.*
@@ -104,6 +106,7 @@ class ClassLogModificationActivity : AppCompatActivity() {
 
         btn_log_save.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                progressON(this@ClassLogModificationActivity)
                 ser_progress = et_log_modi_progress.text.toString()
                 ser_hw = et_log_modi_hw.text.toString()
                 modi_check = true
@@ -122,6 +125,8 @@ class ClassLogModificationActivity : AppCompatActivity() {
                         if (it.success) {
                             Log.d("수정 완료","수정 완료")
                             showToast("수정이 완료되었습니다.")
+                            progressOFF()
+                            finish()
                         } else {
                             Log.d("수정 실패","수정 실패")
                         }
@@ -133,9 +138,9 @@ class ClassLogModificationActivity : AppCompatActivity() {
                 //intent.putExtra("mhw", ser_hw)
                 //intent.putExtra("mcheck", modi_check)
                 //setResult(Activity.RESULT_OK, intent)
-                val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
-                startActivity(backIntent)
-                finish()
+                //val backIntent = Intent(this@ClassLogModificationActivity, CalenderActivity::class.java)
+                //startActivity(backIntent)
+                //finish()
             }
         })
 
