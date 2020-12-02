@@ -163,7 +163,7 @@ class MyinfoActivity : AppCompatActivity() {
 
                 startActivity(intent2)
                 finish()
-                finish()
+
             }
             else if(role == "tutee"){
                 showToast("튜터만 가능한 기능입니다.")
@@ -202,15 +202,16 @@ class MyinfoActivity : AppCompatActivity() {
                         if (it.success) {
                             Log.d("삭제 완료", "삭제 완료")
                             showToast("삭제가 완료되었습니다.")
+                            finish()
+
+
                         } else {
                             Log.d("삭제 실패", "삭제 실패")
                         }
                     }
                 )
 
-                val intent9=Intent(this, CalenderActivity::class.java)
-                startActivity(intent9)
-                finish()
+
                 //delete기능구현필요
 
             }
