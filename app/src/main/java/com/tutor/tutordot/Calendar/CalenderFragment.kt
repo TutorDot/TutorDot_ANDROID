@@ -379,6 +379,9 @@ class CalenderFragment : Fragment() {
                         calAlldata()
 //                        refresh()
                         clickAlldata()
+                        //여기 동작안함
+
+
                     }
                     // 특정 수업 서버 연결
                     else {
