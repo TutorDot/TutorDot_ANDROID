@@ -14,6 +14,7 @@ import android.widget.PopupMenu
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.tutor.tutordot.Calendar.Server.CalLectureResponse
 import retrofit2.Callback
 import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
@@ -33,6 +34,7 @@ import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.fragment_class_log.*
 import retrofit2.Call
 import retrofit2.Response
+import java.time.Year
 import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
@@ -48,6 +50,21 @@ class ScheduleAddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_add)
+
+
+        var defaultyear = CalendarDay.today().year.toString()
+        var defaultmonth = (CalendarDay.today().month + 1).toString()
+        var defaultday = CalendarDay.today().day.toString()
+
+        if (defaultmonth.toInt() < 10) {
+            defaultmonth = "0$defaultmonth"
+        }
+        if (defaultday.toInt() < 10) {
+            defaultday = "0$defaultday"
+        }
+        schedule_add_date_txt.text = defaultyear + "-" + defaultmonth + "-" + defaultday
+
+
 
         //서버 연결
         val calendarLogRequestToServer = CalendarLogRequestToServer
@@ -75,7 +92,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
-                                Log.d("토글 수업 추가 정보", "성공")
+                                Log.d("토글 수업 추가 정보2", "성공")
 
                                 lecnt2 = response.body()!!.data.size
                                 lename2 = ArrayList()
@@ -84,7 +101,7 @@ class ScheduleAddActivity : AppCompatActivity() {
 
                                 for (i in 1..lecnt2) {
                                     lename2.add(response.body()!!.data[i - 1].lectureName)
-                                    leid2.add(response.body()!!.data[i - 1].lid)
+                                    leid2.add(response.body()!!.data[i - 1].lectureId)
                                     lecolor2.add(response.body()!!.data[i - 1].color)
                                     //수업 개수에 맞게 토글 항목 추가
                                     popup.menu.add(response.body()!!.data[i - 1].lectureName)
@@ -93,6 +110,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                                     schedule_add_select_txt.setText(item.title)
 
                                     for(i in 1..lecnt2) {
+
                                         if(item.title.equals(lename2[i-1])){
                                             alid = leid2[i-1]
                                             acolor = lecolor2[i-1]
@@ -114,7 +132,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                                 popup.show() //showing popup menu
 
                             } else {
-                                Log.d("토글 수업 추가 정보", "실패")
+                                Log.d("토글 수업 추가 정보2", "실패")
                             }
                         }
                     }
@@ -175,6 +193,7 @@ class ScheduleAddActivity : AppCompatActivity() {
         })
 
         // 날짜 선택
+
         date_picker.setOnDateChangedListener{
                 view, year, monthOfYear, dayOfMonth ->
 
