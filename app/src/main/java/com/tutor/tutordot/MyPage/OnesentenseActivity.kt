@@ -50,25 +50,28 @@ class OnesentenseActivity : AppCompatActivity() {
         val transferUtility = TransferUtility(s3, applicationContext)
 
         val observer: TransferObserver = transferUtility.upload(
-            MY_BUCKET,  /* 업로드 할 버킷 이름 */
-            OBJECT_KEY,  /* 버킷에 저장할 파일의 이름 */
-            MY_FILE /* 버킷에 저장할 파일 */
+            MY_BUCKET,  // 업로드 할 버킷 이름
+            OBJECT_KEY,  / 버킷에 저장할 파일의 이름
+            MY_FILE // 버킷에 저장할 파일
         )
 */
+
         //새로만든 코드 프로필이미지 클릭 시
-        imageButton5.setOnClickListener(View.OnClickListener {
+
+        /*imageButton5.setOnClickListener(View.OnClickListener {
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(intent, 10)
-/*
+
             // 서버 업로드
             val observer = transferUtility.upload(
                 "s3testjm", // 버킷 이름 바꾸기
                 f.getName(),
                 f
-            )*/
+            )
         })
+         */*/
 
         btn_cancel_my_one.setOnClickListener {
             finish()
