@@ -172,7 +172,7 @@ class LoginFor1stActivity : AppCompatActivity() {
 
         }
         tv_signup2.setOnClickListener {
-                    val intent = Intent(this@LoginFor1stActivity, SignUpActivity::class.java)
+                    val intent = Intent(this@LoginFor1stActivity, AgreeActivity::class.java)
                     startActivity(intent)
         }
         lateinit var progressDialog: AppCompatDialog
