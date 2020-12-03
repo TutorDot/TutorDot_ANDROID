@@ -118,7 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/calender_img_location" />
+                android:src="@drawable/calender_img_location"
+                 />
 
             <TextView
                 android:id="@+id/tv_calendarlog_location"

@@ -196,6 +196,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
+                android:id="@+id/textView62"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -220,16 +221,6 @@
                 android:background="@drawable/my_btn_toggle_background"
                 android:thumb="@drawable/my_btn_toggle_movecircle2"
                 app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="55dp"
-                android:background="@color/colorTuti"
-                app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
             <TextView
@@ -261,25 +252,40 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView3" />
 
             <View
-                android:id="@+id/v1"
+                android:id="@+id/my_btn_version"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/my_btn_version"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3"
-                app:layout_constraintVertical_bias="1.0"
-                tools:layout_editor_absoluteX="0dp" />
-
-            <ImageButton
-                android:id="@+id/my_btn_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/my_btn_version"
+                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="55dp"
+                android:background="#ececec"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="17dp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="버전정보"
+                android:textColor="#707070"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_version"
+                app:layout_constraintStart_toStartOf="@+id/my_btn_version"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_version" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -290,96 +296,143 @@
                 android:text="1 . 0 . 0"
                 android:textColor="#707070"
                 android:textSize="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/v1"
-                app:layout_constraintEnd_toEndOf="@+id/v1"
-                app:layout_constraintTop_toTopOf="@+id/v1" />
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_version"
+                app:layout_constraintEnd_toEndOf="@+id/my_btn_version"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_version" />
+
 
             <View
-                android:id="@+id/view3"
+                android:id="@+id/my_btn_developer"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/my_btn_developer"
-                app:layout_constraintTop_toBottomOf="@+id/v1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_version"
                 tools:layout_editor_absoluteX="16dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="17dp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="개발자 정보"
+                android:textColor="#707070"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_developer"
+                app:layout_constraintStart_toStartOf="@+id/my_btn_developer"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_developer" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/go1"
-                app:layout_constraintBottom_toBottomOf="@+id/view3"
-                app:layout_constraintEnd_toEndOf="@+id/view3"
-                app:layout_constraintTop_toBottomOf="@+id/v1" />
-
-            <ImageButton
-                android:id="@+id/my_btn_developer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_btn_developer"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_developer"
+                app:layout_constraintEnd_toEndOf="@+id/my_btn_developer"
                 app:layout_constraintTop_toBottomOf="@+id/my_btn_version" />
 
+
             <View
-                android:id="@+id/view5"
+                android:id="@+id/my_btn_password"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_developer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="17dp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="비밀번호 변경"
+                android:textColor="#707070"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/my_btn_password"
-                app:layout_constraintTop_toTopOf="@+id/my_btn_password"
-                tools:layout_editor_absoluteX="16dp" />
+                app:layout_constraintStart_toStartOf="@+id/my_btn_password"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_password" />
 
             <ImageView
                 android:id="@+id/imageView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/go1"
-                app:layout_constraintBottom_toBottomOf="@+id/view5"
-                app:layout_constraintEnd_toEndOf="@+id/view5"
-                app:layout_constraintTop_toTopOf="@+id/view5" />
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_password"
+                app:layout_constraintEnd_toEndOf="@+id/my_btn_password"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_password" />
 
-            <ImageButton
-                android:id="@+id/my_btn_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/my_btn_password"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_btn_developer" />
 
             <View
-                android:id="@+id/view6"
+                android:id="@+id/my_btn_logout"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/view5"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_password"
                 tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="17dp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="로그아웃"
+                android:textColor="#707070"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_logout"
+                app:layout_constraintStart_toStartOf="@+id/my_btn_logout"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_logout" />
 
             <ImageView
                 android:id="@+id/imageView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/go1"
-                app:layout_constraintBottom_toBottomOf="@+id/view6"
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_logout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view5" />
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_password" />
 
-            <ImageButton
-                android:id="@+id/my_btn_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_btn_logout"
-                app:layout_constraintBottom_toBottomOf="@+id/view6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view5" />
 
             <View
-                android:id="@+id/view7"
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#ececec"
+                app:layout_constraintBottom_toTopOf="@+id/my_btn_developer"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_version" />
+
+            <View
+                android:id="@+id/my_btn_withdrawl"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/my_btn_withdrawl"
-                app:layout_constraintTop_toBottomOf="@+id/view6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_logout"
                 tools:layout_editor_absoluteX="-20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="17dp"
+                android:fontFamily="@font/spoqa_han_sans_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="서비스 탈퇴"
+                android:textColor="#707070"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_btn_withdrawl"
+                app:layout_constraintStart_toStartOf="@+id/my_btn_withdrawl"
+                app:layout_constraintTop_toTopOf="@+id/my_btn_withdrawl" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -387,16 +440,25 @@
                 android:src="@drawable/go1"
                 app:layout_constraintBottom_toBottomOf="@+id/my_btn_withdrawl"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-            <ImageButton
-                android:id="@+id/my_btn_withdrawl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_btn_withdrawl"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/my_btn_logout" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#ececec"
+                app:layout_constraintBottom_toTopOf="@+id/my_btn_logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_password" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#ececec"
+                app:layout_constraintBottom_toTopOf="@+id/my_btn_logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_withdrawl" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
