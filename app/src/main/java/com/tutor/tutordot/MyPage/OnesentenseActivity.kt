@@ -2,14 +2,16 @@ package com.tutor.tutordot.MyPage
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.amazonaws.auth.CognitoCachingCredentialsProvider
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
+import com.amazonaws.regions.Regions
+import com.amazonaws.services.s3.AmazonS3
+import com.amazonaws.services.s3.AmazonS3Client
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.MyPage.Server.MyPageRequestToServer
 import com.tutor.tutordot.MyPage.Server.ProfileEditRequest
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_onesentense.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 
 var newIntro = "수학, 과탐 1등급 만들어드립니다."
@@ -29,16 +32,46 @@ class OnesentenseActivity : AppCompatActivity() {
     val mypageRequestToServer = MyPageRequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //lateinit var f: File
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onesentense)
 
+        val credentialsProvider =
+            CognitoCachingCredentialsProvider(
+                applicationContext,
+                "ap-northeast-1:e4331b6e-34f8-4934-bf13-************",  // Identity Pool ID
+                Regions.AP_NORTHEAST_1 // Region
+            )
+
+        // 서버 사진 위함. 2차 릴리즈에서 사용
+        /*
+        val s3: AmazonS3 = AmazonS3Client(credentialsProvider)
+        val transferUtility = TransferUtility(s3, applicationContext)
+
+        val observer: TransferObserver = transferUtility.upload(
+            MY_BUCKET,  // 업로드 할 버킷 이름
+            OBJECT_KEY,  / 버킷에 저장할 파일의 이름
+            MY_FILE // 버킷에 저장할 파일
+        )
+*/
+
         //새로만든 코드 프로필이미지 클릭 시
-        imageButton5.setOnClickListener(View.OnClickListener {
+
+        /*imageButton5.setOnClickListener(View.OnClickListener {
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(intent, 10)
+
+            // 서버 업로드
+            val observer = transferUtility.upload(
+                "s3testjm", // 버킷 이름 바꾸기
+                f.getName(),
+                f
+            )
         })
+         */*/
 
         btn_cancel_my_one.setOnClickListener {
             finish()

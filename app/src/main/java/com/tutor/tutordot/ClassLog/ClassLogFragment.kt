@@ -171,15 +171,15 @@ class ClassLogFragment : Fragment() {
         btn_month_next.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 mon++
-                if (mon == month) {
-                    tv_month_log.setText(mon.toString() + "월 수업일지")
-                    btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
-                    month1 = mon
 
-                    loaddateDatas(mon)
+                tv_month_log.setText(mon.toString() + "월 수업일지")
+                btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
+                month1 = mon
 
-                    logdateAdapter.notifyDataSetChanged()
-                }
+                loaddateDatas(mon)
+
+                logdateAdapter.notifyDataSetChanged()
+
             }
         })
 
@@ -278,6 +278,7 @@ class ClassLogFragment : Fragment() {
 
                                         //바깥쪽 날짜 데이터
                                         var i: Int = 0
+                                        var cnt : Int = 0
                                         for (i in 0 until response.body()!!.data.size) {
                                             if(response.body()!!.data[i].classDate != null){
                                                 var cd = response.body()!!.data[i].classDate.split("-")
@@ -285,7 +286,7 @@ class ClassLogFragment : Fragment() {
                                                 mm = cd[1]
                                                 dd = cd[2]}
                                             if(mm.toInt()==month){
-
+                                                cnt++
                                                 datedatas.apply {
                                                     add(
                                                         LogdateData(
@@ -299,13 +300,24 @@ class ClassLogFragment : Fragment() {
                                                             homework = response.body()!!.data[i].homework,
                                                             complete = response.body()!!.data[i].hwPerformance,
                                                             first = false,
-                                                            diaryId = response.body()!!.data[i].diaryId
+                                                            diaryId = response.body()!!.data[i].diaryId,
+                                                            lectureName = response.body()!!.data[i].lectureName
                                                         )
                                                     )
 
                                                 }
                                             }
 
+                                        }
+                                        if (cnt == 0) {
+                                            haveData = false
+                                            ll_rv.visibility = View.GONE
+                                            cl_empty.visibility = View.VISIBLE
+                                        }
+                                        else {
+                                            cl_empty.visibility = View.GONE
+                                            ll_rv.visibility = View.VISIBLE
+                                            haveData = true
                                         }
                                         datedatas =
                                             datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
@@ -445,6 +457,7 @@ class ClassLogFragment : Fragment() {
                             }
 
                             //바깥쪽 날짜 데이터
+                            var cnt : Int = 0
                             var i: Int = 0
                             for (i in 0 until response.body()!!.data.size) {
                                 if(response.body()!!.data[i].classDate != null){
@@ -452,8 +465,9 @@ class ClassLogFragment : Fragment() {
                                     yy = cd[0]
                                     mm = cd[1]
                                     dd = cd[2]}
-                                if(mm.toInt()==monn){
 
+                                if(mm.toInt()==monn){
+                                    cnt++
                                     datedatas.apply {
                                         add(
                                             LogdateData(
@@ -467,7 +481,8 @@ class ClassLogFragment : Fragment() {
                                                 homework = response.body()!!.data[i].homework,
                                                 complete = response.body()!!.data[i].hwPerformance,
                                                 first = false,
-                                                diaryId = response.body()!!.data[i].diaryId
+                                                diaryId = response.body()!!.data[i].diaryId,
+                                                lectureName = response.body()!!.data[i].lectureName
                                             )
                                         )
 
@@ -475,6 +490,8 @@ class ClassLogFragment : Fragment() {
                                 }
 
                             }
+
+
                             datedatas =
                                 datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
                                     .toMutableList()
@@ -493,7 +510,16 @@ class ClassLogFragment : Fragment() {
                                     }
                                 }
                             }
-
+                            if (cnt == 0) {
+                                haveData = false
+                                ll_rv.visibility = View.GONE
+                                cl_empty.visibility = View.VISIBLE
+                            }
+                            else {
+                                cl_empty.visibility = View.GONE
+                                ll_rv.visibility = View.VISIBLE
+                                haveData = true
+                            }
 
                             logdateAdapter = LogdateAdapter(view!!.context, datedatas)
                             rv_datelog.adapter = logdateAdapter
@@ -543,6 +569,7 @@ class ClassLogFragment : Fragment() {
                             }
 
                             //바깥쪽 날짜 데이터
+                            var cnt : Int = 0
                             var i: Int = 0
                             for (i in 0 until response.body()!!.data.size) {
                                 if(response.body()!!.data[i].classDate != null){
@@ -551,7 +578,7 @@ class ClassLogFragment : Fragment() {
                                     mm = cd[1]
                                     dd = cd[2]}
                                 if(mm.toInt()==monn){
-
+                                    cnt++
                                     datedatas.apply {
                                         add(
                                             LogdateData(
@@ -565,13 +592,24 @@ class ClassLogFragment : Fragment() {
                                                 homework = response.body()!!.data[i].homework,
                                                 complete = response.body()!!.data[i].hwPerformance,
                                                 first = false,
-                                                diaryId = response.body()!!.data[i].diaryId
+                                                diaryId = response.body()!!.data[i].diaryId,
+                                                lectureName = response.body()!!.data[i].lectureName
                                             )
                                         )
 
                                     }
                                 }
 
+                            }
+                            if (cnt == 0) {
+                                haveData = false
+                                ll_rv.visibility = View.GONE
+                                cl_empty.visibility = View.VISIBLE
+                            }
+                            else {
+                                cl_empty.visibility = View.GONE
+                                ll_rv.visibility = View.VISIBLE
+                                haveData = true
                             }
                             datedatas =
                                 datedatas.sortedWith(compareBy<LogdateData> { it.month }.thenBy { it.day })
