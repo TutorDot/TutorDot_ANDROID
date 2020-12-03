@@ -40,6 +40,7 @@ var modi_check : Boolean = false
 
 
 class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val tv_classname : TextView = itemView.findViewById<TextView>(R.id.tv_classname)
     val tv_date : TextView = itemView.findViewById<TextView>(R.id.tv_date)
     val date_layout: ConstraintLayout =itemView.findViewById<ConstraintLayout>(R.id.date_layout)
 
@@ -91,15 +92,10 @@ class LogdateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             Log.d("mytext","동일")
             date_layout.visibility= ConstraintLayout.GONE
         }
-
-
-
+        tv_classname.text = logdateSomeData.lectureName.toString()
         tv_times.text = logdateSomeData.times.toString() + "회차 " + logdateSomeData.times.toString() + "시간 / " + logdateSomeData.alltime.toString() + "시간"
         tv_progress.text = "진도 : " + logdateSomeData.progress
         tv_homework.text = "숙제 : " + logdateSomeData.homework
-
-
-
 
         if (logdateSomeData.complete == 0) {
             btn_circle.setBackgroundResource(R.drawable.class_log_btn_circle_unpick)

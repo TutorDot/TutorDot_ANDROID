@@ -9,6 +9,8 @@ data class LogResponse(
 
 data class LogSomeData(
     val diaryId : Int,
+    val profileUrl : String,
+    val lectureName : String,
     val classDate : String,
     val color : String,
     val times : Int,

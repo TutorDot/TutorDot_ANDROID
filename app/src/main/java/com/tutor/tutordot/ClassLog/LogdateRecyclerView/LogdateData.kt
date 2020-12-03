@@ -11,5 +11,6 @@ data class LogdateData(
     var homework : String,
     var complete : Int,
     var first : Boolean,
-    val diaryId : Int
+    val diaryId : Int,
+    val lectureName : String
 )

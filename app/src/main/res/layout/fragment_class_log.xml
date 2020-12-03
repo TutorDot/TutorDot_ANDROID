@@ -28,7 +28,7 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="전체"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +159,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="월 수업일지"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15dp" />
 
             <ImageButton
                 android:id="@+id/btn_month_next"
@@ -205,7 +205,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="수업 일지가 없습니다"
                 android:textColor="#707070"
-                android:textSize="16sp"
+                android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -221,7 +221,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="캘린더에 수업 일정이 등록되면"
                 android:textColor="#707070"
-                android:textSize="15sp"
+                android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -233,7 +233,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="자동으로 갱신됩니다"
                 android:textColor="#707070"
-                android:textSize="15sp"
+                android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
