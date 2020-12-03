@@ -2,9 +2,7 @@ package com.tutor.tutordot.Calendar
 
 import android.app.Dialog
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Color
-import android.graphics.Insets.add
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -12,42 +10,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
-import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
-import com.tutor.tutordot.Calendar.Server.*
-import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.Calendar.Server.CalResponse
+import com.tutor.tutordot.Calendar.Server.CalendarData
+import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
+import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
-import com.tutor.tutordot.ClassLog.Server.LogResponse
 import com.tutor.tutordot.LoadingDialog
-import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestToServer
-import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.Startpage.looking
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.Startpage.role
-import kotlinx.android.synthetic.main.activity_calender.*
 import kotlinx.android.synthetic.main.fragment_calender.*
-import kotlinx.android.synthetic.main.item_calendarlog.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
-import java.time.Month
-import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
@@ -86,6 +75,12 @@ class CalenderFragment : Fragment() {
     var blueday2: List<String> = listOf()
     var purpleday2: List<String> = listOf()
 
+//    val dates: ArrayList<CalendarDay> = ArrayList()
+//    val dates2: ArrayList<CalendarDay> = ArrayList()
+//    val dates3: ArrayList<CalendarDay> = ArrayList()
+//    val dates4: ArrayList<CalendarDay> = ArrayList()
+//    val dates5: ArrayList<CalendarDay> = ArrayList()
+
     val calendarlogRequestToServer = CalendarLogRequestToServer
 
     private lateinit var dialogforcal:Dialog
@@ -94,6 +89,7 @@ class CalenderFragment : Fragment() {
     inner class ApiSimulator internal constructor(var Time_Result: List<String>, var vs: String) :
         AsyncTask<Void, Void, List<CalendarDay>>() {
         @Suppress("UNREACHABLE_CODE")
+
         override fun doInBackground(vararg voids: Void): List<CalendarDay> {
             try {
                 Thread.sleep(500)
@@ -141,11 +137,11 @@ class CalenderFragment : Fragment() {
                     //                }
                 }
             }
-            Log.d("리턴값1", "${dates}")
-            Log.d("리턴값2", "${dates2}")
-            Log.d("리턴값3", "${dates3}")
-            Log.d("리턴값4", "${dates4}")
-            Log.d("리턴값5", "${dates5}")
+            Log.d("빨", "${dates}")
+            Log.d("노", "${dates2}")
+            Log.d("초", "${dates3}")
+            Log.d("파", "${dates4}")
+            Log.d("보", "${dates5}")
 
             return when(vs){
                 "red" -> dates
@@ -156,51 +152,42 @@ class CalenderFragment : Fragment() {
                 else -> dates
             }
         }
+
         override fun onPostExecute(calendarDays: List<CalendarDay>) {
             super.onPostExecute(calendarDays)
 
             // 시도1,2(this@CalenderFramgent 빼고 실행) -> 점 1개 찍힘
-            if (vs == "red"){
+            if (vs == "red"){      // 빨간점 찍기
                 materialCalendarView.addDecorator(
-                    EventDecorator(
-                        // 빨간점 찍기
-                        Color.parseColor("#f28d8d"), calendarDays
+                    EventDecorator(Color.parseColor("#f28d8d"), calendarDays
 //                    this@CalenderFragment
                     )
                 )
             }
-            if (vs == "yellow"){
+            if (vs == "yellow"){    // 노란점 찍기
                 materialCalendarView.addDecorator(
-                    EventDecorator(
-                        // 노란점 찍기
-                        Color.parseColor("#ffe966"), calendarDays
+                    EventDecorator(Color.parseColor("#ffe966"), calendarDays
 //                    this@CalenderFragment
                     )
                 )
             }
-            if (vs == "green"){
+            if (vs == "green"){     // 초록점 찍기
                 materialCalendarView.addDecorator(
-                    EventDecorator(
-                        // 초록점 찍기
-                        Color.parseColor("#90d672"), calendarDays
+                    EventDecorator(Color.parseColor("#90d672"), calendarDays
 //                    this@CalenderFragment
                     )
                 )
             }
-            if (vs == "blue"){
+            if (vs == "blue"){      // 파란점 찍기
                 materialCalendarView.addDecorator(
-                    EventDecorator(
-                        // 파란점 찍기
-                        Color.parseColor("#86d5e3"), calendarDays
+                    EventDecorator(Color.parseColor("#86d5e3"), calendarDays
 //                    this@CalenderFragment
                     )
                 )
             }
-            if (vs == "purple"){
+            if (vs == "purple"){    // 보라점 찍기
                 materialCalendarView.addDecorator(
-                    EventDecorator(
-                        // 보라점 찍기
-                        Color.parseColor("#b88de3"), calendarDays
+                    EventDecorator(Color.parseColor("#b88de3"), calendarDays
 //                    this@CalenderFragment
                     )
                 )
@@ -211,10 +198,15 @@ class CalenderFragment : Fragment() {
 //                context?.let { EventDecorator(it, calendarDays) }
 //            )
 
-            dialogforcal.dismiss()
+//            dialogforcal.dismiss()
         }
 
+//        override fun onCancelled() {
+//            super.onCancelled()
+//            Log.d("비동기 종료", "ok")
+//        }
     }
+
 
 
     override fun onCreateView(
@@ -230,97 +222,71 @@ class CalenderFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             dialogforcal.show()
 
-        Log.d("처음시작","전체출력")
-        calAlldata()
-        Log.d("처음시작","클릭출력")
-        //clickAlldata()
 
-        // 점찍을 날짜
-        val redresult = redday2
-        Log.d("redresult2", "${redresult}")
-
-        val yellowresult = yellowday2
-        Log.d("yellowresult2", "${yellowresult}")
-
-        val greenresult = greenday2
-        val blueresult = blueday2
-        val purpleresult = listOf("2020-11-23","2020-11-24")
-
-
-        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
-        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
-        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
-        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
-        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
-
-        materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
-        materialCalendarView.state().edit()
-            .setFirstDayOfWeek(Calendar.SUNDAY)
-            .setMinimumDate(CalendarDay.from(2019, 0, 1)) // 달력의 시작
-            .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
-            .setCalendarDisplayMode(CalendarMode.MONTHS)
-            .commit()
+            materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
+            materialCalendarView.state().edit()
+                .setFirstDayOfWeek(Calendar.SUNDAY)
+                .setMinimumDate(CalendarDay.from(2019, 0, 1)) // 달력의 시작
+                .setMaximumDate(CalendarDay.from(2030, 11, 31)) // 달력의 끝
+                .setCalendarDisplayMode(CalendarMode.MONTHS)
+                .commit()
 //         materialCalendarView.isDynamicHeightEnabled = true   // 월에 따라 캘린더 크기 동적변화
 
-        // 2차 릴리즈 때 캘린더 디자인 수정 (캘린더 윗부분 글자 앞으로)
+            // 2차 릴리즈 때 캘린더 디자인 수정 (캘린더 윗부분 글자 앞으로)
 //        val testcaledar = view.findViewById(R.id.tv_calendar) as TextView
 //        testcaledar.bringToFront()
 
 
-        // 오늘 날짜 보여주기 (둘러보기 날짜 고정)
-        if (looking == true){
-            materialCalendarView.setCurrentDate(CalendarDay.from(2020,11,16))
-            calendarlog_all_date.text = "7"
-            calendarlog_all_month.text = "12월"
+            // 오늘 날짜 보여주기 (둘러보기 날짜 고정)
+            if (looking == true) {
+                materialCalendarView.setCurrentDate(CalendarDay.from(2020, 11, 16))
+                calendarlog_all_date.text = "16"
+                calendarlog_all_month.text = "12월"
+            } else {
+                calendarlog_all_date.text = curDate.get(Calendar.DATE).toString()
+                calendarlog_all_month.text = (curDate.get(Calendar.MONTH) + 1).toString() + "월"
+            }
+
+
+            Log.d("제일처음시작", "전체출력")
+            calAlldata()
+            Log.d("제일처음시작", "클릭출력")
+            clickAlldata()
+
+            // 점찍을 날짜
+            val redresult = redday2
+            Log.d("redresult2", "${redresult}")
+
+            val yellowresult = yellowday2
+            Log.d("yellowresult2", "${yellowresult}")
+
+            val greenresult = greenday2
+            val blueresult = blueday2
+            val purpleresult = purpleday2
+
+
+            ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+            ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+            ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+            ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+            ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+
+
+            // 일요일 이벤트
+            materialCalendarView.addDecorators(sundayDecorator)
+
+            // 오늘날짜 이벤트
+            if (looking == true) {
+                materialCalendarView.addDecorators(
+                    CurrentDayDecorator(activity, CalendarDay.from(2020, 11, 16))
+                )
+            } else {
+                materialCalendarView.addDecorators(
+                    CurrentDayDecorator(activity, CalendarDay.today())
+                )
+            }
+
         }
-        else{
-            calendarlog_all_date.text = curDate.get(Calendar.DATE).toString()
-            calendarlog_all_month.text = (curDate.get(Calendar.MONTH) + 1).toString() + "월"
-        }
-
-        // 일요일 이벤트
-        materialCalendarView.addDecorators(sundayDecorator)
-
-        // 오늘날짜 이벤트
-        if (looking == true){
-            materialCalendarView.addDecorators(
-                CurrentDayDecorator(activity, CalendarDay.from(2020,11,16))
-            )
-        }
-        else{
-            materialCalendarView.addDecorators(
-                CurrentDayDecorator(activity, CalendarDay.today())
-            )
-        }
-
-
-
-        }
-
-
-
-
-
-//        // 점찍을 날짜
-//        val redresult = redday2
-//        Log.d("redresult2", "${redresult}")
-////            listOf("2020-11-01","2020-11-11","2020-11-20","2020-11-27","2020-11-28")
-////        for (i in 0..4) {
-////            val eventCount = 3
-////            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
-////        }
-//        val yellowresult = yellowday2
-//        Log.d("yellowresult2", "${yellowresult}")
-//
-//        val greenresult = greenday2
-//        val blueresult = blueday2
-//        val purpleresult = listOf("2020-11-23","2020-11-24")
-//
-//        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
-//        ApiSimulator(yellowday2, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
-//        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
-//        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
-//        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
 
 
         // 튜티에겐 플로팅 버튼 보이지 않음
@@ -332,7 +298,7 @@ class CalenderFragment : Fragment() {
         val popup = PopupMenu(context, calendar_select)
         //Inflating the Popup using xml file
         popup.menuInflater
-            .inflate(R.menu.popup_menu, popup.menu)
+            .inflate(R.menu.popup_menu_cal1, popup.menu)
 
 
         calendarlogRequestToServer.service.lectureRequest(
@@ -377,12 +343,10 @@ class CalenderFragment : Fragment() {
 
                     if (item.title.equals("전체")) {
                         calAlldata()
-//                        refresh()
                         clickAlldata()
-                        //여기 동작안함
-
-
+                        //여기 동작안함?
                     }
+
                     // 특정 수업 서버 연결
                     else {
                         var lid : Int = 0
@@ -392,15 +356,50 @@ class CalenderFragment : Fragment() {
                         }
                         Log.d("아이디", "${lid}")
 
+                        // 기존 점 지우기
+//                        materialCalendarView.removeDecorator(EventDecorator(Color.parseColor("#f28d8d"), redday2))
+                        materialCalendarView.removeDecorators()
+
+                        // 일요일 이벤트 다시
+                        materialCalendarView.addDecorators(sundayDecorator)
+
+                        // 오늘날짜 이벤트 다시시
+                       if (looking == true) {
+                            materialCalendarView.addDecorators(
+                                CurrentDayDecorator(activity, CalendarDay.from(2020, 11, 16))
+                            )
+                        } else {
+                            materialCalendarView.addDecorators(
+                                CurrentDayDecorator(activity, CalendarDay.today())
+                            )
+                        }
+
+
                         //오늘기준 수업표시
                         // 서버 연결
                         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
                         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
                         //val calendarlogRequestToServer = CalendarLogRequestToServer
-                        val mydate=LocalDate.now()
-                        val formatter = DateTimeFormatter.ISO_DATE
-                        val formatted = mydate.format(formatter)
+                        lateinit var myyear : String
+
+                        if(looking == true){
+                            myyear = "2020"
+                        }
+                        else{
+                            myyear = CalendarDay.today().year.toString()
+                        }
+                        var mymonth = calendarlog_all_month.text.toString().replace("월", "")
+                        var mydate = calendarlog_all_date.text.toString()
+
+                        if (mymonth.toInt() < 10) {
+                            mymonth = "0$mymonth"
+                        }
+                        if (mydate.toInt() < 10) {
+                            mydate = "0$mydate"
+                        }
+                        var formatted = "$myyear-$mymonth-$mydate"
+
                         var redday:MutableList<String> = mutableListOf()
                         var yellowday:MutableList<String> = mutableListOf()
                         var greenday:MutableList<String> = mutableListOf()
@@ -435,10 +434,7 @@ class CalenderFragment : Fragment() {
                                             when(response.body()!!.data[i].color) {
                                                 "red" -> {
                                                     var c: Int = 0
-                                                    redday.add(
-                                                        c,
-                                                        response.body()!!.data[i].classDate
-                                                    )//
+                                                    redday.add(c, response.body()!!.data[i].classDate)//
                                                     Log.d("빨강날", "${redday}")
                                                     c += 1
 
@@ -447,10 +443,7 @@ class CalenderFragment : Fragment() {
                                                 }
                                                 "yellow" -> {
                                                     var c: Int = 0
-                                                    yellowday.add(
-                                                        c,
-                                                        response.body()!!.data[i].classDate
-                                                    )//
+                                                    yellowday.add(c, response.body()!!.data[i].classDate)//
                                                     Log.d("노랑날222", "${yellowday}")
                                                     c += 1
 
@@ -459,10 +452,7 @@ class CalenderFragment : Fragment() {
                                                 }
                                                 "green" -> {
                                                     var c: Int = 0
-                                                    greenday.add(
-                                                        c,
-                                                        response.body()!!.data[i].classDate
-                                                    )//
+                                                    greenday.add(c, response.body()!!.data[i].classDate)//
                                                     Log.d("초록날", "${greenday}")
                                                     c += 1
 
@@ -471,10 +461,7 @@ class CalenderFragment : Fragment() {
                                                 }
                                                 "blue" -> {
                                                     var c: Int = 0
-                                                    blueday.add(
-                                                        c,
-                                                        response.body()!!.data[i].classDate
-                                                    )//
+                                                    blueday.add(c, response.body()!!.data[i].classDate)//
                                                     Log.d("파랑날", "${blueday}")
                                                     c += 1
 
@@ -483,10 +470,7 @@ class CalenderFragment : Fragment() {
                                                 }
                                                 "purple" -> {
                                                     var c: Int = 0
-                                                    purpleday.add(
-                                                        c,
-                                                        response.body()!!.data[i].classDate
-                                                    )//
+                                                    purpleday.add(c, response.body()!!.data[i].classDate)//
                                                     Log.d("보라날", "${purpleday}")
                                                     c += 1
 
@@ -495,10 +479,9 @@ class CalenderFragment : Fragment() {
                                                 }
                                             }
 
-
                                         if (formatted.toString() == response.body()!!.data[i].classDate) {
-                                                Log.d("test", "동일")
-                                                Log.d("test", "${response.body()!!.data[i].classDate}")
+                                                Log.d("test2", "동일")
+                                                Log.d("test2", "${response.body()!!.data[i].classDate}")
                                                 datas.apply {
                                                     add(
                                                         CalendarData(
@@ -521,8 +504,23 @@ class CalenderFragment : Fragment() {
                                                 continue
                                             }
                                         }
-//                                        refresh()
 
+                                        // 점찍을 날짜
+                                        val redresult = redday2
+                                        Log.d("redresult2", "${redresult}")
+
+                                        val yellowresult = yellowday2
+                                        Log.d("yellowresult2", "${yellowresult}")
+
+                                        val greenresult = greenday2
+                                        val blueresult = blueday2
+                                        val purpleresult = purpleday2
+
+//                                        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+                                        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+//                                        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+                                        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+//                                        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
                                     }
                                     if(datas.size == 0) {
                                         cl_calendar_empty.visibility = View.VISIBLE
@@ -541,7 +539,6 @@ class CalenderFragment : Fragment() {
 
                                 } else {
                                     Log.d("1 특정 실패", "${response.message()}")
-
                                 }
                             }
                         })
@@ -556,6 +553,7 @@ class CalenderFragment : Fragment() {
                             calendarlog_all_month.text = "$Month" + "월"
 
                             dd = date
+                            Log.d("여긴 상단바에서 클릭하면", "오는 곳인데")
 
                             // 날짜 포맷 통일
                             if (Month.toInt() < 10) {
@@ -655,16 +653,10 @@ class CalenderFragment : Fragment() {
 
 
 
-
-
-
-//        refresh()
-
-
         // 플로팅 버튼 누르면 일정 추가
         floatingActionButton.setOnClickListener {
             if (role == "tutor" && looking == true){
-                Toast.makeText(activity, "둘러보기 계정은 수업추가가 불가능합니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "둘러보기 계정은 일정추가가 불가능합니다.", Toast.LENGTH_SHORT).show()
             }
             else{
                 val intent = Intent(activity, ScheduleAddActivity::class.java)
@@ -680,12 +672,12 @@ class CalenderFragment : Fragment() {
         dialogforcal = LoadingDialog(view!!.context)
         CoroutineScope(Dispatchers.Main).launch {
             dialogforcal.show()
+            delay(1000)
+            dialogforcal.dismiss()
         }
 
-        Log.d("처음시작","전체출력")
-        calAlldata()
-        Log.d("처음시작","클릭출력")
-        //clickAlldata()
+        Log.d("다시시작","전체출력")
+        calAlldata() // 이거 없애면 일정삭제는 점 반영되지만 수업추가가 안됨, 놔두면 반대임. 수업해제는 둘 다 안됨
 
         // 점찍을 날짜
         val redresult = redday2
@@ -696,7 +688,8 @@ class CalenderFragment : Fragment() {
 
         val greenresult = greenday2
         val blueresult = blueday2
-        val purpleresult = listOf("2020-11-23","2020-11-24")
+        Log.d("yellowresult2", "${blueresult}")
+        val purpleresult = purpleday2
 
 
         ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
@@ -704,8 +697,6 @@ class CalenderFragment : Fragment() {
         ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
         ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
         ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
-
-
     }
 
     private fun calAlldata(){
@@ -715,16 +706,24 @@ class CalenderFragment : Fragment() {
         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
         //val calendarlogRequestToServer = CalendarLogRequestToServer
-        lateinit var formatted : String
+        lateinit var myyear : String
 
         if(looking == true){
-            formatted = "2020-12-09"
+            myyear = "2020"
         }
         else{
-            val mydate=LocalDate.now()
-            val formatter = DateTimeFormatter.ISO_DATE
-            formatted = mydate.format(formatter)
+            myyear = CalendarDay.today().year.toString()
         }
+        var mymonth = calendarlog_all_month.text.toString().replace("월", "")
+        var mydate = calendarlog_all_date.text.toString()
+
+        if (mymonth.toInt() < 10) {
+            mymonth = "0$mymonth"
+        }
+        if (mydate.toInt() < 10) {
+            mydate = "0$mydate"
+        }
+        var formatted = "$myyear-$mymonth-$mydate"
 
         var redday:MutableList<String> = mutableListOf()
         var yellowday:MutableList<String> = mutableListOf()
@@ -828,6 +827,11 @@ class CalenderFragment : Fragment() {
                                 continue
                             }
                         }
+                        ApiSimulator(redday2, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+                        ApiSimulator(yellowday2, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+                        ApiSimulator(greenday2, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+                        ApiSimulator(blueday2, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+                        ApiSimulator(purpleday2, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
 
                     }
                     if(datas.size == 0) {
@@ -865,6 +869,7 @@ class CalenderFragment : Fragment() {
             calendarlog_all_date.text = "${Day}"
             calendarlog_all_month.text = "$Month" + "월"
 
+            Log.d("클릭하면?","오나")
             dd = date
 
             // 날짜 포맷 통일

@@ -84,7 +84,7 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="9sp"
-                android:text="18"
+                android:text="00"
                 android:textColor="#000000"
                 android:textSize="22sp" />
 
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:lineSpacingExtra="5sp"
-                android:text="7월"
+                android:text="0월"
                 android:textColor="#000000"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -117,12 +117,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_calendarlog"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#f8f8f8"
             android:orientation="vertical"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -130,9 +131,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_calendar_empty"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/rv_calendarlog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -173,7 +177,6 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/calender_blank_img_guide"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv1"
