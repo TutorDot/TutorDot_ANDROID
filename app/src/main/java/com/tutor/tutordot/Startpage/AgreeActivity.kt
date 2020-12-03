@@ -19,41 +19,48 @@ class AgreeActivity : AppCompatActivity() {
 
         ll_agreeall.setOnClickListener {
             if (agreeAll == false){//false
-                check_all.setBackgroundResource(R.drawable.agree_img_check)
+                check_all.setImageResource(R.drawable.agree_img_check)
+                check_notice.setImageResource(R.drawable.agree_img_check)
+                check_personal.setImageResource(R.drawable.agree_img_check)
+                agree1=true
+                agree2=true
                 agreeAll=true
-            }else{//true
-                //tutor=false
-                check_all.setBackgroundResource(R.drawable.agree_img_uncheck)
+            }else{
+                check_all.setImageResource(R.drawable.agree_img_uncheck)
+                check_notice.setImageResource(R.drawable.agree_img_uncheck)
+                check_personal.setImageResource(R.drawable.agree_img_uncheck)
                 agreeAll=false
             }
         }
 
         ll_agreenotice.setOnClickListener {
             if (agree1 == false){//false
-                check_notice.setBackgroundResource(R.drawable.agree_img_check)
+                check_notice.setImageResource(R.drawable.agree_img_check)
                 agree1=true
             }else{//true
-                //tutor=false
-                check_notice.setBackgroundResource(R.drawable.agree_img_uncheck)
+                check_notice.setImageResource(R.drawable.agree_img_uncheck)
                 agree1=false
             }
         }
 
         ll_agreepersonal.setOnClickListener {
             if (agree2 == false){//false
-                check_personal.setBackgroundResource(R.drawable.agree_img_check)
+                check_personal.setImageResource(R.drawable.agree_img_check)
                 agree2=true
             }else{//true
-                //tutor=false
-                check_personal.setBackgroundResource(R.drawable.agree_img_uncheck)
+                check_personal.setImageResource(R.drawable.agree_img_uncheck)
                 agree2=false
             }
         }
 
         btn_agreego.setOnClickListener{
-            val intent = Intent(this@AgreeActivity, SignUpActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(agree1 && agree2) {
+                val intent = Intent(this@AgreeActivity, SignUpActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else
+                showToast("약관에 동의하시면 서비스 이용이 가능합니다.")
         }
 
         btn_agreeback.setOnClickListener{
