@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 갤러리 권한 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!--서버에 사진 올리기 위함
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+
     <application
         android:name=".Startpage.AutoLogin.App"
         android:allowBackup="true"
@@ -67,6 +72,10 @@
         <meta-data
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
+<!--서버 사진 업로드
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />-->
     </application>
 
 </manifest>
