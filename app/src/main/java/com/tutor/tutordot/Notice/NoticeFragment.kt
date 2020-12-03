@@ -44,45 +44,7 @@ class NoticeFragment : Fragment() {
     var lecnt : Int = 0
     lateinit var popup:PopupMenu
 
-    override fun setMenuVisibility(menuVisible: Boolean) {
-        super.setMenuVisibility(menuVisible)
 
-        noticeRequestToServer.service.lectureRequest(
-            "${myjwt}"
-        ).enqueue(object :Callback<LectureResponse>{
-            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
-                Log.d("통신 실패", "통신 실패")
-            }
-
-            override fun onResponse(
-                call: Call<LectureResponse>,
-                response: Response<LectureResponse>
-            ) {
-                if(response.isSuccessful){
-                    if(response.body()!!.success){
-                        Log.d("토글 수업 정보", "성공")
-
-                        lecnt = response.body()!!.data.size
-                        lename = ArrayList()
-                        leid = ArrayList()
-                        for(i in 1..lecnt) {
-                            lename.add(response.body()!!.data[i - 1].lectureName)
-                            leid.add(response.body()!!.data[i-1].lectureId)
-                            //수업 개수에 맞게 토글 항목 추가
-                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
-                        }
-                        Log.d("수업 이름", "{$lename}")
-
-                    }else{
-                        Log.d("토글 수업 정보", "실패")
-                    }
-                }
-            }
-        })
-        alldata()
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,13 +57,9 @@ class NoticeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*
-        noticeAdapter =
-            NoticeAdapter(view.context)
-        rv_notice_date.adapter = noticeAdapter //리사이클러뷰의 어댑터를 지정해줌
-        loadndateDatas() //데이터를 어댑터에 전달
-         */
 
+        //서버완성시 사용
+        /*
     //수업정보 받아옴 (토글 위해) (2차 릴리즈에서는 btn_notice_filter1 로 변경)
         popup =
             PopupMenu(context, btn_notice_choice)
@@ -229,8 +187,49 @@ class NoticeFragment : Fragment() {
 
         alldata()
 
+
+         */
     }
 
+    override fun onResume() {
+        super.onResume()
+        //서버 연결시 사용
+        /*
+        noticeRequestToServer.service.lectureRequest(
+            "${myjwt}"
+        ).enqueue(object :Callback<LectureResponse>{
+            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+                Log.d("통신 실패", "통신 실패")
+            }
+
+            override fun onResponse(
+                call: Call<LectureResponse>,
+                response: Response<LectureResponse>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body()!!.success){
+                        Log.d("토글 수업 정보", "성공")
+
+                        lecnt = response.body()!!.data.size
+                        lename = ArrayList()
+                        leid = ArrayList()
+                        for(i in 1..lecnt) {
+                            lename.add(response.body()!!.data[i - 1].lectureName)
+                            leid.add(response.body()!!.data[i-1].lectureId)
+                            //수업 개수에 맞게 토글 항목 추가
+                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                        }
+                        Log.d("수업 이름", "{$lename}")
+
+                    }else{
+                        Log.d("토글 수업 정보", "실패")
+                    }
+                }
+            }
+        })
+        alldata()
+        */
+    }
     private fun alldata(){
         var n_datas: MutableList<NoticeData> = mutableListOf<NoticeData>()
         //서버통신
@@ -307,30 +306,5 @@ class NoticeFragment : Fragment() {
         })
     }
 
-    private fun loadndateDatas() {
-       /* n_datas.apply {
-            add(
-                NoticeDateData(
-                    month = 5,
-                    day = 5
-                )
-            )
-            add(
-                NoticeDateData(
-                    month = 6,
-                    day = 6
-                )
-            )
-            add(
-                NoticeDateData(
-                    month = 7,
-                    day = 7
-                )
-            )
-        }
 
-        */
-        //noticeAdapter.n_datas = n_datas
-        //noticeAdapter.notifyDataSetChanged()
-    }
 }
