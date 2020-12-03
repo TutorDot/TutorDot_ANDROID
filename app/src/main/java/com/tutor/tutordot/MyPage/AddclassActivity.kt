@@ -1,5 +1,7 @@
 package com.tutor.tutordot.MyPage
 
+import android.app.Activity.RESULT_OK
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,18 +9,25 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.provider.FontsContractCompat.FontRequestCallback.RESULT_OK
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditAdapter
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.MyPage.Server.*
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_myclass_edit.*
 import kotlinx.android.synthetic.main.activity_mypage_addclass.*
 import kotlinx.android.synthetic.main.activity_mypage_addclass.btn_plus
 import kotlinx.android.synthetic.main.activity_onesentense.*
+import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
@@ -27,6 +36,7 @@ class AddclassActivity : AppCompatActivity() {
     lateinit var myclassEditAdapter_add: MyclassEditAdapter
     val adata= mutableListOf<MyclassEditData>()
     val addata= mutableListOf<MyAddRequest>()
+    private lateinit var dialog10: Dialog
 
     var color : String = "yellow"        //수업시간 추가
 
@@ -88,6 +98,8 @@ class AddclassActivity : AppCompatActivity() {
                 showToast("시간별 금액을 설정해 주세요")
             }
             else{
+
+                progressON(this)
             var i =0
             for(i in 0 until 5){
                 Log.d("for문", "for문")
@@ -122,6 +134,7 @@ class AddclassActivity : AppCompatActivity() {
             ).enqueue(object : Callback<ProfileEditResponse> {
                 override fun onFailure(call: Call<ProfileEditResponse>, t: Throwable) {
                     Log.d("통신 실패", "수업 추가 통신 실패${t}")
+                    progressOFF()
                 }
 
                 override fun onResponse(
@@ -132,17 +145,23 @@ class AddclassActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
                             showToast("수업 추가가 완료되었습니다.")
                             Log.d("성공", "수업 추가 성공")
+                            progressOFF()
+                            finish()
+
+
                         } else {
                             Log.d("실패", "수업 추가 실패")
+                            progressOFF()
+
                         }
                     }
                 }
             })
 
             var finishintent= Intent(this, CalenderActivity::class.java)
-            startActivity(finishintent)
-            finish()
-            finish()
+            //startActivity(finishintent)
+            //finish()
+            //finish()
             }
         }
 

@@ -1,5 +1,6 @@
 package com.tutor.tutordot.Calendar
 
+import android.app.Dialog
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
@@ -27,6 +28,7 @@ import com.tutor.tutordot.Calendar.Server.*
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.ClassLog.Server.LogResponse
+import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.MainPagerAdapter
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -37,6 +39,9 @@ import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.main.activity_calender.*
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.item_calendarlog.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,6 +85,10 @@ class CalenderFragment : Fragment() {
     var greenday2: List<String> = listOf()
     var blueday2: List<String> = listOf()
     var purpleday2: List<String> = listOf()
+
+    val calendarlogRequestToServer = CalendarLogRequestToServer
+
+    private lateinit var dialogforcal:Dialog
 
 
     inner class ApiSimulator internal constructor(var Time_Result: List<String>, var vs: String) :
@@ -147,7 +156,6 @@ class CalenderFragment : Fragment() {
                 else -> dates
             }
         }
-
         override fun onPostExecute(calendarDays: List<CalendarDay>) {
             super.onPostExecute(calendarDays)
 
@@ -203,27 +211,9 @@ class CalenderFragment : Fragment() {
 //                context?.let { EventDecorator(it, calendarDays) }
 //            )
 
-            // 연습용
-//            val decoratorArray =
-//                arrayOfNulls<EventDecorator>(3) //Max 3 dots
-//
-//            for (i in decoratorArray.indices) decoratorArray[i] =
-//                EventDecorator(myColor, myRadius, i)
-//
-//            /* dayInstanceMap contains all the mappings. */
-//
-//            /* dayInstanceMap contains all the mappings. */
-//            for ((currDay, currDayCount) in dayInstanceMap.entrySet()) {
-//                for (i in 0 until currDayCount) decoratorArray[i].addDate(currDay)
-//            }
-//
-//            // 일정 개수에 맞게 점 찍기
-//            materialCalendarView.addDecorator(EventDecorator(oneEventDays, oneColors))
-//            materialCalendarView.addDecorator(OneDayDecorator(twoEventDays, twoColors))
-//            materialCalendarView.addDecorator(OneDayDecorator(threeEventDays, threeColors))
-//            materialCalendarView.addDecorator(OneDayDecorator(fourEventDays, fourColors))
-//            materialCalendarView.addDecorator(OneDayDecorator(fiveEventDays, fiveColors))
+            dialogforcal.dismiss()
         }
+
     }
 
 
@@ -236,6 +226,32 @@ class CalenderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialogforcal = LoadingDialog(view!!.context)
+        CoroutineScope(Dispatchers.Main).launch {
+            dialogforcal.show()
+
+        Log.d("처음시작","전체출력")
+        calAlldata()
+        Log.d("처음시작","클릭출력")
+        //clickAlldata()
+
+        // 점찍을 날짜
+        val redresult = redday2
+        Log.d("redresult2", "${redresult}")
+
+        val yellowresult = yellowday2
+        Log.d("yellowresult2", "${yellowresult}")
+
+        val greenresult = greenday2
+        val blueresult = blueday2
+        val purpleresult = listOf("2020-11-23","2020-11-24")
+
+
+        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
 
         materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
         materialCalendarView.state().edit()
@@ -277,10 +293,12 @@ class CalenderFragment : Fragment() {
             )
         }
 
-        Log.d("처음시작","전체출력")
-        calAlldata()
-        Log.d("처음시작","클릭출력")
-        clickAlldata()
+
+
+        }
+
+
+
 
 
 //        // 점찍을 날짜
@@ -316,7 +334,7 @@ class CalenderFragment : Fragment() {
         popup.menuInflater
             .inflate(R.menu.popup_menu, popup.menu)
 
-        val calendarlogRequestToServer = CalendarLogRequestToServer
+
         calendarlogRequestToServer.service.lectureRequest(
             "${myjwt}"
         ).enqueue(object :Callback<LectureResponse>{
@@ -361,6 +379,9 @@ class CalenderFragment : Fragment() {
                         calAlldata()
 //                        refresh()
                         clickAlldata()
+                        //여기 동작안함
+
+
                     }
                     // 특정 수업 서버 연결
                     else {
@@ -631,27 +652,10 @@ class CalenderFragment : Fragment() {
             }
         })
 
-        // 점찍을 날짜
-        val redresult = redday2
-        Log.d("redresult2", "${redresult}")
-//            listOf("2020-11-01","2020-11-11","2020-11-20","2020-11-27","2020-11-28")
-//        for (i in 0..4) {
-//            val eventCount = 3
-//            materialCalendarView.addAnEvent(arr.get(i), eventCount, getEventDataList(eventCount))
-//        }
-        val yellowresult = yellowday2
-        Log.d("yellowresult2", "${yellowresult}")
-
-        val greenresult = greenday2
-        val blueresult = blueday2
-        val purpleresult = listOf("2020-11-23","2020-11-24")
 
 
-        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
-        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
-        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
-        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
-        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+
+
 
 
 //        refresh()
@@ -667,6 +671,40 @@ class CalenderFragment : Fragment() {
                 startActivity(intent)
             }
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        dialogforcal = LoadingDialog(view!!.context)
+        CoroutineScope(Dispatchers.Main).launch {
+            dialogforcal.show()
+        }
+
+        Log.d("처음시작","전체출력")
+        calAlldata()
+        Log.d("처음시작","클릭출력")
+        //clickAlldata()
+
+        // 점찍을 날짜
+        val redresult = redday2
+        Log.d("redresult2", "${redresult}")
+
+        val yellowresult = yellowday2
+        Log.d("yellowresult2", "${yellowresult}")
+
+        val greenresult = greenday2
+        val blueresult = blueday2
+        val purpleresult = listOf("2020-11-23","2020-11-24")
+
+
+        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+
 
     }
 
@@ -806,9 +844,11 @@ class CalenderFragment : Fragment() {
                     calendarLogAdapter = CalendarLogAdapter(getActivity()!!.getApplicationContext(), datas)
                     calendarLogAdapter.notifyDataSetChanged()
                     rv_calendarlog.adapter = calendarLogAdapter
+                    dialogforcal.dismiss()
 
                 } else {
                     Log.d("실패", "${response.message()}")
+                    dialogforcal.dismiss()
                 }
             }
         })

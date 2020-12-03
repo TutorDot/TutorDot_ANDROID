@@ -46,6 +46,7 @@ class LoginFor1stActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView( R.layout.activity_login_for1st)
+        looking=false
 
         if (MySharedPreferences.islogin) {
             progressON(this)
@@ -71,11 +72,11 @@ class LoginFor1stActivity : AppCompatActivity() {
 
                         Log.d("롤2","롤2${role}")
                         showToast("자동로그인 되었습니다")
-
+                        progressOFF()
                         val intent = Intent(this, CalenderActivity::class.java)
                         startActivity(intent)
                         finish()
-                        progressOFF()
+
 
 
                     }
@@ -119,9 +120,10 @@ class LoginFor1stActivity : AppCompatActivity() {
                             name = it.data!!.userName
                             //Log.d("myjwt여기아닌가", "${myjwt}")
                             val intent = Intent(this@LoginFor1stActivity, CalenderActivity::class.java)
+                            progressOFF()
                             startActivity(intent)
                             finish()
-                            progressOFF()
+
                         } else {
                             progressOFF()
                             showToast("아이디/비밀번호를 확인하세요!")
