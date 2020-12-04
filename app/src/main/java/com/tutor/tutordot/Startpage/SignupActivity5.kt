@@ -13,12 +13,12 @@ class SignupActivity5 : AppCompatActivity() {
         setContentView(R.layout.activity_signup5)
 
         btn_goLogin.setOnClickListener {
-            val intent = Intent(this@SignupActivity5, LoginFor1stActivity::class.java)
-            startActivity(intent)
-            finish()
-            finish()
-            finish()
-            finish()
+            //val intent = Intent(this@SignupActivity5, LoginFor1stActivity::class.java)
+            //startActivity(intent)
+
+            for (i in actiList){
+                i.finish()
+            }
             finish()
         }
     }

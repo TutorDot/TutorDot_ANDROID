@@ -1,5 +1,6 @@
 package com.tutor.tutordot.Startpage
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +14,9 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 //var role: String = "tutor"
-
-
+val actiList:ArrayList<Activity> = java.util.ArrayList()
 class SignUpActivity : AppCompatActivity() {
+
 
     //버튼 늘림 표시
     var tutor : Boolean = false
@@ -26,6 +27,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actiList.add(this)
         setContentView(R.layout.activity_sign_up)
 
         signup_btn_tutor.setOnClickListener{

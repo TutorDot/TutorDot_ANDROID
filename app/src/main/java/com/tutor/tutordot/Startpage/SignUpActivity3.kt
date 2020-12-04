@@ -19,6 +19,7 @@ class SignUpActivity3 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actiList.add(this)
         setContentView(R.layout.activity_sign_up3)
 
         btn_next3.setOnClickListener {

@@ -264,7 +264,7 @@ class MyFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Toast.makeText(activity, "돌아옴hihi", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "돌아옴hihi", Toast.LENGTH_SHORT).show()
         dialog2 = LoadingDialog(view!!.context)
         CoroutineScope(Main).launch {
             dialog2.show()

@@ -18,10 +18,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
-import com.tutor.tutordot.Calendar.Server.CalResponse
-import com.tutor.tutordot.Calendar.Server.CalendarData
-import com.tutor.tutordot.Calendar.Server.CalendarLogRequestToServer
-import com.tutor.tutordot.Calendar.Server.CalendarLogResponseData
+import com.tutor.tutordot.Calendar.Server.*
 import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.R
@@ -64,9 +61,14 @@ class CalenderFragment : Fragment() {
 
     lateinit var leid1 : ArrayList<Int>
     lateinit var lename1 : ArrayList<String>
+    lateinit var lecolor1 : ArrayList<String>
     var lecnt1 : Int = 0
+    lateinit var lcolor : String
 
     var select : Boolean = false
+    var toggleselect1 : Boolean = false
+    var lid : Int = 0
+
     lateinit var dd : CalendarDay
 
     var redday2: List<String> = listOf()
@@ -74,12 +76,6 @@ class CalenderFragment : Fragment() {
     var greenday2: List<String> = listOf()
     var blueday2: List<String> = listOf()
     var purpleday2: List<String> = listOf()
-
-//    val dates: ArrayList<CalendarDay> = ArrayList()
-//    val dates2: ArrayList<CalendarDay> = ArrayList()
-//    val dates3: ArrayList<CalendarDay> = ArrayList()
-//    val dates4: ArrayList<CalendarDay> = ArrayList()
-//    val dates5: ArrayList<CalendarDay> = ArrayList()
 
     val calendarlogRequestToServer = CalendarLogRequestToServer
 
@@ -301,16 +297,16 @@ class CalenderFragment : Fragment() {
             .inflate(R.menu.popup_menu_cal1, popup.menu)
 
 
-        calendarlogRequestToServer.service.lectureRequest(
+        calendarlogRequestToServer.service.callectureRequest(
             "${myjwt}"
-        ).enqueue(object :Callback<LectureResponse>{
-            override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
+        ).enqueue(object :Callback<CalLectureResponse>{
+            override fun onFailure(call: Call<CalLectureResponse>, t: Throwable) {
                 Log.d("통신 실패", "통신 실패")
             }
 
             override fun onResponse(
-                call: Call<LectureResponse>,
-                response: Response<LectureResponse>
+                call: Call<CalLectureResponse>,
+                response: Response<CalLectureResponse>
             ) {
                 if(response.isSuccessful){
                     if(response.body()!!.success){
@@ -319,10 +315,12 @@ class CalenderFragment : Fragment() {
                         lecnt1 = response.body()!!.data.size
                         lename1 = ArrayList()
                         leid1 = ArrayList()
+                        lecolor1 = ArrayList()
 
                         for(i in 1..lecnt1) {
                             lename1.add(response.body()!!.data[i - 1].lectureName)
                             leid1.add(response.body()!!.data[i-1].lectureId)
+                            lecolor1.add(response.body()!!.data[i - 1].color)
                             //수업 개수에 맞게 토글 항목 추가
                             popup.menu.add(response.body()!!.data[i - 1].lectureName)
                         }
@@ -342,6 +340,7 @@ class CalenderFragment : Fragment() {
                     tv_calendar_title.text = item.title
 
                     if (item.title.equals("전체")) {
+                        toggleselect1 = false
                         calAlldata()
                         clickAlldata()
                         //여기 동작안함?
@@ -349,12 +348,15 @@ class CalenderFragment : Fragment() {
 
                     // 특정 수업 서버 연결
                     else {
-                        var lid : Int = 0
+//                        var lid : Int = 0
                         for(i in 1..lecnt1) {
-                            if(item.title.equals(lename1[i-1]))
+                            if(item.title.equals(lename1[i-1])){
                                 lid = leid1[i-1]
+                                lcolor = lecolor1[i - 1]
+                            }
                         }
                         Log.d("아이디", "${lid}")
+                        toggleselect1 = true
 
                         // 기존 점 지우기
 //                        materialCalendarView.removeDecorator(EventDecorator(Color.parseColor("#f28d8d"), redday2))
@@ -363,7 +365,7 @@ class CalenderFragment : Fragment() {
                         // 일요일 이벤트 다시
                         materialCalendarView.addDecorators(sundayDecorator)
 
-                        // 오늘날짜 이벤트 다시시
+                        // 오늘날짜 이벤트 다시
                        if (looking == true) {
                             materialCalendarView.addDecorators(
                                 CurrentDayDecorator(activity, CalendarDay.from(2020, 11, 16))
@@ -373,7 +375,6 @@ class CalenderFragment : Fragment() {
                                 CurrentDayDecorator(activity, CalendarDay.today())
                             )
                         }
-
 
                         //오늘기준 수업표시
                         // 서버 연결
@@ -506,21 +507,13 @@ class CalenderFragment : Fragment() {
                                         }
 
                                         // 점찍을 날짜
-                                        val redresult = redday2
-                                        Log.d("redresult2", "${redresult}")
-
-                                        val yellowresult = yellowday2
-                                        Log.d("yellowresult2", "${yellowresult}")
-
-                                        val greenresult = greenday2
-                                        val blueresult = blueday2
-                                        val purpleresult = purpleday2
-
-//                                        ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
-                                        ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
-//                                        ApiSimulator(greenresult, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
-                                        ApiSimulator(blueresult, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
-//                                        ApiSimulator(purpleresult, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+                                        when(lcolor){
+                                            "red" -> ApiSimulator(redday2, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+                                            "yellow" -> ApiSimulator(yellowday2, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+                                            "green" -> ApiSimulator(greenday2, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+                                            "blue" -> ApiSimulator(blueday2, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+                                            "purple" -> ApiSimulator(purpleday2, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+                                        }
                                     }
                                     if(datas.size == 0) {
                                         cl_calendar_empty.visibility = View.VISIBLE
@@ -617,6 +610,7 @@ class CalenderFragment : Fragment() {
                                                     continue
                                                 }
                                             }
+//                                            toggleData()  // 왜 특정수업 선택했을 때 resume하면 여기로 올까
 
                                         }
                                         if(datas.size == 0) {
@@ -672,25 +666,70 @@ class CalenderFragment : Fragment() {
         dialogforcal = LoadingDialog(view!!.context)
         CoroutineScope(Dispatchers.Main).launch {
             dialogforcal.show()
-            delay(1000)
-            dialogforcal.dismiss()
+//            delay(2000)
+//            dialogforcal.dismiss()
         }
 
         Log.d("다시시작","전체출력")
+
+        // 상단 수업 목록 받아오기 (토글메뉴)
+        val popup = PopupMenu(context, calendar_select)
+        //Inflating the Popup using xml file
+        popup.menuInflater
+            .inflate(R.menu.popup_menu_cal1, popup.menu)
+
+
+        calendarlogRequestToServer.service.callectureRequest(
+            "${myjwt}"
+        ).enqueue(object :Callback<CalLectureResponse>{
+            override fun onFailure(call: Call<CalLectureResponse>, t: Throwable) {
+                Log.d("통신 실패", "통신 실패")
+            }
+
+            override fun onResponse(
+                call: Call<CalLectureResponse>,
+                response: Response<CalLectureResponse>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body()!!.success){
+                        Log.d("토글 수업 정보1", "성공")
+
+                        lecnt1 = response.body()!!.data.size
+                        lename1 = ArrayList()
+                        leid1 = ArrayList()
+                        lecolor1 = ArrayList()
+
+                        for(i in 1..lecnt1) {
+                            lename1.add(response.body()!!.data[i - 1].lectureName)
+                            leid1.add(response.body()!!.data[i-1].lectureId)
+                            lecolor1.add(response.body()!!.data[i - 1].color)
+                            //수업 개수에 맞게 토글 항목 추가
+                            popup.menu.add(response.body()!!.data[i - 1].lectureName)
+                        }
+
+                    }else{
+                        Log.d("토글 수업 정보1", "실패")
+                    }
+                }
+            }
+        })
+
+//        if(toggleselect1 == true){
+//            Log.d("토글선택","됨")
+//            toggleData()
+//        }
+//        if(toggleselect1 == false){
+//            Log.d("토글선택","안됨")
+//            calAlldata()
+//        }
         calAlldata() // 이거 없애면 일정삭제는 점 반영되지만 수업추가가 안됨, 놔두면 반대임. 수업해제는 둘 다 안됨
 
         // 점찍을 날짜
         val redresult = redday2
-        Log.d("redresult2", "${redresult}")
-
         val yellowresult = yellowday2
-        Log.d("yellowresult2", "${yellowresult}")
-
         val greenresult = greenday2
         val blueresult = blueday2
-        Log.d("yellowresult2", "${blueresult}")
         val purpleresult = purpleday2
-
 
         ApiSimulator(redresult, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
         ApiSimulator(yellowresult, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
@@ -961,4 +1000,37 @@ class CalenderFragment : Fragment() {
             })
         }
     }
+
+
+    private fun toggleData(){
+        Log.d("아이디", "${lid}")
+        toggleselect1 = true
+
+        // 기존 점 지우기
+        materialCalendarView.removeDecorators()
+
+        // 일요일 이벤트 다시
+        materialCalendarView.addDecorators(sundayDecorator)
+
+        // 오늘날짜 이벤트 다시
+        if (looking == true) {
+            materialCalendarView.addDecorators(
+                CurrentDayDecorator(activity, CalendarDay.from(2020, 11, 16))
+            )
+        } else {
+            materialCalendarView.addDecorators(
+                CurrentDayDecorator(activity, CalendarDay.today())
+            )
+        }
+        // 점찍을 날짜
+        Log.d("다시 돌아온색", "${lcolor}")
+        when(lcolor){
+            "red" -> ApiSimulator(redday2, "red").executeOnExecutor(Executors.newSingleThreadExecutor())  // 빨간점 찍는날
+            "yellow" -> ApiSimulator(yellowday2, "yellow").executeOnExecutor(Executors.newSingleThreadExecutor())  // 노란점 찍는날
+            "green" -> ApiSimulator(greenday2, "green").executeOnExecutor(Executors.newSingleThreadExecutor())  // 초록점 찍는날
+            "blue" -> ApiSimulator(blueday2, "blue").executeOnExecutor(Executors.newSingleThreadExecutor())  // 파란점 찍는날
+            "purple" -> ApiSimulator(purpleday2, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
+        }
+    }
+
 }
