@@ -8,9 +8,9 @@ import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_sign_up2.*
 
 var join_name : String = ""
-
 class SignUpActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        actiList.add(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
 
