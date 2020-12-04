@@ -24,7 +24,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="비밀번호를 입력해주세요."
         android:textColor="@color/black"
-        android:textSize="17sp"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back4" />
 
@@ -37,7 +37,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="로그인시 필요한 비밀번호 입니다. "
         android:textColor="#707070"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -51,7 +51,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="( 4 / 4 )"
         android:textColor="#707070"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView54"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
@@ -65,7 +65,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="비밀번호"
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textSize="13dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
@@ -87,9 +87,9 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:hint="비밀번호를 입력해 주세요."
             android:inputType="textPassword"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:singleLine="true"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -101,7 +101,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="비밀번호 재입력"
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textSize="13dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_pw" />
 
@@ -123,9 +123,9 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:hint="비밀번호를 입력해 주세요."
             android:inputType="textPassword"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:singleLine="true"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -138,7 +138,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_pw2"
         android:text="회원가입 완료"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="#fafafa"
         android:fontFamily="@font/spoqa_han_sans_regular"/>
 
