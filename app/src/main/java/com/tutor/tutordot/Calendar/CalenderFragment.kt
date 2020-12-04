@@ -50,7 +50,7 @@ class CalenderFragment : Fragment() {
     //현재 달 구하기
     val curDate = Calendar.getInstance()
 
-//    var time: String? = null
+    //    var time: String? = null
 //    var kcal: kotlin.String? = null
     var menu: kotlin.String? = null
     private val oneDayDecorator = OneDayDecorator()
@@ -217,7 +217,6 @@ class CalenderFragment : Fragment() {
         dialogforcal = LoadingDialog(view!!.context)
         CoroutineScope(Dispatchers.Main).launch {
             dialogforcal.show()
-        }
 
 
             materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
@@ -283,7 +282,7 @@ class CalenderFragment : Fragment() {
                 )
             }
 
-
+        }
 
 
         // 튜티에겐 플로팅 버튼 보이지 않음
@@ -367,7 +366,7 @@ class CalenderFragment : Fragment() {
                         materialCalendarView.addDecorators(sundayDecorator)
 
                         // 오늘날짜 이벤트 다시
-                       if (looking == true) {
+                        if (looking == true) {
                             materialCalendarView.addDecorators(
                                 CurrentDayDecorator(activity, CalendarDay.from(2020, 11, 16))
                             )
@@ -481,7 +480,7 @@ class CalenderFragment : Fragment() {
                                                 }
                                             }
 
-                                        if (formatted.toString() == response.body()!!.data[i].classDate) {
+                                            if (formatted.toString() == response.body()!!.data[i].classDate) {
                                                 Log.d("test2", "동일")
                                                 Log.d("test2", "${response.body()!!.data[i].classDate}")
                                                 datas.apply {
@@ -539,11 +538,6 @@ class CalenderFragment : Fragment() {
 
                         // 캘린더 날짜 클릭 변경
                         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
-                            dialogforcal = LoadingDialog(view!!.context)
-                            CoroutineScope(Dispatchers.Main).launch {
-                               // dialogforcal.show()
-                            }
-
                             val Year = date.year
                             var Month = (date.month + 1).toString()
                             var Day = (date.day).toString()
@@ -575,7 +569,6 @@ class CalenderFragment : Fragment() {
                             ).enqueue(object : Callback<CalResponse> {
                                 override fun onFailure(call: Call<CalResponse>, t: Throwable) {
                                     Log.d("1 특정 통신 실패", "${t}")
-                                    dialogforcal.dismiss()
                                 }
 
                                 override fun onResponse(
@@ -613,9 +606,7 @@ class CalenderFragment : Fragment() {
                                                     Log.i("test", "${response.body()!!.data[i].lectureName}")
                                                     Log.i("test", "${response.body()!!.data[i].color}")
                                                     calendarLogAdapter.notifyDataSetChanged()
-                                                    dialogforcal.dismiss()
                                                 } else {
-                                                    dialogforcal.dismiss()
                                                     continue
                                                 }
                                             }
@@ -639,7 +630,7 @@ class CalenderFragment : Fragment() {
 
                                     } else {
                                         Log.d("1 특정 실패", "${response.message()}")
-                                        dialogforcal.dismiss()
+
                                     }
                                 }
                             })
@@ -675,7 +666,7 @@ class CalenderFragment : Fragment() {
         dialogforcal = LoadingDialog(view!!.context)
         CoroutineScope(Dispatchers.Main).launch {
             dialogforcal.show()
-//            delay(2000)
+//            delay(1000)
 //            dialogforcal.dismiss()
         }
 
@@ -731,6 +722,8 @@ class CalenderFragment : Fragment() {
 //            Log.d("토글선택","안됨")
 //            calAlldata()
 //        }
+
+
         calAlldata() // 이거 없애면 일정삭제는 점 반영되지만 수업추가가 안됨, 놔두면 반대임. 수업해제는 둘 다 안됨
 
         // 점찍을 날짜
@@ -750,10 +743,6 @@ class CalenderFragment : Fragment() {
     private fun calAlldata(){
         //오늘기준 수업표시
         // 서버 연결
-        dialogforcal = LoadingDialog(view!!.context)
-        CoroutineScope(Dispatchers.Main).launch {
-            dialogforcal.show()
-        }
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
@@ -1045,5 +1034,4 @@ class CalenderFragment : Fragment() {
             "purple" -> ApiSimulator(purpleday2, "purple").executeOnExecutor(Executors.newSingleThreadExecutor())  // 보라점 찍는날
         }
     }
-
 }

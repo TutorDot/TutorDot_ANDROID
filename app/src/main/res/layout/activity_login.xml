@@ -45,7 +45,7 @@
         android:layout_marginTop="377dp"
         android:layout_marginEnd="37dp"
         android:layout_marginRight="37dp"
-        android:hint="이메일"
+        android:hint="아이디"
         android:inputType="textEmailAddress"
         android:lineSpacingExtra="5sp"
         android:textColor="@color/colorTuti"

@@ -84,7 +84,7 @@ class LoginFor1stActivity : AppCompatActivity() {
         }
         login_btn_login.setOnClickListener {
             if (et_email.text.isNullOrBlank() || et_pw.text.isNullOrBlank()) {
-                showToast("이메일과 비밀번호를 모두 입력하세요.")
+                showToast("아이디와 비밀번호를 모두 입력하세요.")
                 //Toast.makeText(this, "이메일과 비밀번호를 모두 입력하세요.", Toast.LENGTH_SHORT).show()
             } else {
                 //로그인 요청
