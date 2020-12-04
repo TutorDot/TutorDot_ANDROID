@@ -1163,7 +1163,7 @@
                     android:text="00:00am"
                     android:textColor="#707070"
                     android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start5"
                     app:layout_constraintStart_toStartOf="@+id/btn_start5"
                     app:layout_constraintTop_toTopOf="parent" />
 
