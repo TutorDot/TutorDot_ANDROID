@@ -188,6 +188,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                                     //Toast.makeText(this@ScheduleAddActivity, "추가 성공", Toast.LENGTH_SHORT).show()
                                     showToast("일정 추가가 완료되었습니다.")
                                     Log.d("응답결과", "${response.body().toString()}")
+                                    finish()
 
                                 } else {
                                     //Toast.makeText(this@ScheduleAddActivity, "추가 실패", Toast.LENGTH_SHORT).show()
@@ -197,9 +198,9 @@ class ScheduleAddActivity : AppCompatActivity() {
                         }
                     })
 
-                    val backIntent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
-                    startActivity(backIntent)
-                    finish()
+                    //val backIntent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
+                    //startActivity(backIntent)
+                    //finish()
                 }
             }
         })
