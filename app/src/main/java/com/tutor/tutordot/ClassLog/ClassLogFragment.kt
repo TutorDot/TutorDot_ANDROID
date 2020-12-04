@@ -1,7 +1,6 @@
 package com.tutor.tutordot.ClassLog
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -10,19 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.*
 import com.tutor.tutordot.LoadingDialog
-import com.tutor.tutordot.MainPagerAdapter
-import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.fragment_class_log.*
-import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

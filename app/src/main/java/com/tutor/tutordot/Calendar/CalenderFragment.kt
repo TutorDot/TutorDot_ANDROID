@@ -19,7 +19,6 @@ import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogAdapter
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.CalendarLogData
 import com.tutor.tutordot.Calendar.CalendarLogRecyclerView.haveCalendarData
 import com.tutor.tutordot.Calendar.Server.*
-import com.tutor.tutordot.ClassLog.Server.LectureResponse
 import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -29,7 +28,6 @@ import com.tutor.tutordot.Startpage.role
 import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
