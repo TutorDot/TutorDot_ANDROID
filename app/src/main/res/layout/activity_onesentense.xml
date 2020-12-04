@@ -45,11 +45,10 @@
             android:id="@+id/imageButton5"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="66dp"
             android:background="@drawable/my_blank_img_proifle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton6"
