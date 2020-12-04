@@ -302,6 +302,7 @@
 
 
             <View
+                android:visibility="gone"
                 android:id="@+id/my_btn_developer"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -311,6 +312,7 @@
                 tools:layout_editor_absoluteX="16dp" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -325,6 +327,7 @@
                 app:layout_constraintStart_toStartOf="@+id/my_btn_developer"
                 app:layout_constraintTop_toTopOf="@+id/my_btn_developer" />
             <ImageView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/go1"
@@ -337,7 +340,6 @@
                 android:id="@+id/my_btn_password"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/my_btn_developer" />
@@ -400,16 +402,6 @@
 
 
             <View
-                android:id="@+id/line2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="#ececec"
-                app:layout_constraintBottom_toTopOf="@+id/my_btn_developer"
-                app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/my_btn_version" />
-
-            <View
                 android:id="@+id/my_btn_withdrawl"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -459,6 +451,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/my_btn_withdrawl" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#ececec"
+                app:layout_constraintBottom_toTopOf="@+id/my_btn_developer"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/my_btn_version" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
