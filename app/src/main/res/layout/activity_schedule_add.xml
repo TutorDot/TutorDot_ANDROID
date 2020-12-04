@@ -26,7 +26,7 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="일정 추가"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
             android:lineSpacingExtra="4sp"
             android:text="수업을 선택해주세요"
             android:textColor="#1c1c1c"
-            android:textSize="18sp">
+            android:textSize="18dp">
         </TextView>
 
 
@@ -90,7 +90,7 @@
                 android:id="@+id/iv_schedule_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="28dp"
                 android:src="@drawable/calender_add_btn_subjectsection">
             </ImageView>
 
@@ -130,7 +130,7 @@
                 android:text="수업 날짜"
                 android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,14 +151,13 @@
                     android:id="@+id/schedule_add_date_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:fontFamily="@font/spoqa_han_sans_regular"
                     android:lineSpacingExtra="6sp"
                     android:paddingLeft="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:textColor="#707070"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintEnd_toStartOf="@+id/fix1"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -178,7 +177,7 @@
                     android:paddingBottom="10dp"
                     android:text="수정"
                     android:textColor="#6875dd"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/schedule_add_date_txt"
@@ -209,7 +208,7 @@
                 android:text="수업 시작"
                 android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/date_picker" />
 
@@ -237,7 +236,7 @@
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:textColor="#707070"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/fix2"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -257,7 +256,7 @@
                     android:paddingBottom="10dp"
                     android:text="수정"
                     android:textColor="#6875dd"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/schedule_add_start_txt"
@@ -285,7 +284,7 @@
                 android:text="수업 종료"
                 android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/time_picker" />
 
@@ -313,7 +312,7 @@
                     android:paddingTop="12dp"
                     android:paddingBottom="10dp"
                     android:textColor="#707070"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintEnd_toStartOf="@+id/fix3"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -332,7 +331,7 @@
                     android:paddingBottom="10dp"
                     android:text="수정"
                     android:textColor="#6875dd"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/schedule_add_end_txt"
@@ -360,7 +359,7 @@
                 android:text="위치"
                 android:includeFontPadding="false"
                 android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@id/time_picker2" />
 
@@ -389,7 +388,7 @@
                     android:paddingRight="16dp"
                     android:paddingBottom="10dp"
                     android:textColor="#707070"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                 </EditText>
@@ -419,7 +418,7 @@
             android:lineSpacingExtra="8sp"
             android:text="취소"
             android:textColor="#eb6b6b"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/schedule_add_btn_save"
@@ -431,7 +430,7 @@
             android:lineSpacingExtra="8sp"
             android:text="저장"
             android:textColor="#6875dd"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
     </LinearLayout>
 
 

@@ -29,7 +29,7 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="전체"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
                 android:lineSpacingExtra="9sp"
                 android:text="00"
                 android:textColor="#000000"
-                android:textSize="22sp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:id="@+id/calendarlog_all_month"
@@ -96,7 +96,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="0월"
                 android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
         </LinearLayout>
 
         <View
@@ -149,7 +149,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="00:00am"
                 android:textColor="#707070"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,7 +164,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="00:00pm"
                 android:textColor="#707070"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv1" />
@@ -190,7 +190,7 @@
                     android:fontFamily="@font/spoqa_han_sans_regular"
                     android:text="새로운 일정을 추가해주세요"
                     android:textColor="#707070"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
