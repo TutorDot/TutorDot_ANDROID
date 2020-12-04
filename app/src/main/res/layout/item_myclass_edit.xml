@@ -27,7 +27,7 @@
         android:lineSpacingExtra="5sp"
         android:text="월"
         android:textColor="#707070"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_day1"
         app:layout_constraintStart_toStartOf="@+id/btn_day1"
         app:layout_constraintTop_toTopOf="@+id/btn_day1"
@@ -56,7 +56,7 @@
         android:lineSpacingExtra="5sp"
         android:text="00:00 AM"
         android:textColor="#707070"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_start1"
         app:layout_constraintStart_toStartOf="@+id/btn_start1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +82,7 @@
         android:lineSpacingExtra="5sp"
         android:text="00:00 AM"
         android:textColor="#707070"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_end1"
         app:layout_constraintStart_toEndOf="@+id/btn_start1"
         app:layout_constraintTop_toTopOf="@+id/btn_end1" />
@@ -141,7 +141,7 @@
             android:lineSpacingExtra="4sp"
             android:text="수업 시간을 설정해주세요"
             android:textColor="#707070"
-            android:textSize="12sp"
+            android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/layoutthird1" />
@@ -165,7 +165,7 @@
             android:lineSpacingExtra="6sp"
             android:text="확인"
             android:textColor="#6875dd"
-            android:textSize="15sp"
+            android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -26,7 +26,7 @@
             android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:textStyle="normal"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textColor="#707070"
             android:lineSpacingExtra="2sp" />
 
@@ -40,7 +40,7 @@
             android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:textStyle="normal"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textColor="#707070"
             android:lineSpacingExtra="2sp" />
     </LinearLayout>
@@ -67,7 +67,7 @@
                 android:id="@+id/img_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/notice_color_img_yellow" />
 
             <TextView
@@ -76,13 +76,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:layout_marginLeft="10dp"
-                android:text="신연상 튜티의 수학 수업"
+                android:text="OOO 튜티의 수학 수업"
                 android:includeFontPadding="false"
                 android:textStyle="normal"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textColor="#1a1a1a"
-                android:letterSpacing="-0.02"
-                android:lineSpacingExtra="6sp" />
+                android:lineSpacingExtra="3sp" />
         </LinearLayout>
 
         <TextView
@@ -92,10 +91,9 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:textStyle="normal"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="#707070"
-            android:letterSpacing="-0.02"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="3sp"
             android:text="6회차, 2시간"
             android:includeFontPadding="false"
             android:layout_marginLeft="25dp"
@@ -130,7 +128,8 @@
                 android:text="강남구청역"
                 android:includeFontPadding="false"
                 android:textStyle="normal"
-                android:textSize="14sp"
+                android:textSize="14dp"
+                android:lineHeight="17sp"
                 android:textColor="#707070"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="6sp" />

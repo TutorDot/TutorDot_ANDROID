@@ -26,7 +26,7 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="튜터와 튜티의"
             android:textColor="#1c1c1c"
-            android:textSize="22sp" />
+            android:textSize="22dp" />
 
         <TextView
             android:id="@+id/textView38"
@@ -35,7 +35,7 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:text=" 공유 캘린더"
             android:textColor="#1c1c1c"
-            android:textSize="22sp" />
+            android:textSize="22dp" />
     </LinearLayout>
 
     <TextView
@@ -46,7 +46,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="캘린더로 수업일정을 한눈에 정리해 보세요!"
         android:textColor="#707070"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
