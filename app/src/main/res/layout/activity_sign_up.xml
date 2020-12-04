@@ -35,7 +35,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="환영합니다!"
         android:textColor="@color/black"
-        android:textSize="17sp"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back" />
 
@@ -48,7 +48,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="튜터닷을 이용할 사용자를 선택해주세요."
         android:textColor="#707070"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -62,7 +62,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="( 1 / 4 )"
         android:textColor="#707070"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView54"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />

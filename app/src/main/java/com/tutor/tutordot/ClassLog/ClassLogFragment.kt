@@ -33,7 +33,7 @@ import java.util.*
 
 
 var month1 : Int = 7
-
+var year1 : Int = 2020
 var mm: String=""
 var dd: String=""
 var yy: String=""
@@ -50,6 +50,7 @@ class ClassLogFragment : Fragment() {
     //현재 달 구하기
     val curDate= Calendar.getInstance()
     val month = curDate.get(Calendar.MONTH) + 1
+    val year = curDate.get(Calendar.YEAR)
 
     lateinit var leid : ArrayList<Int>
     lateinit var lename : ArrayList<String>
@@ -138,6 +139,8 @@ class ClassLogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        year1 = year
+
         //프로그레스바 서버에서 받아온 날짜 데이터
         var progressDate : String
         //수업 회차
@@ -159,28 +162,41 @@ class ClassLogFragment : Fragment() {
         //월 이전 이동
         btn_month_prev.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                btn_month_next.isEnabled = true
                 mon--
+                if(mon<1){
+                    year1--
+                    mon = mon+12
+                }
                 tv_month_log.setText(mon.toString() + "월 수업일지")
                 btn_month_next.setImageResource(R.drawable.class_log_blank_btn_next_month)
                 month1 = mon
 
-                loaddateDatas(mon)
+                loaddateDatas(mon, year1)
             }
         })
         //월 이후 이동
         btn_month_next.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 mon++
+                if(mon<=13) {
+                    if(mon == 13) {
+                        btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
+                        year1++
+                        mon = mon - 12
+                        btn_month_next.isEnabled = false
+                    }
 
-                tv_month_log.setText(mon.toString() + "월 수업일지")
-                btn_month_next.setImageResource(R.drawable.class_log_btn_next_month)
-                month1 = mon
+                    month1 = mon
+                    loaddateDatas(mon, year1)
 
-                loaddateDatas(mon)
+                    logdateAdapter.notifyDataSetChanged()
 
-                logdateAdapter.notifyDataSetChanged()
-
+                    tv_month_log.setText(mon.toString() + "월 수업일지")
+                }
             }
+
+
         })
 
         //상단 수업 선택 메뉴
@@ -190,7 +206,7 @@ class ClassLogFragment : Fragment() {
                     tv_class_choice.text = item.title
                     if (item.title.equals("전체")) {
                         ll_progress.visibility = View.GONE
-                        loaddateDatas(month)
+                        loaddateDatas(month, year)
                         toggle_check = false
                     }
                     else {
@@ -285,7 +301,7 @@ class ClassLogFragment : Fragment() {
                                                 yy = cd[0]
                                                 mm = cd[1]
                                                 dd = cd[2]}
-                                            if(mm.toInt()==month){
+                                            if(mm.toInt()==month && yy.toInt()==year){
                                                 cnt++
                                                 datedatas.apply {
                                                     add(
@@ -374,7 +390,7 @@ class ClassLogFragment : Fragment() {
         }
 
 
-        loaddateDatas(month) //데이터를 어댑터에 전달
+        loaddateDatas(month, year) //데이터를 어댑터에 전달
         popup =
             PopupMenu(context, btn_class_choice)
         //Inflating the Popup using xml file
@@ -421,7 +437,7 @@ class ClassLogFragment : Fragment() {
     }
 
     //서버 연결
-    private fun loaddateDatas(monn : Int){
+    private fun loaddateDatas(monn : Int, yearr : Int){
         if(!toggle_check){
             var datedatas : MutableList<LogdateData> = mutableListOf<LogdateData>()
             // 서버 요청
@@ -466,7 +482,7 @@ class ClassLogFragment : Fragment() {
                                     mm = cd[1]
                                     dd = cd[2]}
 
-                                if(mm.toInt()==monn){
+                                if(mm.toInt()==monn && yy.toInt()==yearr){
                                     cnt++
                                     datedatas.apply {
                                         add(
@@ -577,7 +593,7 @@ class ClassLogFragment : Fragment() {
                                     yy = cd[0]
                                     mm = cd[1]
                                     dd = cd[2]}
-                                if(mm.toInt()==monn){
+                                if(mm.toInt()==monn&& yy.toInt()==yearr){
                                     cnt++
                                     datedatas.apply {
                                         add(
