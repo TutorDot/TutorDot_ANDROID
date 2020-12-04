@@ -1,7 +1,6 @@
 package com.tutor.tutordot.ClassLog
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -10,19 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateAdapter
 import com.tutor.tutordot.ClassLog.LogdateRecyclerView.LogdateData
 import com.tutor.tutordot.R
-import com.tutor.tutordot.ClassLog.LogdateRecyclerView.ser_color
 import com.tutor.tutordot.ClassLog.Server.*
 import com.tutor.tutordot.LoadingDialog
-import com.tutor.tutordot.MainPagerAdapter
-import com.tutor.tutordot.MyPage.MypageRecylerView.MypageAdapter
 import com.tutor.tutordot.Startpage.myjwt
 import kotlinx.android.synthetic.main.fragment_class_log.*
-import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,6 +32,8 @@ var dd: String=""
 var yy: String=""
 
 var haveData : Boolean = true
+
+var mon : Int = 0
 
 class ClassLogFragment : Fragment() {
 
@@ -65,69 +60,6 @@ class ClassLogFragment : Fragment() {
     //토글 사용 확인
     var toggle_check = false
 
-    /*
-    override fun setMenuVisibility(menuVisible: Boolean) {
-        super.setMenuVisibility(menuVisible)
-        if (menuVisible){
-            dialog3 = LoadingDialog(view!!.context)
-            CoroutineScope(Dispatchers.Main).launch {
-                dialog3.show()
-            }
-
-            loaddateDatas(month) //데이터를 어댑터에 전달
-           popup =
-                PopupMenu(context, btn_class_choice)
-            //Inflating the Popup using xml file
-            popup.menuInflater
-                .inflate(R.menu.popup_menu, popup.menu)
-
-            //수업정보 받아옴 (토글 위해)
-            logRequestToServer.service.lectureRequest(
-                "${myjwt}"
-            ).enqueue(object :Callback<LectureResponse>{
-                override fun onFailure(call: Call<LectureResponse>, t: Throwable) {
-                    Log.d("통신 실패", "통신 실패")
-                }
-
-                override fun onResponse(
-                    call: Call<LectureResponse>,
-                    response: Response<LectureResponse>
-                ) {
-                    if(response.isSuccessful){
-                        if(response.body()!!.success){
-                            Log.d("토글 수업 정보", "성공")
-                            Log.d("토글 수업 정보", response.body()!!.data.toString())
-
-                            lecnt = response.body()!!.data.size
-                            Log.d("수업 개수", "{$lecnt}")
-
-                            lename = ArrayList()
-                            leid = ArrayList()
-                            for(i in 1..lecnt) {
-                                lename.add(response.body()!!.data[i - 1].lectureName)
-                                leid.add(response.body()!!.data[i-1].lectureId)
-                                //수업 개수에 맞게 토글 항목 추가
-                                popup.menu.add(response.body()!!.data[i - 1].lectureName)
-                            }
-                            Log.d("토글 수업 이름", "{$lename}")
-                            Log.d("토글 수업 번호", "{$leid}")
-
-                        }else{
-                            Log.d("토글 수업 정보", "실패")
-                        }
-                    }
-                }
-            })
-
-
-
-
-
-        }
-    }
-
-
-     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -156,7 +88,7 @@ class ClassLogFragment : Fragment() {
             tv_percent.setTextColor(Color.parseColor("#FFFFFF"));
 
         tv_month_log.setText(month.toString() + "월 수업일지")
-        var mon = month
+        mon = month
         month1 = month
 
         //월 이전 이동
@@ -206,7 +138,7 @@ class ClassLogFragment : Fragment() {
                     tv_class_choice.text = item.title
                     if (item.title.equals("전체")) {
                         ll_progress.visibility = View.GONE
-                        loaddateDatas(month, year)
+                        loaddateDatas(mon, year1)
                         toggle_check = false
                     }
                     else {
@@ -301,7 +233,7 @@ class ClassLogFragment : Fragment() {
                                                 yy = cd[0]
                                                 mm = cd[1]
                                                 dd = cd[2]}
-                                            if(mm.toInt()==month && yy.toInt()==year){
+                                            if(mm.toInt()==mon && yy.toInt()==year1){
                                                 cnt++
                                                 datedatas.apply {
                                                     add(
@@ -390,7 +322,7 @@ class ClassLogFragment : Fragment() {
         }
 
 
-        loaddateDatas(month, year) //데이터를 어댑터에 전달
+        loaddateDatas(mon, year1) //데이터를 어댑터에 전달
         popup =
             PopupMenu(context, btn_class_choice)
         //Inflating the Popup using xml file

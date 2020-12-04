@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import com.tutor.tutordot.MyPage.Server.ProfileEditResponse
 import com.tutor.tutordot.MyPage.Server.ScheduleData2
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.extention.progressOFF
+import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_myclass_edit.*
 import kotlinx.android.synthetic.main.activity_myclass_edit.btn_pluse
@@ -55,6 +58,7 @@ class MyclassEdit : AppCompatActivity() {
         et_mybank.setText(mybank)
         editText4.setText(myaccount)
         et_myplace.setText(myplace)
+
 
         if (mycolor=="yellow"){
             my_class_tap_img_yellow.setImageResource(R.drawable.my_class_tap_edit_img_select_yellow)
@@ -302,8 +306,8 @@ class MyclassEdit : AppCompatActivity() {
 
         //취소 버튼
         btn_cancle_myedit.setOnClickListener{
-            val intent2= Intent(this, MyinfoActivity::class.java)
-            startActivity(intent2)
+            //val intent2= Intent(this, MyinfoActivity::class.java)
+            //startActivity(intent2)
             finish()
         }
 
@@ -311,9 +315,11 @@ class MyclassEdit : AppCompatActivity() {
         //저장버튼
         btn_save_myedit.setOnClickListener{
 
+
             if (editText.text.toString().length>17) {
                 showToast("수업명의 최대 글자수는 17글자입니다")
             }else{
+                progressON(this)
                 i =0
                 for(i in 0 until 5){
                     Log.d("for문", "for문")
@@ -337,11 +343,6 @@ class MyclassEdit : AppCompatActivity() {
                     price = editText2.text.toString().toInt()
                 )
                 )
-                Log.d("정보", "${addata}")
-
-
-                Log.d("하ㅏㅏㅏㅏㅏㅏㅏ!!!!","${addata[0]}")
-                Log.d("하ㅏㅏㅏㅏㅏㅏㅏ!!!!","${mylid}")
 
 
                 //서버에 데이터 PUT
@@ -350,6 +351,7 @@ class MyclassEdit : AppCompatActivity() {
                 ).enqueue(object : Callback<ProfileEditResponse> {
                     override fun onFailure(call: Call<ProfileEditResponse>, t: Throwable) {
                         Log.d("통신 실패", "수업 추가 통신 실패${t}")
+                        progressOFF()
                     }
 
                     override fun onResponse(
@@ -360,16 +362,17 @@ class MyclassEdit : AppCompatActivity() {
                             if (response.body()!!.success) {
                                 showToast("수업 수정이 완료되었습니다.")
                                 Log.d("성공", "수업 수정 성공")
+                                progressOFF()
+                                finish()
                             } else {
                                 Log.d("실패", "수업 수정 실패")
+                                progressOFF()
                             }
                         }
                     }
                 })
 
-                var finishintent= Intent(this, CalenderActivity::class.java)
-                startActivity(finishintent)
-                finish()}
+                }
         }
 
 
