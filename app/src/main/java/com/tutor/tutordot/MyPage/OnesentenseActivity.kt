@@ -18,6 +18,7 @@ import com.tutor.tutordot.MyPage.Server.ProfileEditRequest
 import com.tutor.tutordot.MyPage.Server.ProfileEditResponse
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
+import com.tutor.tutordot.extention.showToast
 import kotlinx.android.synthetic.main.activity_onesentense.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,12 +38,15 @@ class OnesentenseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onesentense)
 
+        /*
         val credentialsProvider =
             CognitoCachingCredentialsProvider(
                 applicationContext,
                 "ap-northeast-1:e4331b6e-34f8-4934-bf13-************",  // Identity Pool ID
                 Regions.AP_NORTHEAST_1 // Region
             )
+
+         */
 
         // 서버 사진 위함. 2차 릴리즈에서 사용
         /*
@@ -72,6 +76,10 @@ class OnesentenseActivity : AppCompatActivity() {
             )
         })
          */*/
+
+        imageButton5.setOnClickListener{
+            showToast("기능 준비중입니다.");
+       }
 
         btn_cancel_my_one.setOnClickListener {
             finish()
