@@ -231,6 +231,9 @@ class MyFragment : Fragment() {
             dialog.show()
 
         }
+        my_btn_password.setOnClickListener{
+            Toast.makeText(activity, "준비중입니다", Toast.LENGTH_SHORT).show()
+        }
         my_btn_withdrawl.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             val dialog = builder.create()
