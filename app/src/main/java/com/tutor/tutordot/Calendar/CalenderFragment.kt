@@ -217,6 +217,7 @@ class CalenderFragment : Fragment() {
         dialogforcal = LoadingDialog(view!!.context)
         CoroutineScope(Dispatchers.Main).launch {
             dialogforcal.show()
+        }
 
 
             materialCalendarView = view.findViewById(R.id.calendarView) as MaterialCalendarView
@@ -282,7 +283,7 @@ class CalenderFragment : Fragment() {
                 )
             }
 
-        }
+
 
 
         // 튜티에겐 플로팅 버튼 보이지 않음
@@ -538,6 +539,11 @@ class CalenderFragment : Fragment() {
 
                         // 캘린더 날짜 클릭 변경
                         materialCalendarView.setOnDateChangedListener { widget, date, selected ->
+                            dialogforcal = LoadingDialog(view!!.context)
+                            CoroutineScope(Dispatchers.Main).launch {
+                               // dialogforcal.show()
+                            }
+
                             val Year = date.year
                             var Month = (date.month + 1).toString()
                             var Day = (date.day).toString()
@@ -569,6 +575,7 @@ class CalenderFragment : Fragment() {
                             ).enqueue(object : Callback<CalResponse> {
                                 override fun onFailure(call: Call<CalResponse>, t: Throwable) {
                                     Log.d("1 특정 통신 실패", "${t}")
+                                    dialogforcal.dismiss()
                                 }
 
                                 override fun onResponse(
@@ -606,7 +613,9 @@ class CalenderFragment : Fragment() {
                                                     Log.i("test", "${response.body()!!.data[i].lectureName}")
                                                     Log.i("test", "${response.body()!!.data[i].color}")
                                                     calendarLogAdapter.notifyDataSetChanged()
+                                                    dialogforcal.dismiss()
                                                 } else {
+                                                    dialogforcal.dismiss()
                                                     continue
                                                 }
                                             }
@@ -630,7 +639,7 @@ class CalenderFragment : Fragment() {
 
                                     } else {
                                         Log.d("1 특정 실패", "${response.message()}")
-
+                                        dialogforcal.dismiss()
                                     }
                                 }
                             })
@@ -741,6 +750,10 @@ class CalenderFragment : Fragment() {
     private fun calAlldata(){
         //오늘기준 수업표시
         // 서버 연결
+        dialogforcal = LoadingDialog(view!!.context)
+        CoroutineScope(Dispatchers.Main).launch {
+            dialogforcal.show()
+        }
         val datas: MutableList<CalendarData> = mutableListOf<CalendarData>()
         calendarLogAdapter= CalendarLogAdapter(view!!.context, datas)
 
