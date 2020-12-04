@@ -34,7 +34,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="이름을 입력해주세요."
         android:textColor="@color/black"
-        android:textSize="17sp"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back2" />
 
@@ -47,7 +47,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="서비스 이용시 나타나는 이름입니다."
         android:textColor="#707070"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -61,7 +61,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="( 2 / 4 )"
         android:textColor="#707070"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView54"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
@@ -75,16 +75,18 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="이름"
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textSize="13dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_name"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView56">
 
@@ -95,9 +97,9 @@
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:hint="사용자 이름을 입력해 주세요."
             android:inputType="text"
-            android:lineSpacingExtra="5sp"
+            android:lineSpacingExtra="5dp"
             android:singleLine="true"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

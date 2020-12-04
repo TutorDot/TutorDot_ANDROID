@@ -17,6 +17,42 @@ class AgreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agree)
 
+        check_all.setOnClickListener {
+            if (agreeAll == false){//false
+                check_all.setImageResource(R.drawable.agree_img_check)
+                check_notice.setImageResource(R.drawable.agree_img_check)
+                check_personal.setImageResource(R.drawable.agree_img_check)
+                agree1=true
+                agree2=true
+                agreeAll=true
+            }else{
+                check_all.setImageResource(R.drawable.agree_img_uncheck)
+                check_notice.setImageResource(R.drawable.agree_img_uncheck)
+                check_personal.setImageResource(R.drawable.agree_img_uncheck)
+                agreeAll=false
+            }
+        }
+
+        check_notice.setOnClickListener {
+            if (agree1 == false){//false
+                check_notice.setImageResource(R.drawable.agree_img_check)
+                agree1=true
+            }else{//true
+                check_notice.setImageResource(R.drawable.agree_img_uncheck)
+                agree1=false
+            }
+        }
+
+        check_personal.setOnClickListener {
+            if (agree2 == false){//false
+                check_personal.setImageResource(R.drawable.agree_img_check)
+                agree2=true
+            }else{//true
+                check_personal.setImageResource(R.drawable.agree_img_uncheck)
+                agree2=false
+            }
+        }
+
         ll_agreeall.setOnClickListener {
             if (agreeAll == false){//false
                 check_all.setImageResource(R.drawable.agree_img_check)

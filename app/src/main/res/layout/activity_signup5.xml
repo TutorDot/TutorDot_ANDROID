@@ -32,7 +32,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="회원가입 완료"
         android:textColor="#121212"
-        android:textSize="17sp"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView19" />
@@ -44,7 +44,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="튜터닷에 오신 것을 환영합니다!"
         android:textColor="#000000"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView58" />
@@ -60,7 +60,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="이용하러 가기"
         android:textColor="#fafafa"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

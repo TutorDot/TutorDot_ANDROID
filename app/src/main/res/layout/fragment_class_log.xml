@@ -169,7 +169,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
                 android:background="#00000000"
-                android:src="@drawable/class_log_btn_next_month" />
+                android:src="@drawable/class_log_blank_btn_next_month" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
