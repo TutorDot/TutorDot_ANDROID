@@ -26,7 +26,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="안녕하세요!"
         android:textColor="#707070"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
@@ -40,7 +40,7 @@
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:text="튜터링 관리의 마침표, 튜터닷입니다"
         android:textColor="#707070"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView36" />
 

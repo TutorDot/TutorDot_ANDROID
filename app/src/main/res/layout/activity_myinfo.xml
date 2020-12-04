@@ -26,7 +26,7 @@
             android:text="수업 정보"
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,9 +87,9 @@
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="7sp"
-                android:text="신연상 튜티 수학 수업"
+                android:text="OOO 튜티 수학 수업"
                 android:textColor="#121212"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintStart_toEndOf="@+id/my_class_tap_img_yellow"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -143,9 +143,9 @@
                 android:layout_marginRight="188dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:lineSpacingExtra="4sp"
-                android:text="변정인"
+                android:text="이름"
                 android:textColor="#707070"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -159,7 +159,7 @@
                 android:lineSpacingExtra="4sp"
                 android:text="한줄 자기소개입니다"
                 android:textColor="#707070"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="@+id/profile_name"
                 app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
@@ -172,7 +172,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="시간별 금액"
                 android:textColor="#0f0f0f"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -187,7 +187,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="16시간 / 80만원"
                 android:textColor="#707070"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="16시간 / 80만원" />
@@ -201,7 +201,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="계좌정보"
                 android:textColor="#121212"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="계좌정보" />
@@ -217,7 +217,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="하나 83191012665607"
                 android:textColor="#707070"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -230,7 +230,7 @@
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:text="복사"
                 android:textColor="#6875dd"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/my_class_tap_btn_edit" />
 
@@ -243,7 +243,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="정기 수업시간"
                 android:textColor="#121212"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -258,7 +258,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="월 01:00pm~03:00pm"
                 android:textColor="#707070"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/class_time" />
 
@@ -271,7 +271,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="위치"
                 android:textColor="#1c1c1c"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/time1" />
 
@@ -286,7 +286,7 @@
                 android:lineSpacingExtra="5sp"
                 android:text="강남구청역"
                 android:textColor="#707070"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/location" />
 
@@ -321,7 +321,7 @@
                 android:lineSpacingExtra="6sp"
                 android:text="과외초대"
                 android:textColor="#707070"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_invite"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_invite" />
@@ -355,7 +355,7 @@
                 android:lineSpacingExtra="6sp"
                 android:text="연결해제"
                 android:textColor="#707070"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/my_class_tap_btn_unconnect"
                 app:layout_constraintStart_toStartOf="@+id/myinfo_guideline"
                 app:layout_constraintTop_toTopOf="@+id/my_class_tap_btn_unconnect" />

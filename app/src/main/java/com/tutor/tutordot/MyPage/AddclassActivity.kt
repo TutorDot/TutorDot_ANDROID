@@ -1,15 +1,21 @@
 package com.tutor.tutordot.MyPage
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.provider.FontsContractCompat.FontRequestCallback.RESULT_OK
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tutor.tutordot.CalenderActivity
+import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditAdapter
 import com.tutor.tutordot.MyPage.MyclassEditRecylerView.MyclassEditData
 import com.tutor.tutordot.MyPage.Server.*
@@ -18,10 +24,16 @@ import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.progressOFF
 import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
+import kotlinx.android.synthetic.main.activity_myclass_edit.*
 import kotlinx.android.synthetic.main.activity_mypage_addclass.*
 import kotlinx.android.synthetic.main.activity_mypage_addclass.btn_plus
+import kotlinx.android.synthetic.main.activity_onesentense.*
+import kotlinx.android.synthetic.main.fragment_my.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
 import retrofit2.Call
 import retrofit2.Callback
+import java.util.*
 import retrofit2.Response
 class AddclassActivity : AppCompatActivity() {
     lateinit var myclassEditAdapter_add: MyclassEditAdapter
@@ -71,6 +83,37 @@ class AddclassActivity : AppCompatActivity() {
         //rv_new_classtime.layoutManager= myLayoutManager
 
         //loadDatas()
+
+
+        editTextname.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            override fun onFocusChange(view: View, hasFocus: Boolean) {
+                if (hasFocus) {
+                    myScrollView.post {
+                        myScrollView.fullScroll(View.FOCUS_DOWN)
+                    }
+
+                } else {
+                    // 키보드 안보이게
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                }
+            }
+        })
+
+        et_bank.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            override fun onFocusChange(view: View, hasFocus: Boolean) {
+                if (hasFocus) {
+                    myScrollView.post {
+                        myScrollView.fullScroll(View.FOCUS_DOWN)
+                    }
+
+                } else {
+                    // 키보드 안보이게
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                }
+            }
+        })
+
+
 
         //취소버튼
         btn_cancel_my_add.setOnClickListener{
