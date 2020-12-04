@@ -25,6 +25,7 @@ import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.myjwt
 import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.showToast
+import kotlinx.android.synthetic.main.activity_mypage_addclass.*
 import kotlinx.android.synthetic.main.activity_schedule_add.*
 import kotlinx.android.synthetic.main.activity_schedule_add.fix1
 import kotlinx.android.synthetic.main.activity_schedule_add.fix2
@@ -149,46 +150,57 @@ class ScheduleAddActivity : AppCompatActivity() {
         // (서버) 저장 버튼 누르면 일정 정보 화면으로 이동
         schedule_add_btn_save.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                //서버에 전달
-                calendarLogRequestToServer.service.scheduleAddRequest(
-                    "${myjwt}",
-                    ScheduleAddRequest(
-                        lectureId = "${alid}".toInt(),
-                        date = schedule_add_date_txt.text.toString(),
-                        startTime = "${schedule_add_start_txt.text}",
-                        endTime = "${schedule_add_end_txt.text}",
-                        location = schedule_add_location_txt.text.toString()
-                    )// 정보를 전달
-                ).enqueue(object : Callback<ScheduleAddResponse> { // Callback 등록 (서버 통신 비동기적 요청)
 
-                    // 비동기 요청 후 응답을 받았을 때 수행할 행동이 정의된 곳
-                    override fun onFailure(call: Call<ScheduleAddResponse>, t: Throwable){
-                        // 통신 실패
-                        //Toast.makeText(this@ScheduleAddActivity, "통신 실패", Toast.LENGTH_SHORT).show()
-                        Log.d("일정 추가 통신 실패","${t}")
-                    }
-                    override fun onResponse(
-                        call: Call<ScheduleAddResponse>,
-                        response: Response<ScheduleAddResponse>
-                    ) {
-                        // 통신 성공
-                        if(response.isSuccessful){  // statusCode가 200-300 사이일 때, 응답 body 이용 가능
-                            if(response.body()!!.success){  // ResponseLogin의 success가 true이면
-                                //Toast.makeText(this@ScheduleAddActivity, "추가 성공", Toast.LENGTH_SHORT).show()
-                                showToast("일정 추가가 완료되었습니다.")
-                                Log.d("응답결과","${response.body().toString()}")
+                if (schedule_add_select_txt.text.toString() == "수업을 선택해주세요") {
+                    showToast("수업명을 선택해 주세요.")
+                } else if (schedule_add_start_txt.text.isNullOrBlank()) {
+                    showToast("시작 시간을 설정해 주세요.")
+                } else if (schedule_add_end_txt.text.isNullOrBlank()) {
+                    showToast("종료 시간을 설정해 주세요.")
+                } else {
+                    //서버에 전달
+                    calendarLogRequestToServer.service.scheduleAddRequest(
+                        "${myjwt}",
+                        ScheduleAddRequest(
+                            lectureId = "${alid}".toInt(),
+                            date = schedule_add_date_txt.text.toString(),
+                            startTime = "${schedule_add_start_txt.text}",
+                            endTime = "${schedule_add_end_txt.text}",
+                            location = schedule_add_location_txt.text.toString()
+                        )// 정보를 전달
+                    ).enqueue(object :
+                        Callback<ScheduleAddResponse> { // Callback 등록 (서버 통신 비동기적 요청)
 
-                            } else{
-                                //Toast.makeText(this@ScheduleAddActivity, "추가 실패", Toast.LENGTH_SHORT).show()
-                                Log.d("추가 실패","일정 추가 실패")
+                        // 비동기 요청 후 응답을 받았을 때 수행할 행동이 정의된 곳
+                        override fun onFailure(call: Call<ScheduleAddResponse>, t: Throwable) {
+                            // 통신 실패
+                            //Toast.makeText(this@ScheduleAddActivity, "통신 실패", Toast.LENGTH_SHORT).show()
+                            Log.d("일정 추가 통신 실패", "${t}")
+                        }
+
+                        override fun onResponse(
+                            call: Call<ScheduleAddResponse>,
+                            response: Response<ScheduleAddResponse>
+                        ) {
+                            // 통신 성공
+                            if (response.isSuccessful) {  // statusCode가 200-300 사이일 때, 응답 body 이용 가능
+                                if (response.body()!!.success) {  // ResponseLogin의 success가 true이면
+                                    //Toast.makeText(this@ScheduleAddActivity, "추가 성공", Toast.LENGTH_SHORT).show()
+                                    showToast("일정 추가가 완료되었습니다.")
+                                    Log.d("응답결과", "${response.body().toString()}")
+
+                                } else {
+                                    //Toast.makeText(this@ScheduleAddActivity, "추가 실패", Toast.LENGTH_SHORT).show()
+                                    Log.d("추가 실패", "일정 추가 실패")
+                                }
                             }
                         }
-                    }
-                })
+                    })
 
-                val backIntent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
-                startActivity(backIntent)
-                finish()
+                    val backIntent = Intent(this@ScheduleAddActivity, CalenderActivity::class.java)
+                    startActivity(backIntent)
+                    finish()
+                }
             }
         })
 
