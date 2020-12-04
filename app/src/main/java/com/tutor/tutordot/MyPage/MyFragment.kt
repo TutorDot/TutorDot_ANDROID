@@ -163,8 +163,32 @@ class MyFragment : Fragment() {
         mypageAdapter= MypageAdapter(view.context)
         recyclerView_my.adapter=mypageAdapter
 
+        if(looking==true){
+            cns_around.visibility=View.VISIBLE
+            my_btn_password.visibility=View.GONE
+            textView.visibility=View.GONE
+            textView2.visibility=View.GONE
+            one_sentense.visibility=View.GONE
+            tv_password.visibility=View.GONE
+            imageView16.visibility=View.GONE
+        }else{
+            cns_around.visibility=View.GONE
+            my_btn_password.visibility=View.VISIBLE
+            textView.visibility=View.VISIBLE
+            textView2.visibility=View.VISIBLE
+            one_sentense.visibility=View.VISIBLE
+            tv_password.visibility=View.VISIBLE
+            imageView16.visibility=View.VISIBLE
+        }
 
 
+
+        cns_around.setOnClickListener{
+            val intent4=Intent(activity, LoginFor1stActivity::class.java)
+            startActivity(intent4)
+            MySharedPreferences.islogin = false
+            activity?.finish()
+        }
 
         //myinfo 서버연결(user)
 
