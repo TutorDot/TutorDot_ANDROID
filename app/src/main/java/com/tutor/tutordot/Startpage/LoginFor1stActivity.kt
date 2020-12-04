@@ -1,19 +1,14 @@
 package com.tutor.tutordot.Startpage
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.AnimationDrawable
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDialog
-import com.bumptech.glide.Glide
+import com.airbnb.lottie.LottieAnimationView
 import com.tutor.tutordot.CalenderActivity
-import com.tutor.tutordot.LoadingDialog
 import com.tutor.tutordot.R
 import com.tutor.tutordot.StartServer.RequestLogin
 import com.tutor.tutordot.StartServer.RequestToServer
@@ -22,22 +17,19 @@ import com.tutor.tutordot.extention.customEnqueue
 import com.tutor.tutordot.extention.progressOFF
 import com.tutor.tutordot.extention.progressON
 import com.tutor.tutordot.extention.showToast
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.et_email
 import kotlinx.android.synthetic.main.activity_login.et_pw
 import kotlinx.android.synthetic.main.activity_login.login_btn_login
 import kotlinx.android.synthetic.main.activity_login_for1st.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import java.lang.Thread.sleep
+import kotlinx.android.synthetic.main.dialog_lottie.*
 
 
 var myjwt:String = ""
 var role: String = ""
 var name: String = ""
 var looking: Boolean = false
+lateinit var lottie2: LottieAnimationView
+
 class LoginFor1stActivity : AppCompatActivity() {
     //서버 이용
     val requestToServer = RequestToServer
@@ -82,6 +74,17 @@ class LoginFor1stActivity : AppCompatActivity() {
                     }
                 })
         }
+
+        /*
+        login_img_tutor.setOnClickListener {
+            setContentView(R.layout.dialog_lottie)
+            lottie2=lottie
+            lottie2.playAnimation()
+            finish()
+
+        }
+
+         */
         login_btn_login.setOnClickListener {
             if (et_email.text.isNullOrBlank() || et_pw.text.isNullOrBlank()) {
                 showToast("이메일과 비밀번호를 모두 입력하세요.")

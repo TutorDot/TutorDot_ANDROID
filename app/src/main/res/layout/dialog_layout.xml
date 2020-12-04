@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Loading.."
+            android:text="Loading"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffffff"/>
     </LinearLayout>

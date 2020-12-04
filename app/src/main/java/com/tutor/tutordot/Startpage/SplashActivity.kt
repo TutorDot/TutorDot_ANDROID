@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.ImageView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.tutor.tutordot.CalenderActivity
 import com.tutor.tutordot.R
 import com.tutor.tutordot.Startpage.AutoLogin.MySharedPreferences
 import com.tutor.tutordot.extention.showToast
+import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.android.synthetic.main.dialog_lottie.*
 
 class SplashActivity : Activity() {
 
@@ -21,8 +24,8 @@ class SplashActivity : Activity() {
         setContentView(R.layout.activity_splash)
 
         val splashGif: ImageView = findViewById(R.id.gif_image) as ImageView
-        //val gifImage = GlideDrawableImageViewTarget(splashGif)
         Glide.with(this).load(R.raw.splash_anim).into(splashGif)
+
 
 
         Handler().postDelayed({ //delay를 위한 handler
